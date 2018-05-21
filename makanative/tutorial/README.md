@@ -38,9 +38,9 @@ MAKA API TUTORIAL (For Android)
    MAKA/include/opencv_3.3.1/                : OpenCV library include folder
    MAKA/include/IMaka.h                      : Maka API Interface Header file
    MAKA/include/DPException.h                : Maka Exception Header file
-   MAKA/include/DPFactoryForAndroid.h	     : Maka Singleton Header file
+   MAKA/include/DPFactoryForAndroid.h        : Maka Singleton Header file
    MAKA/libs/armeabi-v7a/libopencv_world.so  : OpenCV library file
-   MAKA/libs/armeabi-v7a/libtbb.so   	     : tbb library file
+   MAKA/libs/armeabi-v7a/libtbb.so           : tbb library file
    MAKA/libs/armeabi-v7a/libmakanative.so    : Maka library file
    ```     
 
