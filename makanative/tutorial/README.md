@@ -23,8 +23,8 @@ MAKA API TUTORIAL (For Android)
 	* Smoothing face rectangle
  
 * OUTPUT:  
-	* Face Rectangle(x, y, width, height)   
-	![](./img/FacePosition.PNG){: width="400"} 
+	* Face Rectangle(x, y, width, height)  
+	![](./img/FacePosition.png){: width="400"}	
 
 ### 2. MAKA Face Mosaic
 
@@ -36,25 +36,25 @@ MAKA API TUTORIAL (For Android)
  * Maka API(C++)  
    
    ```
-   	MAKA/include/opencv_3.1/                  : OpenCV library include folder
-	MAKA/include/IMaka.h                      : Maka API Interface Header file
-	MAKA/include/DPException.h                : Maka Exception Header file
-	MAKA/include/DPFactoryForAndroid.h	  : Maka Singleton Header file
-	MAKA/libs/armeabi-v7a/libopencv_java3.so  : OpenCV library file
-	MAKA/libs/armeabi-v7a/libtbb.so   	  : tbb library file
-	MAKA/libs/armeabi-v7a/libMakaNative.so    : Maka library file
+   MAKA/include/opencv_3.1/                  : OpenCV library include folder
+   MAKA/include/IMaka.h                      : Maka API Interface Header file
+   MAKA/include/DPException.h                : Maka Exception Header file
+   MAKA/include/DPFactoryForAndroid.h	  : Maka Singleton Header file
+   MAKA/libs/armeabi-v7a/libopencv_java3.so  : OpenCV library file
+   MAKA/libs/armeabi-v7a/libtbb.so   	  : tbb library file
+   MAKA/libs/armeabi-v7a/libMakaNative.so    : Maka library file
    ```
    
  * Maka Sample Project With Android
   
    ```
-   	MAKA/MakaAndroid/AppExample/              : Maka Android Sample Project Folder 
+   MAKA/MakaAndroid/AppExample/              : Maka Android Sample Project Folder 
    ```
 
 *****
 
 ## HOW TO USE [MAKA API][api] (For Android)
-[](./img/Logic.PNG){: width="200"}   
+![](./img/Logic.png){: width="200"}   
 
 1. Insert Library files into the library directory that matches the project's target hardware
 2. Insert Include files into your project's include directory.
