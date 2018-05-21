@@ -31,8 +31,6 @@ import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import java.io.File;
-
 public class MainActivity extends AppCompatActivity {
 
     // Used to load the 'native-lib' library on application startup.
@@ -46,14 +44,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Example of a call to a native method
-        init(this);
+        init(this, "deepixel_license.bytes");
     }
 
     /**
      * A native method that is implemented by the 'native-lib' native library,
      * which is packaged with this application.
      */
-    public native void init(Activity activity);
+    public native void init(Activity activity, String licenseFilename);
 }
 
 ```
@@ -72,10 +70,14 @@ std::shared_ptr<dp::makanative::IMaka> g_ptrMaka;
 
 JNIEXPORT void JNICALL
 Java_maka_deepixel_xyz_makaandroidappexample_MainActivity_init(JNIEnv *env, jobject,
-                                                               jobject activity) {
+                                                               jobject activity,
+                                                               jstring licenseFilename) {
     try {
-        g_ptrMaka = dp::android::DPFactoryForAndroid::CreateInstance<dp::makanative::IMaka>(env, activity);
-    } catch (dp::exception::DPLicenseExpiredException ex) {
+        jboolean isCopy;
+        std::string licenseFilenameStr = env->GetStringUTFChars(licenseFilename, &isCopy);
+        g_ptrMaka = dp::android::DPFactoryForAndroid::CreateInstance<dp::makanative::IMaka>
+                (env, activity, licenseFilenameStr);
+     } catch (dp::exception::DPLicenseExpiredException ex) {
         LOGF("MAKA", "%s", ex.what());
     }
 }
