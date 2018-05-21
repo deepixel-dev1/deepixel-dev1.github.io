@@ -13,8 +13,8 @@ MAKA API TUTORIAL (For Android)
 
 ### 1. MAKA Face Tracking
 
->MAKA Face Tracking is a system that finds faces at high speed and keeps track of face positions. 
-<img src="https://deepixel-dev1.github.io/makanative/tutorial/img/FT_SS.png" width=600></img>
+>MAKA Face Tracking is a system that finds faces at high speed and keeps track of face positions.  
+![](./img/FT_SS.png){: width="600"}  
 
 * SPEC:
 	* Up to 3 peoples
@@ -24,7 +24,7 @@ MAKA API TUTORIAL (For Android)
  
 * OUTPUT:  
 	* Face Rectangle(x, y, width, height)   
-	<img src="https://deepixel-dev1.github.io/makanative/tutorial/img/FacePosition.png" width=400></img>
+	![](./img/FacePosition.PNG){: width="400"} 
 
 ### 2. MAKA Face Mosaic
 
@@ -36,57 +36,49 @@ MAKA API TUTORIAL (For Android)
  * Maka API(C++)  
    
    ```
-         MAKA/include/opencv_3.1                  : OpenCV library include files
-         MAKA/include/tbb_4.3                     : TBB library include files
-         MAKA/include/IMaka.h                     : Maka API Controller file
-	 MAKA/include/
+         MAKA/include/opencv_3.1/                 : OpenCV library include folder
+         MAKA/include/IMaka.h                     : Maka API Interface Header file
+	 MAKA/include/DPException.h               : Maka Exception Header file
+	 MAKA/include/DPFactoryForAndroid.h	  : Maka Singleton Header file
          MAKA/libs/armeabi-v7a/libopencv_java3.so : OpenCV library file
-         MAKA/libs/armeabi-v7a/libMaka.so         : Maka library file 
+	 MAKA/libs/armeabi-v7a/libtbb.so   	  : tbb library file
+         MAKA/libs/armeabi-v7a/libMakaNative.so   : Maka library file
    ```
    
  * Maka Sample Project With Android
   
    ```
-         MAKA/Android/Sample/MakaTest             : Maka Android Sample Project files
+         MAKA/MakaAndroid/AppExample/             : Maka Android Sample Project Folder 
    ```
 
 *****
 
 ## HOW TO USE [MAKA API][api] (For Android)
-<img src="https://deepixel-dev1.github.io/makanative/tutorial/img/Logic.png" width=200></img>  
+[](./img/Logic.PNG){: width="200"}   
 
 1. Insert Library files into the library directory that matches the project's target hardware
 2. Insert Include files into your project's include directory.
-3. Include IMaka.h in the class header to use the MAKA API, and create a IMaka Class member variable.
+3. Include IMaka.h in the class header to use the MAKA API, and create a IMaka Class member variable.  
+```
+std::shared_ptr<dp::makanative::IMaka> g_ptrMaka;
+g_ptrMaka = dp::android::DPFactoryForAndroid::CreateInstance<dp::makanative::IMaka>(env,
+                                                                                    activity,
+                                                                                    licenseFilename);
+```  
 4. Before the MAKA API is executed, the initialize function of the DPMakerController is called  
-	ex) ```IMaka.initialize();```
-5. When the MAKA API is needed, call the process function of DPMakaController.  
-	ex) ```IMaka.process(IMAGE, FACE_TRACKING);```
+```
+g_ptrMaka->initialize(img.cols, img.rows);
+```  
+5. When the MAKA API is needed, call the process function of DPMakaController. 
+```
+g_ptrMaka->process(img);
+```
 6. When the MAKA API needs to be shut down, it calls the process function of the DPMakerController.   
-	ex) ```IMaka.process(cv::Mat(), FACE_TRACKING_RELEASE);```
-
-*****
-
-## MAKA API Return Messages
-
 ```
-    _MAKA_MSG_DONE_               : The function completed successfully.
-    _MAKA_MSG_NO_INITIALIZATION_  : Not initialized.
-    _MAKA_MSG_NO_IMAGE_           : There is no input image.
-    _MAKA_MSG_NO_SAME_IMAGE_SIZE_ : The initial image size and the input image size are different.
-    _MAKA_MSG_INITIALIZED_        : Initialization has already been executed.
+g_ptrMaka->process(img, FACE_TRACING_RELEASE);
 ```
 
 *****
-
-## MAKA API MODE
-
-```
-    FACE_TRACKING                 : Face Tracking Mode
-    FACE_TRACKING_RELEASE         : Face Tracking Release Mode
-```
-
-***
 
 ## Reference
 
