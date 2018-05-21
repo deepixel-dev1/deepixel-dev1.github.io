@@ -87,6 +87,6 @@ g_ptrMaka->process(img, FACE_TRACING_RELEASE);
 - [TBB][tbb]
 
 [opencv]: http://opencv.org/
-[api]: http://opencv.org/
+[api]: https://deepixel-dev1.github.io/makanative/api/
 [tbb]: https://www.threadingbuildingblocks.org/
 
