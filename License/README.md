@@ -1,12 +1,13 @@
 LICENSE TUTORIAL (For Android)
 =========================
 
->A license file is required to use the SW library provided by Deepixel Inc.
+>A license file is required to use the software library provided by Deepixel Inc.
 
 
 ## Requests a license
 
-The following information is required to generate and manage the license file. Please send us the information by email.[deepixel@deepixel.xyz]
+The following information is required to generate and manage the license file. 
+Please send us the information by [deepixel@deepixel.xyz]
 
 - Application ID  
 >Application ID to which the license applies.  
@@ -20,7 +21,7 @@ The following information is required to generate and manage the license file. P
 1. Copies a license file in assets folder.  
 ![](./img/android_studio_assets_license.png)
 
-2. Makes sure the application id is the same as the one you provided when you requested the license. 
+2. Makes sure that the application id should be same as the one you provided when you requested the license. 
 
 3. Passes the main activity object and the license file name to the JNI function.
 
@@ -91,7 +92,7 @@ The following information is required to generate and manage the license file. P
 ## License exceptions
 
 - dp::exception::DPLicenseException
->This exception is occurred when the license file does not exists or is corruted.
+>This exception is occurred when the license file does not exist or is corrupted.
 
 - dp::exception::DPLicenseExpiredException
->This exception is occurred when it is expired.
+>This exception is occurred when the license file is expired.
