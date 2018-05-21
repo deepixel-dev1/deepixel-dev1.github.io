@@ -13,7 +13,7 @@ MAKA API TUTORIAL (For Android)
 ### 1. MAKA Face Tracking
 
 >MAKA Face Tracking is a system that finds faces at high speed and keeps track of face positions. 
-<img src="img/FT_SS.png" width=600></img>
+<img src="./img/FT_SS.png" width=600></img>
 
 * SPEC:
 	* Up to 3 peoples
