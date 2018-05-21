@@ -59,7 +59,7 @@ MAKA API TUTORIAL (For Android)
 4. Before the MAKA API is executed, the initialize function of the DPMakerController is called  
 	ex) ```IMaka.initialize();```
 5. When the MAKA API is needed, call the process function of DPMakaController.  
-	ex) ```IMaka.process(IMAGE);```
+	ex) ```IMaka.process(IMAGE, FACE_TRACKING);```
 6. When the MAKA API needs to be shut down, it calls the process function of the DPMakerController.   
 	ex) ```IMaka.process(cv::Mat(), FACE_TRACKING_RELEASE);```
 
