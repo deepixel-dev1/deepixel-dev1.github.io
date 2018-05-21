@@ -19,10 +19,10 @@ MAKA API TUTORIAL (For Android)
 	* Up to 3 peoples
 	* Unconstraind face tracker  
 	* 30~40 FPS (VGA:640X480, Android Mobile:Galaxy Note 8)
-	* Smoothing face rectangle
+	* Smoothing the positions of tracked faces
  
 * OUTPUT:  
-	* Face Rectangle(x, y, width, height)  
+	* Face Rectangle(x-coordiante, y-coordinate, width, height)  
 	![](./img/FacePosition.png){: width="400"}	
 
 ### 2. MAKA Face Mosaic
@@ -35,7 +35,7 @@ MAKA API TUTORIAL (For Android)
  * Maka API(C++)  
    
    ```
-   MAKA/include/opencv_3.3.1/                : OpenCV library include folder
+   MAKA/include/opencv_3.3.1/                : OpenCV library folder
    MAKA/include/IMaka.h                      : Maka API Interface Header file
    MAKA/include/DPException.h                : Maka Exception Header file
    MAKA/include/DPFactoryForAndroid.h        : Maka Singleton Header file
@@ -49,8 +49,8 @@ MAKA API TUTORIAL (For Android)
 ## HOW TO USE [MAKA API][api] (For Android)
 ![](./img/Logic.png){: width="200"}   
 
-1. Insert Library files into the library directory that matches the project's target hardware
-2. Insert Include files into your project's include directory.
+1. Insert "Library files" into the library directory that matches the project's target hardware
+2. Insert "Include files" into your project's include directory.
 3. Create the IMaka Object at the location you want to use.  
 ```
 std::shared_ptr<dp::makanative::IMaka> g_ptrMaka;
@@ -58,7 +58,7 @@ g_ptrMaka = dp::android::DPFactoryForAndroid::CreateInstance<dp::makanative::IMa
                                                                                     activity,
                                                                                     licenseFilename);
 ```  
-4. Before the MAKA API is executed, you must call the the initialize function of the IMaka.  
+4. Before the MAKA API is executed, you must call the initialize function of the IMaka.  
 ```
 g_ptrMaka->initialize(img.cols, img.rows);
 ```  
