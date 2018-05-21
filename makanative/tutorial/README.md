@@ -23,12 +23,14 @@ MAKA API TUTORIAL (For Android)
  
 * OUTPUT:  
 	* Face Rectangle(x, y, w, h)  
+	
 	```
 	x: x-coordinate of the upper-left corner of Face Rectangle
 	y: y-coordinate of the upper-left corner of Face Rectangle
 	w: width of Face Rectangle
 	h: height of Face Rectangle
-        ```     
+        ```  
+	
 	
 	![](./img/FacePosition.png){: width="400"}	
 
