@@ -16,16 +16,14 @@ MAKA API TUTORIAL (For Android)
 <img src="img/FT_SS.png" width=600></img>
 
 * SPEC:
->
- * Max 3 peoples
- * Unconstraind face tracker  
- * 30~40 FPS (VGA, Android Mobile:Galaxy Note 8)
- * Smoothing face rectangle
+	* Max 3 peoples
+	* Unconstraind face tracker  
+	* 30~40 FPS (VGA, Android Mobile:Galaxy Note 8)
+	* Smoothing face rectangle
  
 * OUTPUT:  
->
- * Face Position(x, y, width, height)   
-<img src="img/FacePosition.png" width=400></img>
+	* Face Position(x, y, width, height)   
+	<img src="img/FacePosition.png" width=400></img>
 
 ### 2. MAKA Face Mosaic
 
@@ -47,9 +45,9 @@ MAKA API TUTORIAL (For Android)
    
  * Maka Sample Project With Android
   
-  ```
+   ```
          MAKA/Android/Sample/MakaTest             : Maka Android Sample Project files
-  ```
+   ```
 
 *****
 
