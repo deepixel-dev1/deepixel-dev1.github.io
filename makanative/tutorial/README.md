@@ -1,4 +1,4 @@
-![Deepixel](/img/Deepixel_logo.PNG){: width="200"}
+![](/img/Deepixel_logo.PNG){: width="200"}
 MAKA API TUTORIAL (For Android)
 =========================
 
