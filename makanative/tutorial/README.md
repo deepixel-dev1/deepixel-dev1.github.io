@@ -22,7 +22,14 @@ MAKA API TUTORIAL (For Android)
 	* Smoothing the positions of tracked faces
  
 * OUTPUT:  
-	* Face Rectangle(x-coordiante, y-coordinate, width, height)  
+	* Face Rectangle(x, y, w, h)  
+	```
+	x: x-coordinate of the upper-left corner of Face Rectangle
+	y: y-coordinate of the upper-left corner of Face Rectangle
+	w: width of Face Rectangle
+	h: height of Face Rectangle
+        ```     
+	
 	![](./img/FacePosition.png){: width="400"}	
 
 ### 2. MAKA Face Mosaic
@@ -62,7 +69,7 @@ g_ptrMaka = dp::android::DPFactoryForAndroid::CreateInstance<dp::makanative::IMa
 ```
 g_ptrMaka->initialize(img.cols, img.rows);
 ```  
-5. When the MAKA API is needed, call the process function of IMaka. 
+5. To run the MAKA API, call the process function of IMaka.
 ```
 g_ptrMaka->process(img);
 ```
