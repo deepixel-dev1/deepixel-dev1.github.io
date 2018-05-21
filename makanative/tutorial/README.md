@@ -58,7 +58,7 @@ MAKA API TUTORIAL (For Android)
 
 1. Insert Library files into the library directory that matches the project's target hardware
 2. Insert Include files into your project's include directory.
-3. Include IMaka.h in the class header to use the MAKA API, and create a IMaka Class member variable.  
+3. Create the IMake interface using the singleton at the location you want to use.  
 ```
 std::shared_ptr<dp::makanative::IMaka> g_ptrMaka;
 g_ptrMaka = dp::android::DPFactoryForAndroid::CreateInstance<dp::makanative::IMaka>(env,
