@@ -1,5 +1,4 @@
-<img src="https://deepixel-dev1.github.io/makanative/tutorial/img/Deepixel_logo.PNG" width=200></img> 
-
+![Deepixel](/img/Deepixel_logo.PNG){: width="200"}
 MAKA API TUTORIAL (For Android)
 =========================
 
@@ -38,6 +37,7 @@ MAKA API TUTORIAL (For Android)
          MAKA/include/opencv_3.1                  : OpenCV library include files
          MAKA/include/tbb_4.3                     : TBB library include files
          MAKA/include/IMaka.h                     : Maka API Controller file
+	 MAKA/include/
          MAKA/libs/armeabi-v7a/libopencv_java3.so : OpenCV library file
          MAKA/libs/armeabi-v7a/libMaka.so         : Maka library file 
    ```
