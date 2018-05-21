@@ -1,4 +1,4 @@
-<img src="img/Deepixel_logo.PNG" width=200></img> 
+<img src="https://deepixel-dev1.github.io/makanative/tutorial/img/Deepixel_logo.PNG" width=200></img> 
 
 MAKA API TUTORIAL (For Android)
 =========================
@@ -13,7 +13,7 @@ MAKA API TUTORIAL (For Android)
 ### 1. MAKA Face Tracking
 
 >MAKA Face Tracking is a system that finds faces at high speed and keeps track of face positions. 
-<img src="./img/FT_SS.png" width=600></img>
+<img src="https://deepixel-dev1.github.io/makanative/tutorial/img/FT_SS.png" width=600></img>
 
 * SPEC:
 	* Up to 3 peoples
@@ -23,7 +23,7 @@ MAKA API TUTORIAL (For Android)
  
 * OUTPUT:  
 	* Face Rectangle(x, y, width, height)   
-	<img src="img/FacePosition.png" width=400></img>
+	<img src="https://deepixel-dev1.github.io/makanative/tutorial/img/FacePosition.png" width=400></img>
 
 ### 2. MAKA Face Mosaic
 
@@ -51,7 +51,7 @@ MAKA API TUTORIAL (For Android)
 *****
 
 ## HOW TO USE [MAKA API][api] (For Android)
-<img src="img/Logic.png" width=200></img>  
+<img src="https://deepixel-dev1.github.io/makanative/tutorial/img/Logic.png" width=200></img>  
 
 1. Insert Library files into the library directory that matches the project's target hardware
 2. Insert Include files into your project's include directory.
