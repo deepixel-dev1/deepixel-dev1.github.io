@@ -6,9 +6,8 @@ MAKA API TUTORIAL (For Android)
 
 >The MAKA API is an API module for face tracking, mosaic, and face recognition.  
 
-
-
 ***
+
 ## Features
 
 ### 1. MAKA Face Tracking
@@ -36,20 +35,14 @@ MAKA API TUTORIAL (For Android)
  * Maka API(C++)  
    
    ```
-   MAKA/include/opencv_3.1/                  : OpenCV library include folder
+   MAKA/include/opencv_3.3.1/                : OpenCV library include folder
    MAKA/include/IMaka.h                      : Maka API Interface Header file
    MAKA/include/DPException.h                : Maka Exception Header file
-   MAKA/include/DPFactoryForAndroid.h	  : Maka Singleton Header file
-   MAKA/libs/armeabi-v7a/libopencv_java3.so  : OpenCV library file
-   MAKA/libs/armeabi-v7a/libtbb.so   	  : tbb library file
-   MAKA/libs/armeabi-v7a/libMakaNative.so    : Maka library file
-   ```
-   
- * Maka Sample Project With Android
-  
-   ```
-   MAKA/MakaAndroid/AppExample/              : Maka Android Sample Project Folder 
-   ```
+   MAKA/include/DPFactoryForAndroid.h	     : Maka Singleton Header file
+   MAKA/libs/armeabi-v7a/libopencv_world.so  : OpenCV library file
+   MAKA/libs/armeabi-v7a/libtbb.so   	     : tbb library file
+   MAKA/libs/armeabi-v7a/libmakanative.so    : Maka library file
+   ```     
 
 *****
 
@@ -58,24 +51,20 @@ MAKA API TUTORIAL (For Android)
 
 1. Insert Library files into the library directory that matches the project's target hardware
 2. Insert Include files into your project's include directory.
-3. Create the IMake interface using the singleton at the location you want to use.  
+3. Create the IMaka Object at the location you want to use.  
 ```
 std::shared_ptr<dp::makanative::IMaka> g_ptrMaka;
 g_ptrMaka = dp::android::DPFactoryForAndroid::CreateInstance<dp::makanative::IMaka>(env,
                                                                                     activity,
                                                                                     licenseFilename);
 ```  
-4. Before the MAKA API is executed, the initialize function of the DPMakerController is called  
+4. Before the MAKA API is executed, you must call the the initialize function of the IMaka.  
 ```
 g_ptrMaka->initialize(img.cols, img.rows);
 ```  
-5. When the MAKA API is needed, call the process function of DPMakaController. 
+5. When the MAKA API is needed, call the process function of IMaka. 
 ```
 g_ptrMaka->process(img);
-```
-6. When the MAKA API needs to be shut down, it calls the process function of the DPMakerController.   
-```
-g_ptrMaka->process(img, FACE_TRACING_RELEASE);
 ```
 
 *****
