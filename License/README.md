@@ -13,7 +13,7 @@ Please send us the following information required to generate and manage the lic
 - Application ID  
 >Application ID to which the license applies.  
 
-- Your company
+- Your company name
 - E-mail
 >E-mail address for an important notice.  
 
