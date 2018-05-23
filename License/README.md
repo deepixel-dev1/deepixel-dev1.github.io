@@ -1,29 +1,30 @@
+[MAKA]: https://deepixel-dev1.github.io/makanative/tutorial/
+
 LICENSE TUTORIAL (For Android)
 =========================
 
 >A license file is required to use the software library provided by Deepixel Inc.
 
 
-## Requests a license
+## Request a license
 
-The following information is required to generate and manage the license file. 
-Please send us the information by [deepixel@deepixel.xyz]
+Please send us the following information required to generate and manage the license file by [deepixel@deepixel.xyz]
 
 - Application ID  
 >Application ID to which the license applies.  
 
 - Your company
 - E-mail
->E-mail address for updates and important information.  
+>E-mail address for an important notice.  
 
-## Applies a license
+## Apply a license
 
-1. Copies a license file in assets folder.  
+1. Copy a license file in the assets folder.  
 ![](./img/android_studio_assets_license.png)
 
-2. Makes sure that the application id should be same as the one you provided when you requested the license. 
+2. Make sure that the application id should be same as the one you provided when you requested the license. 
 
-3. Passes the main activity object and the license file name to the JNI function.
+3. Pass the main activity object and the license file name to the JNI function.
 
 	```java  
 	package maka.deepixel.xyz.makaandroidappexample;
@@ -57,7 +58,8 @@ Please send us the information by [deepixel@deepixel.xyz]
 	
 	```
 	
-4.  Creates a MAKA object with the main activity and the license file name as arguments.  
+4.  Create an instance with the main activity and the license file name as arguments. 
+The following is an example for [MAKA] API.
 
 	```cpp
 	#include <jni.h>
@@ -89,7 +91,7 @@ Please send us the information by [deepixel@deepixel.xyz]
 	}
 	```
 	
-## License exceptions
+## Exceptions
 
 - dp::exception::DPLicenseException
 >This exception is occurred when the license file does not exist or is corrupted.
