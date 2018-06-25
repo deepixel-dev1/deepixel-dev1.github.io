@@ -104,28 +104,28 @@ g_ptrMaka->process(img, MAKA_MODE, _MAKA_DATA_);
   ```
   ```
 == Mosaic ==
-(img, input) 		=> Source image
-(img, output)		=> Image with mosaic applied
-(MAKA_MODE, input)	=> FACE_MOSAIC
-(_MAKA_DATA_, input)	=> faceRect: area of mosaic
+(img, input) 				  => Source image
+(img, output)				  => Image with mosaic applied
+(MAKA_MODE, input)			  => FACE_MOSAIC
+(_MAKA_DATA_, input)			  => faceRect: area of mosaic
   ```
   ```
 == Tagging ==
-(img, input)		=> Source image
-(MAKA_MODE, input)	=> FACE_SELECTING_LABEL
-(_MAKA_DATA_, input)  	=> faceRect: Unused
-			=> nLabel: label 
-			=> faceCenterPos: label position
+(img, input)				  => Source image
+(MAKA_MODE, input)			  => FACE_SELECTING_LABEL
+(_MAKA_DATA_, input)  			  => faceRect: Unused
+					  	=> nLabel: label 
+					  	=> faceCenterPos: label position
   ```
 
   ```
 == Face Tracking ==
-(img, input)		=> Source image
-(MAKA_MODE, input)	=> FACE_TRACKING
-(_MAKA_DATA_, input)	=> Unused
-(_MAKA_DATA_, output)	=> faceRect: face rectangle
-			=> nLabel: label on this face rectangle(if label has been assigned by Tagging)
-			=> faceCenterPos: center position of face rectangle
+(img, input)				  => Source image
+(MAKA_MODE, input)			  => FACE_TRACKING
+(_MAKA_DATA_, input)			  => Unused
+(_MAKA_DATA_, output)			  => faceRect: face rectangle
+					  	=> nLabel: label on this face rectangle(if label has been assigned by Tagging)
+					  	=> faceCenterPos: center position of face rectangle
   ```
 
 *****
