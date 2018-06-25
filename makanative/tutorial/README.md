@@ -114,8 +114,8 @@ g_ptrMaka->process(img, MAKA_MODE, _MAKA_DATA_);
 (img, input)				  => Source image
 (MAKA_MODE, input)			  => FACE_SELECTING_LABEL
 (_MAKA_DATA_, input)  			  => faceRect: Unused
-					  	=> nLabel: label 
-					  	=> faceCenterPos: label position
+					  	  => nLabel: label 
+					  	  => faceCenterPos: label position
   ```
 
   ```
@@ -124,8 +124,8 @@ g_ptrMaka->process(img, MAKA_MODE, _MAKA_DATA_);
 (MAKA_MODE, input)			  => FACE_TRACKING
 (_MAKA_DATA_, input)			  => Unused
 (_MAKA_DATA_, output)			  => faceRect: face rectangle
-					  	=> nLabel: label on this face rectangle(if label has been assigned by Tagging)
-					  	=> faceCenterPos: center position of face rectangle
+					  	  => nLabel: label on this face rectangle(if label has been assigned by Tagging)
+					  	  => faceCenterPos: center position of face rectangle
   ```
 
 *****
