@@ -12,15 +12,13 @@ MAKA API TUTORIAL (For Android)
 
 ### 1. MAKA Face Tracking
 
->MAKA Face Tracking is a system that finds faces at high speed and keeps track of face positions.  
+>MAKA Face Tracking is an API module that detects faces at high speed and keeps the track of face positions.  
 ![](./img/FT_SS.png){: width="600"}  
 
 * SPEC:
 	* Up to 3 people
-	* Unconstraind face tracker  
+	* Unconstrained face tracker  
 	* 40~70 FPS (Device: Galaxy Note 8)
-		* [TEST VIDEO][test]
-		* [TEST VIDEO RESULT][test result]
 	* Smoothing the positions of the faces being tracked
  
 * OUTPUT:  
@@ -36,25 +34,26 @@ MAKA API TUTORIAL (For Android)
 ![](./img/FacePosition.png){: width="400"}	
 
 ### 2. MAKA Face Mosaic
->MAKA Face Mosaic is a module that create a mosaic at specified face area.
+>MAKA Face Mosaic is a module that creates a mosaic in the region of a designated face.
 
 * OUTPUT:
 	* Image with mosaic  
 ![](./img/mosaic.PNG){: width="400"}
 
 ### 3. MAKA Face Tagging
->MAKA Face Tagging can continuously track the labeled face within detected faces by MAKA Face Tracking Module
+>MAKA Face Tagging can mark the label for each face and continuously track the labeled face.
 
 * SPEC:
-	* The Number of Labeled faces is up to 3
-	* Labeled faces can be tracked continuously.
+	* The number of labeled faces is up to 3
+	* Continuously tracking the labeled faces with occlusion
 
 * Output:
-	* Labeled Faces Rectangle(l)
+	* Face Rectangle(n)  	
 	
 	```
-	l: Label information
-	```
+	n: label number
+    ```
+    
 ![](./img/tagging.gif){: width="400"}
 
 *****
@@ -74,7 +73,7 @@ MAKA API TUTORIAL (For Android)
 *****
 
 ## HOW TO USE [MAKA API][api] (For Android)
-![](./img/Logic.png){: width="200"}   
+![](./img/Logic.png){: width="300"}   
 
 ##### 1. Insert "Library files" into the library directory that matches the project's target hardware
 
