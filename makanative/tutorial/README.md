@@ -40,7 +40,7 @@ MAKA API TUTORIAL (For Android)
 
 * OUTPUT:
 	* Image with mosaic
-![](./img/mosaic.png){: width="400"}
+![](./img/mosaic.PNG){: width="400"}
 
 ### 3. MAKA Face Tagging
 >MAKA Face Tagging can continuously track the labeled face within detected faces by MAKA Face Tracking Module
