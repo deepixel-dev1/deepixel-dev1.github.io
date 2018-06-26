@@ -109,7 +109,9 @@ g_ptrMaka->process(img, MAKA_MODE, _MAKA_DATA_);
 (img, input) 				  => Source image
 (img, output)				  => Image with mosaic applied
 (MAKA_MODE, input)			  => FACE_MOSAIC
-(_MAKA_DATA_, input)			  => faceRect: area of mosaic
+(_MAKA_DATA_, input)			  => faceRect: Area where mosaic will be applied
+					  => nLabel: Unused
+					  => faceCenterPos: Unused
   ```
   ```
 == Tagging ==
@@ -117,7 +119,7 @@ g_ptrMaka->process(img, MAKA_MODE, _MAKA_DATA_);
 (MAKA_MODE, input)			  => FACE_SELECTING_LABEL
 (_MAKA_DATA_, input)  			  => faceRect: Unused
 					  => nLabel: label 
-					  => faceCenterPos: label position
+					  => faceCenterPos: position of label
   ```
 
   ```
