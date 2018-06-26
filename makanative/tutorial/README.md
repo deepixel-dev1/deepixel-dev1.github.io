@@ -72,7 +72,7 @@ MAKA API TUTORIAL (For Android)
 
 *****
 
-## HOW TO USE [MAKA API][api] (For Android)
+## HOW TO USE [MAKA API][maka_api] (For Android)
 ![](./img/Logic.png){: width="300"}   
 
 ##### 1. Insert "Library files" into the library directory that matches the project's target hardware
