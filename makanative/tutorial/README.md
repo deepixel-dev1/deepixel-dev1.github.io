@@ -18,7 +18,9 @@ MAKA API TUTORIAL (For Android)
 * SPEC:
 	* Up to 3 people
 	* Unconstraind face tracker  
-	* 40~70 FPS ([TEST_SAMPLE VIDEO][test], Device: Galaxy Note 8)
+	* 40~70 FPS (Device: Galaxy Note 8)
+		* [TEST_VIDEO][test]
+		* [TEST VIDEO RESULT][test result]
 	* Smoothing the positions of the faces being tracked
  
 * OUTPUT:  
@@ -131,6 +133,7 @@ g_ptrMaka->process(img, MAKA_MODE, _MAKA_DATA_);
 *****
 
 ## Reference
+- [TEST VIDEO RESULT][test result]
 - [TEST_SAMPLE VIDEO][test]
 - [MAKA API][maka_api]
 - [OpenCV][opencv]
@@ -140,3 +143,4 @@ g_ptrMaka->process(img, MAKA_MODE, _MAKA_DATA_);
 [maka_api]: https://deepixel-dev1.github.io/makanative/api/
 [tbb]: https://www.threadingbuildingblocks.org/
 [test]: https://youtu.be/_sUGfiMbUE4
+[test result]: https://youtu.be/ewjAe0aKql4
