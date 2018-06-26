@@ -82,55 +82,45 @@ MAKA API TUTORIAL (For Android)
 ##### 3. Create the IMaka Object at the location you want to use.
 
   ```
-std::shared_ptr<dp::makanative::IMaka> g_ptrMaka;
-g_ptrMaka = dp::android::DPFactoryForAndroid::CreateInstance<dp::makanative::IMaka>(env,
+  std::shared_ptr<dp::makanative::IMaka> g_ptrMaka;
+  g_ptrMaka = dp::android::DPFactoryForAndroid::CreateInstance<dp::makanative::IMaka>(env,
                                                                                     activity,
                                                                                     licenseFilename);
   ```
 ##### 4. Before the MAKA API is executed, you must call the initialize function of the IMaka.
 
   ```
-g_ptrMaka->initialize(img.cols, img.rows);  
-  ```
-  
-  ```
-(img.cols, input) 			  => size of input image width
-(img.rows, input) 			  => size of input image height
+  // (img.cols) is size of image width
+  // (img.rows) is size of image height
+  g_ptrMaka->initialize(img.cols, img.rows); 
   ```
 ##### 5. To run the MAKA API, call the process function of IMaka.
-
   ```
-g_ptrMaka->process(img, MAKA_MODE, _MAKA_DATA_);
-
+  // All generation of MAKA API are excuted by process function in IMaka
+  // Parameters(img and _MAKA_DATA_) without MAKA_MODE has both input and output properties
+  g_ptrMaka->process(img, MAKA_MODE, _MAKA_DATA_);
   ```
+###### 5.1 Example of Face Tracking API: 
   ```
-== Mosaic ==
-(img, input) 				  => Source image
-(img, output)				  => Image with mosaic applied
-(MAKA_MODE, input)			  => FACE_MOSAIC
-(_MAKA_DATA_, input)			  => faceRect: Area where mosaic will be applied
-					  => nLabel: Unused
-					  => faceCenterPos: Unused
+  // (img) input source image
+  // (MAKA_MODE) have to set FACE_TRACKING
+  // (_MAKA_DATA_) output the MAKA infomation
+  g_ptrMaka->process(img, MAKA_MODE::FACE_TRACKING, _MAKA_DATA_); 
   ```
+###### 5.2 Example of Face Tagging API:
   ```
-== Tagging ==
-(img, input)				  => Source image
-(MAKA_MODE, input)			  => FACE_SELECTING_LABEL
-(_MAKA_DATA_, input)  			  => faceRect: Unused
-					  => nLabel: label 
-					  => faceCenterPos: position of label
+  // (img) unused
+  // (MAKA_MODE) have to set FACE_SETTING_LABEL
+  // (_MAKA_DATA_) input the position of face that user wants to label
+  g_ptrMaka->process(img, MAKA_MODE::FACE_SETTING_LABEL, _MAKA_DATA_); 
   ```
-
+###### 5.3 Example of Face Mosaic API:  
   ```
-== Face Tracking ==
-(img, input)				  => Source image
-(MAKA_MODE, input)			  => FACE_TRACKING
-(_MAKA_DATA_, input)			  => Unused
-(_MAKA_DATA_, output)			  => faceRect: face rectangle
-					  => nLabel: label on this face rectangle(if label has been assigned by Tagging)
-					  => faceCenterPos: center position of face rectangle
+  // (img) input source image and output image with mosaic
+  // (MAKA_MODE) have to set FACE_MOSAIC
+  // (_MAKA_DATA_) input the region of a designated face.
+  g_ptrMaka->process(img, MAKA_MODE::FACE_MOSAIC, _MAKA_DATA_); 
   ```
-
 *****
 
 ## Reference
