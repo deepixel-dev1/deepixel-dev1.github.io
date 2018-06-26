@@ -39,7 +39,7 @@ MAKA API TUTORIAL (For Android)
 >MAKA Face Mosaic is a module that create a mosaic at specified face area.
 
 * OUTPUT:
-	* Image with mosaic
+	* Image with mosaic  
 ![](./img/mosaic.PNG){: width="400"}
 
 ### 3. MAKA Face Tagging
