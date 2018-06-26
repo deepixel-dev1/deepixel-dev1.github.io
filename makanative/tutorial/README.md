@@ -74,11 +74,11 @@ MAKA API TUTORIAL (For Android)
 ## HOW TO USE [MAKA API][api] (For Android)
 ![](./img/Logic.png){: width="200"}   
 
-# 1. Insert "Library files" into the library directory that matches the project's target hardware
+##### 1. Insert "Library files" into the library directory that matches the project's target hardware
 
-# 2. Insert "Include files" into your project's include directory.
+##### 2. Insert "Include files" into your project's include directory.
 
-# 3. Create the IMaka Object at the location you want to use.
+##### 3. Create the IMaka Object at the location you want to use.
 
   ```
 std::shared_ptr<dp::makanative::IMaka> g_ptrMaka;
@@ -86,7 +86,7 @@ g_ptrMaka = dp::android::DPFactoryForAndroid::CreateInstance<dp::makanative::IMa
                                                                                     activity,
                                                                                     licenseFilename);
   ```
-# 4. Before the MAKA API is executed, you must call the initialize function of the IMaka.
+##### 4. Before the MAKA API is executed, you must call the initialize function of the IMaka.
 
   ```
 g_ptrMaka->initialize(img.cols, img.rows);  
@@ -96,7 +96,7 @@ g_ptrMaka->initialize(img.cols, img.rows);
 (img.cols, input) 			  => size of input image width
 (img.rows, input) 			  => size of input image height
   ```
-# 5. To run the MAKA API, call the process function of IMaka.
+##### 5. To run the MAKA API, call the process function of IMaka.
 
   ```
 g_ptrMaka->process(img, MAKA_MODE, _MAKA_DATA_);
