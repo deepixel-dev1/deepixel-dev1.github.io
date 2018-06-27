@@ -124,7 +124,6 @@ MAKA API TUTORIAL (For Android)
 	{
 		if(srcImg.empty())
 			break;
-		std::vector<_MAKA_DATA_> makaData;
 		g_ptrMaka->process(srcImg, MAKA_MODE::FACE_TRACKING, std::vector<_MAKA_DATA_>());  // srcImage should be BGR-type.
 	}
   ```
