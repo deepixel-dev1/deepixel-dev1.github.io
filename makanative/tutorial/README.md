@@ -130,7 +130,7 @@ MAKA API TUTORIAL (For Android)
   ```
   
 * __Step2__: Apply to The Face Mosaic  
-As a method of applying the mosaic, there is a method of inserting the information that the rectangle is selected by reuslt of face tracking or the coordinates in rectangle of the face is designated by user.    
+>As a method of applying the mosaic, there is a method of inserting the information that the rectangle is selected by reuslt of face tracking or the coordinates in rectangle of the face is designated by user.    
  
   ```c++
   cv::Mat srcImg;
@@ -158,7 +158,7 @@ As a method of applying the mosaic, there is a method of inserting the informati
   ```
   
 * __Step3__: Designate The Face Label  
-The label is specified by entering the coordinates in the rectangle of the face.    
+>The label is specified by entering the coordinates in the rectangle of the face.    
  
   ```c++
   cv::Mat srcImg;
@@ -186,7 +186,7 @@ The label is specified by entering the coordinates in the rectangle of the face.
   ```  
   
 * __Step4__: Acqurie Result of The MAKA API  
-When all the functions of the desired MAKA API are executed, data is acquired through the FACE____GETTING____RESULT mode.    
+>When all the functions of the desired MAKA API are executed, data is acquired through the FACE____GETTING____RESULT mode.    
  
   ```c++
   cv::Mat dispImg;
@@ -215,7 +215,7 @@ When all the functions of the desired MAKA API are executed, data is acquired th
   ```
   
 * __Step5__: Release The Face Mosaic  
-If you want to remove the mosaic, enter the coordinates or rectangle of the face.    
+>If you want to remove the mosaic, enter the coordinates or rectangle of the face.    
  
   ```c++
   void processMAKASceanario()
@@ -246,7 +246,7 @@ If you want to remove the mosaic, enter the coordinates or rectangle of the face
   ```
   
 * __Step6__: Release The Face Label  
-The label release is similarly performed by receiving the coordinates in rectangle of the face.    
+>The label release is similarly performed by receiving the coordinates in rectangle of the face.    
  
   ```c++
   void processMAKASceanario()
@@ -276,7 +276,7 @@ The label release is similarly performed by receiving the coordinates in rectang
   ```
   
 * __Step7__: Release Face Tracking  
-If the face tracking mode is released, All other mode will be released.    
+>If the face tracking mode is released, All other mode will be released.    
  
   ```c++
   void processMAKASceanario()
