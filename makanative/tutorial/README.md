@@ -95,6 +95,7 @@ MAKA API TUTORIAL (For Android)
   g_ptrMaka->initialize(img.cols, img.rows); 
   ```
 #### 5. To run the MAKA API, call the process function of IMaka.
+
   ```
   // All generation of MAKA API are excuted by process function in IMaka
   // Parameters(img and _MAKA_DATA_) except MAKA_MODE has both input and output properties
@@ -118,15 +119,14 @@ MAKA API TUTORIAL (For Android)
 >The MAKA API can basically perform mosaic and tagging only if there is face information detected through face tracking. To track the face, BGR-Type input image is required.    
  
   ```c++
-  cv::Mat srcImg;  // source image
-  void processMAKASceanario() 
-  {
-	if(srcImg.empty())
-		break;
-  		
-  	std::vector<_MAKA_DATA_> makaData;	
-  	g_ptrMaka->process(srcImg, MAKA_MODE::FACE_TRACKING, std::vector<_MAKA_DATA_>());  // srcImage should be BGR-type.
-  }
+	cv::Mat srcImg;  // source image
+	void processMAKASceanario()
+	{
+		if(srcImg.empty())
+			break;
+		std::vector<_MAKA_DATA_> makaData;
+		g_ptrMaka->process(srcImg, MAKA_MODE::FACE_TRACKING, std::vector<_MAKA_DATA_>());  // srcImage should be BGR-type.
+	}
   ```
   
 * __Step2__: Apply to The Face Mosaic  
