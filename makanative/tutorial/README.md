@@ -110,7 +110,7 @@ MAKA API TUTORIAL (For Android)
 Step1. Track The Face  
 Step2. Set to The Face Mosaic  
 Step3. Designate The Face Label  
-Step4. Apply to The MAKA API with mosaic and face label
+Step4. Apply to The MAKA API with mosaic and face label  
 Step5. Release The Face Mosaic  
 Step6. Release The Face Label  
 Step7. Release The Face Tracking  
