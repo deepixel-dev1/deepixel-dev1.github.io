@@ -113,7 +113,7 @@ MAKA API TUTORIAL (For Android)
 	4. Acqurie Result of The MAKA API
 	5. Release The Face Mosaic
 	6. Release The Face Label
-	7. Release The Face Tracking
+	7. Release The Face Tracking  
 	
 * __Step1__: Track The Face  
 >The MAKA API can basically perform mosaic and tagging only if there is face information detected through face tracking. To track the face, BGR-Type input image is required.    
