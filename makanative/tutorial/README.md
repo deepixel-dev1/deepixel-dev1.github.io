@@ -122,7 +122,7 @@ The MAKA API can basically perform mosaic and tagging only if there is face info
   void processMAKASceanario() 
   {
 	if(srcImg.empty())
-  		break;
+		break;
   		
   	std::vector<_MAKA_DATA_> makaData;	
   	g_ptrMaka->process(srcImg, MAKA_MODE::FACE_TRACKING, std::vector<_MAKA_DATA_>());  // srcImage should be BGR-type.
@@ -130,8 +130,8 @@ The MAKA API can basically perform mosaic and tagging only if there is face info
   ```
   
 * Step2: Apply to The Face Mosaic  
-As a method of applying the mosaic, there is a method of inserting the information that the rectangle is selected by reuslt of face tracking or the coordinates in rectangle of the face is designated by user.
-
+As a method of applying the mosaic, there is a method of inserting the information that the rectangle is selected by reuslt of face tracking or the coordinates in rectangle of the face is designated by user.    
+ 
   ```c++
   cv::Mat srcImg;
   void processMAKASceanario()
@@ -156,10 +156,10 @@ As a method of applying the mosaic, there is a method of inserting the informati
   	}  	
   }
   ```
-
+  
 * Step3: Designate The Face Label  
-The label is specified by entering the coordinates in the rectangle of the face.
-
+The label is specified by entering the coordinates in the rectangle of the face.    
+ 
   ```c++
   cv::Mat srcImg;
   void processMAKASceanario()
@@ -183,10 +183,11 @@ The label is specified by entering the coordinates in the rectangle of the face.
   		g_ptrMaka->process(srcImg, MAKA_MODE::FACE_SETTING_LABEL, makaData); // the makaData is input data included the coordinate of event.
   	}  	
   }
-  ```
+  ```  
+  
 * Step4: Acqurie Result of The MAKA API  
-When all the functions of the desired MAKA API are executed, data is acquired through the FACE____GETTING____RESULT mode.
-
+When all the functions of the desired MAKA API are executed, data is acquired through the FACE____GETTING____RESULT mode.    
+ 
   ```c++
   cv::Mat dispImg;
   cv::Mat srcImg;
@@ -212,10 +213,10 @@ When all the functions of the desired MAKA API are executed, data is acquired th
     	cv::imshow("display", dispImg);
   } 
   ```
-
+  
 * Step5: Release The Face Mosaic  
-If you want to remove the mosaic, enter the coordinates or rectangle of the face.
-
+If you want to remove the mosaic, enter the coordinates or rectangle of the face.    
+ 
   ```c++
   void processMAKASceanario()
   {
@@ -244,56 +245,55 @@ If you want to remove the mosaic, enter the coordinates or rectangle of the face
   }
   ```
   
-
 * Step6: Release The Face Label  
-The label release is similarly performed by receiving the coordinates in rectangle of the face.
-
+The label release is similarly performed by receiving the coordinates in rectangle of the face.    
+ 
   ```c++
   void processMAKASceanario()
   {
-  		/*
-			// MAKA SCEANARIO LOGIC
-			.. FACE TRACKING ..
-			.. FACE MOSACIC ..
-			.. FACE TAGGING ..
-			.. FACE GET RESULT ..
-			.. FACE RELEASE MOSAIC ..
-		*/
+ 	/*
+		// MAKA SCEANARIO LOGIC
+		.. FACE TRACKING ..
+		.. FACE MOSACIC ..
+		.. FACE TAGGING ..
+		.. FACE GET RESULT ..
+		.. FACE RELEASE MOSAIC ..
+	*/
   }
   
   CALLBACK MouseEvent(Point mosePoint, eventType event)
   {
-  		std::vector<_MAKA_DATA_> makaData;
-  		_MAKA_DATA_ data;
-  		data.faceCenterPos = mousePoint;
-  		makaData.pushback(data);
+ 	std::vector<_MAKA_DATA_> makaData;
+  	_MAKA_DATA_ data;
+  	data.faceCenterPos = mousePoint;
+  	makaData.pushback(data);
   	
-  		if(event == MOUSE_R_DOUBLE_CLICK)
-  		{
-  			g_ptrMaka->process(cv::Mat(), MAKA_MODE::FACE_RELEASE_LABEL, makaData); // this makaData is input data included mouse point
-  		}  	
+	if(event == MOUSE_R_DOUBLE_CLICK)
+  	{
+  		g_ptrMaka->process(cv::Mat(), MAKA_MODE::FACE_RELEASE_LABEL, makaData); // this makaData is input data included mouse point
+  	}  	
   }
   ```
-
+  
 * Step7: Release Face Tracking  
-If the face tracking mode is released, All other mode will be released.
-
+If the face tracking mode is released, All other mode will be released.    
+ 
   ```c++
   void processMAKASceanario()
   {
-  		/*
-			// MAKA SCEANARIO LOGIC
-			.. FACE TRACKING ..
-			.. FACE MOSACIC ..
-			.. FACE TAGGING ..
-			.. FACE GET RESULT ..
-			.. FACE RELEASE MOSAIC ..
-			.. FACE RELEASE LABEL ..
-		*/	
-   		g_ptrMaka->process(cv::Mat(), MAKA_MODE::FACE_TRACKING_RELEASE, std::vector<_MAKA_DATA_>()); 
+  	/*
+		// MAKA SCEANARIO LOGIC
+		.. FACE TRACKING ..
+		.. FACE MOSACIC ..
+		.. FACE TAGGING ..
+		.. FACE GET RESULT ..
+		.. FACE RELEASE MOSAIC ..
+		.. FACE RELEASE LABEL ..
+	*/	
+   	g_ptrMaka->process(cv::Mat(), MAKA_MODE::FACE_TRACKING_RELEASE, std::vector<_MAKA_DATA_>()); 
   }
   ```
-
+  
 * Summary  
 In this guide you have learned the MAKA API by c++ with opencv. If you have question, please send a email(hoohyun.kim@deepixel.xyz).  
 For more information about API, please refer to the API reference [MAKA API][maka_api]
