@@ -114,8 +114,8 @@ MAKA API TUTORIAL (For Android)
 	6. Release The Face Label
 	7. Release The Face Tracking
 	
-* Step1: Track The Face  
-The MAKA API can basically perform mosaic and tagging only if there is face information detected through face tracking. To track the face, BGR-Type input image is required.    
+* __Step1__: Track The Face  
+>The MAKA API can basically perform mosaic and tagging only if there is face information detected through face tracking. To track the face, BGR-Type input image is required.    
  
   ```c++
   cv::Mat srcImg;  // source image
@@ -129,7 +129,7 @@ The MAKA API can basically perform mosaic and tagging only if there is face info
   }
   ```
   
-* Step2: Apply to The Face Mosaic  
+* __Step2__: Apply to The Face Mosaic  
 As a method of applying the mosaic, there is a method of inserting the information that the rectangle is selected by reuslt of face tracking or the coordinates in rectangle of the face is designated by user.    
  
   ```c++
@@ -157,7 +157,7 @@ As a method of applying the mosaic, there is a method of inserting the informati
   }
   ```
   
-* Step3: Designate The Face Label  
+* __Step3__: Designate The Face Label  
 The label is specified by entering the coordinates in the rectangle of the face.    
  
   ```c++
@@ -185,7 +185,7 @@ The label is specified by entering the coordinates in the rectangle of the face.
   }
   ```  
   
-* Step4: Acqurie Result of The MAKA API  
+* __Step4__: Acqurie Result of The MAKA API  
 When all the functions of the desired MAKA API are executed, data is acquired through the FACE____GETTING____RESULT mode.    
  
   ```c++
@@ -214,7 +214,7 @@ When all the functions of the desired MAKA API are executed, data is acquired th
   } 
   ```
   
-* Step5: Release The Face Mosaic  
+* __Step5__: Release The Face Mosaic  
 If you want to remove the mosaic, enter the coordinates or rectangle of the face.    
  
   ```c++
@@ -245,7 +245,7 @@ If you want to remove the mosaic, enter the coordinates or rectangle of the face
   }
   ```
   
-* Step6: Release The Face Label  
+* __Step6__: Release The Face Label  
 The label release is similarly performed by receiving the coordinates in rectangle of the face.    
  
   ```c++
@@ -275,7 +275,7 @@ The label release is similarly performed by receiving the coordinates in rectang
   }
   ```
   
-* Step7: Release Face Tracking  
+* __Step7__: Release Face Tracking  
 If the face tracking mode is released, All other mode will be released.    
  
   ```c++
