@@ -106,15 +106,15 @@ MAKA API TUTORIAL (For Android)
 ## Example: HOW TO USE MAKA API (c++ with OpenCV)
 >This guide will demonstrate how to use MAKA API(with face tracking, mosaic, taggig) based on scenario. The samples are written in c++ using the OpenCV.
 
-* Scenario squence
-	1. Track The Face
-	2. Apply to The Face Mosaic
-	3. Designate The Face Label
-	4. Acqurie Result of The MAKA API
-	5. Release The Face Mosaic
-	6. Release The Face Label
-	7. Release The Face Tracking  
-	
+* Scenario squence  
+Step1. Track The Face  
+Step2. Apply to The Face Mosaic  
+Step3. Designate The Face Label  
+Step4. Acqurie Result of The MAKA API  
+Step5. Release The Face Mosaic  
+Step6. Release The Face Label  
+Step7. Release The Face Tracking  
+    
 * __Step1__: Track The Face  
 >The MAKA API can basically perform mosaic and tagging only if there is face information detected through face tracking. To track the face, BGR-Type input image is required.    
  
@@ -128,7 +128,7 @@ MAKA API TUTORIAL (For Android)
 	}
   ```
   
-* __Step2__: Apply to The Face Mosaic  
+* __Step2__: Set to The Face Mosaic  
 >As a method of applying the mosaic, there is a method of inserting the information that the rectangle is selected by reuslt of face tracking or the coordinates in rectangle of the face is designated by user.    
  
   ```c++
@@ -180,7 +180,7 @@ MAKA API TUTORIAL (For Android)
 	}
   ```  
   
-* __Step4__: Acqurie Result of The MAKA API  
+* __Step4__: Apply to The MAKA API with mosaic and tagging 
 >When all the functions of the desired MAKA API are executed, data is acquired through the FACE____GETTING____RESULT mode.    
  
   ```c++
