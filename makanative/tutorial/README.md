@@ -121,89 +121,88 @@ The MAKA API can basically perform mosaic and tagging only if there is face info
   cv::Mat srcImg;  // source image
   void processMAKASceanario() 
   {
-		if(srcImg.empty())
-  			break;
+	if(srcImg.empty())
+  		break;
   		
-  		std::vector<_MAKA_DATA_> makaData;	
-  		g_ptrMaka->process(srcImg, MAKA_MODE::FACE_TRACKING, std::vector<_MAKA_DATA_>());  // srcImage should be BGR-type.
+  	std::vector<_MAKA_DATA_> makaData;	
+  	g_ptrMaka->process(srcImg, MAKA_MODE::FACE_TRACKING, std::vector<_MAKA_DATA_>());  // srcImage should be BGR-type.
   }
   ```
   
 * Step2: Apply to The Face Mosaic  
 As a method of applying the mosaic, there is a method of inserting the information that the rectangle is selected by reuslt of face tracking or the coordinates in rectangle of the face is designated by user.
 
-  ```
+  ```c++
   cv::Mat srcImg;
   void processMAKASceanario()
   {  	
-		/*
-			// MAKA SCEANARIO LOGIC
-			.. FACE TRACKING ..
-		*/
-  	 	
-  		g_ptrMaka->process(cv::Mat(), MAKA_MODE::FACE_SETTING_MOSAIC, makaData);  //the makaData is input data included face rectangle.
+  	/*
+		// MAKA SCEANARIO LOGIC
+		.. FACE TRACKING ..
+	*/
+	g_ptrMaka->process(cv::Mat(), MAKA_MODE::FACE_SETTING_MOSAIC, makaData);  //the makaData is input data included face rectangle.
   }  
   
   CALLBACK MouseEvent(Point mosePoint, eventType event) // callback function from external event(mouse or touch)
   {
- 	 	std::vector<_MAKA_DATA_> makaData;
- 	 	_MAKA_DATA_ data;
- 	 	data.faceCenterPos = mousePoint;
- 	 	makaData.pushback(data);
+ 	std::vector<_MAKA_DATA_> makaData;
+ 	_MAKA_DATA_ data;
+ 	data.faceCenterPos = mousePoint;
+ 	makaData.pushback(data);
   	
- 	 	if(event == MOUSE_L_DOWN)
- 	 	{
- 	 		g_ptrMaka->process(cv::Mat(), MAKA_MODE::FACE_SETTING_MOSAIC, makaData); //the makaData is input data included coordinate by event
-  		}  	
+ 	if(event == MOUSE_L_DOWN)
+ 	{
+ 		g_ptrMaka->process(cv::Mat(), MAKA_MODE::FACE_SETTING_MOSAIC, makaData); //the makaData is input data included coordinate by event
+  	}  	
   }
   ```
 
 * Step3: Designate The Face Label  
 The label is specified by entering the coordinates in the rectangle of the face.
 
-  ```
+  ```c++
   cv::Mat srcImg;
   void processMAKASceanario()
   {
-  		/*
-			// MAKA SCEANARIO LOGIC
-			.. FACE TRACKING ..
-			.. FACE MOSAIC ..
-		*/
+  	/*
+		// MAKA SCEANARIO LOGIC
+		.. FACE TRACKING ..
+		.. FACE MOSAIC ..
+	*/
   }
   
   CALLBACK MouseEvent(Point mosePoint, eventType event)
   {
-  		std::vector<_MAKA_DATA_> makaData;
-  		_MAKA_DATA_ data;
-  		data.faceCenterPos = mousePoint;
-  		makaData.pushback(data);
+  	std::vector<_MAKA_DATA_> makaData;
+  	_MAKA_DATA_ data;
+  	data.faceCenterPos = mousePoint;
+  	makaData.pushback(data);
   	
-  		if(event == MOUSE_l_DOUBLE_CLICK)
-  		{
-  			g_ptrMaka->process(srcImg, MAKA_MODE::FACE_SETTING_LABEL, makaData); // the makaData is input data included the coordinate of event.
-  		}  	
+  	if(event == MOUSE_l_DOUBLE_CLICK)
+  	{
+  		g_ptrMaka->process(srcImg, MAKA_MODE::FACE_SETTING_LABEL, makaData); // the makaData is input data included the coordinate of event.
+  	}  	
   }
   ```
 * Step4: Acqurie Result of The MAKA API  
 When all the functions of the desired MAKA API are executed, data is acquired through the FACE____GETTING____RESULT mode.
 
-  ```
+  ```c++
   cv::Mat dispImg;
   cv::Mat srcImg;
   void processMAKASceanario()
   {
-  		/*
-			// MAKA SCEANARIO LOGIC
-			.. FACE TRACKING ..
-			.. FACE MOSACIC ..
-			.. FACE TAGGING ..
-		*/
+  	/*
+		// MAKA SCEANARIO LOGIC
+		.. FACE TRACKING ..
+		.. FACE MOSACIC ..
+		.. FACE TAGGING ..
+	*/
 			
-		dispImg = srcImg.clone(); // Copy source image to display image
+	dispImg = srcImg.clone(); // Copy source image to display image
 	
-  		g_ptrMaka->process(dispImg, MAKA_MODE::FACE_GETTING_RESULT, makaData); // dispImg is applied by mosaic, makaData is output data included face rectangle, face center position, face label 
-  		for(std::vector<_MAKA_DATA_>::iterator it = makaData.begin(); it != makaData.end(); it++)
+  	g_ptrMaka->process(dispImg, MAKA_MODE::FACE_GETTING_RESULT, makaData); // dispImg is applied by mosaic, makaData is output data included face rectangle, face center position, face label 
+  	for(std::vector<_MAKA_DATA_>::iterator it = makaData.begin(); it != makaData.end(); it++)
     	{
     		std::stringsteam strLabel;
     		strLabel << it->nLabel;
@@ -217,31 +216,31 @@ When all the functions of the desired MAKA API are executed, data is acquired th
 * Step5: Release The Face Mosaic  
 If you want to remove the mosaic, enter the coordinates or rectangle of the face.
 
-  ```
+  ```c++
   void processMAKASceanario()
   {
-  		/*
-			// MAKA SCEANARIO LOGIC
-			.. FACE TRACKING ..
-			.. FACE MOSACIC ..
-			.. FACE TAGGING ..
-			.. FACE GET RESULT ..
-		*/
+  	/*
+		// MAKA SCEANARIO LOGIC
+		.. FACE TRACKING ..
+		.. FACE MOSACIC ..
+		.. FACE TAGGING ..
+		.. FACE GET RESULT ..
+	*/
 	
-  		g_ptrMaka->process(cv::Mat(), MAKA_MODE::FACE_MOSAIC_RELEASE, makaData); // this makaData is input data included face rectangle
+  	g_ptrMaka->process(cv::Mat(), MAKA_MODE::FACE_MOSAIC_RELEASE, makaData); // this makaData is input data included face rectangle
   }
   
   CALLBACK MouseEvent(Point mosePoint, eventType event)
   {
-  		std::vector<_MAKA_DATA_> makaData;
-  		_MAKA_DATA_ data;
-  		data.faceCenterPos = mousePoint;
-  		makaData.pushback(data);
+  	std::vector<_MAKA_DATA_> makaData;
+  	_MAKA_DATA_ data;
+  	data.faceCenterPos = mousePoint;
+	makaData.pushback(data);
   	
-  		if(event == MOUSE_R_DOWN)
-  		{
-  			g_ptrMaka->process(cv::Mat(), MAKA_MODE::FACE_MOSAIC_RELEASE, makaData); // this makaData is input data included mouse postion
-  		}  	
+  	if(event == MOUSE_R_DOWN)
+  	{
+  		g_ptrMaka->process(cv::Mat(), MAKA_MODE::FACE_MOSAIC_RELEASE, makaData); // this makaData is input data included mouse postion
+  	}  	
   }
   ```
   
@@ -249,7 +248,7 @@ If you want to remove the mosaic, enter the coordinates or rectangle of the face
 * Step6: Release The Face Label  
 The label release is similarly performed by receiving the coordinates in rectangle of the face.
 
-  ```
+  ```c++
   void processMAKASceanario()
   {
   		/*
@@ -279,7 +278,7 @@ The label release is similarly performed by receiving the coordinates in rectang
 * Step7: Release Face Tracking  
 If the face tracking mode is released, All other mode will be released.
 
-  ```
+  ```c++
   void processMAKASceanario()
   {
   		/*
