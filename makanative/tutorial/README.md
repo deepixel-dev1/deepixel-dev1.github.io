@@ -118,7 +118,7 @@ MAKA API TUTORIAL (For Android)
 * __Step1__: Track The Face  
 >The MAKA API can basically perform mosaic and tagging only if there is face information detected through face tracking. To track the face, BGR-Type input image is required.    
  
-  ```c++
+  ```java
 	cv::Mat srcImg;  // source image
 	void processMAKASceanario()
 	{
@@ -285,8 +285,10 @@ MAKA API TUTORIAL (For Android)
   ```
   
 * Summary  
->In this guide you have learned the MAKA API by c++ with opencv. If you have question, please send a email(hoohyun.kim@deepixel.xyz).
-For more information about API, please refer to the API reference [MAKA API][maka_api]
+>In this guide you have learned the MAKA API by c++ with opencv.  
+If you have question, please send a email(hoohyun.kim@deepixel.xyz).  
+For more information about API, please refer to the API reference [MAKA API][maka_api]  
+
 *****
 
 ## Reference
