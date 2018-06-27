@@ -126,8 +126,8 @@ Step7. Release The Face Tracking
 			break;
 		g_ptrMaka->process(srcImg, MAKA_MODE::FACE_TRACKING, std::vector<_MAKA_DATA_>());  // srcImage should be BGR-type.
 	}
-  ```
-  
+  ```  
+  ![](./img/tracking mode.png){: width="500"}
 * __Step2__: Set to The Face Mosaic  
 >As a method of applying the mosaic, there is a method of inserting the information that the rectangle is selected by reuslt of face tracking or the coordinates in rectangle of the face is designated by user.    
  
@@ -152,7 +152,7 @@ Step7. Release The Face Tracking
 			g_ptrMaka->process(cv::Mat(), MAKA_MODE::FACE_SETTING_MOSAIC, makaData); //the makaData is input data included coordinate by event
 		}  	
 	}
-  ```
+  ```  
   
 * __Step3__: Designate The Face Label  
 >The label is specified by entering the coordinates in the rectangle of the face.    
@@ -205,8 +205,8 @@ Step7. Release The Face Tracking
 		}	
 		cv::imshow("display", dispImg);
 	} 
-  ```
-  
+  ```  
+  ![](./img/mosaic and tagging.png){: width="500"}
 * __Step5__: Release The Face Mosaic  
 >If you want to remove the mosaic, enter the coordinates or rectangle of the face.    
  
@@ -282,7 +282,7 @@ Step7. Release The Face Tracking
 		g_ptrMaka->process(cv::Mat(), MAKA_MODE::FACE_TRACKING_RELEASE, std::vector<_MAKA_DATA_>()); 
 	}
   ```
-  
+  ![](./img/no mode.png){: width="500"}
 * Summary  
 >In this guide you have learned the MAKA API by c++ with opencv.  
 If you have question, please send a email(hoohyun.kim@deepixel.xyz).  
