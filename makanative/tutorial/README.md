@@ -249,6 +249,7 @@ MAKA API TUTORIAL (For Android)
 			.. FACE MOSACIC ..
 			.. FACE TAGGING ..
 			.. FACE GET RESULT ..
+			.. FACE RELEASE MOSAIC ..
 		*/
 	}
 	CALLBACK MouseEvent(Point mosePoint, eventType event)
@@ -259,7 +260,7 @@ MAKA API TUTORIAL (For Android)
 		makaData.pushback(data);  
 		if(event == MOUSE_R_DOUBLE_CLICK)
 		{
-		g_ptrMaka->process(cv::Mat(), MAKA_MODE::FACE_RELEASE_LABEL, makaData); // this makaData is input data included mouse point
+			g_ptrMaka->process(cv::Mat(), MAKA_MODE::FACE_RELEASE_LABEL, makaData); // this makaData is input data included mouse point
 		}  	
 	}
   ```
@@ -284,7 +285,7 @@ MAKA API TUTORIAL (For Android)
   ```
   
 * Summary  
-In this guide you have learned the MAKA API by c++ with opencv. If you have question, please send a email(hoohyun.kim@deepixel.xyz).  
+>In this guide you have learned the MAKA API by c++ with opencv. If you have question, please send a email(hoohyun.kim@deepixel.xyz).
 For more information about API, please refer to the API reference [MAKA API][maka_api]
 *****
 
