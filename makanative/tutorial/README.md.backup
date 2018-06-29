@@ -39,6 +39,7 @@ MAKA API TUTORIAL (For Android)
 
 * OUTPUT:
 	* Image with mosaic  
+
 ![](./img/mosaic.PNG){: width="400"}
 
 ### 3. MAKA Face Tagging (Labelling)
@@ -91,15 +92,15 @@ MAKA API TUTORIAL (For Android)
 #### 4. Before the MAKA API is executed, you must call the initialize function of IMaka.
 
   ```
-  // (img.cols) is size of image width
-  // (img.rows) is size of image height
+  // (img.cols) is size of image width.
+  // (img.rows) is size of image height.
   g_ptrMaka->initialize(img.cols, img.rows); 
   ```
 #### 5. To run the MAKA API, call the process function of IMaka.
 
   ```
   // All generation of MAKA API are excuted by process function in IMaka.
-  // Parameters(img and _MAKA_DATA_) except MAKA_MODE has both input and output properties
+  // Parameters(img and _MAKA_DATA_) except MAKA_MODE has both input and output properties.
   g_ptrMaka->process(img, MAKA_MODE, _MAKA_DATA_);
   ```
   

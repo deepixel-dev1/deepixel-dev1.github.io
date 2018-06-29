@@ -92,15 +92,15 @@ MAKA API TUTORIAL (For Android)
 #### 4. Before the MAKA API is executed, you must call the initialize function of IMaka.
 
   ```
-  // (img.cols) is size of image width
-  // (img.rows) is size of image height
+  // (img.cols) is size of image width.
+  // (img.rows) is size of image height.
   g_ptrMaka->initialize(img.cols, img.rows); 
   ```
 #### 5. To run the MAKA API, call the process function of IMaka.
 
   ```
   // All generation of MAKA API are excuted by process function in IMaka.
-  // Parameters(img and _MAKA_DATA_) except MAKA_MODE has both input and output properties
+  // Parameters(img and _MAKA_DATA_) except MAKA_MODE has both input and output properties.
   g_ptrMaka->process(img, MAKA_MODE, _MAKA_DATA_);
   ```
   
@@ -196,7 +196,7 @@ Step7. Release the face tracking
 			.. FACE MOSACIC ..
 			.. FACE TAGGING ..
 		*/
-		dispImg = srcImg.clone(); // Copy source image to display image
+		dispImg = srcImg.clone(); // Copy source image to display image.
 		g_ptrMaka->process(dispImg, MAKA_MODE::FACE_GETTING_RESULT, makaData); // dispImg is applied by mosaic, makaData is output data including the face rectangle, face center position, and face label.
 		for(std::vector<_MAKA_DATA_>::iterator it = makaData.begin(); it != makaData.end(); it++)
 		{
