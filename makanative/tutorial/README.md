@@ -12,8 +12,9 @@ MAKA API TUTORIAL (For Android)
 
 ### 1. MAKA Face Tracking
 
->MAKA Face Tracking is an API module that detects faces at high speed and keeps the track of face positions.  
-![](./img/FT_SS.png){: width="600"}  
+>MAKA Face Tracking is an API module that detects faces at high speed and keeps the track of face positions. 
+ 
+![](./img/FT_SS.png){: width="400"}  
 
 * SPEC:
 	* Up to 3 people
@@ -29,8 +30,8 @@ MAKA API TUTORIAL (For Android)
 	y: y-coordinate of the upper-left corner of Face Rectangle
 	w: width of Face Rectangle
 	h: height of Face Rectangle
-    ```
-         
+    ```  
+
 ![](./img/FacePosition.png){: width="400"}	
 
 ### 2. MAKA Face Mosaic
@@ -38,6 +39,7 @@ MAKA API TUTORIAL (For Android)
 
 * OUTPUT:
 	* Image with mosaic  
+
 ![](./img/mosaic.PNG){: width="400"}
 
 ### 3. MAKA Face Tagging (Labelling)
@@ -52,8 +54,9 @@ MAKA API TUTORIAL (For Android)
 	
 	```
 	n: label number
-    ```
-    ![](./img/tagging.gif){: width="400"}
+    ```  
+    
+![](./img/tagging.gif){: width="400"}
 
 *****
 ## MAKA API Files
@@ -74,7 +77,7 @@ MAKA API TUTORIAL (For Android)
 ## HOW TO START [MAKA API][maka_api] (For Android)
 ![](./img/Logic.png){: width="300"}   
 
-#### 1. Insert "Library files" into the library directory that matches the project's target hardware
+#### 1. Insert "Library files" into the library directory that matches the project's target hardware.
 
 #### 2. Insert "Include files" into your project's include directory.
 
@@ -96,7 +99,7 @@ MAKA API TUTORIAL (For Android)
 #### 5. To run the MAKA API, call the process function of IMaka.
 
   ```
-  // All generation of MAKA API are excuted by process function in IMaka
+  // All generation of MAKA API are excuted by process function in IMaka.
   // Parameters(img and _MAKA_DATA_) except MAKA_MODE has both input and output properties
   g_ptrMaka->process(img, MAKA_MODE, _MAKA_DATA_);
   ```
@@ -199,8 +202,8 @@ Step7. Release the face tracking
 		{
 			std::stringsteam strLabel;
 			strLabel << it->nLabel;
-			cv::putText(dispImg, strLabel.str(), it->faceCenterPos, CV_FONT_HERSHEY_PLAIN, 1, 0, cv::Scalar::all(255)); // display the label
-			cv::rectangle(dispImg, t->faceRect, cv::Scalar(255, 63, 63)); // display the face rectangle 
+			cv::putText(dispImg, strLabel.str(), it->faceCenterPos, CV_FONT_HERSHEY_PLAIN, 1, 0, cv::Scalar::all(255)); // display the label.
+			cv::rectangle(dispImg, t->faceRect, cv::Scalar(255, 63, 63)); // display the face rectangle. 
 		}	
 		cv::imshow("display", dispImg);
 	} 
@@ -219,7 +222,7 @@ Step7. Release the face tracking
 			.. FACE TAGGING ..
 			.. FACE GET RESULT ..
 		*/
-		g_ptrMaka->process(cv::Mat(), MAKA_MODE::FACE_MOSAIC_RELEASE, makaData); // this makaData is input data including the face rectangle
+		g_ptrMaka->process(cv::Mat(), MAKA_MODE::FACE_MOSAIC_RELEASE, makaData); // this makaData is input data including the face rectangle.
 	}
   
 	CALLBACK MouseEvent(Point mosePoint, eventType event)
@@ -285,7 +288,7 @@ Step7. Release the face tracking
 * Summary  
 >In this guide you have learned the MAKA API by c++ with opencv.  
 If you have question, please send an email(hoohyun.kim@deepixel.xyz).  
-For more information about API, please refer to the API reference [MAKA API][maka_api]  
+For more information about API, please refer to the API reference [MAKA API][maka_api].
 
 *****
 
