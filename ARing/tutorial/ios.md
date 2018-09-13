@@ -62,4 +62,4 @@ dp::exception::DPLicenseException: The application id(xyz.deepixel.Tutorial) is 
 - Tutorial 소스 코드 [다운로드][tutorial_source_code]
 
 [OpenCV]: https://opencv.org/releases.html
-[tutorial_source_code]: ios/README.md
+[tutorial_source_code]: ios/
