@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ARing: C:/Users/hoohy/Desktop/aring_documentation/api/IARing.h 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">ARing
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'검색');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','검색');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d522931ffa1371640980b621734a4381.html">Users</a></li><li class="navelem"><a class="el" href="dir_0d2891089a98640866ca88605949dfa2.html">hoohy</a></li><li class="navelem"><a class="el" href="dir_82bb5739829dd620fa863a2c1669ee5f.html">Desktop</a></li><li class="navelem"><a class="el" href="dir_2709d53bde18d1699bc323517f19ed6e.html">aring_documentation</a></li><li class="navelem"><a class="el" href="dir_2202eea3732ab8352d802d03e27e0ad5.html">api</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">IARing.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;opencv2/opencv.hpp&gt;</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacedp.html">dp</a> {</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">namespace </span>aringnative {</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        </div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        </div><div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html">   22</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html">DPARingResult</a> {</div><div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html#ad390a97f808df055317ea784155e521d">   23</a></span>&#160;            <span class="keywordtype">bool</span> <a class="code" href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html#ad390a97f808df055317ea784155e521d">detected</a>;              </div><div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html#ad01fd0bc52a12ab330a38f4fa90f1a91">   24</a></span>&#160;            cv::Point <a class="code" href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html#ad01fd0bc52a12ab330a38f4fa90f1a91">leftEarringPos</a>;   </div><div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html#a17e1911f7625436186940fed8ca4aeb3">   25</a></span>&#160;            cv::Point <a class="code" href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html#a17e1911f7625436186940fed8ca4aeb3">rightEarringPos</a>;  </div><div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html#aaeecb6b2256ba7839b1393c61efe2836">   26</a></span>&#160;            cv::Mat <a class="code" href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html#aaeecb6b2256ba7839b1393c61efe2836">mask</a>;               </div><div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html#adff9769b99d776e397c989fccab2eafc">   27</a></span>&#160;            <span class="keywordtype">float</span> <a class="code" href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html#adff9769b99d776e397c989fccab2eafc">earringScaleYLeft</a>;    </div><div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html#a39db5060d2f5d849a5f9a68aaeb1d1b9">   28</a></span>&#160;            <span class="keywordtype">float</span> <a class="code" href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html#a39db5060d2f5d849a5f9a68aaeb1d1b9">earringScaleYRight</a>;   </div><div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html#a679f37abd5169bf031a5f7329b2b8720">   29</a></span>&#160;            <span class="keywordtype">float</span> <a class="code" href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html#a679f37abd5169bf031a5f7329b2b8720">rotX</a>;                 </div><div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html#a51846e9e8b8ad461c151cdb34acf06ba">   30</a></span>&#160;            <span class="keywordtype">float</span> <a class="code" href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html#a51846e9e8b8ad461c151cdb34acf06ba">rotY</a>;                 </div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <a class="code" href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html">DPARingResult</a>() {};</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <span class="keyword">virtual</span> ~<a class="code" href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html">DPARingResult</a>() {};</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        };</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div><div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="structdp_1_1aringnative_1_1_i_a_ring.html">   43</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="structdp_1_1aringnative_1_1_i_a_ring.html">IARing</a> {</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            <a class="code" href="structdp_1_1aringnative_1_1_i_a_ring.html">IARing</a>() {};</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            <span class="keyword">virtual</span> ~<a class="code" href="structdp_1_1aringnative_1_1_i_a_ring.html">IARing</a>() {};</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="structdp_1_1aringnative_1_1_i_a_ring.html#a24ac4f3322125a3af83c370214e91895">initialize</a>(<span class="keywordtype">int</span> nImgWidth, <span class="keywordtype">int</span> nImgHeight,</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                                    <span class="keywordtype">float</span> sensorWidth, <span class="keywordtype">float</span> sensorHeight, <span class="keywordtype">float</span> focalLength) = 0;</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="keyword">virtual</span> <a class="code" href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html">DPARingResult</a> <a class="code" href="structdp_1_1aringnative_1_1_i_a_ring.html#ae127996f26fa6dffdc4cdc4a0393064d">DetectFace</a>(<span class="keyword">const</span> cv::Mat src) = 0;</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keyword">virtual</span> cv::Point <a class="code" href="structdp_1_1aringnative_1_1_i_a_ring.html#a6e5b4d68c09d53be4eadfa93f35c3734">getEarringPos</a>(<span class="keywordtype">bool</span> isLeft) = 0;</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        };</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;}</div><div class="ttc" id="structdp_1_1aringnative_1_1_d_p_a_ring_result_html_a679f37abd5169bf031a5f7329b2b8720"><div class="ttname"><a href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html#a679f37abd5169bf031a5f7329b2b8720">dp::aringnative::DPARingResult::rotX</a></div><div class="ttdeci">float rotX</div><div class="ttdef"><b>Definition:</b> IARing.h:29</div></div>
+<div class="ttc" id="structdp_1_1aringnative_1_1_d_p_a_ring_result_html_ad01fd0bc52a12ab330a38f4fa90f1a91"><div class="ttname"><a href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html#ad01fd0bc52a12ab330a38f4fa90f1a91">dp::aringnative::DPARingResult::leftEarringPos</a></div><div class="ttdeci">cv::Point leftEarringPos</div><div class="ttdef"><b>Definition:</b> IARing.h:24</div></div>
+<div class="ttc" id="structdp_1_1aringnative_1_1_d_p_a_ring_result_html"><div class="ttname"><a href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html">dp::aringnative::DPARingResult</a></div><div class="ttdoc">ARing API 결과저장 구조체 </div><div class="ttdef"><b>Definition:</b> IARing.h:22</div></div>
+<div class="ttc" id="structdp_1_1aringnative_1_1_i_a_ring_html"><div class="ttname"><a href="structdp_1_1aringnative_1_1_i_a_ring.html">dp::aringnative::IARing</a></div><div class="ttdoc">ARing API 컨트롤 인터페이스 </div><div class="ttdef"><b>Definition:</b> IARing.h:43</div></div>
+<div class="ttc" id="structdp_1_1aringnative_1_1_d_p_a_ring_result_html_aaeecb6b2256ba7839b1393c61efe2836"><div class="ttname"><a href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html#aaeecb6b2256ba7839b1393c61efe2836">dp::aringnative::DPARingResult::mask</a></div><div class="ttdeci">cv::Mat mask</div><div class="ttdef"><b>Definition:</b> IARing.h:26</div></div>
+<div class="ttc" id="structdp_1_1aringnative_1_1_d_p_a_ring_result_html_a39db5060d2f5d849a5f9a68aaeb1d1b9"><div class="ttname"><a href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html#a39db5060d2f5d849a5f9a68aaeb1d1b9">dp::aringnative::DPARingResult::earringScaleYRight</a></div><div class="ttdeci">float earringScaleYRight</div><div class="ttdef"><b>Definition:</b> IARing.h:28</div></div>
+<div class="ttc" id="structdp_1_1aringnative_1_1_d_p_a_ring_result_html_a51846e9e8b8ad461c151cdb34acf06ba"><div class="ttname"><a href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html#a51846e9e8b8ad461c151cdb34acf06ba">dp::aringnative::DPARingResult::rotY</a></div><div class="ttdeci">float rotY</div><div class="ttdef"><b>Definition:</b> IARing.h:30</div></div>
+<div class="ttc" id="structdp_1_1aringnative_1_1_d_p_a_ring_result_html_adff9769b99d776e397c989fccab2eafc"><div class="ttname"><a href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html#adff9769b99d776e397c989fccab2eafc">dp::aringnative::DPARingResult::earringScaleYLeft</a></div><div class="ttdeci">float earringScaleYLeft</div><div class="ttdef"><b>Definition:</b> IARing.h:27</div></div>
+<div class="ttc" id="structdp_1_1aringnative_1_1_i_a_ring_html_a6e5b4d68c09d53be4eadfa93f35c3734"><div class="ttname"><a href="structdp_1_1aringnative_1_1_i_a_ring.html#a6e5b4d68c09d53be4eadfa93f35c3734">dp::aringnative::IARing::getEarringPos</a></div><div class="ttdeci">virtual cv::Point getEarringPos(bool isLeft)=0</div><div class="ttdoc">귀 위치정보를 얻어올 수 있습니다. </div></div>
+<div class="ttc" id="structdp_1_1aringnative_1_1_d_p_a_ring_result_html_ad390a97f808df055317ea784155e521d"><div class="ttname"><a href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html#ad390a97f808df055317ea784155e521d">dp::aringnative::DPARingResult::detected</a></div><div class="ttdeci">bool detected</div><div class="ttdef"><b>Definition:</b> IARing.h:23</div></div>
+<div class="ttc" id="structdp_1_1aringnative_1_1_d_p_a_ring_result_html_a17e1911f7625436186940fed8ca4aeb3"><div class="ttname"><a href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html#a17e1911f7625436186940fed8ca4aeb3">dp::aringnative::DPARingResult::rightEarringPos</a></div><div class="ttdeci">cv::Point rightEarringPos</div><div class="ttdef"><b>Definition:</b> IARing.h:25</div></div>
+<div class="ttc" id="namespacedp_html"><div class="ttname"><a href="namespacedp.html">dp</a></div><div class="ttdef"><b>Definition:</b> DPException.h:12</div></div>
+<div class="ttc" id="structdp_1_1aringnative_1_1_i_a_ring_html_a24ac4f3322125a3af83c370214e91895"><div class="ttname"><a href="structdp_1_1aringnative_1_1_i_a_ring.html#a24ac4f3322125a3af83c370214e91895">dp::aringnative::IARing::initialize</a></div><div class="ttdeci">virtual void initialize(int nImgWidth, int nImgHeight, float sensorWidth, float sensorHeight, float focalLength)=0</div><div class="ttdoc">초기화 함수 </div></div>
+<div class="ttc" id="structdp_1_1aringnative_1_1_i_a_ring_html_ae127996f26fa6dffdc4cdc4a0393064d"><div class="ttname"><a href="structdp_1_1aringnative_1_1_i_a_ring.html#ae127996f26fa6dffdc4cdc4a0393064d">dp::aringnative::IARing::DetectFace</a></div><div class="ttdeci">virtual DPARingResult DetectFace(const cv::Mat src)=0</div><div class="ttdoc">ARing API 동작(실행) 함수. </div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+다음에 의해 생성됨 :  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>
