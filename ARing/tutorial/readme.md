@@ -14,7 +14,7 @@ ARing API TUTORIAL (For Android)
 
 > 귀 위치 추정은 사용 유저의 귀를 모바일 상에서 실시간으로 검출해 주는 api 모듈입니다. 
  
-![](./img/FT_SS.png){: width="400"}  
+![](./img/ARing_Display.png){: width="400"}  
 
 * 스팩:
 	* 1명만 적용 가능
@@ -25,11 +25,11 @@ ARing API TUTORIAL (For Android)
 	
 	```
 	귀 위치정보: x(이미지의 가로 방향 위치), y(이미지의 세로 방향 위치)
-	귀 스케일: 얼굴 크기에 따른 귀의 스케일 정보
+	귀 스케일: 귀걸이 이미지 스케일 변환 정보
 	얼굴 마스크 정보: 얼굴의 바운더리 정보
     ```  
 
-![](./img/FacePosition.png){: width="400"}	
+![](./img/ARing_result.png){: width="400"}	
 
 
 *****
@@ -54,7 +54,7 @@ ARing API TUTORIAL (For Android)
 *****
 
 ## [ARing API][ARing_api] 설치방법 및 간단사용법 (For Android)
-![](./img/Logic.png){: width="300"}   
+
 
 #### 1. "라이브러리 파일"을 타켓 하드웨어 프로젝트 라이브러리 디렉토리에 넣는다. 
 
