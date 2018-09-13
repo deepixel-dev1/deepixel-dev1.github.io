@@ -212,6 +212,6 @@ ARing API의 안드로이드 샘플 코드는 [ARing_Sample][aring_sample]를 �
 
 [aring_sample]: android/
 [opencv]: http://opencv.org/
-[ARing_api]: https://deepixel-dev1.github.io/makanative/api/
+[ARing_api]: https://deepixel-dev1.github.io/ARing/api/
 [tbb]: https://www.threadingbuildingblocks.org/
 
