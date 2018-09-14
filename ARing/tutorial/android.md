@@ -1,9 +1,12 @@
+![deepixel.xyz](./img/Deepixel_logo.PNG){: width="200"}
 
 # ARing API 안드로이드 환경설정
 
+***
+
 ## ARing API 파일 설정
 
-> ARing API 및 3rd Party의 파일(library, include)위치 설정
+> ARing API 및 3rd Party의 파일(library, include)위치 설정한다.
 
 ```text
 1. OpenCV  
@@ -22,6 +25,8 @@
   ▶ library  
   /해당프로젝트/src/main/cpp/libs/armeabi-v7a/libaringnative-lib.so 
 ```
+
+***
 
 ## Native C++ 연결을 위한 설정
 
@@ -42,16 +47,16 @@
 
 2. CMakeList
 
-   * include 디렉토리 설정
+   * include 디렉토리를 설정한다.
      ```cmake
      include_directories(src/main/cpp/include/opencv_3.3.1/
        src/main/cpp/include/aringnative/ src/main/cpp/include/)
      ```
-   * library 디렉토리 설정
+   * library 디렉토리를 설정한다.
      ```cmake
      set(LIB_DIR ${CMAKE_SOURCE_DIR}/src/main/cpp/libs/)
      ```
-   * 3rd Party(OpenCV, TBB) library 추가
+   * 3rd Party(OpenCV, TBB) library를 추가한다.
      ```cmake
      add_library( opencv-lib
                   SHARED
@@ -75,7 +80,7 @@
                             # Provides the path to the library you want to import.
                             ${LIB_DIR}${ANDROID_ABI}/libtbb.so )
      ```
-   * ARing Library 추가
+   * ARing Library를 추가한다.
      ```cmake
      add_library( aring-lib
                   SHARED
@@ -89,7 +94,7 @@
                             ${LIB_DIR}${ANDROID_ABI}/libaringnative-lib.so )
      ```
 
-   * 사용자 파일 library(native-lib.cpp) 추가
+   * 사용자 파일(native-lib.cpp)을 library에 추가한다.
      ```cmake
      add_library( # Sets the name of the library.
                   native-lib
@@ -98,7 +103,7 @@
                   # Provides a relative path to your source file(s).
                   src/main/cpp/src/native-lib.cpp )
      ```
-   * library 링크
+   * library를 링크한다.
      ```cmake
      target_link_libraries( # Specifies the target library.
                             native-lib
@@ -110,4 +115,10 @@
                             # included in the NDK.
                             ${log-lib} )
      ```
-*****
+***
+
+## 참조
+
+* Tutorial 소스 코드 [다운로드][andoid_sample]
+
+[andoid_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/ARing/tutorial/android/
