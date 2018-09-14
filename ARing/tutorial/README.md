@@ -2,29 +2,30 @@
 
 # ARing Tutorial
 
->ARing은 얼굴의 귀 정보를 추정하여 어플리케이션 개발자가 응용할 수 있게 해주는 영상처리 기반 API 모듈 입니다.  
+>ARing은 사용자 귀의 위치 및 스케일 정보 등을 추정하는 컴퓨터 비전 기반 API Library 입니다.  
 
 ***
 
 ## 특징
 
-### 귀 위치 추정
+### 귀 위치 및 스케일 정보 추정
 
-> 귀 위치 추정은 사용 유저의 귀를 모바일 상에서 실시간으로 검출해 주는 api 모듈입니다.
+> 사용자의 귀를 모바일 상에서 실시간으로 검출하고 양쪽 귀의 위치 및 스케일 정보를 제공합니다. 이것을 이용해서 귀걸이를 가상 착용(Virtual Try-on)할 수 있습니다.
 
 ![aring display](./img/ARing_Display.png){: width="400"}
 
 - 스팩:
   - 1명만 적용 가능
-  - 30~40 FPS (Device: Galaxy Note 8)
+  - Yaw 축으로 약 45º 이내
+  - 30~40 FPS (Device tested: Galaxy Note 8)
 
 - 결과물:  
-  - 양쪽 귀의 위치정보, 양쪽 귀 크기, 얼굴 마스크 정보
+  - 양쪽 귀의 위치, 양쪽 귀 크기, 얼굴 마스크 정보
 
     ```text
     귀 위치정보: x(이미지의 가로 방향 위치), y(이미지의 세로 방향 위치)
-    귀 크기: 귀의 높이 / 영상의 높이
-    얼굴 마스크 정보: 얼굴의 바운더리 정보
+    귀 크기(스케일): 귀의 높이 / 영상의 높이
+    얼굴 마스크 정보: 얼굴의 경계 라인 정보
     ```  
 
 ![aring result](./img/ARing_result.png){: width="400"}
@@ -42,9 +43,9 @@
 ## ARing API 사용방법 (c++ with OpenCV)
 
 >C++를 이용한 ARing API 사용법을 소개한다. ARing API를 사용하기 위해서는 OpenCV 라이브러리가 필요하다.
-ARing API의 예제는 [Android][andoid_sample]/[iOS][ios_sample] 링크를 참고하세요.
+ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 링크를 참고한다.
 
-1. IARing 객체를 생성한다.
+1. ARing 객체를 생성한다.
 
     ```c++
     // Android
@@ -59,7 +60,7 @@ ARing API의 예제는 [Android][andoid_sample]/[iOS][ios_sample] 링크를 참�
     ```
 
 2. ARing 객체를 초기화 한다.
-    > ARing API를 초기화 하기 위해서 다바이스 실행 시 이미지의 크기 및 카메라 센서의 크기, 포커스 값을 입력한다.
+    > ARing API를 초기화 하기 위해서 다바이스 실행 시 영상의 크기, 카메라 센서의 크기, 그리고 포커스 값을 입력한다.
 
     ```c++
     // (img.cols) 이미지 가로 크기
@@ -82,7 +83,7 @@ ARing API의 예제는 [Android][andoid_sample]/[iOS][ios_sample] 링크를 참�
     ```
 
 4. ARing 객체의 DetectFace 함수를 호출한다.
-   > Gray scale 영상을 파라미터로 사용해야 한다. 이 함수의 반환 값에는 얼굴 검출 유무, 귀의 위치 등이 포함되어 있다.
+   > Gray scale 영상을 파라미터로 사용해야 한다. 이 함수의 반환 값에는 얼굴 검출 유무 및 귀의 위치 등이 포함되어 있다.
 
     ```c++
     dp::aringnative::DPAringResult result = g_ptrARing->process(img);
@@ -149,7 +150,7 @@ ARing API의 예제는 [Android][andoid_sample]/[iOS][ios_sample] 링크를 참�
 
 ## 연락처
 
->API 적용시 문제점을 발견하거나 궁금한 점이 있으면 메일(hoohyun.kim@deepixel.xyz)로 문의해 주세요.  
+>API 적용시 문제점을 발견하거나 궁금한 점이 있으면 이메일(hoohyun.kim@deepixel.xyz)로 문의해 주세요.  
 
 ***
 
