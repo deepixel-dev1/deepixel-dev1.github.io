@@ -71,8 +71,7 @@ Please send us the following information required to generate and manage the lic
     std::shared_ptr<dp::makanative::IMaka> g_ptrMaka;
 
     JNIEXPORT void JNICALL
-    Java_maka_deepixel_xyz_makaandroidappexample_MainActivity_init(JNIEnv *env, jobject,
-           jobject activity, jstring licenseFilename) {
+    Java_maka_deepixel_xyz_makaandroidappexample_MainActivity_init(JNIEnv *env, jobject) {
         try {
             g_ptrMaka = dp::android::DPFactoryForAndroid::CreateInstance<dp::makanative::IMaka>
                     (env, activity);
