@@ -1,4 +1,6 @@
-# iOS tutorial
+![deepixel.xyz](./img/Deepixel_logo.PNG){: width="200"}
+
+# ARing tutorial (For iOS)
 
 ## Getting started
 
@@ -25,7 +27,7 @@
    > 아래와 같은 창이 뜨면 Create Bridging Header 버튼을 클릭한다.
    > ![create bridging header](./img/create_bridging_header.png)
 8. TutorialWrapper.m 파일명을 TutorialWrapper.mm 으로 변경한다.
-9.  Tutorial-Bridging-Header.h 파일에 아래 코드를 추가한다.
+9. Tutorial-Bridging-Header.h 파일에 아래 코드를 추가한다.
     ```c
     #import "TutorialWrapper.h"
     ```
