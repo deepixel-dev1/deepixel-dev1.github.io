@@ -78,6 +78,8 @@ Please send us the following information required to generate and manage the lic
                     (env, activity);
         } catch (dp::exception::DPLicenseExpiredException ex) {
             LOGF("MAKA", "%s", ex.what());
+        } catch (dp::exception::DPLicenseException ex) {
+            LOGF("MAKA", "%s", ex.what());
         }
     }
 
@@ -88,8 +90,8 @@ Please send us the following information required to generate and manage the lic
 
 - dp::exception::DPLicenseException
   
-  >This exception is occurred when the license file does not exist or is corrupted.
+  >This exception is occurred when the application id is invalid.
 
 - dp::exception::DPLicenseExpiredException
 
-  >This exception is occurred when the license file is expired.
+  >This exception is occurred when the license is expired.

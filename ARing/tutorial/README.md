@@ -46,6 +46,7 @@
 ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 링크를 참고한다.
 
 1. ARing 객체를 생성한다.
+    > 객체를 생성하는 과정에서 [라이센스와 관련된 예외][license_exception]가 발생할 수 있다.  
 
     ```c++
     // Android
@@ -60,7 +61,7 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
     ```
 
 2. ARing 객체를 초기화 한다.
-    > ARing API를 초기화 하기 위해서 다바이스 실행 시 영상의 크기, 카메라 센서의 크기, 그리고 포커스 값을 입력한다.
+    > ARing API를 초기화 하기 위해서 다바이스 실행 시 영상의 크기, 카메라 센서의 크기, 그리고 포커스 값을 입력한다. 카메라 센서의 크기와 포커스 값을 0으로 입력할 경우 ARing 내부에 정의된 기본값을 사용한다.
 
     ```c++
     // (img.cols) 이미지 가로 크기
@@ -70,6 +71,10 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
     // (focalLength) 카메라 포커스 값
     g_ptrARing->initialize(img.cols, img.rows, sensorWidth, sensorHeight, focalLength);
     ```
+    |Exception|Exception message|Description|
+    |-|-|-|
+    |dp::exception::DPException|Already initialized|두번 이상 초기화를 했을 경우 발생한다.|
+    |dp::exception::DPException|Initialization Failed|예상하지 못한 에러가 있을 경우 발생한다.|
 
 3. 입력 영상의 타입을 gray scale로 변환한다.
     > 디바이스에서 제공하는 영상 타입에 맞는 conversion code를 사용해야 한다.
@@ -83,14 +88,19 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
     ```
 
 4. ARing 객체의 DetectFace 함수를 호출한다.
-   > Gray scale 영상을 파라미터로 사용해야 한다. 이 함수의 반환 값에는 얼굴 검출 유무 및 귀의 위치 등이 포함되어 있다.
+   > 영상은 gray scale 타입이어야하고 사이즈는 320x240보다 커야한다. 이 함수의 [반환 값][ARing_api]에는 얼굴 검출 유무 및 귀의 위치 등이 포함되어 있다.
 
     ```c++
-    dp::aringnative::DPAringResult result = g_ptrARing->process(img);
+    dp::aringnative::DPAringResult result = g_ptrARing->DetectFace(img);
     ```
+    |Exception|Exception message|Description|
+    |-|-|-|
+    |dp::exception::DPException|There is no image|입력 영상이 비어있을 경우 발생한다.|
+    |dp::exception::DPException|No initialized|초기화를 하지 않은 경우 발생한다.|
+    |dp::exception::DPException|Image size is different from the initial image size|초기화할 때 입력한 영상의 크기와 현재 입력 영상의 크기가 다른 경우 발생한다.|
 
 5. 귀 위치 정보를 이용하여 귀걸이를 출력한다.
-    >왼쪽, 오른쪽 귀걸이 2개를 출력한다. 이 때 귀걸이의 크기는 귀의 크기값을 이용해서 결정한다. 귀의 크기는 (귀의 높이 / 입력 영상의 높이)로 결정된다.
+    >왼쪽, 오른쪽 귀걸이 2개를 출력한다. 이 때 귀걸이의 크기는 귀의 크기값을 이용해서 결정한다. 귀의 크기는 (귀의 높이 / 입력 영상의 높이) 값이다.
 
     ```c++
     cv::Mat earingPic = cv::imread("earingPic.png"); //귀걸이 영상 입력
@@ -161,11 +171,14 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
 - [ARing API][ARing_api]
 - [OpenCV][opencv]
 - [TBB][tbb]
+- [License][license]
 
 [andoid_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/ARing/tutorial/android/
 [ios_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/ARing/tutorial/ios
 [opencv]: http://opencv.org/
-[ARing_api]: https://deepixel-dev1.github.io/ARing/apis/
+[ARing_api]: /ARing/apis/
 [tbb]: https://www.threadingbuildingblocks.org/
 [android]: android.md
 [iOS]: ios.md
+[license]: /License/README.md
+[license_exception]: /License/README.md#Exceptions
