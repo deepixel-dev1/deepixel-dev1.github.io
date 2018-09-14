@@ -13,8 +13,8 @@ namespace dp {
     namespace exception {
 
         /**
-        *@brief MAKA API Control Interface
-        *@details The exceptions that occur while using the MAKA library are inherited from this class.
+        *@brief Exception class
+        *@details The exceptions that occur while using the deepixel library are inherited from this class.
         */
         class DPException : public std::runtime_error {
         public:
@@ -24,7 +24,7 @@ namespace dp {
         };
 
         /**
-        *@brief MAKA API Control Interface
+        *@brief Exception class
         *@details This exception is occurred when the license file does not exists or is corrupt.
         */
         class DPLicenseException : public DPException {
@@ -35,7 +35,7 @@ namespace dp {
         };
 
         /**
-        *@brief MAKA API Control Interface
+        *@brief Exception class
         *@details This exception is occurred when the license is expired.
         */
         class DPLicenseExpiredException : public DPLicenseException {

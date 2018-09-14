@@ -1,14 +1,17 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 26
+    buildToolsVersion "27.0.3"
+
     defaultConfig {
-        applicationId "com.vaultmicro.camerafi.live"
-        minSdkVersion 18
+        applicationId "com.il.aring"
+        minSdkVersion 23
         targetSdkVersion 25
         versionCode 1
-        versionName "0.9.0"
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
         externalNativeBuild {
             cmake {
                 cppFlags "-std=c++11 -frtti -fexceptions -fopenmp"
@@ -22,7 +25,7 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {

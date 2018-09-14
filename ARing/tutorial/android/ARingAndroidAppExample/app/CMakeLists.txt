@@ -18,10 +18,8 @@ set(LIB_DIR ${CMAKE_SOURCE_DIR}/src/main/cpp/libs/)
 
 add_library( # Sets the name of the library.
              native-lib
-
              # Sets the library as a shared library.
              SHARED
-
              # Provides a relative path to your source file(s).
              src/main/cpp/src/native-lib.cpp )
 
@@ -31,10 +29,8 @@ add_library( opencv-lib
 
 set_target_properties( # Specifies the target library.
                        opencv-lib
-
                        # Specifies the parameter you want to define.
                        PROPERTIES IMPORTED_LOCATION
-
                        # Provides the path to the library you want to import.
                        ${LIB_DIR}${ANDROID_ABI}/libopencv_world.so )
 
@@ -44,10 +40,8 @@ add_library( tbb-lib
 
 set_target_properties( # Specifies the target library.
                        tbb-lib
-
                        # Specifies the parameter you want to define.
                        PROPERTIES IMPORTED_LOCATION
-
                        # Provides the path to the library you want to import.
                        ${LIB_DIR}${ANDROID_ABI}/libtbb.so )
 
@@ -57,10 +51,8 @@ add_library( aring-lib
 
 set_target_properties( # Specifies the target library.
                        aring-lib
-
                        # Specifies the parameter you want to define.
                        PROPERTIES IMPORTED_LOCATION
-
                        # Provides the path to the library you want to import.
                        ${LIB_DIR}${ANDROID_ABI}/libaringnative-lib.so )
 
@@ -73,7 +65,6 @@ set_target_properties( # Specifies the target library.
 
 find_library( # Sets the name of the path variable.
               log-lib
-
               # Specifies the name of the NDK library that
               # you want CMake to locate.
               log )
@@ -84,11 +75,9 @@ find_library( # Sets the name of the path variable.
 
 target_link_libraries( # Specifies the target library.
                        native-lib
-
                        opencv-lib
                        tbb-lib
                        aring-lib
-
                        # Links the target library to the log library
                        # included in the NDK.
                        ${log-lib} )
