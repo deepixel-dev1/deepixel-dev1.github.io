@@ -1,6 +1,6 @@
 ![deepixel.xyz](./img/Deepixel_logo.PNG){: width="200"}
 
-# ARing tutorial (For iOS)
+# ARing iOS 개발 설정
 
 ## Getting started
 
@@ -51,7 +51,7 @@
 13. Info.plist 파일에 아래 내용을 추가한다.
     ![cameara permission](./img/require_camera_permission.png)
 
-## Problems
+## 문제 해결
 
 프로그램 실행 후 아래와 같은 예외가 발생할 경우 bundle identifier 를 라이센스에 적용된 올바른 값으로 수정해야 한다.
 
@@ -59,7 +59,7 @@
 dp::exception::DPLicenseException: The application id(xyz.deepixel.Tutorial) is not allowed.
 ```
 
-## Reference
+## 참조
 
 - Tutorial 소스 코드 [다운로드][tutorial_source_code]
 
