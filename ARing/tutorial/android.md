@@ -33,7 +33,9 @@
 1. build.gradle
 
     ```gradle
-    externalNativeBuild {
+    defaultConfig {
+      ...
+      externalNativeBuild {
                 cmake {
                     cppFlags "-std=c++11 -frtti -fexceptions -fopenmp"
                 }
@@ -43,6 +45,13 @@
                     abiFilters 'armeabi-v7a'
                 }
             }
+    }
+    ...
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
     ```
 
 2. CMakeList
