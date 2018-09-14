@@ -33,9 +33,9 @@
 
 ## 환경설정
 
-- [Android tutorial][android]
+- [Android 환경설정][android]
 
-- [iOS tutorial][ios]
+- [iOS 환경설정][ios]
 
 ***
 
