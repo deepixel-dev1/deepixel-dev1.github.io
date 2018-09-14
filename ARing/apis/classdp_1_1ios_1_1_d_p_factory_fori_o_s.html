@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.14"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ARing: dp::ios::DPFactoryForiOS 클래스 참조</title>
+<title>ARing-Doxygen: dp::ios::DPFactoryForiOS 클래스 참조</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ARing
+   <div id="projectname">ARing-Doxygen
    </div>
   </td>
  </tr>
@@ -82,13 +82,12 @@ $(function() {
 정적 Public 멤버 함수</h2></td></tr>
 <tr class="memitem:a3cd2ccc89ba5756087fa7f25a8044b8c"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a3cd2ccc89ba5756087fa7f25a8044b8c"><td class="memTemplItemLeft" align="right" valign="top">static std::shared_ptr&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classdp_1_1ios_1_1_d_p_factory_fori_o_s.html#a3cd2ccc89ba5756087fa7f25a8044b8c">CreateInstance</a> ()</td></tr>
-<tr class="memdesc:a3cd2ccc89ba5756087fa7f25a8044b8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">생성할 오브젝트 인터페이스의 인스턴스를 생성한다.  <a href="#a3cd2ccc89ba5756087fa7f25a8044b8c">더 자세히 ...</a><br /></td></tr>
+<tr class="memdesc:a3cd2ccc89ba5756087fa7f25a8044b8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">생성할 오브젝트 인터페이스의 인스턴스를 생성  <a href="#a3cd2ccc89ba5756087fa7f25a8044b8c">더 자세히 ...</a><br /></td></tr>
 <tr class="separator:a3cd2ccc89ba5756087fa7f25a8044b8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">상세한 설명</h2>
 <div class="textblock"><p>API 컨트롤 인터페이스 (IOS용) </p>
-<p>이 클래스는 인터페이스를 생성한다. </p>
-</div><h2 class="groupheader">멤버 함수 문서화</h2>
+<p>DPFactoryForiOS는 해당 오브젝트 인터페이스를 인스턴스로 생성하는 클래스 이다. 객체를 생성하는 과정에서 라이센스와 관련된 예외가 발생할 수 있다. </p><div class="fragment"><div class="line">&lt;ios&gt;</div><div class="line">std::shared_ptr&lt;dp::aringnative::IARing&gt; g_ptrARing =</div><div class="line">                dp::ios::DPFactoryForiOS::CreateInstance&lt;dp::aringnative::IARing&gt;();</div></div><!-- fragment --> </div><h2 class="groupheader">멤버 함수 문서화</h2>
 <a id="a3cd2ccc89ba5756087fa7f25a8044b8c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3cd2ccc89ba5756087fa7f25a8044b8c">&#9670;&nbsp;</a></span>CreateInstance()</h2>
 
@@ -114,8 +113,16 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>생성할 오브젝트 인터페이스의 인스턴스를 생성한다. </p>
-<dl class="section return"><dt>반환값</dt><dd>생성된 인스턴스의 쉐어드 포인터를 리턴한다. </dd></dl>
+<p>생성할 오브젝트 인터페이스의 인스턴스를 생성 </p>
+<dl class="exception"><dt>예외</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classdp_1_1exception_1_1_d_p_license_exception.html" title="ARing API 컨트롤 인터페이스 ">dp::exception::DPLicenseException</a></td><td>&gt; 어플리케이션 id가 유요하지 않을 때 발생한다. <br />
+</td></tr>
+    <tr><td class="paramname"><a class="el" href="classdp_1_1exception_1_1_d_p_license_expired_exception.html" title="ARing API 컨트롤 인터페이스 ">dp::exception::DPLicenseExpiredException</a></td><td>&gt; 라이센스가 만기 되었을 때 발생한다. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd>생성된 인스턴스의 쉐어드 포인터를 리턴 </dd></dl>
 
 </div>
 </div>

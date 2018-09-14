@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.14"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ARing: dp::aringnative::IARing 구조체 참조</title>
+<title>ARing-Doxygen: dp::aringnative::IARing 구조체 참조</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ARing
+   <div id="projectname">ARing-Doxygen
    </div>
   </td>
  </tr>
@@ -84,16 +84,15 @@ Public 멤버 함수</h2></td></tr>
 <tr class="memdesc:a24ac4f3322125a3af83c370214e91895"><td class="mdescLeft">&#160;</td><td class="mdescRight">초기화 함수  <a href="#a24ac4f3322125a3af83c370214e91895">더 자세히 ...</a><br /></td></tr>
 <tr class="separator:a24ac4f3322125a3af83c370214e91895"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae127996f26fa6dffdc4cdc4a0393064d"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html">DPARingResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdp_1_1aringnative_1_1_i_a_ring.html#ae127996f26fa6dffdc4cdc4a0393064d">DetectFace</a> (const cv::Mat src)=0</td></tr>
-<tr class="memdesc:ae127996f26fa6dffdc4cdc4a0393064d"><td class="mdescLeft">&#160;</td><td class="mdescRight">ARing API 동작(실행) 함수.  <a href="#ae127996f26fa6dffdc4cdc4a0393064d">더 자세히 ...</a><br /></td></tr>
+<tr class="memdesc:ae127996f26fa6dffdc4cdc4a0393064d"><td class="mdescLeft">&#160;</td><td class="mdescRight">ARing API 동작(실행) 함수  <a href="#ae127996f26fa6dffdc4cdc4a0393064d">더 자세히 ...</a><br /></td></tr>
 <tr class="separator:ae127996f26fa6dffdc4cdc4a0393064d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e5b4d68c09d53be4eadfa93f35c3734"><td class="memItemLeft" align="right" valign="top">virtual cv::Point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdp_1_1aringnative_1_1_i_a_ring.html#a6e5b4d68c09d53be4eadfa93f35c3734">getEarringPos</a> (bool isLeft)=0</td></tr>
-<tr class="memdesc:a6e5b4d68c09d53be4eadfa93f35c3734"><td class="mdescLeft">&#160;</td><td class="mdescRight">귀 위치정보를 얻어올 수 있습니다.  <a href="#a6e5b4d68c09d53be4eadfa93f35c3734">더 자세히 ...</a><br /></td></tr>
+<tr class="memdesc:a6e5b4d68c09d53be4eadfa93f35c3734"><td class="mdescLeft">&#160;</td><td class="mdescRight">귀 위치정보 출력 함수  <a href="#a6e5b4d68c09d53be4eadfa93f35c3734">더 자세히 ...</a><br /></td></tr>
 <tr class="separator:a6e5b4d68c09d53be4eadfa93f35c3734"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">상세한 설명</h2>
 <div class="textblock"><p>ARing API 컨트롤 인터페이스 </p>
-<p>IARing은 ARing API의 모든 라이브러리를 컨트롤 할 수 있는 인터페이스 입니다. 사용자는 initialize 함수를 통해 ARing API를 초기화 할 수 있고, DetectFace함수를 통해 ARing API의 기능을 실행 할 수 있습니다 </p>
-</div><h2 class="groupheader">멤버 함수 문서화</h2>
+<p>IARing은 ARing API의 모든 라이브러리를 컨트롤 할 수 있는 인터페이스 입니다. 사용자는 initialize 함수를 통해 ARing API를 초기화 할 수 있고, DetectFace함수를 통해 ARing API의 기능을 실행 할 수 있다. </p><div class="fragment"><div class="line">&lt;영상변환 및 ARing API 실행&gt;</div><div class="line"></div><div class="line">   cv::Mat matProcessing;</div><div class="line">   cv::cvtColor(matSRC, matProcessing, CV_YUV2GRAY_NV21); <span class="comment">//(CV_YUV2GRAY_NV21) YUV 영상을 gray scale 영상으로 변경하는 conversion code</span></div><div class="line">   dp::aringnative::DPAringResult result = g_ptrARing-&gt;DetectFace(matProcessing);</div><div class="line"></div><div class="line">&lt;귀걸이 영상입력 및 출력함수 호출&gt;</div><div class="line"></div><div class="line">   cv::Mat earingPic = cv::imread(<span class="stringliteral">&quot;earingPic.png&quot;</span>); <span class="comment">//귀걸이 영상 입력</span></div><div class="line">   <span class="keywordflow">if</span>(result.detected)</div><div class="line">   {</div><div class="line">       drawEarring(matDST, earingPic, result, <span class="keyword">true</span>); <span class="comment">// LEFT</span></div><div class="line">       drawEarring(matDST, earingPic, result, <span class="keyword">false</span>); <span class="comment">// RIGHT</span></div><div class="line">   }</div><div class="line"></div><div class="line">&lt;귀걸이 출력함수 구현&gt;</div><div class="line"></div><div class="line">   <span class="keywordtype">void</span> drawEarring(cv::Mat dst, cv::Mat earingPic, DPARingResult result, <span class="keywordtype">bool</span> isLeft)</div><div class="line">   {</div><div class="line">       <span class="keywordtype">float</span> fEaring_scale_y = isLeft ? result.earringScaleYLeft : earringScaleYRight;</div><div class="line">       cv::Mat matEarring;</div><div class="line">       cv::resize(earingPic, matEarring, cv::Size(0, 0), fEaring_scale_y, fEaring_scale_y);</div><div class="line">       <span class="keywordflow">if</span>(matEarring.empty())</div><div class="line">           <span class="keywordflow">return</span>;</div><div class="line">       cv::Point earingPt = isLeft ? result.leftEarringPos : result.rightEarringPos;</div><div class="line">       cv::Rect earingRect(0, 0, matEarring.cols, matEarring.rows);</div><div class="line">       earingRect = earingRect + earingPt;</div><div class="line">       earingRect = earingRect - cv::Point(earingRect.width / 2, earingRect.width / 4);</div><div class="line">       cv::Rect safeRect(0, 0, dst.cols, dst.rows);</div><div class="line">       earingRect = earingRect &amp; safeRect;</div><div class="line">       <span class="keywordflow">if</span>(matEarring.size().area()!=earingRect.area())</div><div class="line">           <span class="keywordflow">return</span>;</div><div class="line">       <span class="comment">// 얼굴을 일정 각도 이상 돌리면 mask를 적용하지 않는다.</span></div><div class="line">       <span class="keywordflow">if</span> (isLeft) {</div><div class="line">           <span class="keywordflow">if</span> (!(result.rotX &lt; -15))</div><div class="line">               matEarring.setTo(0, result.mask(earingRect));</div><div class="line">       } <span class="keywordflow">else</span> {</div><div class="line">           <span class="keywordflow">if</span> (!(result.rotX &gt; 15))</div><div class="line">               matEarring.setTo(0, result.mask(earingRect));</div><div class="line">       }</div><div class="line">       cv::Mat earingMask;</div><div class="line">       cv::compare(matEarring, 0, earingMask, cv::CMP_GT);</div><div class="line">       <span class="comment">// dst의 타입(디바이스에서 영상을 출력할 때 사용하는 타입)으로 변경한다.</span></div><div class="line">       cv::cvtColor(earingMask, earingMask, CV_BGR2RGBA);</div><div class="line">       cv::cvtColor(matEarring, matEarring, CV_BGR2RGBA);</div><div class="line">       cv::subtract(dst(earingRect), earingMask, dst(earingRect));</div><div class="line">       cv::add(matEarring, dst(earingRect), dst(earingRect));</div><div class="line">   }</div></div><!-- fragment --> </div><h2 class="groupheader">멤버 함수 문서화</h2>
 <a id="ae127996f26fa6dffdc4cdc4a0393064d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae127996f26fa6dffdc4cdc4a0393064d">&#9670;&nbsp;</a></span>DetectFace()</h2>
 
@@ -118,11 +117,21 @@ Public 멤버 함수</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>ARing API 동작(실행) 함수. </p>
-<p>해당 함수를 통해 귀의 정보를 추정합니다. </p><dl class="params"><dt>매개변수</dt><dd>
+<p>ARing API 동작(실행) 함수 </p>
+<p>해당 함수를 통해 귀의 위치정보를 추정한다. </p><dl class="params"><dt>매개변수</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">src</td><td>입력영상 </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html" title="ARing API 결과저장 구조체 ">DPARingResult</a></td><td>결과출력 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">src</td><td>입력영상 &gt; 입력영상은 항상 gray scale 타입이어야 하며, 사이즈는 320 X 240보다 커야 한다. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html" title="ARing API 결과저장 구조체 ">DPARingResult</a></td><td>결과출력 &gt; 변환 값은 얼굴 검출 유무 및 귀의 위치 정보 등이 포함되어 있다. <br />
+</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>예외</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classdp_1_1exception_1_1_d_p_exception.html" title="ARing API 컨트롤 인터페이스 ">dp::exception::DPException</a></td><td>"There is no image" &gt; 입력 영상이 비어있을 경우 발생한다. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classdp_1_1exception_1_1_d_p_exception.html" title="ARing API 컨트롤 인터페이스 ">dp::exception::DPException</a></td><td>"No initialized" &gt; 초기화를 하지 않은 경우 발생한다. <br />
+</td></tr>
+    <tr><td class="paramname"><a class="el" href="classdp_1_1exception_1_1_d_p_exception.html" title="ARing API 컨트롤 인터페이스 ">dp::exception::DPException</a></td><td>"Image size is different from the initial image size" &gt; 초기화할 때 입력한 영상의 크기와 현재 입력 영상의 크기가 다른 경우 발생한다. </td></tr>
   </table>
   </dd>
 </dl>
@@ -153,8 +162,8 @@ Public 멤버 함수</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>귀 위치정보를 얻어올 수 있습니다. </p>
-<dl class="params"><dt>매개변수</dt><dd>
+<p>귀 위치정보 출력 함수 </p>
+<p>해당 함수를 통해 귀의 위치 정보만 출력 할 수 있다. </p><dl class="params"><dt>매개변수</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">isLeft</td><td>왼쪽, 오른쪽 선택 </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">cv::Point</td><td>귀 위치정보 출력 </td></tr>
@@ -224,6 +233,13 @@ Public 멤버 함수</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">sensorWidth</td><td>카메라 센서의 가로 크기 </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">sensorHeight</td><td>카메라 센서의 세로 크기 </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">focalLength</td><td>카메라 포커스 값 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>예외</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classdp_1_1exception_1_1_d_p_exception.html" title="ARing API 컨트롤 인터페이스 ">dp::exception::DPException</a></td><td>"Already initilalized" &gt; 두번 이상 초기화를 했을 경우 발생한다. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classdp_1_1exception_1_1_d_p_exception.html" title="ARing API 컨트롤 인터페이스 ">dp::exception::DPException</a></td><td>"initilalized Failed" &gt; 예상하지 못한 에러에 의해 초기화가 완료되지 않을 경우 발생한다. </td></tr>
   </table>
   </dd>
 </dl>
