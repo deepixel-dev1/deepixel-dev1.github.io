@@ -86,9 +86,6 @@ Public 멤버 함수</h2></td></tr>
 <tr class="memitem:ae127996f26fa6dffdc4cdc4a0393064d"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structdp_1_1aringnative_1_1_d_p_a_ring_result.html">DPARingResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdp_1_1aringnative_1_1_i_a_ring.html#ae127996f26fa6dffdc4cdc4a0393064d">DetectFace</a> (const cv::Mat src)=0</td></tr>
 <tr class="memdesc:ae127996f26fa6dffdc4cdc4a0393064d"><td class="mdescLeft">&#160;</td><td class="mdescRight">ARing API 동작(실행) 함수  <a href="#ae127996f26fa6dffdc4cdc4a0393064d">더 자세히 ...</a><br /></td></tr>
 <tr class="separator:ae127996f26fa6dffdc4cdc4a0393064d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e5b4d68c09d53be4eadfa93f35c3734"><td class="memItemLeft" align="right" valign="top">virtual cv::Point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdp_1_1aringnative_1_1_i_a_ring.html#a6e5b4d68c09d53be4eadfa93f35c3734">getEarringPos</a> (bool isLeft)=0</td></tr>
-<tr class="memdesc:a6e5b4d68c09d53be4eadfa93f35c3734"><td class="mdescLeft">&#160;</td><td class="mdescRight">귀 위치정보 출력 함수  <a href="#a6e5b4d68c09d53be4eadfa93f35c3734">더 자세히 ...</a><br /></td></tr>
-<tr class="separator:a6e5b4d68c09d53be4eadfa93f35c3734"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">상세한 설명</h2>
 <div class="textblock"><p>ARing API 컨트롤 인터페이스 </p>
@@ -132,41 +129,6 @@ Public 멤버 함수</h2></td></tr>
     <tr><td class="paramname"><a class="el" href="classdp_1_1exception_1_1_d_p_exception.html" title="ARing API 컨트롤 인터페이스 ">dp::exception::DPException</a></td><td>"No initialized" &gt; 초기화를 하지 않은 경우 발생한다. <br />
 </td></tr>
     <tr><td class="paramname"><a class="el" href="classdp_1_1exception_1_1_d_p_exception.html" title="ARing API 컨트롤 인터페이스 ">dp::exception::DPException</a></td><td>"Image size is different from the initial image size" &gt; 초기화할 때 입력한 영상의 크기와 현재 입력 영상의 크기가 다른 경우 발생한다. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a6e5b4d68c09d53be4eadfa93f35c3734"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6e5b4d68c09d53be4eadfa93f35c3734">&#9670;&nbsp;</a></span>getEarringPos()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual cv::Point dp::aringnative::IARing::getEarringPos </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>isLeft</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>귀 위치정보 출력 함수 </p>
-<p>해당 함수를 통해 귀의 위치 정보만 출력 할 수 있다. </p><dl class="params"><dt>매개변수</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">isLeft</td><td>왼쪽, 오른쪽 선택 </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">cv::Point</td><td>귀 위치정보 출력 </td></tr>
   </table>
   </dd>
 </dl>
