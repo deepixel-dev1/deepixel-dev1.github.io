@@ -71,6 +71,7 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
     // (focalLength) 카메라 포커스 값
     g_ptrARing->initialize(img.cols, img.rows, sensorWidth, sensorHeight, focalLength);
     ```
+
     |Exception|Exception message|Description|
     |-|-|-|
     |dp::exception::DPException|Already initialized|두번 이상 초기화를 했을 경우 발생한다.|
@@ -93,6 +94,7 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
     ```c++
     dp::aringnative::DPAringResult result = g_ptrARing->DetectFace(img);
     ```
+
     |Exception|Exception message|Description|
     |-|-|-|
     |dp::exception::DPException|There is no image|입력 영상이 비어있을 경우 발생한다.|
