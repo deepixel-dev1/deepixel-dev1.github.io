@@ -1,32 +1,10 @@
 
-![deepixel.xyz](./img/Deepixel_logo.PNG){: width="200"}
+# ARing API 안드로이드 환경설정
 
-# ARing tutorial (For Android)
+*****  
 
-*****
 
-## ARing API 파일
 
-* ARing API(C++)  
-
-  ```text
-  ARing/include/opencv_3.3.1/                 : OpenCV header folder
-  ARing/include/tbb_2017_update_2/            : TBB header folder
-  ARing/include/IARing.h                      : ARing Interface Header file
-  ARing/include/DPException.h                 : ARing Exception Header file
-  ARing/include/DPFactoryForAndroid.h         : ARing Singleton Header file
-  ARing/libs/armeabi-v7a/libopencv_world.so   : OpenCV library file
-  ARing/libs/armeabi-v7a/libtbb.so            : tbb library file
-  ARing/libs/armeabi-v7a/libaringnative.so    : ARing library file
-  ```
-
-* ARing Sample
-
-  [Github 링크][ARing_Sample]
-
-  ```text
-  ARing/ARingAndroidExample/..                : ARing Android Sample Code files
-  ```
 
 *****
 
@@ -185,5 +163,5 @@ ARing API의 안드로이드 샘플 코드는 [ARing_Sample][aring_sample]를 �
 
 [aring_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/ARing/tutorial/android/
 [opencv]: http://opencv.org/
-[ARing_api]: https://deepixel-dev1.github.io/ARing/apis/
+[ARing_api]: https://deepixel-dev1.github.io/makanative/api/
 [tbb]: https://www.threadingbuildingblocks.org/
