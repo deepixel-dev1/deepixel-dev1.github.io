@@ -2,7 +2,7 @@
 
 # ARing iOS 환경설정
 
-## Getting started
+## Xcode 환경설정
 
 1. Xcode 프로젝트 생성한다.
 2. 드래그&드롭으로 ARingiOS.framework를 프로젝트에 추가한다.
@@ -28,7 +28,7 @@
    > ![create bridging header](./img/create_bridging_header.png)
 8. TutorialWrapper.m 파일명을 TutorialWrapper.mm 으로 변경한다.
 9. Tutorial-Bridging-Header.h 파일에 아래 코드를 추가한다.
-    ```c
+    ```objective-c
     #import "TutorialWrapper.h"
     ```
 10. PCH 파일 추가한다.
@@ -51,6 +51,8 @@
 13. Info.plist 파일에 아래 내용을 추가한다.
     ![cameara permission](./img/require_camera_permission.png)
 
+***
+
 ## 문제 해결
 
 프로그램 실행 후 아래와 같은 예외가 발생할 경우 bundle identifier 를 라이센스에 적용된 올바른 값으로 수정해야 한다.
@@ -58,6 +60,8 @@
 ```text
 dp::exception::DPLicenseException: The application id(xyz.deepixel.Tutorial) is not allowed.
 ```
+
+***
 
 ## 참조
 
