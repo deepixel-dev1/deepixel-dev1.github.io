@@ -32,7 +32,8 @@ void drawEarring(cv::Mat &dst, cv::Mat &mask, bool isLeft, cv::Point earringPos,
     }
     
     cv::Mat matEarring;
-    cv::resize(g_matEarring, matEarring, cv::Size(0,0), earringScaleY, earringScaleY);
+    float earringScale = (float)dst.rows * earringScaleY * 0.6f / (float)g_matEarring.rows;
+    cv::resize(g_matEarring, matEarring, cv::Size(0,0), earringScale, earringScale);
     
     cv::Rect earringRect(0, 0, matEarring.cols, matEarring.rows);
     earringRect = earringRect + earringPos;
