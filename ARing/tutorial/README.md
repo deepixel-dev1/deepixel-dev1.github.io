@@ -1,6 +1,6 @@
 ![deepixel.xyz](./img/Deepixel_logo.PNG){: width="200"}
 
-# ARing
+# ARing Tutorial
 
 >ARing은 얼굴의 귀 정보를 추정하여 어플리케이션 개발자가 응용할 수 있게 해주는 영상처리 기반 API 모듈 입니다.  
 
@@ -8,7 +8,7 @@
 
 ## 특징
 
-### 1. 귀 위치 추정
+### 귀 위치 추정
 
 > 귀 위치 추정은 사용 유저의 귀를 모바일 상에서 실시간으로 검출해 주는 api 모듈입니다.
 
@@ -31,7 +31,7 @@
 
 ***
 
-## 개발 설정
+## 환경설정
 
 - [Android tutorial][android]
 

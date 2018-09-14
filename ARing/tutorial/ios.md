@@ -1,6 +1,6 @@
 ![deepixel.xyz](./img/Deepixel_logo.PNG){: width="200"}
 
-# ARing iOS 개발 설정
+# ARing iOS 환경설정
 
 ## Getting started
 
