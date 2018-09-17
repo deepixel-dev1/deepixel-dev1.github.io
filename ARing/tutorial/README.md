@@ -2,7 +2,7 @@
 
 # ARing Tutorial
 
->ARing은 사용자 귀의 위치 및 스케일 정보 등을 추정하는 컴퓨터 비전 기반 API Library 입니다.  
+>ARing은 모바일 장치에서 실시간으로 얼굴 및 손의 특정 위치와 스케일 정보 등을 실시간으로 추정하는 컴퓨터 비전 기반 API Library 입니다.  
 
 ***
 
@@ -10,7 +10,7 @@
 
 ### 귀 위치 및 스케일 정보 추정
 
-> 사용자의 귀를 모바일 상에서 실시간으로 검출하고 양쪽 귀의 위치 및 스케일 정보를 제공합니다. 이것을 이용해서 귀걸이를 가상 착용(Virtual Try-on)할 수 있습니다.
+> 사용자의 귀를 모바일 장치에서 실시간으로 검출하고 양쪽 귀의 위치 및 스케일 정보를 제공합니다. 이것을 이용해서 온라인상에서 사용자가 귀걸이를 가상으로 착용(Virtual Try-on)할 수 있는 서비스를 만들 수 있습니다.
 
 ![aring display](./img/ARing_Display.png){: width="400"}
 
@@ -61,11 +61,11 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
     ```
 
 2. ARing 객체를 초기화 한다.
-    > ARing API를 초기화 하기 위해서 다바이스 실행 시 영상의 크기, 카메라 센서의 크기, 그리고 포커스 값을 입력한다. 카메라 센서의 크기와 포커스 값을 0으로 입력할 경우 ARing 내부에 정의된 기본값을 사용한다.
+    > ARing API를 초기화 하기 위해서 다바이스 실행 시 영상의 크기, 카메라 센서의 크기, 그리고 포커스 값을 입력한다. 카메라 센서의 크기와 포커스 값을 0으로 입력할 경우 ARing 내부에 정의된 기본값이 사용된다.
 
     ```c++
-    // (img.cols) 이미지 가로 크기
-    // (img.rows) 이미지 세로 크기
+    // (img.cols) 영상 가로 크기
+    // (img.rows) 영상 세로 크기
     // (sensorWidth) 카메라 센서의 가로 크기
     // (sensorHeight) 카메라 센서의 세로 크기
     // (focalLength) 카메라 포커스 값
@@ -162,7 +162,7 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
 
 ## 연락처
 
->API 적용시 문제점을 발견하거나 궁금한 점이 있으면 이메일(hoohyun.kim@deepixel.xyz)로 문의해 주세요.  
+>API 적용시 문제점을 발견하거나 궁금한 점이 있다면, 다음의 이메일(hoohyun.kim@deepixel.xyz)로 문의해 주세요.  
 
 ***
 
