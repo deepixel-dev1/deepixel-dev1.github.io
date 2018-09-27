@@ -25,7 +25,7 @@ namespace dp {
 
         /**
         *@brief Exception class
-        *@details This exception is occurred when the license file does not exists or is corrupt.
+        *@details This exception is occurred when the application id is invalid.
         */
         class DPLicenseException : public DPException {
         public:

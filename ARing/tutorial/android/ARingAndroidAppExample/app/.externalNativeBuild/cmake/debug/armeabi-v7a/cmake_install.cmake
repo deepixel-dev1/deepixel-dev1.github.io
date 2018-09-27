@@ -1,4 +1,4 @@
-# Install script for directory: C:/SVN/ARingAndroidAppExample/app
+# Install script for directory: C:/GIT/deepixel-dev1.github.io/ARing/tutorial/android/ARingAndroidAppExample/app
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/SVN/ARingAndroidAppExample/app/.externalNativeBuild/cmake/debug/armeabi-v7a/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/GIT/deepixel-dev1.github.io/ARing/tutorial/android/ARingAndroidAppExample/app/.externalNativeBuild/cmake/debug/armeabi-v7a/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

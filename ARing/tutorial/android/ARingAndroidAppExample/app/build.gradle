@@ -3,7 +3,6 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     buildToolsVersion "27.0.3"
-
     defaultConfig {
         applicationId "com.il.aring"
         minSdkVersion 23
@@ -14,7 +13,7 @@ android {
 
         externalNativeBuild {
             cmake {
-                cppFlags "-std=c++11 -frtti -fexceptions -fopenmp"
+                cppFlags "-std=c++11 -frtti -fexceptions -fopenmp -landroid"
             }
             ndk {
                 // Specifies the ABI configurations of your native
@@ -23,10 +22,19 @@ android {
             }
         }
     }
+    signingConfigs {
+        release {
+            keyAlias 'temp_sign'
+            keyPassword 'temp_sign'
+            storeFile file('temp_sign.jks')
+            storePassword 'temp_sign'
+        }
+    }
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
         debug {
             jniDebuggable true
