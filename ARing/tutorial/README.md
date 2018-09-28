@@ -19,12 +19,12 @@
   - Yaw 축으로 약 45º 이내
   - 1920x1080 30~40 FPS (Device tested: Galaxy Note 8)
 
-- 결과물:  
+- 결과물:
   - 양쪽 귀의 위치, 양쪽 귀 크기, 얼굴 마스크 정보
   
     > 입력 영상이 가로 방향일 경우
 
-    ![aring result](./img/ARing_result1.png){: width="400"}
+    ![aring result](./img/ARing_result1.png){: width="450"}
     ```text
     귀 위치정보: x(이미지의 가로 방향 위치), y(이미지의 세로 방향 위치)
     귀 크기(스케일): 귀의 높이 / 영상의 높이
@@ -33,7 +33,7 @@
 
     > 입력 영상이 세로 방향일 경우
 
-    ![aring result](./img/ARing_result2.png){: width="400"}
+    ![aring result](./img/ARing_result2.png){: width="450"}
     ```text
     귀 위치정보: x(이미지의 가로 방향 위치), y(이미지의 세로 방향 위치)
     귀 크기(스케일): 귀의 너비 / 영상의 너비
