@@ -41,7 +41,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/camera2basic/Camera2BasicFragment.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-155">
-              <caret line="746" column="5" lean-forward="true" selection-start-line="746" selection-start-column="5" selection-end-line="746" selection-end-column="5" />
+              <caret line="746" column="5" lean-forward="false" selection-start-line="746" selection-start-column="5" selection-end-line="746" selection-end-column="5" />
               <folding>
                 <element signature="e#15004#15005#0" expanded="true" />
                 <element signature="e#15053#15054#0" expanded="true" />
@@ -2200,7 +2200,7 @@
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1272" />
     <option name="width" value="1296" />
-    <option name="height" value="703" />
+    <option name="height" value="1398" />
   </component>
   <component name="ProjectView">
     <navigator currentView="AndroidView" proportions="" version="1">
@@ -2684,7 +2684,7 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/camera2basic/Camera2BasicFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-155">
-          <caret line="746" column="5" lean-forward="true" selection-start-line="746" selection-start-column="5" selection-end-line="746" selection-end-column="5" />
+          <caret line="746" column="5" lean-forward="false" selection-start-line="746" selection-start-column="5" selection-end-line="746" selection-end-column="5" />
           <folding>
             <element signature="e#15004#15005#0" expanded="true" />
             <element signature="e#15053#15054#0" expanded="true" />

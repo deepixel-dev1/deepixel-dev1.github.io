@@ -17,7 +17,7 @@
 - 스팩:
   - 1명만 적용 가능
   - Yaw 축으로 약 45º 이내
-  - 30~40 FPS (Device tested: Galaxy Note 8)
+  - 1920x1080 30~40 FPS (Device tested: Galaxy Note 8)
 
 - 결과물:  
   - 양쪽 귀의 위치, 양쪽 귀 크기, 얼굴 마스크 정보
@@ -61,15 +61,16 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
     ```
 
 2. ARing 객체를 초기화 한다.
-    > ARing API를 초기화 하기 위해서 다바이스 실행 시 영상의 크기, 카메라 센서의 크기, 그리고 포커스 값을 입력한다. 카메라 센서의 크기와 포커스 값을 0으로 입력할 경우 ARing 내부에 정의된 기본값이 사용된다.
+    > ARing API를 초기화 하기 위해서 다바이스 실행 시 영상의 크기, 영상을 회전할 각도, 카메라 센서의 크기, 그리고 포커스 값을 입력한다. 카메라 센서의 크기와 포커스 값을 0으로 입력할 경우 ARing 내부에 정의된 기본값이 사용된다. 일반적으로 스마트폰을 Portrait mode로 사용할 경우 회전된 영상을 얻게 된다. 올바른 영상으로 바꾸기 위해 얼마나 회전을 해야하는지를 파라미터로 설정해야 한다.
 
     ```c++
     // (img.cols) 영상 가로 크기
     // (img.rows) 영상 세로 크기
+    // (imageRotation) 영상을 회전할 각도
     // (sensorWidth) 카메라 센서의 가로 크기
     // (sensorHeight) 카메라 센서의 세로 크기
     // (focalLength) 카메라 포커스 값
-    g_ptrARing->initialize(img.cols, img.rows, sensorWidth, sensorHeight, focalLength);
+    g_ptrARing->initialize(img.cols, img.rows, imageRotation, sensorWidth, sensorHeight, focalLength);
     ```
 
     |Exception|Exception message|Description|
@@ -77,22 +78,11 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
     |dp::exception::DPException|Already initialized|두번 이상 초기화를 했을 경우 발생한다.|
     |dp::exception::DPException|Initialization Failed|예상하지 못한 에러가 있을 경우 발생한다.|
 
-3. 입력 영상의 타입을 gray scale로 변환한다.
-    > 디바이스에서 제공하는 영상 타입에 맞는 conversion code를 사용해야 한다.
+3. ARing 객체의 DetectFace 함수를 호출한다.
+   > 영상의 [타입][image_type]을 지정해야 한다. 영상의 사이즈는 320x240보다 커야한다. 이 함수의 [반환 값][ARing_api]에는 얼굴 검출 유무 및 귀의 위치 등이 포함되어 있다. 반환값에 포함된 위치의 좌표계는 입력 영상의 pixel 좌표계와 같다.
 
     ```c++
-    cv::Mat matProcessing;
-    // (matSRC) 카메라 영상
-    // (matProcessing) 변환된 영상
-    // (CV_YUV2GRAY_NV21) YUV 영상을 gray scale 영상으로 변경하는 conversion code
-    cv::cvtColor(matSRC, matProcessing, CV_YUV2GRAY_NV21);
-    ```
-
-4. ARing 객체의 DetectFace 함수를 호출한다.
-   > 영상은 gray scale 타입이어야하고 사이즈는 320x240보다 커야한다. 이 함수의 [반환 값][ARing_api]에는 얼굴 검출 유무 및 귀의 위치 등이 포함되어 있다.
-
-    ```c++
-    dp::aringnative::DPAringResult result = g_ptrARing->DetectFace(img);
+    dp::aringnative::DPAringResult result = g_ptrARing->DetectFace(img, imageType);
     ```
 
     |Exception|Exception message|Description|
@@ -101,8 +91,8 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
     |dp::exception::DPException|No initialized|초기화를 하지 않은 경우 발생한다.|
     |dp::exception::DPException|Image size is different from the initial image size|초기화할 때 입력한 영상의 크기와 현재 입력 영상의 크기가 다른 경우 발생한다.|
 
-5. 귀 위치 정보를 이용하여 귀걸이를 출력한다.
-    >왼쪽, 오른쪽 귀걸이 2개를 출력한다. 이 때 귀걸이의 크기는 귀의 크기값을 이용해서 결정한다. 귀의 크기는 (귀의 높이 / 입력 영상의 높이) 값이다.
+4. 귀 위치 정보를 이용하여 귀걸이를 출력한다.
+    >왼쪽, 오른쪽 귀걸이 2개를 출력한다. 이 때 귀걸이의 크기는 귀의 크기값을 이용해서 결정한다. 귀의 크기는 (귀의 높이 / 입력 영상의 높이) 값이다. 영상의 방향과 귀걸이의 방향이 일치하도록 해야한다.
 
     ```c++
     cv::Mat earingPic = cv::imread("earingPic.png"); //귀걸이 영상 입력
@@ -179,6 +169,7 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
 [ios_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/ARing/tutorial/ios
 [opencv]: http://opencv.org/
 [ARing_api]: /ARing/apis/
+[image_type]: /ARing/apis/
 [tbb]: https://www.threadingbuildingblocks.org/
 [android]: android.md
 [iOS]: ios.md
