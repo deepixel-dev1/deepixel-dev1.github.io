@@ -26,7 +26,7 @@ using namespace std;
     }
     [targetView.layer addSublayer:self.previewLayer];
     self.previewLayer.contentsGravity = kCAGravityCenter;
-    self.previewLayer.contentsScale = 1.3f;
+    self.previewLayer.contentsScale = 2.5f;
     self.previewLayer.frame = targetView.bounds;
     self.previewLayer.affineTransform = CGAffineTransformMakeRotation(M_PI / 2);
 }
@@ -46,7 +46,7 @@ using namespace std;
     self = [super init];
     if (self) {
         _captureSession = [[AVCaptureSession alloc] init];
-        _captureSession.sessionPreset = AVCaptureSessionPreset640x480;
+        _captureSession.sessionPreset = AVCaptureSessionPreset1920x1080;
         
         AVCaptureDevice *device = [self frontCamera];
         NSError *error = nil;

@@ -391,7 +391,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = xyz.deepixel.tutorial;
+				PRODUCT_BUNDLE_IDENTIFIER = com.il.aring;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_PNG_TEXT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Tutorial/Tutorial-Bridging-Header.h";
@@ -419,7 +419,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = xyz.deepixel.tutorial;
+				PRODUCT_BUNDLE_IDENTIFIER = com.il.aring;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_PNG_TEXT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Tutorial/Tutorial-Bridging-Header.h";

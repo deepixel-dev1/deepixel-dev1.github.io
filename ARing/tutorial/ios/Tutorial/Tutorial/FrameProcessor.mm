@@ -13,6 +13,9 @@
 
 std::shared_ptr<dp::aringnative::IARing> g_styleAR;
 cv::Mat g_matEarring;
+cv::Mat g_matRotatedEarring;
+cv::Point g_earringAnchorPos;
+float g_earringScale = 1.0f;
 
 std::string GetEarringImgPath() {
     static std::string strResourcePath = "";
@@ -32,13 +35,12 @@ void drawEarring(cv::Mat &dst, cv::Mat &mask, bool isLeft, cv::Point earringPos,
     }
     
     cv::Mat matEarring;
-    float earringScale = (float)dst.rows * earringScaleY * 0.6f / (float)g_matEarring.rows;
-    cv::resize(g_matEarring, matEarring, cv::Size(0,0), earringScale, earringScale);
+    float earringScale = g_earringScale * earringScaleY * 0.6f;
+    cv::resize(g_matRotatedEarring, matEarring, cv::Size(0,0), earringScale, earringScale);
     
     cv::Rect earringRect(0, 0, matEarring.cols, matEarring.rows);
-    earringRect = earringRect + earringPos;
-    earringRect = earringRect - cv::Point(earringRect.width / 2, earringRect.width / 4);
-    
+    earringRect = earringRect + earringPos - (g_earringAnchorPos * earringScale);
+
     cv::Rect safeRect(0, 0, dst.cols, dst.rows);
     earringRect = earringRect & safeRect;
     
@@ -67,45 +69,39 @@ void drawEarring(cv::Mat &dst, cv::Mat &mask, bool isLeft, cv::Point earringPos,
     if (self) {
         // Create StyleAR instance.
         g_styleAR = dp::ios::DPFactoryForiOS::CreateInstance<dp::aringnative::IARing>();
-        g_styleAR->initialize(480, 640, 2.4f, 3.2f, 2.95f);
+        g_styleAR->initialize(1920, 1080, dp::aringnative::DP_IMAGE_ROTATION::CW_90);
 
-        std::cout << cv::getBuildInformation() << std::endl;
-        
         // Read earring image.
         g_matEarring = cv::imread(GetEarringImgPath(), cv::IMREAD_COLOR);
         cv::cvtColor(g_matEarring, g_matEarring, cv::COLOR_BGR2RGBA);
+        
+        cv::Mat tmp = g_matEarring.t();
+        cv::flip(tmp, g_matRotatedEarring, 0);
+        g_earringAnchorPos.x = (int)(g_matRotatedEarring.cols / 8.0f);
+        g_earringAnchorPos.y = (int)(g_matRotatedEarring.rows / 2.0f);
+        g_earringScale = 1920.0f / (float)g_matRotatedEarring.cols;
     }
     return self;
 }
 
 - (void)processFrame:(cv::Mat &)frame {
-    // Flip and transpose
-    cv::Mat src;
-    cv::transpose(frame, src);
-    cv::flip(src, src, 1);
-
-    // Create gray image.
-    cv::Mat srcGray;
-    cv::cvtColor(src, srcGray, cv::COLOR_BGRA2GRAY);
-
     // Create RGBA image for destination.
     cv::Mat dst;
-    cv::cvtColor(src, dst, cv::COLOR_BGRA2RGBA);
+    cv::cvtColor(frame, dst, cv::COLOR_BGRA2RGBA);
 
     // Detect face.
-    dp::aringnative::DPARingResult result = g_styleAR->DetectFace(srcGray);
+    dp::aringnative::DPARingResult result = g_styleAR->DetectFace(frame, dp::aringnative::DP_IMAGE_TYPE::BGRA_8888);
     
     if(result.detected) {
         drawEarring(dst, result.mask, true, result.leftEarringPos, result.rotX, result.earringScaleYLeft);
         drawEarring(dst, result.mask, false, result.rightEarringPos, result.rotX, result.earringScaleYRight);
     }
 
-    // Transpose.
-    cv::Mat _frame;
-    cv::transpose(dst, _frame);
-
+    // Flip
+    cv::flip(dst, dst, 0);
+    
     // Copy dst to frame.
-    cv::cvtColor(_frame, frame, cv::COLOR_RGBA2BGRA);
+    cv::cvtColor(dst, frame, cv::COLOR_RGBA2BGRA);
 }
 
 @end

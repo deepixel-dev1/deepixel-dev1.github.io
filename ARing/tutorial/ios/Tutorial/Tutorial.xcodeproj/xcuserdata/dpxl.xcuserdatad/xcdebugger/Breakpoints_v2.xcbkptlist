@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tutorial/FrameProcessor.mm"
-            timestampString = "558513791.388508"
+            timestampString = "559803480.879867"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
             landmarkName = "GetEarringImgPath()"
             landmarkType = "9">
          </BreakpointContent>
