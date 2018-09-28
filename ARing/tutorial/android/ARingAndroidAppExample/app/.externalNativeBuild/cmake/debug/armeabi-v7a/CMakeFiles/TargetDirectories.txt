@@ -1,3 +1,0 @@
-C:/GIT/deepixel-dev1.github.io/ARing/tutorial/android/ARingAndroidAppExample/app/.externalNativeBuild/cmake/debug/armeabi-v7a/CMakeFiles/native-lib.dir
-C:/GIT/deepixel-dev1.github.io/ARing/tutorial/android/ARingAndroidAppExample/app/.externalNativeBuild/cmake/debug/armeabi-v7a/CMakeFiles/edit_cache.dir
-C:/GIT/deepixel-dev1.github.io/ARing/tutorial/android/ARingAndroidAppExample/app/.externalNativeBuild/cmake/debug/armeabi-v7a/CMakeFiles/rebuild_cache.dir
