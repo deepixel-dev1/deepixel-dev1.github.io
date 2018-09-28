@@ -398,8 +398,8 @@ public class Camera2BasicFragment extends Fragment
         int w = aspectRatio.getWidth();
         int h = aspectRatio.getHeight();
         for (Size option : choices) {
-            if (option.getWidth() <= maxWidth && option.getHeight() <= maxHeight &&
-                    option.getHeight() == option.getWidth() * h / w) {
+            if (option.getWidth() <= maxWidth && option.getHeight() <= maxHeight) {
+//                    && option.getHeight() == option.getWidth() * h / w) { // modified by deepixel.xyz
                 if (option.getWidth() >= textureViewWidth &&
                         option.getHeight() >= textureViewHeight) {
                     bigEnough.add(option);
@@ -771,11 +771,11 @@ public class Camera2BasicFragment extends Fragment
         if (imageRotation == 90 || imageRotation == 270) {
             bufferRect.offset(centerX - bufferRect.centerX(), centerY - bufferRect.centerY());
             matrix.setRectToRect(viewRect, bufferRect, Matrix.ScaleToFit.FILL);
-            float scale = Math.max(
-                    (float) viewHeight / mPreviewSize.getHeight(),
-                    (float) viewWidth / mPreviewSize.getWidth());
-            matrix.postScale(scale, scale, centerX, centerY);
             matrix.postRotate(imageRotation, centerX, centerY);
+            float scale = Math.max(
+                    (float) viewHeight / mPreviewSize.getWidth(),
+                    (float) viewWidth / mPreviewSize.getHeight());
+            matrix.postScale(scale, scale, centerX, centerY);
         } else if (Surface.ROTATION_180 == rotation) {
             matrix.postRotate(180, centerX, centerY);
         }

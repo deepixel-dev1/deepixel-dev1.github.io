@@ -81,7 +81,7 @@ dp::aringnative::DPARingResult processing(cv::Mat src, cv::Mat &dst) {
         assert (rs == JNI_OK);
 
         dp::aringnative::DPARingResult result = g_ptrARing->DetectFace(src,
-                                                                       dp::aringnative::DP_IMAGE_TYPE::YUV_NV21);
+                                                                       dp::aringnative::DP_IMAGE_TYPE::YUV_420_888);
 
         return result;
     } catch (const std::exception &ex) {

@@ -49,11 +49,11 @@ namespace dp {
 
         /**
          *@brief 영상의 타입
-         *@details 영상의 타입을 나타낸다.
+         *@details 영상의 타입을 나타낸다. 안드로이드에서는 YUV_420_888을 iOS에서는 BGRA_8888 타입을 사용하는것을 권장한다.
          */
         enum DP_IMAGE_TYPE {
-            YUV_NV21, /** 안드로이드의 YUV_420_888 타입에 해당한다. */
-            BGRA,     /** BGRA */
+            YUV_420_888,
+            BGRA_8888,
         };
 
         /**
@@ -151,7 +151,7 @@ namespace dp {
              *            > 초기화할 때 입력한 영상의 크기와 현재 입력 영상의 크기가 다른 경우 발생한다.
              */
             virtual DPARingResult DetectFace(const cv::Mat src,
-                                             const DP_IMAGE_TYPE imageType = YUV_NV21) = 0;
+                                             const DP_IMAGE_TYPE imageType = YUV_420_888) = 0;
         };
     }
 }
