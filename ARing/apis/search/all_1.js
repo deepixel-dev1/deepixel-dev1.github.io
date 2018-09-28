@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['createinstance',['CreateInstance',['../classdp_1_1android_1_1_d_p_factory_for_android.html#a690cb7e256e67c157bf1fdf79be021fe',1,'dp::android::DPFactoryForAndroid::CreateInstance()'],['../classdp_1_1ios_1_1_d_p_factory_fori_o_s.html#a3cd2ccc89ba5756087fa7f25a8044b8c',1,'dp::ios::DPFactoryForiOS::CreateInstance()']]]
+  ['bgra_5f8888',['BGRA_8888',['../namespacedp_1_1aringnative.html#a1cc5dd22ccb157af3ced99c17735140ea2de831ec0e2831eec9666d14ef3cb024',1,'dp::aringnative']]]
 ];

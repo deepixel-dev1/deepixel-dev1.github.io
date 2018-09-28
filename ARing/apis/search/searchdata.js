@@ -1,27 +1,39 @@
 var indexSectionsWithContent =
 {
-  0: "acdeilmr",
+  0: "abcdeilmry~",
   1: "di",
-  2: "cdi",
-  3: "delmr",
-  4: "a"
+  2: "d",
+  3: "di",
+  4: "cdi~",
+  5: "delmr",
+  6: "d",
+  7: "bcy",
+  8: "a"
 };
 
 var indexSectionNames =
 {
   0: "all",
   1: "classes",
-  2: "functions",
-  3: "variables",
-  4: "pages"
+  2: "namespaces",
+  3: "files",
+  4: "functions",
+  5: "variables",
+  6: "enums",
+  7: "enumvalues",
+  8: "pages"
 };
 
 var indexSectionLabels =
 {
-  0: "모두",
-  1: "클래스",
-  2: "함수",
-  3: "변수",
-  4: "페이지들"
+  0: "All",
+  1: "Classes",
+  2: "Namespaces",
+  3: "Files",
+  4: "Functions",
+  5: "Variables",
+  6: "Enumerations",
+  7: "Enumerator",
+  8: "Pages"
 };
 

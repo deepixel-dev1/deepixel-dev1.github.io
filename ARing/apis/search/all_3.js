@@ -1,5 +1,21 @@
 var searchData=
 [
-  ['earringscaleyleft',['earringScaleYLeft',['../structdp_1_1aringnative_1_1_d_p_a_ring_result.html#adff9769b99d776e397c989fccab2eafc',1,'dp::aringnative::DPARingResult']]],
-  ['earringscaleyright',['earringScaleYRight',['../structdp_1_1aringnative_1_1_d_p_a_ring_result.html#a39db5060d2f5d849a5f9a68aaeb1d1b9',1,'dp::aringnative::DPARingResult']]]
+  ['android',['android',['../namespacedp_1_1android.html',1,'dp']]],
+  ['aringnative',['aringnative',['../namespacedp_1_1aringnative.html',1,'dp']]],
+  ['detected',['detected',['../structdp_1_1aringnative_1_1_d_p_a_ring_result.html#ad390a97f808df055317ea784155e521d',1,'dp::aringnative::DPARingResult']]],
+  ['detectface',['DetectFace',['../structdp_1_1aringnative_1_1_i_a_ring.html#af4e34d1be630d928dee800799000beb2',1,'dp::aringnative::IARing']]],
+  ['dp',['dp',['../namespacedp.html',1,'']]],
+  ['dp_5fimage_5frotation',['DP_IMAGE_ROTATION',['../namespacedp_1_1aringnative.html#a4782fa049abfff3070b5b830eb27636c',1,'dp::aringnative']]],
+  ['dp_5fimage_5ftype',['DP_IMAGE_TYPE',['../namespacedp_1_1aringnative.html#a1cc5dd22ccb157af3ced99c17735140e',1,'dp::aringnative']]],
+  ['dparingresult',['DPARingResult',['../structdp_1_1aringnative_1_1_d_p_a_ring_result.html',1,'dp::aringnative::DPARingResult'],['../structdp_1_1aringnative_1_1_d_p_a_ring_result.html#ae9c99cf0c09fd1a26008b4754d5e321e',1,'dp::aringnative::DPARingResult::DPARingResult()']]],
+  ['dpexception',['DPException',['../classdp_1_1exception_1_1_d_p_exception.html',1,'dp::exception::DPException'],['../classdp_1_1exception_1_1_d_p_exception.html#aa04c56889ec8a2084089d3e74b64f403',1,'dp::exception::DPException::DPException()']]],
+  ['dpexception_2eh',['DPException.h',['../_d_p_exception_8h.html',1,'']]],
+  ['dpfactoryforandroid',['DPFactoryForAndroid',['../classdp_1_1android_1_1_d_p_factory_for_android.html',1,'dp::android']]],
+  ['dpfactoryforandroid_2eh',['DPFactoryForAndroid.h',['../_d_p_factory_for_android_8h.html',1,'']]],
+  ['dpfactoryforios',['DPFactoryForiOS',['../classdp_1_1ios_1_1_d_p_factory_fori_o_s.html',1,'dp::ios']]],
+  ['dpfactoryforios_2eh',['DPFactoryForiOS.h',['../_d_p_factory_fori_o_s_8h.html',1,'']]],
+  ['dplicenseexception',['DPLicenseException',['../classdp_1_1exception_1_1_d_p_license_exception.html',1,'dp::exception::DPLicenseException'],['../classdp_1_1exception_1_1_d_p_license_exception.html#aaaa26be0be3fdb0d1cc25bf4ec9a1018',1,'dp::exception::DPLicenseException::DPLicenseException()']]],
+  ['dplicenseexpiredexception',['DPLicenseExpiredException',['../classdp_1_1exception_1_1_d_p_license_expired_exception.html',1,'dp::exception::DPLicenseExpiredException'],['../classdp_1_1exception_1_1_d_p_license_expired_exception.html#a9b40b1ef0c040a2d71df3409fb1655de',1,'dp::exception::DPLicenseExpiredException::DPLicenseExpiredException()']]],
+  ['exception',['exception',['../namespacedp_1_1exception.html',1,'dp']]],
+  ['ios',['ios',['../namespacedp_1_1ios.html',1,'dp']]]
 ];

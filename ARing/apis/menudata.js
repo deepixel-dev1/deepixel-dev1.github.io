@@ -22,14 +22,20 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 for the JavaScript code in this file
 */
 var menudata={children:[
-{text:"메인 페이지",url:"index.html"},
-{text:"클래스",url:"annotated.html",children:[
-{text:"클래스 목록",url:"annotated.html"},
-{text:"클래스 색인",url:"classes.html"},
-{text:"클래스 계통도",url:"hierarchy.html"},
-{text:"클래스 멤버",url:"functions.html",children:[
-{text:"모두",url:"functions.html"},
-{text:"함수",url:"functions_func.html"},
-{text:"변수",url:"functions_vars.html"}]}]},
-{text:"파일들",url:"files.html",children:[
-{text:"파일 목록",url:"files.html"}]}]}
+{text:"Main Page",url:"index.html"},
+{text:"Namespaces",url:"namespaces.html",children:[
+{text:"Namespace List",url:"namespaces.html"},
+{text:"Namespace Members",url:"namespacemembers.html",children:[
+{text:"All",url:"namespacemembers.html"},
+{text:"Enumerations",url:"namespacemembers_enum.html"},
+{text:"Enumerator",url:"namespacemembers_eval.html"}]}]},
+{text:"Classes",url:"annotated.html",children:[
+{text:"Class List",url:"annotated.html"},
+{text:"Class Index",url:"classes.html"},
+{text:"Class Hierarchy",url:"hierarchy.html"},
+{text:"Class Members",url:"functions.html",children:[
+{text:"All",url:"functions.html"},
+{text:"Functions",url:"functions_func.html"},
+{text:"Variables",url:"functions_vars.html"}]}]},
+{text:"Files",url:"files.html",children:[
+{text:"File List",url:"files.html"}]}]}
