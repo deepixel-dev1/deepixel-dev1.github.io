@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3BCBBAF4214A14B900212930"
-               BuildableName = "Tutorial.app"
-               BlueprintName = "Tutorial"
-               ReferencedContainer = "container:Tutorial.xcodeproj">
+               BuildableName = "ARingiOSAppExample.app"
+               BlueprintName = "ARingiOSAppExample"
+               ReferencedContainer = "container:ARingiOSAppExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3BCBBAF4214A14B900212930"
-            BuildableName = "Tutorial.app"
-            BlueprintName = "Tutorial"
-            ReferencedContainer = "container:Tutorial.xcodeproj">
+            BuildableName = "ARingiOSAppExample.app"
+            BlueprintName = "ARingiOSAppExample"
+            ReferencedContainer = "container:ARingiOSAppExample.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3BCBBAF4214A14B900212930"
-            BuildableName = "Tutorial.app"
-            BlueprintName = "Tutorial"
-            ReferencedContainer = "container:Tutorial.xcodeproj">
+            BuildableName = "ARingiOSAppExample.app"
+            BlueprintName = "ARingiOSAppExample"
+            ReferencedContainer = "container:ARingiOSAppExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3BCBBAF4214A14B900212930"
-            BuildableName = "Tutorial.app"
-            BlueprintName = "Tutorial"
-            ReferencedContainer = "container:Tutorial.xcodeproj">
+            BuildableName = "ARingiOSAppExample.app"
+            BlueprintName = "ARingiOSAppExample"
+            ReferencedContainer = "container:ARingiOSAppExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
