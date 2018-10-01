@@ -56,18 +56,30 @@
 ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 링크를 참고한다.
 
 1. ARing 객체를 생성한다.
-    > 객체를 생성하는 과정에서 [라이센스와 관련된 예외][license_exception]가 발생할 수 있다.  
+    > 객체를 생성하는 과정에서 라이센스와 관련된 예외가 발생할 수 있다.  
 
     ```c++
     // Android
-    std::shared_ptr<dp::aringnative::IARing> g_ptrARing =
-      dp::android::DPFactoryForAndroid::CreateInstance<dp::aringnative::IARing>(
-        env, activity);
+    try {
+      std::shared_ptr<dp::aringnative::IARing> g_ptrARing =
+        dp::android::DPFactoryForAndroid::CreateInstance<dp::aringnative::IARing>(
+          env, activity);
+    } catch (dp::exception::DPLicenseExpiredException ex) {
+      __android_log_print(ANDROID_LOG_FATAL, "ARing", "%s", ex.what());
+    } catch (dp::exception::DPLicenseException ex) {
+      __android_log_print(ANDROID_LOG_FATAL, "ARing", "%s", ex.what());
+    }
     ```
     ```c++
     // iOS
-    std::shared_ptr<dp::aringnative::IARing> g_ptrARing =
-      dp::ios::DPFactoryForiOS::CreateInstance<dp::aringnative::IARing>();
+    try {
+      std::shared_ptr<dp::aringnative::IARing> g_ptrARing =
+        dp::ios::DPFactoryForiOS::CreateInstance<dp::aringnative::IARing>();
+    } catch (dp::exception::DPLicenseExpiredException ex) {
+      std::cout << ex.what() << std::endl;
+    } catch (dp::exception::DPLicenseException ex) {
+      std::cout << ex.what() << std::endl;
+    }
     ```
 
 2. ARing 객체를 초기화 한다.
@@ -89,7 +101,7 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
     |dp::exception::DPException|Initialization Failed|예상하지 못한 에러가 있을 경우 발생한다.|
 
 3. ARing 객체의 DetectFace 함수를 호출한다.
-   > 영상의 [타입][image_type]을 지정해야 한다. 영상의 사이즈는 320x240보다 커야한다. 이 함수의 [반환 값][ARing_api]에는 얼굴 검출 유무 및 귀의 위치 등이 포함되어 있다. 반환값에 포함된 위치의 좌표계는 입력 영상의 pixel 좌표계와 같다.
+   > 영상의 [타입][image_type]을 지정해야 한다. 영상의 사이즈는 320x240보다 커야한다. 이 함수의 [반환 값][result]에는 얼굴 검출 유무 및 귀의 위치 등이 포함되어 있다. 반환값에 포함된 위치의 좌표계는 입력 영상의 pixel 좌표계와 같다.
 
     ```c++
     dp::aringnative::DPAringResult result = g_ptrARing->DetectFace(img, imageType);
@@ -173,15 +185,14 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
 - [ARing API][ARing_api]
 - [OpenCV][opencv]
 - [TBB][tbb]
-- [License][license]
 
 [andoid_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/ARing/tutorial/android/
 [ios_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/ARing/tutorial/ios
 [opencv]: http://opencv.org/
 [ARing_api]: /ARing/apis/
-[image_type]: /ARing/apis/
+[result]: /ARing/apis/structdp_1_1aringnative_1_1_d_p_a_ring_result.html
+[image_type]: /ARing/apis/namespacemembers_enum.html
 [tbb]: https://www.threadingbuildingblocks.org/
 [android]: android.md
 [iOS]: ios.md
 [license]: /License/README.md
-[license_exception]: /License/README.md#Exceptions
