@@ -158,9 +158,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3BCBBAF4214A14B900212930 /* Tutorial */ = {
+		3BCBBAF4214A14B900212930 /* ARingiOSAppExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3BCBBB07214A14BB00212930 /* Build configuration list for PBXNativeTarget "Tutorial" */;
+			buildConfigurationList = 3BCBBB07214A14BB00212930 /* Build configuration list for PBXNativeTarget "ARingiOSAppExample" */;
 			buildPhases = (
 				3BCBBAF1214A14B900212930 /* Sources */,
 				3BCBBAF2214A14B900212930 /* Frameworks */,
@@ -171,7 +171,7 @@
 			);
 			dependencies = (
 			);
-			name = Tutorial;
+			name = ARingiOSAppExample;
 			productName = Tutorial;
 			productReference = 3BCBBAF5214A14B900212930 /* Tutorial.app */;
 			productType = "com.apple.product-type.application";
@@ -192,7 +192,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3BCBBAF0214A14B900212930 /* Build configuration list for PBXProject "Tutorial" */;
+			buildConfigurationList = 3BCBBAF0214A14B900212930 /* Build configuration list for PBXProject "ARingiOSAppExample" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -205,7 +205,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3BCBBAF4214A14B900212930 /* Tutorial */,
+				3BCBBAF4214A14B900212930 /* ARingiOSAppExample */,
 			);
 		};
 /* End PBXProject section */
@@ -431,7 +431,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3BCBBAF0214A14B900212930 /* Build configuration list for PBXProject "Tutorial" */ = {
+		3BCBBAF0214A14B900212930 /* Build configuration list for PBXProject "ARingiOSAppExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3BCBBB05214A14BB00212930 /* Debug */,
@@ -440,7 +440,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3BCBBB07214A14BB00212930 /* Build configuration list for PBXNativeTarget "Tutorial" */ = {
+		3BCBBB07214A14BB00212930 /* Build configuration list for PBXNativeTarget "ARingiOSAppExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3BCBBB08214A14BB00212930 /* Debug */,
