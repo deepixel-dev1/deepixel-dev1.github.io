@@ -2,13 +2,18 @@
 
 # AR1ing Tutorial
 
->AR1ing은 모바일 장치에서 실시간으로 얼굴 및 손의 특정 위치와 스케일 정보 등을 실시간으로 추정하는 컴퓨터 비전 기반 API Library 입니다.  
+>AR1ing은 모바일 장치로 입력된 영상에서 얼굴 및 손의 특정 위치와 스케일 정보 등을 실시간으로 추정하는 컴퓨터 비전 기반의 API Library 입니다.  
 
-![aring display](./img/face(earring).png){: width="200"}&nbsp;&nbsp;![aring display](./img/hand(ring_band).png){: width="200"}
+![aring display](./img/hand(ring_band).png){: width="200"}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![aring display](./img/face(earring).png){: width="200"}
 
 ***
 
 ## 특징
+
+### 손의 특정 위치 및 스케일 정보 추정
+
+> 사용자의 손을 모바일 장치에서 실시간으로 검출하고 각 손가락과 손목의 위치 및  스케일 정보를 제공합니다. 이것을 이용해서 온라인상에서 사용자가 반지나 팔찌(밴드)를 가상으로 착용(Virtual Try-on)할 수 있는 서비스를 만들 수 있습니다.
+
 
 ### 귀 위치 및 스케일 정보 추정
 
