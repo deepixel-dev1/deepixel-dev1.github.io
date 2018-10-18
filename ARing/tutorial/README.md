@@ -12,7 +12,7 @@
 
 > 사용자의 귀를 모바일 장치에서 실시간으로 검출하고 양쪽 귀의 위치 및 스케일 정보를 제공합니다. 이것을 이용해서 온라인상에서 사용자가 귀걸이를 가상으로 착용(Virtual Try-on)할 수 있는 서비스를 만들 수 있습니다.
 
-![aring display](./img/ARing_Display.png){: width="400"}
+![aring display](./img/face(earring).png){: width="400"}![aring display](./img/hand(ring_band).png){: width="400"}
 
 - 스팩:
   - 1명만 적용 가능
