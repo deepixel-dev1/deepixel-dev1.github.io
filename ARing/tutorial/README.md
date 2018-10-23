@@ -175,6 +175,17 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
   
     ```
 
+5. 얼굴의 마스크 크기 및 귀 3차원 위치를 제어한다.
+    >얼굴의 마스크 크기 및 귀 3차원 위치를 임의로 제어 할 수 있다. 얼굴 마스크 크기 조절범위는 [-5 ~ 5]이며 기본값은 [0]이다. (-)값은 마스크의 크기가 얼굴 안쪽 방향으로 작아지며, (+)값은 얼굴 바깥쪽 방향으로 커진다. 귀 3차원 위치의 범위도 [-5 ~ 5]이며 기본값은 [0]이다. (-)값은 얼굴의 안쪽 방향으로 3차원 위치가 이동하며, (+)값은 얼굴의 바깥쪽 방향으로 3차원 위치가 이동한다. 기능의 사용은 DetectFace 함수 호출 시 얼굴의 마스크 크기 및 귀 3차원 위치 제어 범위를 파라메터로 넣어 사용한다.
+
+    ```c++
+   //n3DPosCtrl은 귀 3차원 위치 제어 값, nMaksSizeCtrl은 얼굴 마스크의 크기 값으로 제어범위는 [-5 ~ 5]이다.
+   int n3DPosCtrl = -1;
+   int nMaskSizeCtrl = 3;
+   //사용하지 않을 시에 DetectFace함수에 2개의 제어 파라메터를 제외하고 실행한다.
+   dp::aringnative::DPAringResult result = g_ptrARing->DetectFace(img, imageType, n3DPosCtrl, nMaskSizeCtrl);
+    ```
+
 ***
 
 ## 연락처
