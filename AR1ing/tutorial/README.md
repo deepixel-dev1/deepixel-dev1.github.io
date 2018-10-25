@@ -225,7 +225,7 @@ AR1ing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample]
 
     ```c++
    // DetectFace 함수 호출시 DPAR1ingFaceInput에 제어하고 싶은 파라메터에 값을 넣어 주면 된다.
-   // 조정이 필요없다면 해당 변수에 데이터를 넣지 않아도 된다. 이 경우 기본값이 자동적으로 세팅이 된다.
+   // 조정이 필요없다면 해당 변수에 데이터를 넣지 않아도 된다. 이 경우 기본값이 자동으로 세팅된다.
    // DPAR1ingFaceInput n3DPosOffset: 귀의 3차원 위치 조정 값
    // DPAR1ingFaceInput nMaskOffset: 얼굴 마스크의 크기 조정 값
    dp::aringnative::DPAR1ingFaceInput faceInput;
