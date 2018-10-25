@@ -1,5 +1,7 @@
 ![deepixel.xyz](./img/Deepixel_logo.PNG){: width="200"}
 
+test
+
 # AR1ing Tutorial
 
 >AR1ing은 모바일 장치로 입력된 영상에서 얼굴 및 손의 특정 위치와 스케일 정보 등을 실시간으로 추정하는 컴퓨터 비전 기반의 API Library 입니다.  
@@ -29,8 +31,17 @@
     ```text
     반지 위치: 왼쪽 위치(x1, y1), 오른쪽 위치(x2, y2)
     반지 길이: 반지 위치 사이의 거리
-    반지 각도: 수평선을 기준으로 반지의 중심점에서 시계 방향으로의 각도(degree)
+    반지 각도: 수평선을 기준으로 반지의 중심점에서 시계 방향으로의 각도(degree)    
     ```  
+
+    |손가락|인덱스|
+    |:-:|:-:|
+    |엄지손가락|0|
+    |검지손가락|1|
+    |가운데손가락|2|
+    |약지손가락|3|
+    |새끼손가락|4|
+    
   > 팔찌 
   
   ![aring result](./img/bracelet_result.PNG){: width="450"}
@@ -127,6 +138,7 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
     // (focalLength) 카메라 포커스 값
     g_ptrARing->initialize(img.cols, img.rows, imageRotation, sensorWidth, sensorHeight, focalLength);
     ```
+
 
     |Exception|Exception message|Description|
     |-|-|-|
