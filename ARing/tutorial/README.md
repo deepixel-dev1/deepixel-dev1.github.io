@@ -1,7 +1,5 @@
 ![deepixel.xyz](./img/Deepixel_logo.PNG){: width="200"}
 
-test
-
 # AR1ing Tutorial
 
 >AR1ing은 모바일 장치로 입력된 영상에서 얼굴 및 손의 특정 위치와 스케일 정보 등을 실시간으로 추정하는 컴퓨터 비전 기반의 API Library 입니다.  
