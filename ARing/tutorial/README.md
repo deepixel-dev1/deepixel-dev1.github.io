@@ -25,19 +25,19 @@
   
   > 반지 
   
-  ![aring result](./img/ringbase.PNG){: width="450"}
+  ![aring result](./img/ring_result.PNG){: width="450"}
     ```text
-    귀 위치정보: x(이미지의 가로 방향 위치), y(이미지의 세로 방향 위치)
-    귀 크기(스케일): 귀의 높이 / 영상의 높이
-    얼굴 마스크 정보: 얼굴의 경계 라인 정보
+    반지 위치: 왼쪽 위치(x1, y1), 오른쪽 위치(x2, y2)
+    반지 길이: 반지 위치 사이의 거리
+    반지 각도: 수평선을 기준으로 반지의 중심점에서 시계 방향으로의 각도(degree)
     ```  
   > 팔찌 
   
-  ![aring result](./img/wristbase.PNG){: width="450"}
+  ![aring result](./img/bracelet_result.PNG){: width="450"}
     ```text
-    귀 위치정보: x(이미지의 가로 방향 위치), y(이미지의 세로 방향 위치)
-    귀 크기(스케일): 귀의 높이 / 영상의 높이
-    얼굴 마스크 정보: 얼굴의 경계 라인 정보
+    팔찌 위치: 왼쪽 위치(x1, y1), 오른쪽 위치(x2, y2)
+    팔찌 길이: 팔찌 위치 사이의 거리
+    팔찌 각도: 수평선을 기준으로 팔찌의 중심점에서 시계 방향으로의 각도(degree)
     ```  
   
 ### 귀 위치 및 스케일 정보 추정
@@ -45,7 +45,6 @@
 > 사용자의 귀를 모바일 장치에서 실시간으로 검출하고 양쪽 귀의 위치 및 스케일 정보를 제공합니다. 이것을 이용해서 온라인상에서 사용자가 귀걸이를 가상으로 착용(Virtual Try-on)할 수 있는 서비스를 만들 수 있습니다.
 
 - 스팩:
-
     |목차|스팩|비고|
     |:-:|:-:|:-:|
     |가능인원|1명||
@@ -132,6 +131,8 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
     |-|-|-|
     |dp::exception::DPException|Already initialized|두번 이상 초기화를 했을 경우 발생한다.|
     |dp::exception::DPException|Initialization Failed|예상하지 못한 에러가 있을 경우 발생한다.|
+
+### 귀걸이 적용시
 
 3. ARing 객체의 DetectFace 함수를 호출한다.
    > 영상의 [타입][image_type]을 지정해야 한다. 영상의 사이즈는 320x240보다 커야한다. 이 함수의 [반환 값][result]에는 얼굴 검출 유무 및 귀의 위치 등이 포함되어 있다. 반환값에 포함된 위치의 좌표계는 입력 영상의 pixel 좌표계와 같다.
@@ -224,6 +225,47 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
    faceInput.nMaskOffset = 1;
    dp::aringnative::DPAR1ingFaceOutput result = g_ptrARing->DetectFace(faceInput);
     ```
+### 반지 적용시
+
+3. ARing 객체의 DetectFace 함수를 호출한다.
+   > 영상의 [타입][image_type]을 지정해야 한다. 영상의 사이즈는 320x240보다 커야한다. 이 함수의 [반환 값][result]에는 얼굴 검출 유무 및 귀의 위치 등이 포함되어 있다. 반환값에 포함된 위치의 좌표계는 입력 영상의 pixel 좌표계와 같다.
+
+    ```c++
+    // DPAR1ingFaceInput는 DetectFace를 실행하기 위한 인풋 파라메터가 설정되어 있다.
+    // DPAR1ingFaceInput src: API 실행을 위한 영상
+    // DPAR1ingFaceInput imageTyp: 영상 타입
+    dp::aringnative::DPAR1ingFaceInput faceInput;
+    faceInput.src = img;
+    faceInput.imageType = imageType;
+    dp::aringnative::DPAR1ingFaceOutput result = g_ptrARing->DetectFace(faceInput);
+    ```
+
+    |Exception|Exception message|Description|
+    |-|-|-|
+    |dp::exception::DPException|There is no image|입력 영상이 비어있을 경우 발생한다.|
+    |dp::exception::DPException|No initialized|초기화를 하지 않은 경우 발생한다.|
+    |dp::exception::DPException|Image size is different from the initial image size|초기화할 때 입력한 영상의 크기와 현재 입력 영상의 크기가 다른 경우 발생한다.|
+
+### 팔찌 적용시
+
+3. ARing 객체의 DetectFace 함수를 호출한다.
+   > 영상의 [타입][image_type]을 지정해야 한다. 영상의 사이즈는 320x240보다 커야한다. 이 함수의 [반환 값][result]에는 얼굴 검출 유무 및 귀의 위치 등이 포함되어 있다. 반환값에 포함된 위치의 좌표계는 입력 영상의 pixel 좌표계와 같다.
+
+    ```c++
+    // DPAR1ingFaceInput는 DetectFace를 실행하기 위한 인풋 파라메터가 설정되어 있다.
+    // DPAR1ingFaceInput src: API 실행을 위한 영상
+    // DPAR1ingFaceInput imageTyp: 영상 타입
+    dp::aringnative::DPAR1ingFaceInput faceInput;
+    faceInput.src = img;
+    faceInput.imageType = imageType;
+    dp::aringnative::DPAR1ingFaceOutput result = g_ptrARing->DetectFace(faceInput);
+    ```
+
+    |Exception|Exception message|Description|
+    |-|-|-|
+    |dp::exception::DPException|There is no image|입력 영상이 비어있을 경우 발생한다.|
+    |dp::exception::DPException|No initialized|초기화를 하지 않은 경우 발생한다.|
+    |dp::exception::DPException|Image size is different from the initial image size|초기화할 때 입력한 영상의 크기와 현재 입력 영상의 크기가 다른 경우 발생한다.|
 
 ***
 
