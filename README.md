@@ -1,6 +1,6 @@
 # Deepixel manual
 
-- [AR1ing tutorial][aring_tutorial]
+- [AR1ing tutorial][aring_Tutorial]
 - [AR1ing API][aring_api]
 
 [aring_tutorial]: /AR1ing/tutorial
