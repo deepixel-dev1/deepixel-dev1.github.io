@@ -113,7 +113,7 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
     // DPAR1ingFaceInput imageTyp: 영상 타입
     dp::aringnative::DPAR1ingFaceInput faceInput;
     faceInput.src = img;
-    faceimageTyp = imageType;
+    faceInput.imageTyp = imageType;
     dp::aringnative::DPAR1ingFaceOutput result = g_ptrARing->DetectFace(faceInput);
     ```
 
