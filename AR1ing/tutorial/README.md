@@ -97,7 +97,7 @@
 >C++를 이용한 ARing API 사용법을 소개한다. ARing API를 사용하기 위해서는 OpenCV 라이브러리가 필요하다.
 ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 링크를 참고한다.
 
-1. ARing 객체를 생성한다.
+1. AR1ing 객체를 생성한다.
     > 객체를 생성하는 과정에서 라이센스와 관련된 예외가 발생할 수 있다.  
 
     ```c++
@@ -124,7 +124,7 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
     }
     ```
 
-2. ARing 객체를 초기화 한다.
+2. AR1ing 객체를 초기화 한다.
     > ARing API를 초기화 하기 위해서 다바이스 실행 시 영상의 크기, 영상을 회전할 각도, 카메라 센서의 크기, 그리고 포커스 값을 입력한다. 카메라 센서의 크기와 포커스 값을 0으로 입력할 경우 ARing 내부에 정의된 기본값이 사용된다. 일반적으로 스마트폰을 세로로 사용할 경우 회전된 영상을 얻게 된다. 올바른 영상으로 바꾸기 위해 얼마나 회전을 해야하는지를 파라미터로 설정해야 한다.
 
     ```c++
@@ -143,9 +143,8 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
     |dp::exception::DPException|Already initialized|두번 이상 초기화를 했을 경우 발생한다.|
     |dp::exception::DPException|Initialization Failed|예상하지 못한 에러가 있을 경우 발생한다.|
 
-### 귀걸이 적용시
-
-3. ARing 객체의 DetectFace 함수를 호출한다.
+#### 귀걸이 적용시
+3. AR1ing 객체의 DetectFace 함수를 호출한다.
    > 영상의 [타입][image_type]을 지정해야 한다. 영상의 사이즈는 320x240보다 커야한다. 이 함수의 [반환 값][result]에는 얼굴 검출 유무 및 귀의 위치 등이 포함되어 있다. 반환값에 포함된 위치의 좌표계는 입력 영상의 pixel 좌표계와 같다.
 
     ```c++
@@ -221,14 +220,14 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
   
     ```
 
-5. 얼굴의 마스크 크기 및 귀 3차원 위치를 제어한다.
-    >얼굴의 마스크 크기 및 귀 3차원 위치를 임의로 제어 할 수 있다. 얼굴 마스크 크기 조절범위는 [-5 ~ 5]이며 기본값은 [0]이다. (-)값은 마스크의 크기가 얼굴 안쪽 방향으로 작아지며, (+)값은 얼굴 바깥쪽 방향으로 커진다. 귀 3차원 위치의 범위도 [-5 ~ 5]이며 기본값은 [0]이다. (-)값은 얼굴의 안쪽 방향으로 3차원 위치가 이동하며, (+)값은 얼굴의 바깥쪽 방향으로 3차원 위치가 이동한다. 기능의 사용은 DetectFace 함수 호출 시 얼굴의 마스크 크기 및 귀 3차원 위치 제어 범위를 파라메터로 넣어 사용한다.
+5. 얼굴의 마스크 크기 및 귀의 3차원 위치를 조정한다. 
+    >얼굴의 마스크 크기 및 귀의 3차원 위치를 수동으로 조정할 수 있다. 얼굴 마스크 크기 조절 범위는 [-5 ~ 5]이며 기본값은 [0]이다. (-)값은 마스크의 크기가 얼굴 안쪽 방향으로 작아지며, (+)값은 얼굴 바깥쪽 방향으로 커진다. 귀의 3차원 위치 범위는 [-5 ~ 5]이며 기본값은 [0]이다. (-)값은 얼굴의 안쪽 방향으로 귀의 3차원 위치가 이동하며, (+)값은 얼굴의 바깥쪽 방향으로 귀의 3차원 위치가 이동한다. 사용 방법은 DetectFace 함수 호출 시 얼굴의 마스크 크기 및 귀의 3차원 위치 조정 범위를 파라메터로 전달한다.
 
     ```c++
-   // DetectFace함수 호출시 DPAR1ingFaceInput에 제어하고 싶은 파라메터에 값을 넣어 주면 된다.
-   // 디폴트 설정되어 있기 때문에, 제어가 불 필요하다면 해당 변수에 데이터를 넣지 않아도 된다.
-   // DPAR1ingFaceInput n3DPosOffset: 귀 3차원 위치 제어 값
-   // DPAR1ingFaceInput nMaskOffset: 얼굴 마스크의 크기 값
+   // DetectFace 함수 호출시 DPAR1ingFaceInput에 제어하고 싶은 파라메터에 값을 넣어 주면 된다.
+   // 조정이 필요없다면 해당 변수에 데이터를 넣지 않아도 된다. 이 경우 기본값이 자동적으로 세팅이 된다.
+   // DPAR1ingFaceInput n3DPosOffset: 귀의 3차원 위치 조정 값
+   // DPAR1ingFaceInput nMaskOffset: 얼굴 마스크의 크기 조정 값
    dp::aringnative::DPAR1ingFaceInput faceInput;
    faceInput.src = img;
    faceInput.imageType = imageType;
@@ -236,9 +235,9 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
    faceInput.nMaskOffset = 1;
    dp::aringnative::DPAR1ingFaceOutput result = g_ptrARing->DetectFace(faceInput);
     ```
-### 반지 적용시
-
-3. ARing 객체의 DetectFace 함수를 호출한다.
+    
+#### 반지 적용시
+3. AR1ing 객체의 DetectFace 함수를 호출한다.
    > 영상의 [타입][image_type]을 지정해야 한다. 영상의 사이즈는 320x240보다 커야한다. 이 함수의 [반환 값][result]에는 얼굴 검출 유무 및 귀의 위치 등이 포함되어 있다. 반환값에 포함된 위치의 좌표계는 입력 영상의 pixel 좌표계와 같다.
 
     ```c++
@@ -257,9 +256,8 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
     |dp::exception::DPException|No initialized|초기화를 하지 않은 경우 발생한다.|
     |dp::exception::DPException|Image size is different from the initial image size|초기화할 때 입력한 영상의 크기와 현재 입력 영상의 크기가 다른 경우 발생한다.|
 
-### 팔찌 적용시
-
-3. ARing 객체의 DetectFace 함수를 호출한다.
+#### 팔찌 적용시
+3. AR1ing 객체의 DetectFace 함수를 호출한다.
    > 영상의 [타입][image_type]을 지정해야 한다. 영상의 사이즈는 320x240보다 커야한다. 이 함수의 [반환 값][result]에는 얼굴 검출 유무 및 귀의 위치 등이 포함되어 있다. 반환값에 포함된 위치의 좌표계는 입력 영상의 pixel 좌표계와 같다.
 
     ```c++
@@ -290,14 +288,14 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
 
 - [Anroid Sample][andoid_sample]
 - [iOS Sample][ios_sample]
-- [ARing API][ARing_api]
+- [AR1ing API][ARing_api]
 - [OpenCV][opencv]
 - [TBB][tbb]
 
 [andoid_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/ARing/tutorial/android/
 [ios_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/ARing/tutorial/ios
 [opencv]: http://opencv.org/
-[ARing_api]: /ARing/apis/
+[AR1ing_api]: /ARing/apis/
 [result]: /ARing/apis/structdp_1_1aringnative_1_1_d_p_a_ring_result.html
 [image_type]: /ARing/apis/namespacemembers_enum.html
 [tbb]: https://www.threadingbuildingblocks.org/
