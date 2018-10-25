@@ -113,7 +113,7 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
     // DPAR1ingFaceInput imageTyp: 영상 타입
     dp::aringnative::DPAR1ingFaceInput faceInput;
     faceInput.src = img;
-    faceInput.imageTyp = imageType;
+    faceInput.imageType = imageType;
     dp::aringnative::DPAR1ingFaceOutput result = g_ptrARing->DetectFace(faceInput);
     ```
 
@@ -190,7 +190,7 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
    // DPAR1ingFaceInput nMaskOffset: 얼굴 마스크의 크기 값
    dp::aringnative::DPAR1ingFaceInput faceInput;
    faceInput.src = img;
-   faceInput.imageTyp = imageType;
+   faceInput.imageType = imageType;
    faceInput.n3DPosOffset = 3;
    faceInput.nMaskOffset = 1;
    dp::aringnative::DPAR1ingFaceOutput result = g_ptrARing->DetectFace(faceInput);
