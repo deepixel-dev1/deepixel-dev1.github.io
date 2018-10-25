@@ -442,11 +442,13 @@ public class Camera2BasicFragment extends Fragment
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mFile = new File(getActivity().getExternalFilesDir(null), "pic.jpg");
-        File f = new File(getActivity().getExternalFilesDir(null), "bvlgari_earing.png");
+        File fEarring = new File(getActivity().getExternalFilesDir(null), "bvlgari_earing.png");
+        File fRing = new File(getActivity().getExternalFilesDir(null), "ring_mask.png");
+        File fBand = new File(getActivity().getExternalFilesDir(null), "band_mask.png");
 
         // by deepixel.xyz
         // Init native library.
-        create(this.getActivity(), f.getAbsolutePath());
+        create(this.getActivity(), fEarring.getAbsolutePath(), fRing.getAbsolutePath(), fBand.getAbsolutePath());
     }
 
     @Override
@@ -508,10 +510,16 @@ public class Camera2BasicFragment extends Fragment
                 CameraCharacteristics characteristics
                         = manager.getCameraCharacteristics(cameraId);
 
-                // We don't use a front facing camera in this sample.
+                // modified by deepixel.xyz
                 Integer facing = characteristics.get(CameraCharacteristics.LENS_FACING);
-                if (facing != null && facing != CameraCharacteristics.LENS_FACING_FRONT) {
-                    continue;
+                if (BuildConfig.FLAVOR == "facear") {
+                    if (facing != null && facing != CameraCharacteristics.LENS_FACING_FRONT) {
+                        continue;
+                    }
+                } else {
+                    if (facing != null && facing == CameraCharacteristics.LENS_FACING_FRONT) {
+                        continue;
+                    }
                 }
 
                 StreamConfigurationMap map = characteristics.get(
@@ -779,7 +787,8 @@ public class Camera2BasicFragment extends Fragment
         } else if (Surface.ROTATION_180 == rotation) {
             matrix.postRotate(180, centerX, centerY);
         }
-        matrix.postScale(-1, 1, centerX, centerY);
+        if (BuildConfig.FLAVOR == "facear")
+            matrix.postScale(-1, 1, centerX, centerY);
 
 //        if (Surface.ROTATION_90 == rotation || Surface.ROTATION_270 == rotation) {
 //            bufferRect.offset(centerX - bufferRect.centerX(), centerY - bufferRect.centerY());
@@ -1119,7 +1128,7 @@ public class Camera2BasicFragment extends Fragment
      * A native method that is implemented by the 'native-lib' native library,
      * which is packaged with this application.
      */
-    public static native void create(Activity activity, String earringAbolutePath);
+    public static native void create(Activity activity, String earringAbolutePath, String ringAbolutePath, String bandAbolutePath);
 
     public static native void init(int width, int height, Surface surface);
 

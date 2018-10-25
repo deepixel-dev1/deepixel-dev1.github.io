@@ -6,7 +6,7 @@
 cmake_minimum_required(VERSION 3.4.1)
 
 # Specifies a path to native header files.
-include_directories(src/main/cpp/include/opencv_3.3.1/ src/main/cpp/include/aringnative/ src/main/cpp/include/)
+include_directories(src/main/cpp/include/opencv_3.3.1/ src/main/cpp/include/ar1ingnative/ src/main/cpp/include/)
 
 # library directory
 set(LIB_DIR ${CMAKE_SOURCE_DIR}/src/main/cpp/libs/)

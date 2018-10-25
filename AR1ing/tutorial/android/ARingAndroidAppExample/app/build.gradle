@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     buildToolsVersion "27.0.3"
     defaultConfig {
-        applicationId "com.il.aring"
+        applicationId "com.il.ar1ing"
         minSdkVersion 23
         targetSdkVersion 25
         versionCode 1
@@ -38,6 +38,33 @@ android {
         }
         debug {
             jniDebuggable true
+        }
+    }
+    flavorDimensions "tier"
+    productFlavors {
+        facear {
+            externalNativeBuild {
+                cmake {
+                    cppFlags "-DFACEAR"
+                }
+            }
+            dimension "tier"
+        }
+        handar {
+            externalNativeBuild {
+                cmake {
+                    cppFlags "-DHANDAR"
+                }
+            }
+            dimension "tier"
+        }
+        wristar {
+            externalNativeBuild {
+                cmake {
+                    cppFlags "-DWRISTAR"
+                }
+            }
+            dimension "tier"
         }
     }
     externalNativeBuild {
