@@ -14,7 +14,6 @@
 
 > 사용자의 손을 모바일 장치에서 실시간으로 검출하고 각 손가락과 손목의 위치 및  스케일 정보를 제공합니다. 이것을 이용해서 온라인상에서 사용자가 반지나 팔찌(밴드)를 가상으로 착용(Virtual Try-on)할 수 있는 서비스를 만들 수 있습니다.
 
-
 ### 귀 위치 및 스케일 정보 추정
 
 > 사용자의 귀를 모바일 장치에서 실시간으로 검출하고 양쪽 귀의 위치 및 스케일 정보를 제공합니다. 이것을 이용해서 온라인상에서 사용자가 귀걸이를 가상으로 착용(Virtual Try-on)할 수 있는 서비스를 만들 수 있습니다.
@@ -109,7 +108,13 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
    > 영상의 [타입][image_type]을 지정해야 한다. 영상의 사이즈는 320x240보다 커야한다. 이 함수의 [반환 값][result]에는 얼굴 검출 유무 및 귀의 위치 등이 포함되어 있다. 반환값에 포함된 위치의 좌표계는 입력 영상의 pixel 좌표계와 같다.
 
     ```c++
-    dp::aringnative::DPAringResult result = g_ptrARing->DetectFace(img, imageType);
+    // DPAR1ingFaceInput는 DetectFace를 실행하기 위한 인풋 파라메터가 설정되어 있다.
+    // DPAR1ingFaceInput src: API 실행을 위한 영상
+    // DPAR1ingFaceInput imageTyp: 영상 타입
+    dp::aringnative::DPAR1ingFaceInput faceInput;
+    faceInput.src = img;
+    faceimageTyp = imageType;
+    dp::aringnative::DPAR1ingFaceOutput result = g_ptrARing->DetectFace(faceInput);
     ```
 
     |Exception|Exception message|Description|
@@ -131,7 +136,7 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
     ```
 
     ```c++
-    void drawEarring(cv::Mat dst, cv::Mat earingPic, DPARingResult result, bool isLeft)
+    void drawEarring(cv::Mat dst, cv::Mat earingPic, DPAR1ingFaceOutput result, bool isLeft)
     {
       float fEaring_scale_y = isLeft ? result.earringScaleYLeft : earringScaleYRight;
       cv::Mat matEarring;
@@ -179,11 +184,16 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
     >얼굴의 마스크 크기 및 귀 3차원 위치를 임의로 제어 할 수 있다. 얼굴 마스크 크기 조절범위는 [-5 ~ 5]이며 기본값은 [0]이다. (-)값은 마스크의 크기가 얼굴 안쪽 방향으로 작아지며, (+)값은 얼굴 바깥쪽 방향으로 커진다. 귀 3차원 위치의 범위도 [-5 ~ 5]이며 기본값은 [0]이다. (-)값은 얼굴의 안쪽 방향으로 3차원 위치가 이동하며, (+)값은 얼굴의 바깥쪽 방향으로 3차원 위치가 이동한다. 기능의 사용은 DetectFace 함수 호출 시 얼굴의 마스크 크기 및 귀 3차원 위치 제어 범위를 파라메터로 넣어 사용한다.
 
     ```c++
-   //n3DPosCtrl은 귀 3차원 위치 제어 값, nMaksSizeCtrl은 얼굴 마스크의 크기 값으로 제어범위는 [-5 ~ 5]이다.
-   int n3DPosCtrl = -1;
-   int nMaskSizeCtrl = 3;
-   //사용하지 않을 시에 DetectFace함수에 2개의 제어 파라메터를 제외하고 실행한다.
-   dp::aringnative::DPAringResult result = g_ptrARing->DetectFace(img, imageType, n3DPosCtrl, nMaskSizeCtrl);
+   // DetectFace함수 호출시 DPAR1ingFaceInput에 제어하고 싶은 파라메터에 값을 넣어 주면 된다.
+   // 디폴트 설정되어 있기 때문에, 제어가 불 필요하다면 해당 변수에 데이터를 넣지 않아도 된다.
+   // DPAR1ingFaceInput n3DPosOffset: 귀 3차원 위치 제어 값
+   // DPAR1ingFaceInput nMaskOffset: 얼굴 마스크의 크기 값
+   dp::aringnative::DPAR1ingFaceInput faceInput;
+   faceInput.src = img;
+   faceInput.imageTyp = imageType;
+   faceInput.n3DPosOffset = 3;
+   faceInput.nMaskOffset = 1;
+   dp::aringnative::DPAR1ingFaceOutput result = g_ptrARing->DetectFace(faceInput);
     ```
 
 ***
