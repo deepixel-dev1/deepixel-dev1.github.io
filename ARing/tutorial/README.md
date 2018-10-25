@@ -29,10 +29,12 @@
 
 > 사용자의 귀를 모바일 장치에서 실시간으로 검출하고 양쪽 귀의 위치 및 스케일 정보를 제공합니다. 이것을 이용해서 온라인상에서 사용자가 귀걸이를 가상으로 착용(Virtual Try-on)할 수 있는 서비스를 만들 수 있습니다.
 
-- [스팩][ARing_spec]:
-  - 1명만 적용 가능
-  - Yaw 축으로 약 45º 이내
-  - 1920x1080 30~40 FPS (Device tested: Galaxy Note 8)
+- 스팩:
+    |목차|스팩|비고|
+    |:-:|:-:|:-:|
+    |가능인원|1명||
+    |동작범위|Yaw(-45º ~ 45º), Roll(-15º ~ 15º), Pitch(-5º ~ 20º)|범위 내|
+    |속도|30~40 FPS (Frame Per Secound) |실험 장비(Galaxy Note 8), 해상도(1920 X 1080)|
 
 - 결과물:
   - 양쪽 귀의 위치, 양쪽 귀 크기, 얼굴 마스크 정보
@@ -217,14 +219,12 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
 
 ## 참조
 
-- [ARing SPEC][ARing_spec]
 - [Anroid Sample][andoid_sample]
 - [iOS Sample][ios_sample]
 - [ARing API][ARing_api]
 - [OpenCV][opencv]
 - [TBB][tbb]
 
-[ARing_spec]: spec.md
 [andoid_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/ARing/tutorial/android/
 [ios_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/ARing/tutorial/ios
 [opencv]: http://opencv.org/
