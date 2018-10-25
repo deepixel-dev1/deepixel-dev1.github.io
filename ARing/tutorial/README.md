@@ -25,7 +25,7 @@
   
   > 반지 
   
-  ![aring result](./img/ringbase.png){: width="450"}
+  ![aring result](./img/ringbase.PNG){: width="450"}
     ```text
     귀 위치정보: x(이미지의 가로 방향 위치), y(이미지의 세로 방향 위치)
     귀 크기(스케일): 귀의 높이 / 영상의 높이
@@ -33,7 +33,7 @@
     ```  
   > 팔찌 
   
-  ![aring result](./img/wristbase.png){: width="450"}
+  ![aring result](./img/wristbase.PNG){: width="450"}
     ```text
     귀 위치정보: x(이미지의 가로 방향 위치), y(이미지의 세로 방향 위치)
     귀 크기(스케일): 귀의 높이 / 영상의 높이
