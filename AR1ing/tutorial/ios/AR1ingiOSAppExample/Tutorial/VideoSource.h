@@ -13,6 +13,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+//#define FACEAR
+//#define HANDAR
+#define WRISTAR
+
 @protocol VideoSourceDelegate<NSObject>
 
 - (void)processFrame:(cv::Mat &)frame;

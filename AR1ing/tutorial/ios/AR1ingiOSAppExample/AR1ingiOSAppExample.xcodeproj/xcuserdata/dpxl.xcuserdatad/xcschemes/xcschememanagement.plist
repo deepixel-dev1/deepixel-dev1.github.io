@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Tutorial.xcscheme</key>
+		<key>AR1ingiOSAppExample.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,7 +12,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3BCBBAF4214A14B900212930</key>
+		<key>3BFB56FB2184414300928EEC</key>
 		<dict>
 			<key>primary</key>
 			<true/>

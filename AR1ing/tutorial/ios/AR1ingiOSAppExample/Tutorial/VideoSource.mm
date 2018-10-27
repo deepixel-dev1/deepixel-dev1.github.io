@@ -26,7 +26,7 @@ using namespace std;
     }
     [targetView.layer addSublayer:self.previewLayer];
     self.previewLayer.contentsGravity = kCAGravityCenter;
-    self.previewLayer.contentsScale = 2.5f;
+    self.previewLayer.contentsScale = 3.0f;
     self.previewLayer.frame = targetView.bounds;
     self.previewLayer.affineTransform = CGAffineTransformMakeRotation(M_PI / 2);
 }
@@ -41,6 +41,16 @@ using namespace std;
     return nil;
 }
 
+- (AVCaptureDevice *)backCamera {
+    NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+    for (AVCaptureDevice *device in devices) {
+        if ([device position] == AVCaptureDevicePositionBack) {
+            return device;
+        }
+    }
+    return nil;
+}
+
 - (instancetype)init
 {
     self = [super init];
@@ -48,7 +58,11 @@ using namespace std;
         _captureSession = [[AVCaptureSession alloc] init];
         _captureSession.sessionPreset = AVCaptureSessionPreset1920x1080;
         
+#if defined(FACEAR)
         AVCaptureDevice *device = [self frontCamera];
+#else
+        AVCaptureDevice *device = [self backCamera];
+#endif
         NSError *error = nil;
         AVCaptureDeviceInput *input = [[AVCaptureDeviceInput alloc] initWithDevice:device error:&error];
         [_captureSession addInput:input];
@@ -62,7 +76,7 @@ using namespace std;
         [output setSampleBufferDelegate:self queue:queue];
         
         _previewLayer = [CALayer layer];
-
+        
     }
     
     return self;
@@ -87,7 +101,7 @@ using namespace std;
     
     CGImageRef imageRef = [self CGImageFromCVMat:mat];
     dispatch_sync(dispatch_get_main_queue(), ^{
-       self.previewLayer.contents = (__bridge id)imageRef;
+        self.previewLayer.contents = (__bridge id)imageRef;
     });
     
     CGImageRelease(imageRef);

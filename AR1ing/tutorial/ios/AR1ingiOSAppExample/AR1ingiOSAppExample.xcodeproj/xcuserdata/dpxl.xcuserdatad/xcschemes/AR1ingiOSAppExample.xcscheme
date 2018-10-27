@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3BCBBAF4214A14B900212930"
-               BuildableName = "ARingiOSAppExample.app"
-               BlueprintName = "ARingiOSAppExample"
-               ReferencedContainer = "container:ARingiOSAppExample.xcodeproj">
+               BlueprintIdentifier = "3BFB56FB2184414300928EEC"
+               BuildableName = "AR1ingiOSAppExample.app"
+               BlueprintName = "AR1ingiOSAppExample"
+               ReferencedContainer = "container:AR1ingiOSAppExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,17 +32,17 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3BCBBAF4214A14B900212930"
-            BuildableName = "ARingiOSAppExample.app"
-            BlueprintName = "ARingiOSAppExample"
-            ReferencedContainer = "container:ARingiOSAppExample.xcodeproj">
+            BlueprintIdentifier = "3BFB56FB2184414300928EEC"
+            BuildableName = "AR1ingiOSAppExample.app"
+            BlueprintName = "AR1ingiOSAppExample"
+            ReferencedContainer = "container:AR1ingiOSAppExample.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -55,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3BCBBAF4214A14B900212930"
-            BuildableName = "ARingiOSAppExample.app"
-            BlueprintName = "ARingiOSAppExample"
-            ReferencedContainer = "container:ARingiOSAppExample.xcodeproj">
+            BlueprintIdentifier = "3BFB56FB2184414300928EEC"
+            BuildableName = "AR1ingiOSAppExample.app"
+            BlueprintName = "AR1ingiOSAppExample"
+            ReferencedContainer = "container:AR1ingiOSAppExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -74,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3BCBBAF4214A14B900212930"
-            BuildableName = "ARingiOSAppExample.app"
-            BlueprintName = "ARingiOSAppExample"
-            ReferencedContainer = "container:ARingiOSAppExample.xcodeproj">
+            BlueprintIdentifier = "3BFB56FB2184414300928EEC"
+            BuildableName = "AR1ingiOSAppExample.app"
+            BlueprintName = "AR1ingiOSAppExample"
+            ReferencedContainer = "container:AR1ingiOSAppExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
