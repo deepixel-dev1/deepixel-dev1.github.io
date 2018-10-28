@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['bgra_5f8888',['BGRA_8888',['../namespacedp_1_1aringnative.html#a1cc5dd22ccb157af3ced99c17735140ea2de831ec0e2831eec9666d14ef3cb024',1,'dp::aringnative']]]
+  ['bdetected',['bDetected',['../structdp_1_1ar1ingnative_1_1_d_p_a_r1ing_face_output.html#ab8c9b79b71eb842d6a762fe493d53b80',1,'dp::ar1ingnative::DPAR1ingFaceOutput::bDetected()'],['../structdp_1_1ar1ingnative_1_1_d_p_a_r1ing_hand_output.html#a01e4e7f7ea0429ca2d47ec0bc1a09a57',1,'dp::ar1ingnative::DPAR1ingHandOutput::bDetected()'],['../structdp_1_1ar1ingnative_1_1_d_p_a_r1ing_wrist_output.html#afd0537209ecef216b92cf1ea90da61f4',1,'dp::ar1ingnative::DPAR1ingWristOutput::bDetected()']]],
+  ['bgra_5f8888',['BGRA_8888',['../namespacedp_1_1ar1ingnative.html#a2fe559c513018a86d160a8494f8e56a9a6ac5b9cf0c0edd67cd1983d7d73c1533',1,'dp::ar1ingnative']]],
+  ['brighthand',['bRightHand',['../structdp_1_1ar1ingnative_1_1_d_p_a_r1ing_hand_output.html#a8006b9664e0b875a4d849d34a5351f0b',1,'dp::ar1ingnative::DPAR1ingHandOutput::bRightHand()'],['../structdp_1_1ar1ingnative_1_1_d_p_a_r1ing_wrist_output.html#a7b730907640dff1bd622bdf241c28de4',1,'dp::ar1ingnative::DPAR1ingWristOutput::bRightHand()'],['../structdp_1_1ar1ingnative_1_1_d_p_a_r1ing_hand_input.html#af10d644eade3942a9b228d80226c8ed2',1,'dp::ar1ingnative::DPAR1ingHandInput::bRightHand()'],['../structdp_1_1ar1ingnative_1_1_d_p_a_r1ing_wrist_input.html#a79d071c78708c46b54ba910a49ab4f2d',1,'dp::ar1ingnative::DPAR1ingWristInput::bRightHand()']]]
 ];
