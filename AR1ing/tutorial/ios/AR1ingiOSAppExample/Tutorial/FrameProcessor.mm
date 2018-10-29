@@ -62,12 +62,10 @@ void drawEarring(cv::Mat &dst, cv::Mat &mask, bool isLeft, cv::Point earringPos,
     
     cv::Mat matEarring;
     float earringScale = g_earringScale * earringScaleY * 0.7f;
-    //    float earringScale = (float)dst.rows * earringScaleY * 0.6f / (float)g_matEarring.rows;
     cv::resize(g_matRotatedEarring, matEarring, cv::Size(0,0), earringScale, earringScale);
     
     cv::Rect earringRect(0, 0, matEarring.cols, matEarring.rows);
     earringRect = earringRect + earringPos - (g_earringAnchorPos * earringScale);
-    //    earringRect = earringRect -  cv::Point(earringRect.width / 2, earringRect.width / 4);
     
     cv::Rect safeRect(0, 0, dst.cols, dst.rows);
     earringRect = earringRect & safeRect;
@@ -113,8 +111,6 @@ void draw_band_or_ring(cv::InputOutputArray _matDisplay, std::vector<cv::Point2f
     imagePt[1] = cv::Point2f(matBand.cols - nRingThickness, matBand.rows / 2);
     imagePt[2] = cv::Point2f(matBand.cols / 2, 0);
     
-    //    LOGF("TEST", "0 = %0.3f, %0.3f     %.0.3f, %.0.3f", vWristPt[0].x, vWristPt[0].y, vWristPt[1].x,
-    //         vWristPt[1].y);
     cv::Point2f wristCt = cv::Point2f(vWristPt[0] + vWristPt[1]) / 2.0;
     cv::Point2f diffPt = vWristPt[1] - vWristPt[0];
     float wristWidth = std::sqrt(diffPt.x * diffPt.x + diffPt.y * diffPt.y);
@@ -230,16 +226,6 @@ void draw_band(cv::InputOutputArray _matDisplay,
 #if defined(FACEAR)
 
 - (void)processFrame:(cv::Mat &)frame {
-    // Flip and transpose
-    //    cv::Mat src;
-    //    cv::transpose(frame, src);
-    //    cv::flip(src, src, 1);
-    
-    // Create BGR image.
-    //    cv::cvtColor(src, src, cv::COLOR_BGRA2BGR);
-    //    cv::Mat srcGray;
-    //    cv::cvtColor(src, srcGray, cv::COLOR_BGRA2GRAY);
-    
     // Create an image for destination.
     cv::Mat dst;
     cv::cvtColor(frame, dst, cv::COLOR_BGRA2RGBA);
@@ -255,18 +241,10 @@ void draw_band(cv::InputOutputArray _matDisplay,
         drawEarring(dst, result.matMask, false, result.ptRightEarring, result.fRotX, result.fEarringScaleYRight);
     }
     
-    //    // Transpose.
-    //    cv::Mat _frame;
-    //    cv::transpose(dst, _frame);
-    
     // Flip
     cv::flip(dst, dst, 0);
     
-    // Copy dst to frame.
-    //    dst.copyTo(frame);
-    //    cv::cvtColor(dst, frame, cv::COLOR_BGR2BGRA);
     cv::cvtColor(dst, frame, cv::COLOR_RGBA2BGRA);
-    
 }
 
 #elif defined(HANDAR)
@@ -274,16 +252,6 @@ void draw_band(cv::InputOutputArray _matDisplay,
 
 
 - (void)processFrame:(cv::Mat &)frame {
-    // Flip and transpose
-    //    cv::Mat src;
-    //    cv::transpose(frame, src);
-    //    cv::flip(src, src, 1);
-    
-    // Create BGR image.
-    //    cv::cvtColor(src, src, cv::COLOR_BGRA2BGR);
-    //    cv::Mat srcGray;
-    //    cv::cvtColor(src, srcGray, cv::COLOR_BGRA2GRAY);
-    
     // Create an image for destination.
     cv::Mat dst;
     cv::cvtColor(frame, dst, cv::COLOR_BGRA2RGBA);
@@ -295,44 +263,15 @@ void draw_band(cv::InputOutputArray _matDisplay,
     dp::ar1ingnative::DPAR1ingHandOutput result = g_styleAR->DetectHand(input);
     draw_ring(dst, result);
     
-    //    dp::aringnative::DPARingResult result = styleAR->DetectFace(frame, dp::aringnative::DP_IMAGE_TYPE::BGRA_8888);
-    
-    //    if(result.detected) {
-    //        drawEarring(dst, result.mask, true, result.leftEarringPos, result.rotX, result.earringScaleYLeft);
-    //        drawEarring(dst, result.mask, false, result.rightEarringPos, result.rotX, result.earringScaleYRight);
-    //    }
-    
-    //    // Transpose.
-    //    cv::Mat _frame;
-    //    cv::transpose(dst, _frame);
-    
-    // Flip
-    //    cv::flip(dst, dst, 0);
-    
-    // Copy dst to frame.
-    //    dst.copyTo(frame);
-    //    cv::cvtColor(dst, frame, cv::COLOR_BGR2BGRA);
     cv::cvtColor(dst, frame, cv::COLOR_RGBA2BGRA);
-    
 }
 
 #else
 
 - (void)processFrame:(cv::Mat &)frame {
-    // Flip and transpose
-    //    cv::Mat src;
-    //    cv::transpose(frame, src);
-    //    cv::flip(src, src, 1);
-    
-    // Create BGR image.
-    //    cv::cvtColor(src, src, cv::COLOR_BGRA2BGR);
-    //    cv::Mat srcGray;
-    //    cv::cvtColor(src, srcGray, cv::COLOR_BGRA2GRAY);
-    
     // Create an image for destination.
     cv::Mat dst;
     cv::cvtColor(frame, dst, cv::COLOR_BGRA2RGBA);
-    //    cv::cvtColor(frame, dst, cv::COLOR_BGRA2BGR);
     
     // Detect wrist.
     dp::ar1ingnative::DPAR1ingWristInput input;
@@ -341,23 +280,7 @@ void draw_band(cv::InputOutputArray _matDisplay,
     dp::ar1ingnative::DPAR1ingWristOutput result = g_styleAR->DetectWrist(input);
     draw_band(dst, result);
     
-    //    if(result.detected) {
-    //        drawEarring(dst, result.mask, true, result.leftEarringPos, result.rotX, result.earringScaleYLeft);
-    //        drawEarring(dst, result.mask, false, result.rightEarringPos, result.rotX, result.earringScaleYRight);
-    //    }
-    
-    //    // Transpose.
-    //    cv::Mat _frame;
-    //    cv::transpose(dst, _frame);
-    
-    // Flip
-    //    cv::flip(dst, dst, 0);
-    
-    // Copy dst to frame.
-    //    dst.copyTo(frame);
-    //    cv::cvtColor(dst, frame, cv::COLOR_BGR2BGRA);
     cv::cvtColor(dst, frame, cv::COLOR_RGBA2BGRA);
-    
 }
 
 #endif

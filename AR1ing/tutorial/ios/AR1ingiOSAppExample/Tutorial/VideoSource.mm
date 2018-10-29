@@ -26,7 +26,7 @@ using namespace std;
     }
     [targetView.layer addSublayer:self.previewLayer];
     self.previewLayer.contentsGravity = kCAGravityCenter;
-    self.previewLayer.contentsScale = 3.0f;
+    self.previewLayer.contentsScale = 2.8f;
     self.previewLayer.frame = targetView.bounds;
     self.previewLayer.affineTransform = CGAffineTransformMakeRotation(M_PI / 2);
 }
