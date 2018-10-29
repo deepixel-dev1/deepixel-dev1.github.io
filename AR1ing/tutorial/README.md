@@ -236,6 +236,7 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
    faceInput.nMaskOffset = 1;
    dp::aringnative::DPAR1ingFaceOutput result = g_ptrARing->DetectFace(faceInput);
     ```
+
 ### 반지 또는 팔찌(밴드) 적용시
 
 1. 반지 또는 팔찌 함수 호출 방법.
