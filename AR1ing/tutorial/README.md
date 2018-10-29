@@ -28,7 +28,7 @@
   ![aring result](./img/ring_result.PNG){: width="450"}
     ```text
     반지 위치: 왼쪽 위치(x1, y1), 오른쪽 위치(x2, y2)
-    반지 길이: 반지 위치(왼쪽, 오른쪽) 사이의 거리
+    반지 길이: 반지 위치 사이의 거리
     반지 각도: 수평선을 기준으로 반지의 중심점에서 시계 방향으로의 각도(degree)    
     ```  
 
@@ -45,7 +45,7 @@
   ![aring result](./img/bracelet_result.PNG){: width="450"}
     ```text
     팔찌 위치: 왼쪽 위치(x1, y1), 오른쪽 위치(x2, y2)
-    팔찌 길이: 팔찌 위치(왼쪽, 오른쪽) 사이의 거리
+    팔찌 길이: 팔찌 위치 사이의 거리
     팔찌 각도: 수평선을 기준으로 팔찌의 중심점에서 시계 방향으로의 각도(degree)
     ```  
   
@@ -94,29 +94,29 @@
 
 ## AR1ing API 사용방법 (c++ with OpenCV)
 
->C++를 이용한 AR1ing API 사용법을 소개한다. AR1ing API를 사용하기 위해서는 OpenCV 라이브러리가 필요하다.
-AR1ing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 링크를 참고한다.
+>C++를 이용한 ARing API 사용법을 소개한다. ARing API를 사용하기 위해서는 OpenCV 라이브러리가 필요하다.
+ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 링크를 참고한다.
 
-1. AR1ing 객체를 생성한다.
+1. ARing 객체를 생성한다.
     > 객체를 생성하는 과정에서 라이센스와 관련된 예외가 발생할 수 있다.  
 
     ```c++
     // Android
     try {
-      std::shared_ptr<dp::aringnative::IAR1ing> g_ptrAR1ing =
-        dp::android::DPFactoryForAndroid::CreateInstance<dp::aringnative::IAR1ing>(
+      std::shared_ptr<dp::aringnative::IARing> g_ptrARing =
+        dp::android::DPFactoryForAndroid::CreateInstance<dp::aringnative::IARing>(
           env, activity);
     } catch (dp::exception::DPLicenseExpiredException ex) {
-      __android_log_print(ANDROID_LOG_FATAL, "AR1ing", "%s", ex.what());
+      __android_log_print(ANDROID_LOG_FATAL, "ARing", "%s", ex.what());
     } catch (dp::exception::DPLicenseException ex) {
-      __android_log_print(ANDROID_LOG_FATAL, "AR1ing", "%s", ex.what());
+      __android_log_print(ANDROID_LOG_FATAL, "ARing", "%s", ex.what());
     }
     ```
     ```c++
     // iOS
     try {
-      std::shared_ptr<dp::aringnative::IAR1ing> g_ptrAR1ing =
-        dp::ios::DPFactoryForiOS::CreateInstance<dp::aringnative::IAR1ing>();
+      std::shared_ptr<dp::aringnative::IARing> g_ptrARing =
+        dp::ios::DPFactoryForiOS::CreateInstance<dp::aringnative::IARing>();
     } catch (dp::exception::DPLicenseExpiredException ex) {
       std::cout << ex.what() << std::endl;
     } catch (dp::exception::DPLicenseException ex) {
@@ -124,8 +124,8 @@ AR1ing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample]
     }
     ```
 
-2. AR1ing 객체를 초기화 한다.
-    > AR1ing API를 초기화 하기 위해서 다바이스 실행 시 영상의 크기, 영상을 회전할 각도, 카메라 센서의 크기, 그리고 포커스 값을 입력한다. 카메라 센서의 크기와 포커스 값을 0으로 입력할 경우 AR1ing 내부에 정의된 기본값이 사용된다. 일반적으로 스마트폰을 세로로 사용할 경우 회전된 영상을 얻게 된다. 올바른 영상으로 바꾸기 위해 얼마나 회전을 해야하는지를 파라미터로 설정해야 한다.
+2. ARing 객체를 초기화 한다.
+    > ARing API를 초기화 하기 위해서 다바이스 실행 시 영상의 크기, 영상을 회전할 각도, 카메라 센서의 크기, 그리고 포커스 값을 입력한다. 카메라 센서의 크기와 포커스 값을 0으로 입력할 경우 ARing 내부에 정의된 기본값이 사용된다. 일반적으로 스마트폰을 세로로 사용할 경우 회전된 영상을 얻게 된다. 올바른 영상으로 바꾸기 위해 얼마나 회전을 해야하는지를 파라미터로 설정해야 한다.
 
     ```c++
     // (img.cols) 영상 가로 크기
@@ -143,14 +143,15 @@ AR1ing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample]
     |dp::exception::DPException|Already initialized|두번 이상 초기화를 했을 경우 발생한다.|
     |dp::exception::DPException|Initialization Failed|예상하지 못한 에러가 있을 경우 발생한다.|
 
-#### 귀걸이 적용시
-3. AR1ing 객체의 DetectFace 함수를 호출한다.
+### 귀걸이 적용시
+
+3. ARing 객체의 DetectFace 함수를 호출한다.
    > 영상의 [타입][image_type]을 지정해야 한다. 영상의 사이즈는 320x240보다 커야한다. 이 함수의 [반환 값][result]에는 얼굴 검출 유무 및 귀의 위치 등이 포함되어 있다. 반환값에 포함된 위치의 좌표계는 입력 영상의 pixel 좌표계와 같다.
 
     ```c++
     // DPAR1ingFaceInput는 DetectFace를 실행하기 위한 인풋 파라메터가 설정되어 있다.
     // DPAR1ingFaceInput src: API 실행을 위한 영상
-    // DPAR1ingFaceInput imageTyp: 영상 타입
+    // DPAR1ingFaceInput imageType: 영상 타입
     dp::aringnative::DPAR1ingFaceInput faceInput;
     faceInput.src = img;
     faceInput.imageType = imageType;
@@ -164,7 +165,7 @@ AR1ing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample]
     |dp::exception::DPException|Image size is different from the initial image size|초기화할 때 입력한 영상의 크기와 현재 입력 영상의 크기가 다른 경우 발생한다.|
 
 4. 귀 위치 정보를 이용하여 귀걸이를 출력한다.
-    >왼쪽과 오른쪽 귀걸이 2개를 출력한다. 이 때 귀걸이의 크기는 귀의 크기값을 이용해서 결정한다. 귀의 크기는 (귀의 높이 / 입력 영상의 높이) 값이다. 영상의 방향과 귀걸이의 방향이 일치하도록 해야한다.
+    >왼쪽, 오른쪽 귀걸이 2개를 출력한다. 이 때 귀걸이의 크기는 귀의 크기값을 이용해서 결정한다. 귀의 크기는 (귀의 높이 / 입력 영상의 높이) 값이다. 영상의 방향과 귀걸이의 방향이 일치하도록 해야한다.
 
     ```c++
     cv::Mat earingPic = cv::imread("earingPic.png"); //귀걸이 영상 입력
@@ -220,14 +221,14 @@ AR1ing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample]
   
     ```
 
-5. 얼굴의 마스크 크기 및 귀의 3차원 위치를 조정한다. 
-    >얼굴의 마스크 크기 및 귀의 3차원 위치를 수동으로 조정할 수 있다. 얼굴 마스크 크기 조절 범위는 [-5 ~ 5]이며 기본값은 [0]이다. (-)값은 마스크의 크기가 얼굴 안쪽 방향으로 작아지며, (+)값은 얼굴 바깥쪽 방향으로 커진다. 귀의 3차원 위치 범위는 [-5 ~ 5]이며 기본값은 [0]이다. (-)값은 얼굴의 안쪽 방향으로 귀의 3차원 위치가 이동하며, (+)값은 얼굴의 바깥쪽 방향으로 귀의 3차원 위치가 이동한다. 사용 방법은 DetectFace 함수 호출 시 얼굴의 마스크 크기 및 귀의 3차원 위치 조정 범위를 파라메터로 전달한다.
+5. 얼굴의 마스크 크기 및 귀 3차원 위치를 제어한다.
+    >얼굴의 마스크 크기 및 귀 3차원 위치를 임의로 제어 할 수 있다. 얼굴 마스크 크기 조절범위는 [-5 ~ 5]이며 기본값은 [0]이다. (-)값은 마스크의 크기가 얼굴 안쪽 방향으로 작아지며, (+)값은 얼굴 바깥쪽 방향으로 커진다. 귀 3차원 위치의 범위도 [-5 ~ 5]이며 기본값은 [0]이다. (-)값은 얼굴의 안쪽 방향으로 3차원 위치가 이동하며, (+)값은 얼굴의 바깥쪽 방향으로 3차원 위치가 이동한다. 기능의 사용은 DetectFace 함수 호출 시 얼굴의 마스크 크기 및 귀 3차원 위치 제어 범위를 파라메터로 넣어 사용한다.
 
     ```c++
-   // DetectFace 함수 호출시 DPAR1ingFaceInput에 제어하고 싶은 파라메터에 값을 넣어 주면 된다.
-   // 조정이 필요없다면 해당 변수에 데이터를 넣지 않아도 된다. 이 경우 기본값이 자동으로 세팅된다.
-   // DPAR1ingFaceInput n3DPosOffset: 귀의 3차원 위치 조정 값
-   // DPAR1ingFaceInput nMaskOffset: 얼굴 마스크의 크기 조정 값
+   // DetectFace함수 호출시 DPAR1ingFaceInput에 제어하고 싶은 파라메터에 값을 넣어 주면 된다.
+   // 디폴트 설정되어 있기 때문에, 제어가 불 필요하다면 해당 변수에 데이터를 넣지 않아도 된다.
+   // DPAR1ingFaceInput n3DPosOffset: 귀 3차원 위치 제어 값
+   // DPAR1ingFaceInput nMaskOffset: 얼굴 마스크의 크기 값
    dp::aringnative::DPAR1ingFaceInput faceInput;
    faceInput.src = img;
    faceInput.imageType = imageType;
@@ -235,19 +236,25 @@ AR1ing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample]
    faceInput.nMaskOffset = 1;
    dp::aringnative::DPAR1ingFaceOutput result = g_ptrARing->DetectFace(faceInput);
     ```
-    
-#### 반지 적용시
-3. AR1ing 객체의 DetectFace 함수를 호출한다.
-   > 영상의 [타입][image_type]을 지정해야 한다. 영상의 사이즈는 320x240보다 커야한다. 이 함수의 [반환 값][result]에는 얼굴 검출 유무 및 귀의 위치 등이 포함되어 있다. 반환값에 포함된 위치의 좌표계는 입력 영상의 pixel 좌표계와 같다.
+### 반지 적용시
+
+3. AR1ing 객체의 DetectHand 함수를 호출한다.
+   > 영상의 [타입][image_type]을 지정해야 한다. 영상의 사이즈는 320x240보다 커야한다. 이 함수의 [반환 값][result]에는 반지 위치, 길이, 각도가 포함되어 있다. 반환값에 포함된 위치의 좌표계는 입력 영상의 pixel 좌표계와 같다.
 
     ```c++
-    // DPAR1ingFaceInput는 DetectFace를 실행하기 위한 인풋 파라메터가 설정되어 있다.
-    // DPAR1ingFaceInput src: API 실행을 위한 영상
-    // DPAR1ingFaceInput imageTyp: 영상 타입
-    dp::aringnative::DPAR1ingFaceInput faceInput;
-    faceInput.src = img;
-    faceInput.imageType = imageType;
-    dp::aringnative::DPAR1ingFaceOutput result = g_ptrARing->DetectFace(faceInput);
+    // DPAR1ingHandInput는 DetectHand를 실행하기 위한 인풋 파라메터가 설정되어 있다.
+    // DPAR1ingHandInput src: API 실행을 위한 영상
+    // DPAR1ingHandInput imageType: 영상 타입
+    // DPAR1ingHandInput m_fingers: 손가락 선택
+    // DPAR1ingHandInput m_offset: 반지 위치 조절
+    // DPAR1ingHandInput m_bRightHand: 왼손/오른손 선택
+    dp::ar1ingnative::DPAR1ingHandInput input;
+    input.matSrc = src;
+    input.enumImageType = dp::ar1ingnative::DP_IMAGE_TYPE::RGBA_8888;
+    input.vFingers = m_fingers;
+    input.fOffset = m_offset;
+    input.bRightHand = m_bRightHand;
+    dp::ar1ingnative::DPAR1ingHandOutput result = m_ptrStyleAR->DetectHand(input);
     ```
 
     |Exception|Exception message|Description|
@@ -256,8 +263,66 @@ AR1ing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample]
     |dp::exception::DPException|No initialized|초기화를 하지 않은 경우 발생한다.|
     |dp::exception::DPException|Image size is different from the initial image size|초기화할 때 입력한 영상의 크기와 현재 입력 영상의 크기가 다른 경우 발생한다.|
 
-#### 팔찌 적용시
-3. AR1ing 객체의 DetectFace 함수를 호출한다.
+   손 위치 정보를 이용하여 반지를 출력한다.
+    >선택한 손가락에 반지를 출력한다. 선택한 손(왼손 또는 오른손)에 계산된 반지의 위치, 크기, 각도를 이용해서 반지를 출력한다. 
+
+    ```c++
+    cv::Mat earingPic = cv::imread("earingPic.png"); //귀걸이 영상 입력
+    if(result.detected)
+    {
+      drawEarring(matDST, earingPic, result, true); // LEFT
+      drawEarring(matDST, earingPic, result, false); // RIGHT
+    }
+    ```
+
+    ```c++
+    void drawEarring(cv::Mat dst, cv::Mat earingPic, DPAR1ingFaceOutput result, bool isLeft)
+    {
+      float fEaring_scale_y = isLeft ? result.earringScaleYLeft : earringScaleYRight;
+      cv::Mat matEarring;
+      cv::resize(earingPic, matEarring, cv::Size(0, 0), fEaring_scale_y, fEaring_scale_y);
+  
+      if(matEarring.empty())
+        return;
+  
+      cv::Point earingPt = isLeft ? result.leftEarringPos : result.rightEarringPos;
+  
+      cv::Rect earingRect(0, 0, matEarring.cols, matEarring.rows);
+  
+      earingRect = earingRect + earingPt;
+      earingRect = earingRect - cv::Point(earingRect.width / 2, earingRect.width / 4);
+  
+      cv::Rect safeRect(0, 0, dst.cols, dst.rows);
+      earingRect = earingRect & safeRect;
+  
+      if(matEarring.size().area()!=earingRect.area())
+        return;
+
+      // 얼굴을 일정 각도 이상 돌리면 mask를 적용하지 않는다.
+      if (isLeft) {
+        if (!(result.rotX < -15))
+          matEarring.setTo(0, result.mask(earingRect));
+      } else {
+        if (!(result.rotX > 15))
+          matEarring.setTo(0, result.mask(earingRect));
+      }
+  
+      cv::Mat earingMask;
+      cv::compare(matEarring, 0, earingMask, cv::CMP_GT);
+  
+      // dst의 타입(디바이스에서 영상을 출력할 때 사용하는 타입)으로 변경한다.
+      cv::cvtColor(earingMask, earingMask, CV_BGR2RGBA);
+      cv::cvtColor(matEarring, matEarring, CV_BGR2RGBA);
+  
+      cv::subtract(dst(earingRect), earingMask, dst(earingRect));
+      cv::add(matEarring, dst(earingRect), dst(earingRect));
+    }
+  
+    ```
+
+### 팔찌 적용시
+
+1. ARing 객체의 DetectFace 함수를 호출한다.
    > 영상의 [타입][image_type]을 지정해야 한다. 영상의 사이즈는 320x240보다 커야한다. 이 함수의 [반환 값][result]에는 얼굴 검출 유무 및 귀의 위치 등이 포함되어 있다. 반환값에 포함된 위치의 좌표계는 입력 영상의 pixel 좌표계와 같다.
 
     ```c++
@@ -288,14 +353,14 @@ AR1ing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample]
 
 - [Anroid Sample][andoid_sample]
 - [iOS Sample][ios_sample]
-- [AR1ing API][AR1ing_api]
+- [ARing API][ARing_api]
 - [OpenCV][opencv]
 - [TBB][tbb]
 
 [andoid_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/ARing/tutorial/android/
 [ios_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/ARing/tutorial/ios
 [opencv]: http://opencv.org/
-[AR1ing_api]: /ARing/apis/
+[ARing_api]: /ARing/apis/
 [result]: /ARing/apis/structdp_1_1aringnative_1_1_d_p_a_ring_result.html
 [image_type]: /ARing/apis/namespacemembers_enum.html
 [tbb]: https://www.threadingbuildingblocks.org/
