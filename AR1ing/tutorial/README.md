@@ -236,9 +236,9 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
    faceInput.nMaskOffset = 1;
    dp::aringnative::DPAR1ingFaceOutput result = g_ptrARing->DetectFace(faceInput);
     ```
-### 반지 적용시
+### 반지 또는 팔찌(밴드) 적용시
 
-3. AR1ing 객체의 DetectHand 함수를 호출한다.
+3-1. AR1ing 객체의 DetectHand 함수를 호출한다.
    > 영상의 [타입][image_type]을 지정해야 한다. 영상의 사이즈는 320x240보다 커야한다. 이 함수의 [반환 값][result]에는 반지 위치, 길이, 각도가 포함되어 있다. 반환값에 포함된 위치의 좌표계는 입력 영상의 pixel 좌표계와 같다.
 
     ```c++
@@ -263,76 +263,21 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
     |dp::exception::DPException|No initialized|초기화를 하지 않은 경우 발생한다.|
     |dp::exception::DPException|Image size is different from the initial image size|초기화할 때 입력한 영상의 크기와 현재 입력 영상의 크기가 다른 경우 발생한다.|
 
-   손 위치 정보를 이용하여 반지를 출력한다.
-    >선택한 손가락에 반지를 출력한다. 선택한 손(왼손 또는 오른손)에 계산된 반지의 위치, 크기, 각도를 이용해서 반지를 출력한다. 
+3-2. AR1ing 객체의 DetectWrist 함수를 호출한다.
+   > 영상의 [타입][image_type]을 지정해야 한다. 영상의 사이즈는 320x240보다 커야한다. 이 함수의 [반환 값][result]에는 팔찌 위치, 길이, 각도가 포함되어 있다. 반환값에 포함된 위치의 좌표계는 입력 영상의 pixel 좌표계와 같다.
 
     ```c++
-    cv::Mat earingPic = cv::imread("earingPic.png"); //귀걸이 영상 입력
-    if(result.detected)
-    {
-      drawEarring(matDST, earingPic, result, true); // LEFT
-      drawEarring(matDST, earingPic, result, false); // RIGHT
-    }
-    ```
-
-    ```c++
-    void drawEarring(cv::Mat dst, cv::Mat earingPic, DPAR1ingFaceOutput result, bool isLeft)
-    {
-      float fEaring_scale_y = isLeft ? result.earringScaleYLeft : earringScaleYRight;
-      cv::Mat matEarring;
-      cv::resize(earingPic, matEarring, cv::Size(0, 0), fEaring_scale_y, fEaring_scale_y);
-  
-      if(matEarring.empty())
-        return;
-  
-      cv::Point earingPt = isLeft ? result.leftEarringPos : result.rightEarringPos;
-  
-      cv::Rect earingRect(0, 0, matEarring.cols, matEarring.rows);
-  
-      earingRect = earingRect + earingPt;
-      earingRect = earingRect - cv::Point(earingRect.width / 2, earingRect.width / 4);
-  
-      cv::Rect safeRect(0, 0, dst.cols, dst.rows);
-      earingRect = earingRect & safeRect;
-  
-      if(matEarring.size().area()!=earingRect.area())
-        return;
-
-      // 얼굴을 일정 각도 이상 돌리면 mask를 적용하지 않는다.
-      if (isLeft) {
-        if (!(result.rotX < -15))
-          matEarring.setTo(0, result.mask(earingRect));
-      } else {
-        if (!(result.rotX > 15))
-          matEarring.setTo(0, result.mask(earingRect));
-      }
-  
-      cv::Mat earingMask;
-      cv::compare(matEarring, 0, earingMask, cv::CMP_GT);
-  
-      // dst의 타입(디바이스에서 영상을 출력할 때 사용하는 타입)으로 변경한다.
-      cv::cvtColor(earingMask, earingMask, CV_BGR2RGBA);
-      cv::cvtColor(matEarring, matEarring, CV_BGR2RGBA);
-  
-      cv::subtract(dst(earingRect), earingMask, dst(earingRect));
-      cv::add(matEarring, dst(earingRect), dst(earingRect));
-    }
-  
-    ```
-
-### 팔찌 적용시
-
-1. ARing 객체의 DetectFace 함수를 호출한다.
-   > 영상의 [타입][image_type]을 지정해야 한다. 영상의 사이즈는 320x240보다 커야한다. 이 함수의 [반환 값][result]에는 얼굴 검출 유무 및 귀의 위치 등이 포함되어 있다. 반환값에 포함된 위치의 좌표계는 입력 영상의 pixel 좌표계와 같다.
-
-    ```c++
-    // DPAR1ingFaceInput는 DetectFace를 실행하기 위한 인풋 파라메터가 설정되어 있다.
-    // DPAR1ingFaceInput src: API 실행을 위한 영상
-    // DPAR1ingFaceInput imageTyp: 영상 타입
-    dp::aringnative::DPAR1ingFaceInput faceInput;
-    faceInput.src = img;
-    faceInput.imageType = imageType;
-    dp::aringnative::DPAR1ingFaceOutput result = g_ptrARing->DetectFace(faceInput);
+    // DPAR1ingWristInput DetectWrist를 실행하기 위한 인풋 파라메터가 설정되어 있다.
+    // DPAR1ingWristInput src: API 실행을 위한 영상
+    // DPAR1ingWristInput imageType: 영상 타입
+    // DPAR1ingWristInput m_offset: 팔찌 위치 조절
+    // DPAR1ingWristInput m_bRightHand: 왼손/오른손 선택
+    dp::ar1ingnative::DPAR1ingWristInput input;
+    input.matSrc = src;
+    input.enumImageType = dp::ar1ingnative::DP_IMAGE_TYPE::RGBA_8888;
+    input.fOffset = m_offset;
+    input.bRightHand = m_bRightHand;
+    dp::ar1ingnative::DPAR1ingWristOutput result = m_ptrStyleAR->DetectWrist(input);
     ```
 
     |Exception|Exception message|Description|
@@ -340,6 +285,105 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
     |dp::exception::DPException|There is no image|입력 영상이 비어있을 경우 발생한다.|
     |dp::exception::DPException|No initialized|초기화를 하지 않은 경우 발생한다.|
     |dp::exception::DPException|Image size is different from the initial image size|초기화할 때 입력한 영상의 크기와 현재 입력 영상의 크기가 다른 경우 발생한다.|
+
+
+4. 손 위치 정보를 이용하여 반지 또는 팔찌를 출력한다.
+    >선택한 손(왼손 또는 오른손)에 계산된 반지 또는 팔찌의 위치, 크기, 각도를 이용해서 반지 또는 팔찌를 출력한다.  
+
+    ```c++
+    // 반지 출력
+    cv::Mat ringPic = cv::imread("ringPic.png"); //반지 이미지 입력
+    if(resultHand.bDetected)
+    {
+        for (int i = 0; i < 5; i++) {
+            if (!resultHand.vFinger[i]) // 지정한 손가락에만 반지 출력
+                  continue;        
+            std::vector<cv::Point2f> fingerPt;
+            for (int j = 0; j < result.vFingerPts[i].size(); j++) {
+                  fingerPt.push_back(result.vFingerPts[i][j]);
+            }
+            draw_ring_band(dst, fingerPt, 0.1f, ringPic);
+        }
+    }
+     ```
+
+     ```c++
+    // 팔찌 출력
+    cv::Mat braceletPic = cv::imread("braceletPic.png"); //팔찌 이미지 입력
+    if(resultWrist.bDetected)
+    {
+        std::vector<cv::Point2f> vWristPt;
+        for (int j = 0; j < resultWrist.vWristPt.size(); j++) {
+            vWristPt.push_back(resultWrist.vWristPt[j]);
+        }  
+        draw_ring_band(dst, vWristPt, 0.05f, braceletPic);
+    }
+    ```
+
+    ```c++
+    // 반지 또는 팔찌 출력함수
+   void draw_ring_band(cv::InputOutputArray _matDisplay, std::vector<cv::Point2f> pts,
+                      float thickness, cv::Mat matBand)
+   {
+       cv::Mat matDisplay = _matDisplay.getMat();
+       std::vector<cv::Point2f> vWristPt = pts;
+       std::vector<cv::Point2f> imagePt;
+       vWristPt.resize(3);
+       imagePt.resize(3);
+         // 반지 또는 밴드 두께 설정
+       int nRingThickness = thickness * matBand.cols;
+       imagePt[0] = cv::Point2f(nRingThickness, matBand.rows / 2);
+       imagePt[1] = cv::Point2f(matBand.cols - nRingThickness, matBand.rows / 2);
+       imagePt[2] = cv::Point2f(matBand.cols / 2, 0);
+         // 반지 또는 밴드 가로 설정
+       cv::Point2f wristCt = cv::Point2f(vWristPt[0] + vWristPt[1]) / 2.0;
+       cv::Point2f diffPt = vWristPt[1] - vWristPt[0];
+       float wristWidth = std::sqrt(diffPt.x * diffPt.x + diffPt.y * diffPt.y);
+         cv::Point2d diffPt = pt2 - pt1;
+       float l = std::sqrt(diffPt.x * diffPt.x + diffPt.y * diffPt.y);
+       cv::Point2f smallDiff = diffPt / l;
+       cv::Point2d ortho_vec = cv::Point2d(smallDiff.y, -smallDiff.x);
+         // 반지 또는 밴드 세로 설정
+       float wristHeight = wristWidth * (matBand.rows - nRingThickness * 2) / matBand.cols;
+       vWristPt[2] = wristCt + cv::Point2f(ortho_vec) * wristHeight;
+         // 반지 또는 밴드 박스 설정
+       cv::Rect wristRect = cv::boundingRect(vWristPt);
+         cv::Point cnt = (wristRect.tl() + wristRect.br()) / 2;
+       cv::Point rad = cv::Point(wristRect.width, wristRect.height);
+       wristRect = cv::Rect(cnt - rad, cnt + rad);
+         // 반지 또는 밴드 이미지 와 디스플레이 이미지 바운더리 체크
+       cv::Rect safeRect(0, 0, matDisplay.cols, matDisplay.rows);
+       cv::Rect cropedRect = safeRect & wristRect;
+       if (cropedRect.area() != wristRect.area()) {
+          return;
+       }
+         // 반지 또는 밴드영역 최소화
+       vWristPt[0] -= cv::Point2f(wristRect.tl());
+       vWristPt[1] -= cv::Point2f(wristRect.tl());
+       vWristPt[2] -= cv::Point2f(wristRect.tl());
+         // 반지 또는 밴드 이미지 디스플레이 이미지에 그리기
+       cv::Mat matBand_canvas;
+       cv::Mat matWrist(vWristPt);
+       cv::Mat matImage(imagePt);
+       matWrist = matWrist.reshape(1, 3);
+       matImage = matImage.reshape(1, 3);
+         matWrist.convertTo(matWrist, CV_32F);
+       matImage.convertTo(matImage, CV_32F);
+         cv::Mat matAffine = cv::estimateRigidTransform(matImage, matWrist, false);
+       if (matAffine.empty()) {
+          return;
+       }
+       cv::warpAffine(matBand, matBand_canvas, matAffine, wristRect.size());
+         // Extract useful area from the band image
+       cv::Mat bandMask;
+       cv::cvtColor(matBand_canvas, bandMask, cv::COLOR_BGR2GRAY);
+       bandMask = bandMask > 30;
+         cv::cvtColor(matBand_canvas, matBand_canvas, CV_BGR2RGBA);
+       matBand_canvas.copyTo(matDisplay(wristRect), bandMask);
+   }
+  
+    ```
+
 
 ***
 
