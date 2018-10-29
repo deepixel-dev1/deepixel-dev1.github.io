@@ -238,53 +238,54 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
     ```
 ### 반지 또는 팔찌(밴드) 적용시
 
-3-1. AR1ing 객체의 DetectHand 함수를 호출한다.
-   > 영상의 [타입][image_type]을 지정해야 한다. 영상의 사이즈는 320x240보다 커야한다. 이 함수의 [반환 값][result]에는 반지 위치, 길이, 각도가 포함되어 있다. 반환값에 포함된 위치의 좌표계는 입력 영상의 pixel 좌표계와 같다. 반지의 위치는 수동으로 조절이 가능하다. 반지 위치 조절범위는 [-1.0 ~ 1.0]이며 기본값은 [0]이다. (-)값은 반지의 위치가 손가락 아래방향으로 움직이고, (+)값은 반지의 위치가 손가락 위쪽방향으로 움직인다.
+3. 반지 또는 팔찌 함수 호출 방법.
+  - AR1ing 객체의 DetectHand 함수를 호출한다.
+    > 영상의 [타입][image_type]을 지정해야 한다. 영상의 사이즈는 320x240보다 커야한다. 이 함수의 [반환 값][result]에는 반지 위치, 길이, 각도가 포함되어 있다. 반환값에 포함된 위치의 좌표계는 입력 영상의 pixel 좌표계와 같다. 반지의 위치는 수동으로 조절이 가능하다. 반지 위치 조절범위는 [-1.0 ~ 1.0]이며 기본값은 [0]이다. (-)값은 반지의 위치가 손가락 아래방향으로 움직이고, (+)값은 반지의 위치가 손가락 위쪽방향으로 움직인다.
 
-    ```c++
-    // DPAR1ingHandInput는 DetectHand를 실행하기 위한 인풋 파라메터가 설정되어 있다.
-    // DPAR1ingHandInput src: API 실행을 위한 영상
-    // DPAR1ingHandInput imageType: 영상 타입
-    // DPAR1ingHandInput m_fingers: 손가락 선택
-    // DPAR1ingHandInput m_offset: 반지 위치 조절
-    // DPAR1ingHandInput m_bRightHand: 왼손/오른손 선택
-    dp::ar1ingnative::DPAR1ingHandInput input;
-    input.matSrc = src;
-    input.enumImageType = dp::ar1ingnative::DP_IMAGE_TYPE::RGBA_8888;
-    input.vFingers = m_fingers;
-    input.fOffset = m_offset;
-    input.bRightHand = m_bRightHand;
-    dp::ar1ingnative::DPAR1ingHandOutput result = m_ptrStyleAR->DetectHand(input);
-    ```
+      ```c++
+      // DPAR1ingHandInput는 DetectHand를 실행하기 위한 인풋 파라메터가 설정되어 있다.
+      // DPAR1ingHandInput src: API 실행을 위한 영상
+      // DPAR1ingHandInput imageType: 영상 타입
+      // DPAR1ingHandInput m_fingers: 손가락 선택
+      // DPAR1ingHandInput m_offset: 반지 위치 조절
+      // DPAR1ingHandInput m_bRightHand: 왼손/오른손 선택
+      dp::ar1ingnative::DPAR1ingHandInput input;
+      input.matSrc = src;
+      input.enumImageType = dp::ar1ingnative::DP_IMAGE_TYPE::RGBA_8888;
+      input.vFingers = m_fingers;
+      input.fOffset = m_offset;
+      input.bRightHand = m_bRightHand;
+      dp::ar1ingnative::DPAR1ingHandOutput result = m_ptrStyleAR->DetectHand(input);
+      ```
 
-    |Exception|Exception message|Description|
-    |-|-|-|
-    |dp::exception::DPException|There is no image|입력 영상이 비어있을 경우 발생한다.|
-    |dp::exception::DPException|No initialized|초기화를 하지 않은 경우 발생한다.|
-    |dp::exception::DPException|Image size is different from the initial image size|초기화할 때 입력한 영상의 크기와 현재 입력 영상의 크기가 다른 경우 발생한다.|
+      |Exception|Exception message|Description|
+      |-|-|-|
+      |dp::exception::DPException|There is no image|입력 영상이 비어있을 경우 발생한다.|
+      |dp::exception::DPException|No initialized|초기화를 하지 않은 경우 발생한다.|
+      |dp::exception::DPException|Image size is different from the initial image size|초기화할 때 입력한 영상의 크기와 현재 입력 영상의 크기가 다른 경우 발생한다.|
 
-3-2. AR1ing 객체의 DetectWrist 함수를 호출한다.
-   > 영상의 [타입][image_type]을 지정해야 한다. 영상의 사이즈는 320x240보다 커야한다. 이 함수의 [반환 값][result]에는 팔찌 위치, 길이, 각도가 포함되어 있다. 반환값에 포함된 위치의 좌표계는 입력 영상의 pixel 좌표계와 같다. 팔찌 위치 조절범위는 [-1.0 ~ 1.0]이며 기본값은 [0]이다. (-)값은 팔찌의 위치가 손목 아래방향으로 움직이고, (+)값은 팔찌의 위치가 손목 위쪽방향으로 움직인다.
+  - AR1ing 객체의 DetectWrist 함수를 호출한다.
+    > 영상의 [타입][image_type]을 지정해야 한다. 영상의 사이즈는 320x240보다 커야한다. 이 함수의 [반환 값][result]에는 팔찌 위치, 길이, 각도가 포함되어 있다. 반환값에 포함된 위치의 좌표계는 입력 영상의 pixel 좌표계와 같다. 팔찌 위치 조절범위는 [-1.0 ~ 1.0]이며 기본값은 [0]이다. (-)값은 팔찌의 위치가 손목 아래방향으로 움직이고, (+)값은 팔찌의 위치가 손목 위쪽방향으로 움직인다.
 
-    ```c++
-    // DPAR1ingWristInput DetectWrist를 실행하기 위한 인풋 파라메터가 설정되어 있다.
-    // DPAR1ingWristInput src: API 실행을 위한 영상
-    // DPAR1ingWristInput imageType: 영상 타입
-    // DPAR1ingWristInput m_offset: 팔찌 위치 조절
-    // DPAR1ingWristInput m_bRightHand: 왼손/오른손 선택
-    dp::ar1ingnative::DPAR1ingWristInput input;
-    input.matSrc = src;
-    input.enumImageType = dp::ar1ingnative::DP_IMAGE_TYPE::RGBA_8888;
-    input.fOffset = m_offset;
-    input.bRightHand = m_bRightHand;
-    dp::ar1ingnative::DPAR1ingWristOutput result = m_ptrStyleAR->DetectWrist(input);
-    ```
+      ```c++
+      // DPAR1ingWristInput DetectWrist를 실행하기 위한 인풋 파라메터가 설정되어 있다.
+      // DPAR1ingWristInput src: API 실행을 위한 영상
+      // DPAR1ingWristInput imageType: 영상 타입
+      // DPAR1ingWristInput m_offset: 팔찌 위치 조절
+      // DPAR1ingWristInput m_bRightHand: 왼손/오른손 선택
+      dp::ar1ingnative::DPAR1ingWristInput input;
+      input.matSrc = src;
+      input.enumImageType = dp::ar1ingnative::DP_IMAGE_TYPE::RGBA_8888;
+      input.fOffset = m_offset;
+      input.bRightHand = m_bRightHand;
+      dp::ar1ingnative::DPAR1ingWristOutput result = m_ptrStyleAR->DetectWrist(input);
+      ```
 
-    |Exception|Exception message|Description|
-    |-|-|-|
-    |dp::exception::DPException|There is no image|입력 영상이 비어있을 경우 발생한다.|
-    |dp::exception::DPException|No initialized|초기화를 하지 않은 경우 발생한다.|
-    |dp::exception::DPException|Image size is different from the initial image size|초기화할 때 입력한 영상의 크기와 현재 입력 영상의 크기가 다른 경우 발생한다.|
+      |Exception|Exception message|Description|
+      |-|-|-|
+      |dp::exception::DPException|There is no image|입력 영상이 비어있을 경우 발생한다.|
+      |dp::exception::DPException|No initialized|초기화를 하지 않은 경우 발생한다.|
+      |dp::exception::DPException|Image size is different from the initial image size|초기화할 때 입력한 영상의 크기와 현재 입력 영상의 크기가 다른 경우 발생한다.|
 
 
 4. 손 위치 정보를 이용하여 반지 또는 팔찌를 출력한다.
