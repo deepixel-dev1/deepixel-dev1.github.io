@@ -415,12 +415,12 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
 - [OpenCV][opencv]
 - [TBB][tbb]
 
-[andoid_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/ARing/tutorial/android/
-[ios_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/ARing/tutorial/ios
+[andoid_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/AR1ing/tutorial/android/
+[ios_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/AR1ing/tutorial/ios
 [opencv]: http://opencv.org/
-[ARing_api]: /ARing/apis/
-[result]: /ARing/apis/structdp_1_1aringnative_1_1_d_p_a_ring_result.html
-[image_type]: /ARing/apis/namespacemembers_enum.html
+[ARing_api]: /AR1ing/apis/
+[result]: /AR1ing/apis/structdp_1_1aringnative_1_1_d_p_a_ring_result.html
+[image_type]: /AR1ing/apis/namespacemembers_enum.html
 [tbb]: https://www.threadingbuildingblocks.org/
 [android]: android.md
 [iOS]: ios.md
