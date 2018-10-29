@@ -103,20 +103,20 @@ AR1ing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample]
     ```c++
     // Android
     try {
-      std::shared_ptr<dp::aringnative::IARing> g_ptrARing =
-        dp::android::DPFactoryForAndroid::CreateInstance<dp::aringnative::IARing>(
+      std::shared_ptr<dp::aringnative::IAR1ing> g_ptrAR1ing =
+        dp::android::DPFactoryForAndroid::CreateInstance<dp::aringnative::IAR1ing>(
           env, activity);
     } catch (dp::exception::DPLicenseExpiredException ex) {
-      __android_log_print(ANDROID_LOG_FATAL, "ARing", "%s", ex.what());
+      __android_log_print(ANDROID_LOG_FATAL, "AR1ing", "%s", ex.what());
     } catch (dp::exception::DPLicenseException ex) {
-      __android_log_print(ANDROID_LOG_FATAL, "ARing", "%s", ex.what());
+      __android_log_print(ANDROID_LOG_FATAL, "AR1ing", "%s", ex.what());
     }
     ```
     ```c++
     // iOS
     try {
-      std::shared_ptr<dp::aringnative::IARing> g_ptrARing =
-        dp::ios::DPFactoryForiOS::CreateInstance<dp::aringnative::IARing>();
+      std::shared_ptr<dp::aringnative::IAR1ing> g_ptrAR1ing =
+        dp::ios::DPFactoryForiOS::CreateInstance<dp::aringnative::IAR1ing>();
     } catch (dp::exception::DPLicenseExpiredException ex) {
       std::cout << ex.what() << std::endl;
     } catch (dp::exception::DPLicenseException ex) {
