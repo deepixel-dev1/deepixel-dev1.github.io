@@ -333,55 +333,66 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
        std::vector<cv::Point2f> imagePt;
        vWristPt.resize(3);
        imagePt.resize(3);
-         // 반지 또는 밴드 두께 설정
+
+       // 반지 또는 밴드 두께 설정
        int nRingThickness = thickness * matBand.cols;
        imagePt[0] = cv::Point2f(nRingThickness, matBand.rows / 2);
        imagePt[1] = cv::Point2f(matBand.cols - nRingThickness, matBand.rows / 2);
        imagePt[2] = cv::Point2f(matBand.cols / 2, 0);
-         // 반지 또는 밴드 가로 설정
+
+       // 반지 또는 밴드 가로 설정
        cv::Point2f wristCt = cv::Point2f(vWristPt[0] + vWristPt[1]) / 2.0;
        cv::Point2f diffPt = vWristPt[1] - vWristPt[0];
+
        float wristWidth = std::sqrt(diffPt.x * diffPt.x + diffPt.y * diffPt.y);
-         cv::Point2d diffPt = pt2 - pt1;
+       cv::Point2d diffPt = pt2 - pt1;
+
        float l = std::sqrt(diffPt.x * diffPt.x + diffPt.y * diffPt.y);
        cv::Point2f smallDiff = diffPt / l;
        cv::Point2d ortho_vec = cv::Point2d(smallDiff.y, -smallDiff.x);
-         // 반지 또는 밴드 세로 설정
+
+       // 반지 또는 밴드 세로 설정
        float wristHeight = wristWidth * (matBand.rows - nRingThickness * 2) / matBand.cols;
        vWristPt[2] = wristCt + cv::Point2f(ortho_vec) * wristHeight;
-         // 반지 또는 밴드 박스 설정
+
+       // 반지 또는 밴드 박스 설정
        cv::Rect wristRect = cv::boundingRect(vWristPt);
-         cv::Point cnt = (wristRect.tl() + wristRect.br()) / 2;
+       cv::Point cnt = (wristRect.tl() + wristRect.br()) / 2;
        cv::Point rad = cv::Point(wristRect.width, wristRect.height);
        wristRect = cv::Rect(cnt - rad, cnt + rad);
-         // 반지 또는 밴드 이미지 와 디스플레이 이미지 바운더리 체크
+
+       // 반지 또는 밴드 이미지 와 디스플레이 이미지 바운더리 체크
        cv::Rect safeRect(0, 0, matDisplay.cols, matDisplay.rows);
        cv::Rect cropedRect = safeRect & wristRect;
        if (cropedRect.area() != wristRect.area()) {
           return;
        }
-         // 반지 또는 밴드영역 최소화
+       // 반지 또는 밴드영역 최소화
        vWristPt[0] -= cv::Point2f(wristRect.tl());
        vWristPt[1] -= cv::Point2f(wristRect.tl());
        vWristPt[2] -= cv::Point2f(wristRect.tl());
-         // 반지 또는 밴드 이미지 디스플레이 이미지에 그리기
+
+       // 반지 또는 밴드 이미지 디스플레이 이미지에 그리기
        cv::Mat matBand_canvas;
        cv::Mat matWrist(vWristPt);
        cv::Mat matImage(imagePt);
        matWrist = matWrist.reshape(1, 3);
        matImage = matImage.reshape(1, 3);
-         matWrist.convertTo(matWrist, CV_32F);
+       matWrist.convertTo(matWrist, CV_32F);
        matImage.convertTo(matImage, CV_32F);
-         cv::Mat matAffine = cv::estimateRigidTransform(matImage, matWrist, false);
+
+       cv::Mat matAffine = cv::estimateRigidTransform(matImage, matWrist, false);
        if (matAffine.empty()) {
           return;
        }
        cv::warpAffine(matBand, matBand_canvas, matAffine, wristRect.size());
-         // Extract useful area from the band image
+
+       // Extract useful area from the band image
        cv::Mat bandMask;
        cv::cvtColor(matBand_canvas, bandMask, cv::COLOR_BGR2GRAY);
        bandMask = bandMask > 30;
-         cv::cvtColor(matBand_canvas, matBand_canvas, CV_BGR2RGBA);
+       
+       cv::cvtColor(matBand_canvas, matBand_canvas, CV_BGR2RGBA);
        matBand_canvas.copyTo(matDisplay(wristRect), bandMask);
    }
   
