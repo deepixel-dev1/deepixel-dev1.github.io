@@ -1,0 +1,100 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "27.0.3"
+    defaultConfig {
+        applicationId "com.il.ar1ing"
+        minSdkVersion 23
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=c++11 -frtti -fexceptions -fopenmp -landroid"
+            }
+            ndk {
+                // Specifies the ABI configurations of your native
+                // libraries Gradle should build and package with your APK.
+                abiFilters 'armeabi-v7a'
+            }
+        }
+    }
+    signingConfigs {
+        release {
+            keyAlias 'temp_sign'
+            keyPassword 'temp_sign'
+            storeFile file('temp_sign.jks')
+            storePassword 'temp_sign'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            jniDebuggable true
+        }
+    }
+    flavorDimensions "tier"
+    productFlavors {
+        facear {
+            externalNativeBuild {
+                cmake {
+                    cppFlags "-DFACEAR"
+                }
+            }
+            dimension "tier"
+        }
+        handar {
+            externalNativeBuild {
+                cmake {
+                    cppFlags "-DHANDAR"
+                }
+            }
+            dimension "tier"
+        }
+        wristar {
+            externalNativeBuild {
+                cmake {
+                    cppFlags "-DWRISTAR"
+                }
+            }
+            dimension "tier"
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+    sourceSets {
+        main {
+            // let gradle pack the shared library into apk
+            jniLibs {
+                srcDirs 'src/main/cpp/libs/'
+            }
+        }
+    }
+    packagingOptions {
+        exclude 'lib/arm64-v8a/libopencv_world.so'
+        exclude 'lib/armeabi/libopencv_world.so'
+        exclude 'lib/mips/libopencv_world.so'
+        exclude 'lib/mips64/libopencv_world.so'
+        exclude 'lib/x86/libopencv_world.so'
+        exclude 'lib/x86_64/libopencv_world.so'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
