@@ -92,10 +92,12 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a803fbb684a298d75d8b5ab497d7d8e60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58926be304ae4aec2782007ef5804ea0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacedp_1_1ar1ingnative.html#a2fe559c513018a86d160a8494f8e56a9">DP_IMAGE_TYPE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdp_1_1ar1ingnative_1_1_d_p_a_r1ing_face_input.html#a58926be304ae4aec2782007ef5804ea0">enumImageType</a> = <a class="el" href="namespacedp_1_1ar1ingnative.html#a2fe559c513018a86d160a8494f8e56a9afb9f6d21f6798ab8cbfc7694dea19da7">YUV_420_888</a></td></tr>
 <tr class="separator:a58926be304ae4aec2782007ef5804ea0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada1223161a2a2da660769df5672c6ff8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdp_1_1ar1ingnative_1_1_d_p_a_r1ing_face_input.html#ada1223161a2a2da660769df5672c6ff8">n3DPosOffset</a> = 0</td></tr>
+<tr class="memitem:ada1223161a2a2da660769df5672c6ff8"><td class="memItemLeft" align="right" valign="top">std::vector<int>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdp_1_1ar1ingnative_1_1_d_p_a_r1ing_face_input.html#ada1223161a2a2da660769df5672c6ff8">earOffset3D</a> = std::vector<int>(3,0)</td></tr>
 <tr class="separator:ada1223161a2a2da660769df5672c6ff8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1eeecab07f550e366a566f68454b1b5d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdp_1_1ar1ingnative_1_1_d_p_a_r1ing_face_input.html#a1eeecab07f550e366a566f68454b1b5d">nMaskOffset</a> = 0</td></tr>
 <tr class="separator:a1eeecab07f550e366a566f68454b1b5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c71f15c75cc227402e265ec5007fce2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdp_1_1ar1ingnative_1_1_d_p_a_r1ing_face_input.html#a3c71f15c75cc227402e265ec5007fce2">nStableOffset</a> = -4</td></tr>
+<tr class="separator:a3c71f15c75cc227402e265ec5007fce2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>AR1ing FACE API 입력 파라메터 구조체 </p>
@@ -184,13 +186,13 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <a id="ada1223161a2a2da660769df5672c6ff8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada1223161a2a2da660769df5672c6ff8">&#9670;&nbsp;</a></span>n3DPosOffset</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ada1223161a2a2da660769df5672c6ff8">&#9670;&nbsp;</a></span>earOffset3D</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int dp::ar1ingnative::DPAR1ingFaceInput::n3DPosOffset = 0</td>
+          <td class="memname">std::vector<int> dp::ar1ingnative::DPAR1ingFaceInput::earOffset3D = std::vector<int>(3, 0)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -210,6 +212,21 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>얼굴의 마스크 크기 제어 오프셋 </p>
+
+</div>
+</div>
+<a id="a3c71f15c75cc227402e265ec5007fce2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c71f15c75cc227402e265ec5007fce2">&#9670;&nbsp;</a></span>nStableOffset</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int dp::ar1ingnative::DPAR1ingFaceInput::nStableOffset = -4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>귀걸이 떨림 보정 제어 오프셋 </p>
 
 </div>
 </div>
