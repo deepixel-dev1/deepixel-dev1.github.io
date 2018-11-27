@@ -221,26 +221,41 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
   
     ```
 
-1. 얼굴의 마스크 크기 및 귀 3차원 위치를 제어한다.
-    >얼굴의 마스크 크기 및 귀 3차원 위치를 임의로 제어 할 수 있다. 얼굴 마스크 크기 조절범위는 [-5 ~ 5]이며 기본값은 [0]이다. (-)값은 마스크의 크기가 얼굴 안쪽 방향으로 작아지며, (+)값은 얼굴 바깥쪽 방향으로 커진다. 귀 3차원 위치의 범위도 [-5 ~ 5]이며 기본값은 [0]이다. (-)값은 얼굴의 안쪽 방향으로 3차원 위치가 이동하며, (+)값은 얼굴의 바깥쪽 방향으로 3차원 위치가 이동한다. 기능의 사용은 DetectFace 함수 호출 시 얼굴의 마스크 크기 및 귀 3차원 위치 제어 범위를 파라메터로 넣어 사용한다.
+1. 얼굴의 마스크 크기, 귀걸이 위치 떨림 보정, 귀 3차원 위치를 제어한다.
+   >사용방법은 DetectFace 함수 호출 시 얼굴의 마스크 크기 및 귀 3차원 위치 제어 범위를 파라메터로 넣어 사용한다.
 
-    ```c++
-   // DetectFace함수 호출시 DPAR1ingFaceInput에 제어하고 싶은 파라메터에 값을 넣어 주면 된다.
-   // 디폴트 설정되어 있기 때문에, 제어가 불 필요하다면 해당 변수에 데이터를 넣지 않아도 된다.
-   // DPAR1ingFaceInput n3DPosOffset: 귀 3차원 위치 제어 값
-   // DPAR1ingFaceInput nMaskOffset: 얼굴 마스크의 크기 값
-   dp::aringnative::DPAR1ingFaceInput faceInput;
-   faceInput.src = img;
-   faceInput.imageType = imageType;
-   faceInput.n3DPosOffset = 3;
-   faceInput.nMaskOffset = 1;
-   dp::aringnative::DPAR1ingFaceOutput result = g_ptrARing->DetectFace(faceInput);
-    ```
+    - 얼굴 마스크 크기 조절
+      >얼굴 마스크 크기를 임의로 조절할 수 있으며, 범위는 [-5 ~ 5]이고 기본값은 [0]이다. (-)값은 마스크의 크기가 얼굴 안쪽 방향으로 작아지며, (+)값은 얼굴 바깥쪽 방향으로 커진다.
+
+    - 귀걸이 위치 떨림 보정
+      >프레임마다 귀걸이 위치가 조금식 달라서 발생하는 떨림을 보정 할 수 있다. 범위는 [-5 ~ 5]이며, 기본값은 [-4]이다. (+)방향으로 조절하면 귀걸이 떨림 현상이 발생 하지만, 귀걸이 위치가 사람의 움직임에 빠르게 반응한다. (-)방향으로 조절하면 귀걸이 떨림 현상을 보정 할 수 있지만, 귀걸이 위치가 사람의 움직임에 느리게 반응한다.
+
+    - 귀 3차원 위치 조절
+      >귀 3차원 위치는 x, y, z방향으로 조절 할 수 있으며, 각 방향마다 [-5 ~ 5]범위 내에서 동작하고 기본값은 [0]이다. 방향에 따른 위치 이동은 아래 그림과 같다.
+
+        ![aring earing_control](./img/earing_control.png){: width="200"}
+
+        ```c++
+        // DetectFace함수 호출시 DPAR1ingFaceInput에 제어하고 싶은 파라메터에 값을 넣어 주면 된다.
+        // 디폴트 설정되어 있기 때문에, 제어가 불 필요하다면 해당 변수에 데이터를 넣지 않아도 된다.
+        // DPAR1ingFaceInput earOffset3D: 귀 3차원 위치 제어 값([0]x방향, [1]y방향, [2]z방향)
+        // DPAR1ingFaceInput nMaskOffset: 얼굴 마스크의 크기 값
+        // DPAR1ingFaceInput nStableOffset: 귀걸이 위치 떨림 보정
+        dp::aringnative::DPAR1ingFaceInput faceInput;
+        faceInput.src = img;
+        faceInput.imageType = imageType;
+        faceInput.earOffset3D[0] = 3;
+        faceInput.earOffset3D[1] = 2;
+        faceInput.earOffset3D[2] = 0;
+        faceInput.nMaskOffset = 1;
+        faceInput.nStableOffset = -4;
+        dp::aringnative::DPAR1ingFaceOutput result = g_ptrARing->DetectFace(faceInput);
+         ```
 
 ### 반지 또는 팔찌(밴드) 적용시
 
 1. 반지 또는 팔찌 함수 호출 방법.
-   
+
    - AR1ing 객체의 DetectHand 함수를 호출한다.
       > 영상의 [타입][image_type]을 지정해야 한다. 영상의 사이즈는 320x240보다 커야한다. 이 함수의 [반환 값][result]에는 반지 위치, 길이, 각도가 포함되어 있다. 반환값에 포함된 위치의 좌표계는 입력 영상의 pixel 좌표계와 같다. 반지의 위치는 수동으로 조절이 가능하다. 반지 위치 조절범위는 [-1.0 ~ 1.0]이며 기본값은 [0]이다. (-)값은 반지의 위치가 손가락 아래방향으로 움직이고, (+)값은 반지의 위치가 손가락 위쪽방향으로 움직인다.
 
@@ -288,7 +303,6 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
         |dp::exception::DPException|There is no image|입력 영상이 비어있을 경우 발생한다.|
         |dp::exception::DPException|No initialized|초기화를 하지 않은 경우 발생한다.|
         |dp::exception::DPException|Image size is different from the initial image size|초기화할 때 입력한 영상의 크기와 현재 입력 영상의 크기가 다른 경우 발생한다.|
-
 
 2. 손 위치 정보를 이용하여 반지 또는 팔찌를 출력한다.
     >선택한 손(왼손 또는 오른손)에 계산된 반지 또는 팔찌의 위치, 크기, 각도를 이용해서 반지 또는 팔찌를 출력한다.  
@@ -397,7 +411,6 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
    }
   
     ```
-
 
 ***
 
