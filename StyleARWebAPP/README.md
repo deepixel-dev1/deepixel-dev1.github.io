@@ -2,7 +2,7 @@
 
 # StyleAR Web API란?
 
-> StyleAR Web API는 얼굴 영상과 귀걸이 영상 입력을 클라이언트로부터 전달받아, 서버에서 귀걸이 위치 추정 및 영상분석 알고리즘을 실행 시킨 후 결과를 전달하는 Web기반 컴퓨터 비전API 입니다.
+> StyleAR Web API는 얼굴 영상과 귀걸이 영상을 클라이언트로부터 전달받아, 서버에서 StyleAR 서버에서 귀걸이 위치 추정 및 영상분석 알고리즘을 실행 시킨 후 결과를 전달하는 Web기반 컴퓨터비전 API 입니다.
 
 - 결과물
   - 귀걸이 가상착용 결과영상
@@ -11,17 +11,21 @@
 
     |종류|설명|
     |:-:|:-:|
-    |오른쪽 귀 위치|오른쪽 귀의 위치좌표(x, y)를 출력한다.|
-    |왼쪽 귀 위치|왼쪽 귀의 위치좌표(x, y)를 출력한다.|
-    |얼굴 비율|얼굴의 좌, 우 비율을 출력한다.|
-    |머리카락 색|머리카락 색(B, G, R)를 출력한다.|
-    |얼굴피부 색|얼굴피부 색(B, G, R)를 출력한다.|
-    |입술 색|입술 색(B, G, R)를 출력한다.|
+    |오른쪽 귀 위치|오른쪽 귀의 위치좌표(x, y)|
+    |왼쪽 귀 위치|왼쪽 귀의 위치좌표(x, y)|
+    |얼굴 비율|얼굴의 좌, 우 비율|
+    |머리카락 색|머리카락 색(B, G, R)|
+    |얼굴피부 색|얼굴피부 색(B, G, R)|
+    |입술 색|입술 색(B, G, R)|
+
+## StyleAR Web API 블록도
+
+  ![deepixel.xyz](./img/block.png){: width="200"}
 
 ## 사용 필수 조건
 
 - license key 발급
-  - StyleAR Wep API 사용은 반드시 [license key를 발급][email]받아야 합니다.
+  - StyleAR Wep API 사용은 반드시 [license key를 발급][license_email]받아야 합니다.
 
 ## API Request
 
@@ -32,7 +36,7 @@
   - https://4moep0liiy.apigw.ntruss.com/earring/v0_1/draw
 
 - headers
-  - x-ncp-apigw-api-key: 라이센스 키
+  - x-ncp-apigw-api-key: license-key
 
 - body(data)
 
@@ -64,7 +68,7 @@
 
 ## API 빠른실행
 
-> 클라이언트에서 입력받은 얼굴 및 귀걸이 영상을 서버로 요청하고, 결과를 받는 코드를 구현합니다.
+> 클라이언트에서 입력받은 얼굴 및 귀걸이 영상을 서버로 요청하고, 결과를 받는 코드를 구현 합니다.
 
 - HTML(클라이언트)
 
@@ -93,7 +97,7 @@ var faceFileReader = new FileReader();
 vae earFileReader = new FileReader();
 
 // 얼굴파일 데이터 로드
-var loadFaceFile = function (input) { 
+var loadFaceFile = function (input) {
     var uploadImage = document.getElementById("upload-face-Image");
     if (uploadImage.files.length === 0) {
         return;
@@ -195,7 +199,7 @@ function generateStyleAR() {
         document.getElementById("earring-image").src = txtArray[6]; //결과영상 출력
         }
     };
-    //웹 서버로 전송
+    //웹 서버로 전송 (<webserver-url>에 구현할 웹서버 url을 입력)
     xmlhttp.open("POST", "<webserver-url>", true);
     var myForm = document.getElementById('myForm');
     var formData = new FormData(myForm);
@@ -231,10 +235,10 @@ data_ear += 'Content-Disposition: form-data; name="' + "url_ear" + '"\r\n\r\n';
 data_ear += url_ear + '\r\n'
 data_ear += '--' + boundary + '--\r\n'
 
-# request 데이터
+# request 데이터 구성
 data = {'url_face':data_face, 'url_ear':data_ear}
 
-# request 해더(licence key 입력)
+# request 해더 구성(발급받은 licence key를 {subscription key}에 입력)
 headers = {'x-ncp-apigw-api-key': '{subscription key}', }
 
 #전송 및 응답
@@ -244,4 +248,12 @@ response = requests.post("https://4moep0liiy.apigw.ntruss.com/earring/v0_1/draw"
 return JsonResponse(response.json())
 ```
 
-[email]: <hoohyun.kim@deepixel.xyz>
+## 연락처
+
+>API 적용시 문제점을 발견하거나 궁금한 점이 있다면, 다음의 이메일 <hoohyun.kim@deepixel.xyz>로 문의해 주세요.
+
+## 참조
+
+- [License 문의][license_email]
+
+[license_email]: <honami82@deepixel.xyz>
