@@ -2,7 +2,7 @@
 
 # StyleAR Web API란?
 
-> StyleAR Web API는 얼굴 영상과 귀걸이 영상을 클라이언트로부터 전달받아, 서버에서 StyleAR 서버에서 귀걸이 위치 추정 및 영상분석 알고리즘을 실행 시킨 후 결과를 전달하는 Web기반 컴퓨터비전 API 입니다.
+> StyleAR Web API는 얼굴 영상과 귀걸이 영상을 클라이언트에서 StyleAR 서버로 전송하고, 귀걸이 위치 추정 및 영상분석 알고리즘을 실행 시킨 후 결과를 클라이언트에게 전달하는 Web기반 컴퓨터비전 API 입니다.
 
 - 결과물
   - 귀걸이 가상착용 결과영상
@@ -22,12 +22,12 @@
 
   ![deepixel.xyz](./img/block.png){: width="200"}
 
-## 사용 필수 조건
+## StyleAR Web API 사용 필수 조건
 
 - license key 발급
   - StyleAR Wep API 사용은 반드시 [license key를 발급][license_email]받아야 합니다.
 
-## API Request
+## StyleAR Web API Request
 
 - HTTP Method
   - POST
@@ -45,7 +45,7 @@
     |url_face|form-data|얼굴 영상 데이터|
     |url_ear|form-data|귀걸이 영상 데이터|
 
-## API Response
+## StyleAR Web API Response
 
 - Response 200
 
@@ -66,7 +66,7 @@
     |'No Face URL provided'|잘못된 얼굴 데이터 전송|
     |'No Ear URL provided'|잘못된 귀걸이 데이터 전송|
 
-## API 빠른실행
+## StyleAR Web API 빠른실행
 
 > 클라이언트에서 입력받은 얼굴 및 귀걸이 영상을 서버로 요청하고, 결과를 받는 코드를 구현 합니다.
 
