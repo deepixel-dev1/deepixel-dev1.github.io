@@ -5,7 +5,7 @@
 > StyleAR Web API는 얼굴 영상과 귀걸이 영상 입력을 클라이언트로부터 전달받아, 서버에서 귀걸이 위치 추정 및 영상분석 알고리즘을 실행 시킨 후 결과를 전달하는 Web기반 컴퓨터 비전API 입니다.
 
 - 결과물
-  - 귀걸이 착용 결과영상
+  - 귀걸이 가상착용 결과영상
   ![deepixel.xyz](./img/earringProcess.png){: width="200"}
   - 메타정보
 
@@ -47,20 +47,20 @@
 
     |Fields|Type|Description|
     |:-:|:-:|:-:|
-    |오른쪽 귀 위치|String|오른쪽 귀의 위치좌표(x, y)를 출력한다.|
-    |왼쪽 귀 위치|String|왼쪽 귀의 위치좌표(x, y)를 출력한다.|
-    |얼굴 비율|String|얼굴의 좌, 우 비율을 출력한다.|
-    |머리카락 색|String|머리카락 색(R, G, B)를 출력한다.|
-    |얼굴피부 색|String|얼굴피부 색(R, G, B)를 출력한다.|
-    |입술 색|String|입술 색(R, G, B)를 출력한다.|
-    |결과 영상|image|귀걸이가 착용된 결과 영상을 출력한다.|
+    |오른쪽 귀 위치|String|메타정보|
+    |왼쪽 귀 위치|String|메타정보|
+    |얼굴 비율|String|메타정보|
+    |머리카락 색|String|메타정보|
+    |얼굴피부 색|String|메타정보|
+    |입술 색|String|메타정보|
+    |결과 영상|image|귀걸이 가상착용 결과영상|
 
 - Response 400
   
     |Error Code|Description|
     |:-:|:-:|
-    |'No Face URL provided'|얼굴 URL|
-    |'No Ear URL provided'|귀 URL|
+    |'No Face URL provided'|잘못된 얼굴 데이터 전송|
+    |'No Ear URL provided'|잘못된 귀걸이 데이터 전송|
 
 ## API 빠른실행
 
@@ -86,7 +86,7 @@
 </body>
 ```
 
-- js
+- js(클라이언트)
 
 ```javaScript
 var faceFileReader = new FileReader();
