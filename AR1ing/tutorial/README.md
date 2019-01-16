@@ -97,7 +97,7 @@
 >C++를 이용한 ARing API 사용법을 소개한다. ARing API를 사용하기 위해서는 OpenCV 라이브러리가 필요하다.
 ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 링크를 참고한다.
 
-1. ARing 객체를 생성한다.
+1. AR1ing 객체를 생성한다.
     > 객체를 생성하는 과정에서 라이센스와 관련된 예외가 발생할 수 있다.  
 
     ```c++
@@ -124,8 +124,8 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
     }
     ```
 
-2. ARing 객체를 초기화 한다.
-    > ARing API를 초기화 하기 위해서 다바이스 실행 시 영상의 크기, 영상을 회전할 각도, 카메라 센서의 크기, 그리고 포커스 값을 입력한다. 카메라 센서의 크기와 포커스 값을 0으로 입력할 경우 ARing 내부에 정의된 기본값이 사용된다. 일반적으로 스마트폰을 세로로 사용할 경우 회전된 영상을 얻게 된다. 올바른 영상으로 바꾸기 위해 얼마나 회전을 해야하는지를 파라미터로 설정해야 한다.
+2. AR1ing 객체를 초기화 한다.
+    > ARing API를 초기화 하기 위해서 다바이스 실행 시 영상의 크기, 영상을 회전할 각도, 카메라 센서의 크기, 포커스 값 그리고 실행가능 영역을 입력한다. 카메라 센서의 크기와 포커스 값을 0으로 입력할 경우 ARing 내부에 정의된 기본값이 사용된다. 실행가능 영역은 1로 설정할 경우 가까운 얼굴에 대해, 2로 진행할 경우 중간크기의 얼굴, 3으로 진행하면 전체 영역에 대해 API가 실행 된다. 일반적으로 스마트폰을 세로로 사용할 경우 회전된 영상을 얻게 된다. 올바른 영상으로 바꾸기 위해 얼마나 회전을 해야하는지를 파라미터로 설정해야 한다.
 
     ```c++
     // (img.cols) 영상 가로 크기
@@ -134,7 +134,8 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
     // (sensorWidth) 카메라 센서의 가로 크기
     // (sensorHeight) 카메라 센서의 세로 크기
     // (focalLength) 카메라 포커스 값
-    g_ptrARing->initialize(img.cols, img.rows, imageRotation, sensorWidth, sensorHeight, focalLength);
+    // (nLevel) AR1ing API 실행가능 영역설정, 디폴트 값 = 3
+    g_ptrARing->initialize(img.cols, img.rows, imageRotation, sensorWidth, sensorHeight, focalLength, nLevel);
     ```
 
 
@@ -145,7 +146,7 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
 
 ### 귀걸이 적용시
 
-1. ARing 객체의 DetectFace 함수를 호출한다.
+1. AR1ing 객체의 DetectFace 함수를 호출한다.
    > 영상의 [타입][image_type]을 지정해야 한다. 영상의 사이즈는 320x240보다 커야한다. 이 함수의 [반환 값][result]에는 얼굴 검출 유무 및 귀의 위치 등이 포함되어 있다. 반환값에 포함된 위치의 좌표계는 입력 영상의 pixel 좌표계와 같다.
 
     ```c++
@@ -164,7 +165,7 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
     |dp::exception::DPException|No initialized|초기화를 하지 않은 경우 발생한다.|
     |dp::exception::DPException|Image size is different from the initial image size|초기화할 때 입력한 영상의 크기와 현재 입력 영상의 크기가 다른 경우 발생한다.|
 
-1. 귀 위치 정보를 이용하여 귀걸이를 출력한다.
+2. 귀 위치 정보를 이용하여 귀걸이를 출력한다.
     >왼쪽, 오른쪽 귀걸이 2개를 출력한다. 이 때 귀걸이의 크기는 귀의 크기값을 이용해서 결정한다. 귀의 크기는 (귀의 높이 / 입력 영상의 높이) 값이다. 영상의 방향과 귀걸이의 방향이 일치하도록 해야한다.
 
     ```c++
@@ -221,7 +222,7 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
   
     ```
 
-1. 얼굴의 마스크 크기, 귀걸이 위치 떨림 보정, 귀 3차원 위치를 제어한다.
+3. 얼굴의 마스크 크기, 귀걸이 위치 떨림 보정, 귀 3차원 위치를 제어한다.
    >사용방법은 DetectFace 함수 호출 시 얼굴의 마스크 크기, 귀걸이 위치 떨림 보정, 귀 3차원 위치 제어 범위를 파라메터로 넣어 사용한다.
 
     - 얼굴 마스크 크기 조절
