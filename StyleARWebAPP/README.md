@@ -4,7 +4,7 @@
 
 > 클라이언트 웹페이지에서 얼굴 영상데이터와 귀걸이 영상데이터를 입력받아 StyleAR 서버로 전송하면, 서버에서 영상처리 기반 알고리즘을 통해 귀걸이가 착용된 사진 및 사진의 메타정보를 클라이언트 웹페이지에 전달하는 웹 기반 영상처리 API입니다.
 
-![deepixel.xyz](./img/flow.png){: width="200"}
+![deepixel.xyz](./img/flow.png){: width="1000"}
 
 ## StyleAR Web API 입출력
 
@@ -14,7 +14,7 @@
   |:-:|:-:|:-:|
   |입력|얼굴사진| 1.귀걸이사진 </br> 2.귀걸이 크기 </br> (실제 귀걸이 가로, 세로 크기를 실측함. 단위는 mm)|
   |주의사항|얼굴이 사진의 40%이상 차지|귀걸이를 제외한 바탕화면을 투명화 함(PNG 영상 입력)|
-  |예제사진|![deepixel.xyz](./img/face.jpg){: width="200"}|![deepixel.xyz](./img/earring.png){: width="200"}|
+  |예제사진|![deepixel.xyz](./img/face.jpg){: width="200"}|![deepixel.xyz](./img/earring.png){: width="600"}|
 
 - 출력(서버)
   
@@ -27,7 +27,7 @@
 
 > StyleAR Web API사용은 쥬얼리 쇼핑몰에서 고객이 업로드 한 얼굴 및 귀걸이 영상과 미리 정의된 귀걸이 크기 및 발급받은 라이센스 키 데이터를 딥픽셀 서버 측에 전달합니다. 딥픽셀 서버는 라이센스 키가 유효한지 확인 후에 StyleAR 영상처리 알고리즘을 통해 귀걸이가 착용된 고객의 얼굴 영상 및 메타정보를 쥬얼리 쇼핑물에 전달합니다.
   
-  ![deepixel.xyz](./img/blockdiagram.png){: width="200"}
+  ![deepixel.xyz](./img/blockdiagram.png){: width="1000"}
 
 ### StyleAR Web API 예제
 
