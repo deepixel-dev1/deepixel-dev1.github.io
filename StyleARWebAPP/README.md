@@ -12,7 +12,7 @@
   
   ||얼굴|귀걸이|
   |:-:|:-:|:-:|
-  |입력|얼굴사진| 1.귀걸이사진 </br> 2.귀걸이 크기 </br> (실제 귀걸이 가로, 세로 크기를 실측함. 단위는 mm)|
+  |입력|얼굴사진| 1.귀걸이사진 <br /> 2.귀걸이 크기 <br /> (실제 귀걸이 가로, 세로 크기를 실측함. 단위는 mm)|
   |주의사항|얼굴이 사진의 40%이상 차지|귀걸이를 제외한 바탕화면을 투명화 함(PNG 영상 입력)|
   |예제사진|![deepixel.xyz](./img/face.jpg){: width="200"}|![deepixel.xyz](./img/earring.png){: width="200"}|
 
@@ -21,7 +21,7 @@
   |결과물|내용|비고|
   |:-:|:-:|:-:|
   |귀걸이 착용 사진|![deepixel.xyz](./img/faceResult.png){: width="200"}|기본적으로 사진에 instagram 필터가 적용|
-  |메타정보|![deepixel.xyz](./img/meta_result.JPG){: width="500"}| 귀 위치좌표 (영상의 x, y 좌표) </br> 얼굴 비율 (얼굴의 좌우비율) </br> 얼굴 부분 색 (Blue, Green, Red 순으로 정렬) |
+  |메타정보|![deepixel.xyz](./img/meta_result.JPG){: width="500"}| 귀 위치좌표 (영상의 x, y 좌표) <br /> 얼굴 비율 (얼굴의 좌우비율) <br /> 얼굴 부분 색 (Blue, Green, Red 순으로 정렬) |
 
 ## StyleAR Web API 사용방법
 
