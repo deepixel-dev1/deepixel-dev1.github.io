@@ -14,7 +14,7 @@
   |:-:|:-:|:-:|
   |입력|얼굴사진| 1.귀걸이사진 <br /> 2.귀걸이 크기 <br /> (실제 귀걸이 가로, 세로 크기를 실측함. 단위는 mm)|
   |주의사항|얼굴이 사진의 40%이상 차지|귀걸이를 제외한 바탕화면을 투명화 함(PNG 영상 입력)|
-  |예제사진|![deepixel.xyz](./img/face.jpg){: width="200"}|![deepixel.xyz](./img/earring.png){: width="200"}|
+  |예제사진|![deepixel.xyz](./img/face.jpg){: width="200"}|![deepixel.xyz](./img/earring.png){: width="50"}|
 
 - 출력(서버)
   
