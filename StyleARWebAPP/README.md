@@ -76,7 +76,7 @@
 
     - JAVASCRIPT(쥬얼리 쇼핑몰 웹 페이지)
 
-    ```javaScript
+    ```js
     var faceFileReader = new FileReader();
     var earFileReader = new FileReader();
 
@@ -146,7 +146,7 @@
 
    - JAVASCRIPT(쥬얼리 쇼핑몰 웹페이지)
 
-    ```javaScript
+    ```js
     function generateStyleAR() {
         var obj,dbParam,xmlhttp,myObj,x,txt = "";
         var txtArray = new Array();
@@ -235,7 +235,7 @@
 
    - JAVASCRIPT(쥬얼리 쇼핑몰 웹 페이지)
 
-    ```javaScript
+    ```js
     function generateStyleAR() {
         var obj,dbParam,xmlhttp,myObj,x,txt = "";
         var txtArray = new Array();
