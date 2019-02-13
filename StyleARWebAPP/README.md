@@ -21,7 +21,7 @@
   |결과물|내용|비고|
   |:-:|:-:|:-:|
   |귀걸이 착용 사진|![deepixel.xyz](./img/faceResult.png){: width="200"}|사진에 영상 필터가 적용됨|
-  |메타정보|![deepixel.xyz](./img/meta_result.JPG){: width="500"}| 귀 위치 좌표 (영상의 x, y 좌표) <br /> 얼굴 비율 (얼굴의 좌우비율) <br /> 머리카락/얼굴피부/입술 색 (Blue, Green, Red) |
+  |메타정보|![deepixel.xyz](./img/meta_info.png){: width="500"}| 색상정보 범위(0 ~ 255) <br /> 얼굴비율 범위 (0 ~ 1) |
 
 ## StyleAR Web API 사용 방법 (쥬얼리 쇼핑몰)
 
@@ -222,6 +222,20 @@
     |200||성공|
     |400|'No Ear URL provided'|잘못된 귀걸이 데이터 전송|
     |400|'No Face URL provided'|잘못된 얼굴 데이터 전송|
+    |401|'Permission Denied'|사용권한 거부|
+    |401|'Authentication Failed'|인증 실패|
+    |404|'Not Found Exception'|발견되지 않은 에러|
+    |413|'Request Entity Too Large'|요청한계초과|
+    |429|'Quota Exceeded'|할당양 초과|
+    |429|'Throttle Limited'|제한된 쓰로틀 초과|
+    |500|'Unexpected Error'|예상치 못한 에러|
+    |503|'Connection Closed By Endpoint'|닫혀진 엔드포인트에서의 연결|
+    |503|'Endpoint Error'|엔드포인트 에러|
+    |503|'Unknown Endpoint Domain'|알수없는 엔드포인트 도메인|
+    |504|'Endpoint Timeout'|엔드포인트 타임아웃|
+    
+
+
 
 5. 쥬얼리 쇼핑몰 웹 페이지에서 결과 출력
    > 쥬얼리 쇼핑몰 웹 서버에서 전달 받은 데이터(귀걸이 착용 얼굴 영상, 메타데이터)를 쥬얼리 쇼핑몰 웹 페이지에 출력 합니다.
