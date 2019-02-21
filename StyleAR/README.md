@@ -34,7 +34,7 @@
 
     |결과물|내용|비고|
     |:-:|:-:|:-:|
-    |귀걸이 착용 영상|![deepixel.xyz](./img/faceResult.png){: width="200"}|귀걸이 실측크기에 맞게 배치 됨|
+    |귀걸이 착용 영상|![deepixel.xyz](./img/faceResult.png){: width="200"}|귀걸이 실측크기에 맞게 배치|
     |메타정보|![deepixel.xyz](./img/meta_info.png){: width="500"}| 색상정보 범위(0 ~ 255) <br /> 얼굴비율 범위 (0 ~ 1) |
 
 
@@ -50,8 +50,8 @@
 
 ## StyleAR API 사용방법 (c++ with OpenCV)
 
->C++를 이용한 StyleAR API 사용법을 소개한다. StyleAR API를 사용하기 위해서는 OpenCV 라이브러리가 필요하다.
-StyleAR API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 링크를 참고한다.
+>C++를 이용한 StyleAR API 사용법을 소개한다. StyleAR API를 사용하기 위해서는 OpenCV 라이브러리가 필요합니다.
+StyleAR API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 링크를 참고합니다.
 
 ## 연락처
 
