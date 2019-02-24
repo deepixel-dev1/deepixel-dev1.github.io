@@ -14,10 +14,6 @@
 #import <UIKit/UIKit.h>
 #import <StyleARiOS/DPStyleAR.h>
 
-#define FACEAR
-//#define HANDAR
-//#define WRISTAR
-
 @interface VideoSource : NSObject
 
 - (void)start;

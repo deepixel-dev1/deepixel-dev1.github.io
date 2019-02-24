@@ -34,6 +34,9 @@ NSString *GetEarringImgPath() {
     [_styleAR setTargetView:targetView];
 }
 
+/**
+ * 전면 카메라
+ */
 - (AVCaptureDevice *)frontCamera {
     NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
     for (AVCaptureDevice *device in devices) {
@@ -44,6 +47,9 @@ NSString *GetEarringImgPath() {
     return nil;
 }
 
+/**
+ * 후면 카메라
+ */
 - (AVCaptureDevice *)backCamera {
     NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
     for (AVCaptureDevice *device in devices) {
@@ -58,30 +64,33 @@ NSString *GetEarringImgPath() {
 {
     self = [super init];
     if (self) {
+        // 캡쳐 세션을 생성하고 초기화한다.
         captureSession = [[AVCaptureSession alloc] init];
         captureSession.sessionPreset = AVCaptureSessionPresetPhoto;
 
-#if defined(FACEAR)
+        // 캡쳐 세션의 input을 설정한다.
         AVCaptureDevice *device = [self frontCamera];
-#else
-        AVCaptureDevice *device = [self backCamera];
-#endif
-        
         NSError *error = nil;
         AVCaptureDeviceInput *input = [[AVCaptureDeviceInput alloc] initWithDevice:device error:&error];
         [captureSession addInput:input];
-        
+
+        // 갭쳐 세션의 output을 설정한다.
         AVCaptureVideoDataOutput *output = [[AVCaptureVideoDataOutput alloc] init];
         output.videoSettings = @{(NSString *)kCVPixelBufferPixelFormatTypeKey : @(kCVPixelFormatType_32BGRA)};
         output.alwaysDiscardsLateVideoFrames = YES;
         [captureSession addOutput:output];
         
+        // StyleAR 객체를 생성하고 초기화한다.
         _styleAR = [DPStyleARFactory getInstance];
+        [_styleAR initialize];
+
+        // 카메라 정보를 설정한다.
         DPCameraParam *cameraParam = [[DPCameraParam alloc] init];
         [cameraParam setSensorOrientation:90];
         [cameraParam setFocalLength:30.0f];
-        [_styleAR initialize];
         [_styleAR setCameraParam:cameraParam];
+        
+        // 귀걸이 정보를 설정한다.
         NSString *earringPath = GetEarringImgPath();
         DPEarringParam *earringParam = [[DPEarringParam alloc] init];
         earringParam.absolutePath = earringPath;
@@ -90,6 +99,7 @@ NSString *GetEarringImgPath() {
         earringParam.anchorPosition = TOP;
         [_styleAR setEarringParam:earringParam];
 
+        // 카메라 영상을 처리하는 대리자를 지정한다.
         id<AVCaptureVideoDataOutputSampleBufferDelegate> dele = [_styleAR getDelegate];
         dispatch_queue_t queue = dispatch_queue_create("VideoQueue", DISPATCH_QUEUE_SERIAL);
         [output setSampleBufferDelegate:dele queue:queue];
@@ -98,16 +108,25 @@ NSString *GetEarringImgPath() {
     return self;
 }
 
+/**
+ * 카메라와 StyleAR를 시작한다.
+ */
 - (void)start {
     [self.captureSession startRunning];
     [self.styleAR start];
 }
 
+/**
+ * 카메라와 StyleAR를 정지한다.
+ */
 - (void)stop {
     [self.captureSession stopRunning];
     [self.styleAR stop];
 }
 
+/**
+ * 얼굴의 메타 정보를 반환한다.
+ */
 - (DPFaceMetaData *)getFaceMetaData {
     return [self.styleAR getFaceMetaData];
 }
