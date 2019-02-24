@@ -14,6 +14,9 @@
 using namespace cv;
 using namespace std;
 
+/**
+ * 귀걸이의 절대 경로를 반환한다.
+ */
 NSString *GetEarringImgPath() {
     NSBundle *bundle = [NSBundle mainBundle];
     NSString *resourcePath = [bundle pathForResource:@"wing1" ofType:@"png"];
@@ -24,13 +27,20 @@ NSString *GetEarringImgPath() {
 
 @synthesize captureSession;
 
+/**
+ * StyleAR 결과를 출력할 view를 설정한다.
+ */
 - (void)setTargetView:(UIView *)targetView {
+    // 센서 방향대로 영상을 회전한다.
     CGAffineTransform rotation = CGAffineTransformMakeRotation(M_PI / 2);
+    // 전면 카메라가 거울처럼 보이도록 좌우를 뒤집는다.
     CGAffineTransform mirror = CGAffineTransformMakeScale(-1.0, 1.0);
+
     targetView.layer.affineTransform = CGAffineTransformConcat(rotation, mirror);
     targetView.layer.contentsGravity = kCAGravityResizeAspect;
     targetView.layer.frame = targetView.bounds;
 
+    // StyleAR에 view를 설정한다.
     [_styleAR setTargetView:targetView];
 }
 
