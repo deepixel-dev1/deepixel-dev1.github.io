@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: artifacts:stylearandroid-facear-demosimple">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/stylearandroid-facear-demosimple.aar/f478e8e521e3f680a4cda5f14be22a0b/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/stylearandroid-facear-demosimple.aar/f478e8e521e3f680a4cda5f14be22a0b/jars/libs/unity-classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/stylearandroid-facear-demosimple.aar/f478e8e521e3f680a4cda5f14be22a0b/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
