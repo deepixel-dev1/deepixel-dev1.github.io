@@ -42,10 +42,18 @@
 
 >StyleAR API를 모바일 앱에서 사용하는 방법을 설명합니다.
 
+- 라이센스 발급
+  > StyleAR API를 사용하기 위해서는 반드시 라이센스를 발급받아야 합니다.
+
+|목차|내용|
+|:-:|:-:|
+|발급|<honami82@deepixel.xyz>로 문의 바랍니다.|
+|주의사항|API 사용 기간, 메타정보 사용 유무를 고려하여 주시기 바랍니다.|
+
 - 환경설정
   - Android
     - StyleAR API Library 파일 넣기
-    > Library 폴더에 배포된 라이브러리 파일(StyleARAndroid.aar)을 넣는다.
+    > Library 폴더에 라이센스 발급 시 배포된 라이브러리 파일(StyleARAndroid.aar)을 넣는다.
     - Gradle 설정추가
 
         ```Gradle
@@ -67,15 +75,25 @@
 
 - Android StyleAR API 사용법
   > [Android Code][android_sample]는 Android 예제인 [Camera2BasicFragment][camera2basicfragment_sample]를 기반으로 구현하였습니다.
-  - StyleAR API 생성
-    > StyleAR의 API는 DPStyleARFactory를 사용하여 instance를 생성합니다.
+  - StyleAR API 객체생성
+    > StyleAR의 API는 DPStyleARFactory를 사용하여 객체를 생성합니다. 객체를 생성하는 과정에서 라이센스와 관련된 메시지가 출력 될 수 있습니다.
 
     ```java
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        // StyleAR API 생성
         if (mStyleARAndroid == null) {
-            mStyleARAndroid = DPStyleARFactory.getInstance(this.getActivity());
+            try {
+                 // StyleAR API 생성
+                mStyleARAndroid = DPStyleARFactory.getInstance(this.getActivity());
+                mStyleARAndroid.initialize();
+            // license 메시지 출력
+            } catch (DPLicenseExpiredException e) {
+                ErrorDialog.newInstance(e.getMessage()).show(getChildFragmentManager(), FRAGMENT_DIALOG);
+            } catch (DPLicenseException e) {
+                ErrorDialog.newInstance(e.getMessage()).show(getChildFragmentManager(), FRAGMENT_DIALOG);
+            } catch (DPException e) {
+                ErrorDialog.newInstance(e.getMessage()).show(getChildFragmentManager(), FRAGMENT_DIALOG);
+            }
         }
     }
     ```
@@ -87,6 +105,7 @@
     /// Camera2BasicFragment.java
     import xyz.deepixel.stylear.DPCameraParam;
     import xyz.deepixel.stylear.DPEarringAnchorPosition;
+    import xyz.deepixel.stylear.DPEarringParam;
     import xyz.deepixel.stylear.DPException;
     import xyz.deepixel.stylear.DPFaceMetaData;
     import xyz.deepixel.stylear.DPLicenseException;
@@ -98,45 +117,47 @@
         implements View.OnClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
 
         private final CameraDevice.StateCallback mStateCallback = new CameraDevice.StateCallback() {
-          // StyleAR 카메라 파라메터 클래스 설정
-          DPCameraParam cameraParam = new DPCameraParam();
-          cameraParam.setWidth(mPreviewSize.getWidth());
-          cameraParam.setHeight(mPreviewSize.getHeight());
-          cameraParam.setSensorOrientation(mSensorOrientation);
-          try {
-              // StyleAR Android API 초기화
-              mStyleARAndroid.initialize();
-              // StyleAR surface 지정
-              mStyleARAndroid.setTargetSurface(mSurface);
-              // StyleAR 카메라 파라메터 클래스 지정
-              mStyleARAndroid.setCameraParam(cameraParam);
-              // StyleAR API 시작
-              mStyleARAndroid.start();
-          } catch (DPLicenseExpiredException e) {
-              ErrorDialog.newInstance(e.getMessage()).show(getChildFragmentManager(), FRAGMENT_DIALOG);
-          } catch (DPLicenseException e) {
-              ErrorDialog.newInstance(e.getMessage()).show(getChildFragmentManager(), FRAGMENT_DIALOG);
-          } catch (DPException e) {
-              ErrorDialog.newInstance(e.getMessage()).show(getChildFragmentManager(), FRAGMENT_DIALOG);
-          }
+            // This method is called when the camera is opened.  We start camera preview here.
+            mCameraOpenCloseLock.release();
+            mCameraDevice = cameraDevice;
+            createCameraPreviewSession();
+
+            // Initialize style ar.
+            // DPCameraParam 선언
+            DPCameraParam cameraParam = new DPCameraParam();
+            // SensorOrientation 설정
+            cameraParam.setSensorOrientation(mSensorOrientation);
+            // focallength 설정
+            cameraParam.setFocalLength(m_focalLength);
+            // surface 설정
+            mStyleARAndroid.setTargetSurface(mSurface);
+            // StyleAR API에 카메라 파라메터(DPCameraParam) 설정
+            mStyleARAndroid.setCameraParam(cameraParam);
+            // StyleAR 시작
+            mStyleARAndroid.start();
         }
     }
 
     ```
 
     - StyleAR API 귀걸이 변경
-    > 귀걸이를 변경할 시에는 File 클래스에 귀걸이 사진이 저장되어 있는 경로를 입력하고, 귀걸이 정보(실제 귀걸이 가로, 세로 크기) 및 귀걸이 사진이 지정된 File 클래스를 StyleAR API의 setEarringParams함수에 입력합니다.
+    > 귀걸이를 변경할 시에는 File 클래스에 귀걸이 사진이 저장되어 있는 경로를 입력하고, 귀걸이 정보(실제 귀걸이 가로, 세로 크기, 귀걸이 핀 위치(TOP or CENTER)) 및 귀걸이 사진이 지정된 File 클래스를 StyleAR API의 setEarringParams함수에 입력합니다.
+
+    ![earring pin position](./img/earring_pin_position.png){: width="250"}
 
     ```java
-    // StyleAR 귀걸이 파일 입력
-    File mEarringFile;
-    mEarringFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath(), "wing1.png");
-    // StyleAR 귀걸이 정보 입력
-    // param 1: 귀걸이 사진 위치
-    // param 2: 실제 귀걸이 가로 크기(mm)
-    // param 3: 실제 귀걸이 세로 크기(mm)
-    // param 4: 귀걸이 엥커포지션
-    mStyleARAndroid.setEarringParams(mEarringFile.getAbsolutePath(), 13.0f, 85.0f, DPEarringAnchorPosition.TOP);
+    // StyleAR API 귀걸이 정보 클래스 선언
+    DPEarringParam earringParam = new DPEarringParam();
+    // 귀걸이 사진 파일 위치
+    earringParam.setAbsolutePath(mEarringFile.getAbsolutePath());
+    // 실제 귀걸이 가로 크기(mm)
+    earringParam.setWidth(13.0f);
+    // 실제 귀걸이 세로 크기(mm)
+    earringParam.setHeight(85.0f);
+    // 귀걸이 핀 위치(TOP or CENTER)
+    earringParam.setAnchorPosition(DPEarringAnchorPosition.TOP);
+    // StyleAR API에 귀걸이 정보 클래스 및 귀걸이 파일 이름 입력
+    mStyleARAndroid.setEarringParam(earringParam);"wing1.png");
     ```
 
     - StyleAR API 결과 출력
