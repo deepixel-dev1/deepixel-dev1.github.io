@@ -17,6 +17,7 @@
 package xyz.deepixel.stylearforandroidsample;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -51,6 +52,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.util.Size;
+import android.util.SizeF;
 import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -70,9 +72,9 @@ import java.util.List;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
-import java9.util.concurrent.CompletionException;
 import xyz.deepixel.stylear.DPCameraParam;
 import xyz.deepixel.stylear.DPEarringAnchorPosition;
+import xyz.deepixel.stylear.DPEarringParam;
 import xyz.deepixel.stylear.DPException;
 import xyz.deepixel.stylear.DPFaceMetaData;
 import xyz.deepixel.stylear.DPLicenseException;
@@ -206,22 +208,11 @@ public class Camera2BasicFragment extends Fragment
 
             // Initialize style ar.
             DPCameraParam cameraParam = new DPCameraParam();
-            cameraParam.setWidth(mPreviewSize.getWidth());
-            cameraParam.setHeight(mPreviewSize.getHeight());
             cameraParam.setSensorOrientation(mSensorOrientation);
-            try {
-                mStyleARAndroid.initialize();
-                mStyleARAndroid.setTargetSurface(mSurface);
-                mStyleARAndroid.setCameraParam(cameraParam);
-                mStyleARAndroid.setEarringParams(mEarringFile.getAbsolutePath(), 13.0f, 85.0f, DPEarringAnchorPosition.TOP);
-                mStyleARAndroid.start();
-            } catch (DPLicenseExpiredException e) {
-                ErrorDialog.newInstance(e.getMessage()).show(getChildFragmentManager(), FRAGMENT_DIALOG);
-            } catch (DPLicenseException e) {
-                ErrorDialog.newInstance(e.getMessage()).show(getChildFragmentManager(), FRAGMENT_DIALOG);
-            } catch (DPException e) {
-                ErrorDialog.newInstance(e.getMessage()).show(getChildFragmentManager(), FRAGMENT_DIALOG);
-            }
+            cameraParam.setFocalLength(m_focalLength);
+            mStyleARAndroid.setTargetSurface(mSurface);
+            mStyleARAndroid.setCameraParam(cameraParam);
+            mStyleARAndroid.start();
 
 //            java9.util.concurrent.CompletableFuture completableFuture = mStyleARAndroid.initializeAsync();
 //            completableFuture.thenRun(() -> mStyleARAndroid.setEarringParams(mEarringFile.getAbsolutePath(), 13.0f, 85.0f, DPEarringAnchorPosition.TOP));
@@ -388,6 +379,7 @@ public class Camera2BasicFragment extends Fragment
         }
 
     };
+    private float m_focalLength = 30.0f;
 
     /**
      * Shows a {@link Toast} on the UI thread.
@@ -465,10 +457,11 @@ public class Camera2BasicFragment extends Fragment
         return inflater.inflate(R.layout.fragment_camera2_basic, container, false);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onViewCreated(final View view, Bundle savedInstanceState) {
         mEditTextMetaData = view.findViewById(R.id.matadata);
-        mTextureView = (AutoFitTextureView) view.findViewById(R.id.texture);
+        mTextureView = view.findViewById(R.id.texture);
         mTextureView.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
@@ -549,7 +542,22 @@ public class Camera2BasicFragment extends Fragment
 
         // Create StyleAR.
         if (mStyleARAndroid == null) {
-            mStyleARAndroid = DPStyleARFactory.getInstance(this.getActivity());
+            try {
+                mStyleARAndroid = DPStyleARFactory.getInstance(this.getActivity());
+                mStyleARAndroid.initialize();
+                DPEarringParam earringParam = new DPEarringParam();
+                earringParam.setAbsolutePath(mEarringFile.getAbsolutePath());
+                earringParam.setWidth(13.0f);
+                earringParam.setHeight(85.0f);
+                earringParam.setAnchorPosition(DPEarringAnchorPosition.TOP);
+                mStyleARAndroid.setEarringParam(earringParam);
+            } catch (DPLicenseExpiredException e) {
+                ErrorDialog.newInstance(e.getMessage()).show(getChildFragmentManager(), FRAGMENT_DIALOG);
+            } catch (DPLicenseException e) {
+                ErrorDialog.newInstance(e.getMessage()).show(getChildFragmentManager(), FRAGMENT_DIALOG);
+            } catch (DPException e) {
+                ErrorDialog.newInstance(e.getMessage()).show(getChildFragmentManager(), FRAGMENT_DIALOG);
+            }
         }
     }
 
@@ -701,6 +709,14 @@ public class Camera2BasicFragment extends Fragment
                 // Check if the flash is supported.
                 Boolean available = characteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE);
                 mFlashSupported = available == null ? false : available;
+
+                // Modified by deepixel.xyz
+                // Get focal length on full frames.
+                float[] focalLength = characteristics.get(CameraCharacteristics.LENS_INFO_AVAILABLE_FOCAL_LENGTHS);
+                Arrays.sort(focalLength);
+                float focalLengthMin = focalLength[0];
+                SizeF size = characteristics.get(CameraCharacteristics.SENSOR_INFO_PHYSICAL_SIZE);
+                m_focalLength = focalLengthMin * 35.0f / Math.max(size.getWidth(), size.getHeight());
 
                 mCameraId = cameraId;
                 return;
@@ -888,7 +904,8 @@ public class Camera2BasicFragment extends Fragment
         } else if (Surface.ROTATION_180 == rotation) {
             matrix.postRotate(180, centerX, centerY);
         }
-        matrix.postScale(-1, 1, centerX, centerY);
+        if (BuildConfig.FLAVOR == "facear")
+            matrix.postScale(-1, 1, centerX, centerY);
 
 //        if (Surface.ROTATION_90 == rotation || Surface.ROTATION_270 == rotation) {
 //            bufferRect.offset(centerX - bufferRect.centerX(), centerY - bufferRect.centerY());
