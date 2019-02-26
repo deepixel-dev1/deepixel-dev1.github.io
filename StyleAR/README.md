@@ -27,7 +27,7 @@
     |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
     |얼굴영상|![styleAR result](./img/faceInput.png){: width="500"}|얼굴이 사진의 40%이상 차지 해야 함||결과영상|![styleAR result](./img/faceOutput.png){: width="500"}|귀걸이가 실측크기에 맞게 배치 됨|
     |귀걸이 사진|![styleAR result](./img/input_1.png){: width="500"}|영상편집 시 귀걸이 위와 아래의 공백을 최대한 작게 <br />영상은 귀걸이를 제외한 배경은 투명처리(png 포멧)||메타데이터|![deepixel.xyz](./img/meta_info.png){: width="500"}|색상정보 범위(0 ~ 255) <br /> 얼굴비율 범위 (0 ~ 1)|
-    |귀걸이 크기|귀걸이 실측 가로, 세로 크기|단위(mm)|
+    |귀걸이 크기|귀걸이 실측 가로, 세로 크기|단위(mm)|||||
 
 ***
 
