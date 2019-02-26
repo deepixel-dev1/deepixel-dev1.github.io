@@ -74,7 +74,7 @@
   - IOS
 
 - Android StyleAR API 사용법
-  > [Android Code][android_sample]는 Android 예제인 [Camera2BasicFragment][camera2basicfragment_sample]를 기반으로 구현하였습니다.
+  > [StyleAR Android Sample Code][android_sample]는 Android 예제인 [Camera2BasicFragment][camera2basicfragment_sample]를 기반으로 구현하였습니다.
 
   ![deepixel.xyz](./img/Block.png){: width="600"}
 
