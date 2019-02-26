@@ -66,7 +66,7 @@
   - IOS
 
 - Android StyleAR API 사용법
-  > [Android_Code][android_sample]는 Android 예제인 Camera2BasicFragment를 기반으로 구현하였습니다.
+  > [Android Code][android_sample]는 Android 예제인 [Camera2BasicFragment][camera2basicfragment_sample]를 기반으로 구현하였습니다.
   - StyleAR API 생성
     > StyleAR의 API는 DPStyleARFactory를 사용하여 instance를 생성합니다.
 
@@ -81,7 +81,7 @@
     ```
 
   - StyleAR 초기화 및 구동
-    > StyleAR 초기화는 camera 디바이스의 콜백 함수를 아래 예제와 같이 등록해줘야 합니다. 콜백함수에는 모바일의 카메라 파라메터 정보(카메라 영상 크기 및 회전)를 StyleAR API에 등록해야 하며, start 함수를 통해 실제 StyleAR이 모바일에서 구동하게 됩니다.
+    > StyleAR 초기화는 camera 디바이스의 콜백 함수를 아래 예제와 같이 등록해야 합니다. 콜백함수 안에서 모바일 카메라 파라메터 정보(카메라 영상 크기 및 회전)를 StyleAR API에 등록해야 하며, start 함수를 통해 실제 StyleAR이 모바일에서 구동하게 됩니다.
 
     ```java
     /// Camera2BasicFragment.java
@@ -125,7 +125,7 @@
     ```
 
     - StyleAR 귀걸이 변경
-    > 귀걸이를 변경할 시에는 File 클래스에 귀걸이 사진이 저장되어 있는 경로를 입력해 주시고, 귀걸이 정보(실제 귀걸이 가로, 세로 크기) 및 귀걸이 사진이 지정된 File 클래스를 StyleAR API의 setEarringParams함수에 입력하면 됩니다.
+    > 귀걸이를 변경할 시에는 File 클래스에 귀걸이 사진이 저장되어 있는 경로를 입력하고, 귀걸이 정보(실제 귀걸이 가로, 세로 크기) 및 귀걸이 사진이 지정된 File 클래스를 StyleAR API의 setEarringParams함수에 입력합니다.
 
     ```java
     // StyleAR 귀걸이 파일 입력
@@ -140,10 +140,10 @@
     ```
 
     - StyleAR API 결과 출력
-    > StyleAR API는 얼굴영상에 귀걸이가 착용된 결과와 메타데이터를 결과로 출력합니다. 귀걸이 착용 얼굴영상 데이터는 ImageReader에 등록하여 카메라 아웃풋을 설정할 때 출력할 수 있으며, 메타데이터는 원하는 시점에 출력할 수 있습니다.
+    > StyleAR API는 귀걸이가 착용된 영상데이터와 메타데이터를 결과로 출력합니다. 귀걸이 착용 얼굴영상 데이터는 ImageReader에 등록하여 카메라 아웃풋을 설정할 때 출력할 수 있으며, 메타데이터는 원하는 시점에 출력할 수 있습니다.
 
     ```java
-    /// 귀걸이 영상데이터 출력
+    // 귀걸이 영상데이터 출력
     private void setUpCameraOutputs(int width, int height) {
         Activity activity = getActivity();
         CameraManager manager = (CameraManager) activity.getSystemService(Context.CAMERA_SERVICE);
@@ -243,7 +243,7 @@
                     .show(getChildFragmentManager(), FRAGMENT_DIALOG);
         }
     }
-    // 메타데이터 출력
+    // 메타데이터 출력(예시는 클릭 시 출력으로 함)
     // 에디트 텍스트
     private EditText mEditTextMetaData;
     mEditTextMetaData = view.findViewById(R.id.matadata);
@@ -294,6 +294,8 @@
 ## 참조
 
 - [Android Sample code][android_sample]
+- [camera2basicfragment][camera2basicfragment_sample]
 
 [android_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/StyleAR/tutorial/android/StyleARForAndroidSample
 [license]: /License/README.md
+[camera2basicfragment_sample]: https://github.com/googlesamples/android-Camera2Basic/blob/master/Application/src/main/java/com/example/android/camera2basic/Camera2BasicFragment.java
