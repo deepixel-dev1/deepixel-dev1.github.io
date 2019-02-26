@@ -72,32 +72,29 @@
   ![deepixel.xyz](./img/Block.png){: width="800"}
 
   - StyleAR API 객체 생성 및 초기화
-    > DPStyleARFactory를 사용하여 StyleAR 객체를 생성합니다. 객체를 초기화하는 과정에서 라이센스와 관련된 예외가 발생할 수 있습니다.
+    > DPStyleARFactory를 사용하여 StyleAR API객체를 생성합니다. 객체를 초기화하는 과정에서 라이센스와 관련된 예외가 발생할 수 있습니다.
 
     ```java
     //For Android
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        if (mStyleARAndroid == null) {
-            try {
-                 // StyleAR API 생성
-                mStyleARAndroid = DPStyleARFactory.getInstance(this.getActivity());
-                mStyleARAndroid.initialize();
-            // license 메시지 출력
-            } catch (DPLicenseExpiredException e) {
-                ErrorDialog.newInstance(e.getMessage()).show(getChildFragmentManager(), FRAGMENT_DIALOG);
-            } catch (DPLicenseException e) {
-                ErrorDialog.newInstance(e.getMessage()).show(getChildFragmentManager(), FRAGMENT_DIALOG);
-            } catch (DPException e) {
-                ErrorDialog.newInstance(e.getMessage()).show(getChildFragmentManager(), FRAGMENT_DIALOG);
-            }
+    if (mStyleARAndroid == null) {
+        try {
+            // StyleAR API 객체생성
+            mStyleARAndroid = DPStyleARFactory.getInstance(this.getActivity());
+            mStyleARAndroid.initialize();
+            // 라이센스 오류 메시지 출력
+        } catch (DPLicenseExpiredException e) {
+            ErrorDialog.newInstance(e.getMessage()).show(getChildFragmentManager(), FRAGMENT_DIALOG);
+        } catch (DPLicenseException e) {
+            ErrorDialog.newInstance(e.getMessage()).show(getChildFragmentManager(), FRAGMENT_DIALOG);
+        } catch (DPException e) {
+            ErrorDialog.newInstance(e.getMessage()).show(getChildFragmentManager(), FRAGMENT_DIALOG);
         }
     }
     ```
 
     ```swift
     // iOS
-    // StyleAR 객체를 생성하고 초기화한다.
+    // StyleAR API객체를 생성하고 초기화한다.
     id<DPStyleAR> styleAR = [DPStyleARFactory getInstance];
     @try {
         [styleAR initialize];
@@ -114,45 +111,20 @@
     ```
 
   - StyleAR API 설정
-    > StyleAR를 초기화하고 start 함수를 호출하기 전에 카메라 정보와 StyleAR의 결과가 출력될 UI 컴포넌트를 설정해야 합니다. start 함수를 호출하면 UI 컴포넌트에 StyleAR의 결과가 출력됩니다.
+    > StyleAR API를 초기화하고 start 함수를 호출하기 전에 카메라 정보와 StyleAR의 결과가 출력될 UI 컴포넌트를 설정해야 합니다.
 
     ```java
     // For Android
-    /// Camera2BasicFragment.java
-    import xyz.deepixel.stylear.DPCameraParam;
-    import xyz.deepixel.stylear.DPEarringAnchorPosition;
-    import xyz.deepixel.stylear.DPEarringParam;
-    import xyz.deepixel.stylear.DPException;
-    import xyz.deepixel.stylear.DPFaceMetaData;
-    import xyz.deepixel.stylear.DPLicenseException;
-    import xyz.deepixel.stylear.DPLicenseExpiredException;
-    import xyz.deepixel.stylear.DPStyleARFactory;
-    import xyz.deepixel.stylear.DPStyleAR;
-
-    public class Camera2BasicFragment extends Fragment
-        implements View.OnClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
-
-        private final CameraDevice.StateCallback mStateCallback = new CameraDevice.StateCallback() {
-            // This method is called when the camera is opened.  We start camera preview here.
-            mCameraOpenCloseLock.release();
-            mCameraDevice = cameraDevice;
-            createCameraPreviewSession();
-
-            // Initialize style ar.
-            // DPCameraParam 선언
-            DPCameraParam cameraParam = new DPCameraParam();
-            // SensorOrientation 설정
-            cameraParam.setSensorOrientation(mSensorOrientation);
-            // focallength 설정
-            cameraParam.setFocalLength(m_focalLength);
-            // surface 설정
-            mStyleARAndroid.setTargetSurface(mSurface);
-            // StyleAR API에 카메라 파라메터(DPCameraParam) 설정
-            mStyleARAndroid.setCameraParam(cameraParam);
-            // StyleAR 시작
-            mStyleARAndroid.start();
-        }
-    }
+    // DPCameraParam 선언
+    DPCameraParam cameraParam = new DPCameraParam();
+    // SensorOrientation 설정
+    cameraParam.setSensorOrientation(mSensorOrientation);
+    // focallength 설정
+    cameraParam.setFocalLength(m_focalLength);
+    // ui surface 설정
+    mStyleARAndroid.setTargetSurface(mSurface);
+    // StyleAR API에 카메라 파라메터(DPCameraParam) 설정
+    mStyleARAndroid.setCameraParam(cameraParam);
     ```
 
     ```swift
@@ -163,7 +135,7 @@
     [cameraParam setFocalLength:30.0f];
     [_styleAR setCameraParam:cameraParam];
 
-    // StyleAR에 view를 설정한다.
+    // StyleAR API에 view를 설정한다.
     // 센서 방향대로 영상을 회전한다.
     CGAffineTransform rotation = CGAffineTransformMakeRotation(M_PI / 2);
     // 전면 카메라가 거울처럼 보이도록 좌우를 뒤집는다.
@@ -187,72 +159,14 @@
     ```
 
     - StyleAR API 카메라 입력 설정
-    > 카메라 영상을 프로세싱하기 위해 이벤트 핸들러를 설정해야 합니다. 이벤트 핸들러는 StyleAR 객체에서 가져올 수 있습니다. 이 후에 카메라와 StyleAR를 구동하면 카메라 영상이 프로세싱됩니다.
+    > 카메라 영상을 프로세싱하기 위해 이벤트 핸들러를 설정해야 합니다. 이벤트 핸들러는 StyleAR API객체에서 가져올 수 있습니다. 이 후에 카메라와 StyleAR API를 구동하면 카메라 영상이 프로세싱됩니다.
 
     ```java
     //For Android
-    // 귀걸이 영상데이터 출력
-    private void setUpCameraOutputs(int width, int height) {
-        Activity activity = getActivity();
-        CameraManager manager = (CameraManager) activity.getSystemService(Context.CAMERA_SERVICE);
-        try {
-            for (String cameraId : manager.getCameraIdList()) {
-                CameraCharacteristics characteristics
-                        = manager.getCameraCharacteristics(cameraId);
-
-                // 정면 카메라로 설정
-                Integer facing = characteristics.get(CameraCharacteristics.LENS_FACING);
-                if (facing != null && facing != CameraCharacteristics.LENS_FACING_FRONT) {
-                    continue;
-                }
-
-                /* ..... */
-                /* ..... */
-                /* ..... */
-
-                // ImageReader 설정
-                mImageReader = ImageReader.newInstance(mPreviewSize.getWidth(), mPreviewSize.getHeight(),
-                        ImageFormat.YUV_420_888, /*maxImages*/5);
-                // StyleAR API 결과영상 등록
-                mImageReader.setOnImageAvailableListener(
-                        mStyleARAndroid.getOnImageAvailableListener(), mBackgroundHandler);  
-                /* ..... */
-                /* ..... */
-                /* ..... */
-                }
-        }
-
-    }
-    // 메타데이터 출력(예시는 클릭 시 출력으로 함)
-    // 에디트 텍스트
-    private EditText mEditTextMetaData;
-    mEditTextMetaData = view.findViewById(R.id.matadata);
-    public boolean onTouch(View view, MotionEvent motionEvent) {
-        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            // 메타데이터 출력 저장
-            DPFaceMetaData faceMetaData = mStyleARAndroid.getFaceMetaData();
-            StringBuilder msg = new StringBuilder();
-            // 얼굴 비율 평균 출력
-            msg.append("FRM : ").append(faceMetaData.getFaceRatioMean()).append('\n');
-            // 얼굴 비율 편차 출력
-            msg.append("FRS : ").append(faceMetaData.getFaceRatioStd()).append('\n');
-            // 머리카락 색깔 평균 출력
-            msg.append("HCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getHairColorMean())).append('\n');
-            // 머러카락 색깔 편차 출력
-            msg.append("HCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getHairColorStd())).append('\n');
-            // 입술 색깔 평균 출력
-            msg.append("LCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getLipColorMean())).append('\n');
-            // 입술 색깔 편차 출력
-            msg.append("LCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getLipColorStd())).append('\n');
-            // 피부색 색깔 평균 출력
-            msg.append("SCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getSkinColorMean())).append('\n');
-            // 피부색 색깔 편차 출력
-            msg.append("SCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getSkinColorStd())).append('\n');
-            //에디트 텍스트에 출력
-            mEditTextMetaData.setText(msg.toString());
-            mEditTextMetaData.setVisibility(View.VISIBLE);
-        }
-    }
+    // ImageReader 생성
+    mImageReader = ImageReader.newInstance(mPreviewSize.getWidth(), mPreviewSize.getHeight(),ImageFormat.YUV_420_888, /*maxImages*/5);
+    // StyleAR API 이벤트 핸들러 설정
+    mImageReader.setOnImageAvailableListener(mStyleARAndroid.getOnImageAvailableListener(), mBackgroundHandler);
     ```
 
     - StyleAR API 귀걸이 변경
@@ -289,7 +203,7 @@
     ```
 
     - StyleAR API 구동
-    > StyleAR 동작을 시작합니다. StyleAR에 설정된 UI 컴포넌트에 결과 영상을 출력합니다. StyleAR을 구동하기 전에 카메라 관련 정보와 UI 컴포넌트를 설정해야 하고 카메라 영상을 프로세싱하기 위한 이벤트 핸들러를 등록해야 합니다.
+    > StyleAR API동작을 시작합니다. StyleAR API에 설정된 UI 컴포넌트에 결과 영상을 출력합니다. StyleAR API을 구동하기 전에 카메라 관련 정보와 UI 컴포넌트를 설정해야 하고, 카메라 영상을 프로세싱하기 위한 이벤트 핸들러를 등록해야 합니다.
 
     ```java
     // For Android
@@ -302,7 +216,7 @@
     ```
 
     - StyleAR API 정지
-    > StyleAR 동작을 정지합니다. StyleAR에 설정되 UI 컴포넌트에 결과 영상을 출력하는 것을 멈춥니다. 카메라 관련 정보, UI 컴포넌트 또는 이벤트 핸들러를 다시 등록하는 것을 StyleAR 동작을 정지한 후에 가능합니다.
+    > StyleAR API 동작을 정지합니다. StyleAR API에 설정되 UI 컴포넌트에 결과 영상을 출력하는 것을 멈춥니다. 카메라 관련 정보, UI 컴포넌트 또는 이벤트 핸들러를 다시 등록하는 것을 StyleAR API동작을 정지한 후에 가능합니다.
 
     ```java
     //For Android
@@ -314,11 +228,29 @@
     [_styleAR stop];
     ```
 
-    - StyleAR 메타 정보 획득
-    > StyleAR이 동작하는 동안 카메라 입력 영상에서 다양한 메타 정보를 획득 할 수 있습니다.
+    - StyleAR API메타 정보 획득
+    > StyleAR API이 동작하는 동안 카메라 입력 영상에서 다양한 메타 정보를 획득 할 수 있습니다.
 
     ```java
     //For Android
+    DPFaceMetaData faceMetaData = mStyleARAndroid.getFaceMetaData();
+    StringBuilder msg = new StringBuilder();
+    // 얼굴 비율 평균 출력
+    msg.append("FRM : ").append(faceMetaData.getFaceRatioMean()).append('\n');
+    // 얼굴 비율 편차 출력
+    msg.append("FRS : ").append(faceMetaData.getFaceRatioStd()).append('\n');
+    // 머리카락 색깔 평균 출력
+    msg.append("HCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getHairColorMean())).append('\n');
+    // 머러카락 색깔 편차 출력
+    msg.append("HCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getHairColorStd())).append('\n');
+    // 입술 색깔 평균 출력
+    msg.append("LCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getLipColorMean())).append('\n');
+    // 입술 색깔 편차 출력
+    msg.append("LCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getLipColorStd())).append('\n');
+    // 피부색 색깔 평균 출력
+    msg.append("SCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getSkinColorMean())).append('\n');
+    // 피부색 색깔 편차 출력
+    msg.append("SCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getSkinColorStd())).append('\n');
     ```
 
     ```swift
@@ -337,7 +269,7 @@
 
 ## 연락처
 
->API 적용시 문제점을 발견하거나 궁금한 점이 있다면, 다음의 이메일(hoohyun.kim@deepixel.xyz)로 문의해 주세요.  
+> StyleAR API 적용시 문제점을 발견하거나 궁금한 점이 있다면, 다음의 이메일(hoohyun.kim@deepixel.xyz)로 문의해 주세요.  
 
 ***
 
