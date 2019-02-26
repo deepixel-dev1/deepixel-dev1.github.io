@@ -75,6 +75,7 @@
     > StyleAR의 API는 DPStyleARFactory를 사용하여 객체를 생성합니다. 객체를 생성하는 과정에서 라이센스와 관련된 메시지가 출력 될 수 있습니다.
 
     ```java
+    //For Android
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (mStyleARAndroid == null) {
