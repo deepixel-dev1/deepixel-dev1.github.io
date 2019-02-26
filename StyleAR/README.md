@@ -186,39 +186,6 @@
     }
     ```
 
-    - StyleAR API 귀걸이 변경
-    > 귀걸이를 변경하기 위해서는 귀걸이 사진의 절대 경로와 귀걸이의 정보(실제 귀걸이의 가로 크기(mm), 세로 크기(mm) 그리고 핀 위치[TOP or CENTER])가 필요합니다.
-
-    ![earring pin position](./img/earring_pin_position.png){: width="250"}
-
-    ```java
-    // For Android
-    // StyleAR API 귀걸이 정보 클래스 선언
-    DPEarringParam earringParam = new DPEarringParam();
-    // 귀걸이 사진 파일 위치
-    earringParam.setAbsolutePath(mEarringFile.getAbsolutePath());
-    // 실제 귀걸이 가로 크기(mm)
-    earringParam.setWidth(13.0f);
-    // 실제 귀걸이 세로 크기(mm)
-    earringParam.setHeight(85.0f);
-    // 귀걸이 핀 위치(TOP or CENTER)
-    earringParam.setAnchorPosition(DPEarringAnchorPosition.TOP);
-    // StyleAR API에 귀걸이 정보 클래스 및 귀걸이 파일 이름 입력
-    mStyleARAndroid.setEarringParam(earringParam);
-    ```
-
-    ```swift
-    // For iOS
-    // 귀걸이 정보를 설정한다.
-    NSString *earringPath = GetEarringImgPath();
-    DPEarringParam *earringParam = [[DPEarringParam alloc] init];
-    earringParam.absolutePath = earringPath;
-    earringParam.width = 13.0f;
-    earringParam.height = 85.0f;
-    earringParam.anchorPosition = TOP;
-    [_styleAR setEarringParam:earringParam];
-    ```
-
     - StyleAR API 카메라 입력 설정
     > 카메라 영상을 프로세싱하기 위해 이벤트 핸들러를 설정해야 합니다. 이벤트 핸들러는 StyleAR 객체에서 가져올 수 있습니다. 이 후에 카메라와 StyleAR를 구동하면 카메라 영상이 프로세싱됩니다.
 
@@ -286,6 +253,39 @@
             mEditTextMetaData.setVisibility(View.VISIBLE);
         }
     }
+    ```
+
+    - StyleAR API 귀걸이 변경
+    > 귀걸이를 변경하기 위해서는 귀걸이 사진의 절대 경로와 귀걸이의 정보(실제 귀걸이의 가로 크기(mm), 세로 크기(mm) 그리고 핀 위치[TOP or CENTER])가 필요합니다.
+
+    ![earring pin position](./img/earring_pin_position.png){: width="250"}
+
+    ```java
+    // For Android
+    // StyleAR API 귀걸이 정보 클래스 선언
+    DPEarringParam earringParam = new DPEarringParam();
+    // 귀걸이 사진 파일 위치
+    earringParam.setAbsolutePath(mEarringFile.getAbsolutePath());
+    // 실제 귀걸이 가로 크기(mm)
+    earringParam.setWidth(13.0f);
+    // 실제 귀걸이 세로 크기(mm)
+    earringParam.setHeight(85.0f);
+    // 귀걸이 핀 위치(TOP or CENTER)
+    earringParam.setAnchorPosition(DPEarringAnchorPosition.TOP);
+    // StyleAR API에 귀걸이 정보 클래스 및 귀걸이 파일 이름 입력
+    mStyleARAndroid.setEarringParam(earringParam);
+    ```
+
+    ```swift
+    // For iOS
+    // 귀걸이 정보를 설정한다.
+    NSString *earringPath = GetEarringImgPath();
+    DPEarringParam *earringParam = [[DPEarringParam alloc] init];
+    earringParam.absolutePath = earringPath;
+    earringParam.width = 13.0f;
+    earringParam.height = 85.0f;
+    earringParam.anchorPosition = TOP;
+    [_styleAR setEarringParam:earringParam];
     ```
 
     - StyleAR API 구동
