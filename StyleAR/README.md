@@ -1,8 +1,8 @@
 ![deepixel.xyz](./img/Deepixel_logo.PNG){: width="200"}
 
-# StyleAR Tutorial
+# StyleAR API Tutorial
 
->StyleAR은 모바일 장치로 부터 입력된 영상에서 얼굴특정 위치 검출, 3D 피팅, 영상분석등을 통해 귀걸이 착용영상과 메타정보를 실시간으로 출력하는 컴퓨터 비전 기반의 API Library 입니다.  
+>StyleAR API 은 모바일 장치로 부터 입력된 영상에서 얼굴특정 위치 검출, 3D 피팅, 영상분석등을 통해 귀걸이 착용영상과 메타정보를 실시간으로 출력하는 컴퓨터 비전 기반의 API Library 입니다.  
 
 ![aring display](./img/face(earring).png){: width="200"}
 
