@@ -64,7 +64,8 @@
         }
         ```
 
-  - IOS
+  - iOS
+    - [iOS 환경 설정][ios_tutorial]
 
 - StyleAR API 사용법
   > [Android][android_sample]는 Android 예제인 [Camera2BasicFragment][camera2basicfragment_sample]를 기반으로 구현하였습니다.
@@ -303,8 +304,10 @@
 - [Android Sample code][android_sample]
 - [camera2basicfragment][camera2basicfragment_sample]
 - [iOS Sample code][ios_sample]
+- [iOS 환경 설정][ios_tutorial]
 
 [android_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/StyleAR/tutorial/android/StyleARForAndroidSample
 [license]: /License/README.md
 [camera2basicfragment_sample]: https://github.com/googlesamples/android-Camera2Basic/blob/master/Application/src/main/java/com/example/android/camera2basic/Camera2BasicFragment.java
 [ios_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/StyleAR/tutorial/ios/StyleARiOSAppExample
+[ios_tutorial]: https://deepixel-dev1.github.io/StyleAR/tutorial/ios
