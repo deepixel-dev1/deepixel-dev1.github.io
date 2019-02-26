@@ -40,7 +40,7 @@
 
 |목차|내용|
 |:-:|:-:|
-|발급|<honami82@deepixel.xyz>로 문의 바랍니다.|
+|발급|<support@deepixel.xyz>로 문의 바랍니다.|
 |주의사항|API 사용 기간, 메타정보 사용 유무를 고려하여 주시기 바랍니다.|
 
 - 환경설정
@@ -269,7 +269,7 @@
 
 ## 연락처
 
-> StyleAR API 적용시 문제점을 발견하거나 궁금한 점이 있다면, 다음의 이메일(hoohyun.kim@deepixel.xyz)로 문의해 주세요.  
+> StyleAR API 적용시 문제점을 발견하거나 궁금한 점이 있다면, 다음의 이메일(support@deepixel.xyz)로 문의해 주세요.  
 
 ***
 
