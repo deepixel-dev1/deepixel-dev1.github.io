@@ -12,14 +12,14 @@
 
 ### 귀걸이 착용
 
-> 영상내의 사용자의 귀를 모바일 장치에서 실시간으로 검출하여 양쪽 귀에 귀걸이가 착용된 영상을 제공합니다. 이것을 이용해서 온라인상에서 사용자가 귀걸이를 가상으로 착용(Virtual Try-on)할 수 있는 서비스를 만들 수 있습니다.
+> 모바일의 카메라 영상에서 사용자의 귀를 실시간으로 검출하여 양쪽 귀에 귀걸이가 착용된 영상을 제공합니다. 이것을 이용해서 사용자가 귀걸이를 가상으로 착용(Virtual Try-on)할 수 있는 서비스를 만들 수 있습니다.
 
 - 스팩:
 
     |목차|스팩|비고|
     |:-:|:-:|:-:|
     |가능인원|1명||
-    |속도| 20 ~ 30FPS (Frame Per Secound) |실험 장비(Galaxy Note 8), 해상도(1920 X 1080)|
+    |속도| 20 ~ 30FPS (Frame Per Secound) |실험 장비(Galaxy Note 8), 해상도(1440 X 1080)|
 
 - 입력 및 출력:
 
@@ -70,6 +70,8 @@
   > [Android][android_sample]는 Android 예제인 [Camera2BasicFragment][camera2basicfragment_sample]를 기반으로 구현하였습니다.
 
   ![deepixel.xyz](./img/Block.png){: width="800"}
+
+  ![lifecycle](./img/life_cycle.png){: width="500"}
 
   - StyleAR API 객체 생성 및 초기화
     > DPStyleARFactory를 사용하여 StyleAR API객체를 생성합니다. 객체를 초기화하는 과정에서 라이센스와 관련된 예외가 발생할 수 있습니다.
@@ -144,6 +146,40 @@
     targetView.layer.contentsGravity = kCAGravityResizeAspect;
     targetView.layer.frame = targetView.bounds;
     [_styleAR setTargetView:targetView];
+    ```
+
+    - StyleAR API 카메라 입력 설정
+    > 카메라 영상을 프로세싱하기 위해 이벤트 핸들러를 설정해야 합니다. 이벤트 핸들러는 StyleAR API 객체에서 가져올 수 있습니다. 이 후에 카메라와 StyleAR API를 구동하면 카메라 영상이 프로세싱됩니다. 카메라 영상은 4:3 비율로 설정하는 것을 권장합니다. 일반적으로 모바일의 카메라 영상은 4:3 비율이 16:9 비율보다 FOV(Field Of View)가 넓기 때문에 더 좋은 사용자 경험(User Experience)을 제공할 수 있습니다.
+
+    ```java
+    //For Android
+    // ImageReader 생성
+    mImageReader = ImageReader.newInstance(mPreviewSize.getWidth(), mPreviewSize.getHeight(),ImageFormat.YUV_420_888, /*maxImages*/5);
+    // StyleAR API 이벤트 핸들러 설정
+    mImageReader.setOnImageAvailableListener(mStyleARAndroid.getOnImageAvailableListener(), mBackgroundHandler);
+    ```
+
+    ```swift
+    // 캡쳐 세션을 생성하고 초기화한다.
+    AVCaptureSession *captureSession = [[AVCaptureSession alloc] init];
+    captureSession.sessionPreset = AVCaptureSessionPresetPhoto;
+
+    // 캡쳐 세션의 input을 설정한다.
+    AVCaptureDevice *device = [self frontCamera];
+    NSError *error = nil;
+    AVCaptureDeviceInput *input = [[AVCaptureDeviceInput alloc] initWithDevice:device error:&error];
+    [captureSession addInput:input];
+
+    // 갭쳐 세션의 output을 설정한다.
+    AVCaptureVideoDataOutput *output = [[AVCaptureVideoDataOutput alloc] init];
+    output.videoSettings = @{(NSString *)kCVPixelBufferPixelFormatTypeKey : @(kCVPixelFormatType_32BGRA)};
+    output.alwaysDiscardsLateVideoFrames = YES;
+    [captureSession addOutput:output];
+
+    // 카메라 영상을 처리하는 대리자를 지정한다.
+    id<AVCaptureVideoDataOutputSampleBufferDelegate> dele = [_styleAR getDelegate];
+    dispatch_queue_t queue = dispatch_queue_create("VideoQueue", DISPATCH_QUEUE_SERIAL);
+    [output setSampleBufferDelegate:dele queue:queue];
 
 
     // 정면 카메라를 반환하는 함수
@@ -156,17 +192,6 @@
         }
         return nil;
     }
-    ```
-
-    - StyleAR API 카메라 입력 설정
-    > 카메라 영상을 프로세싱하기 위해 이벤트 핸들러를 설정해야 합니다. 이벤트 핸들러는 StyleAR API객체에서 가져올 수 있습니다. 이 후에 카메라와 StyleAR API를 구동하면 카메라 영상이 프로세싱됩니다.
-
-    ```java
-    //For Android
-    // ImageReader 생성
-    mImageReader = ImageReader.newInstance(mPreviewSize.getWidth(), mPreviewSize.getHeight(),ImageFormat.YUV_420_888, /*maxImages*/5);
-    // StyleAR API 이벤트 핸들러 설정
-    mImageReader.setOnImageAvailableListener(mStyleARAndroid.getOnImageAvailableListener(), mBackgroundHandler);
     ```
 
     - StyleAR API 귀걸이 변경
@@ -277,7 +302,9 @@
 
 - [Android Sample code][android_sample]
 - [camera2basicfragment][camera2basicfragment_sample]
+- [iOS Sample code][ios_sample]
 
 [android_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/StyleAR/tutorial/android/StyleARForAndroidSample
 [license]: /License/README.md
 [camera2basicfragment_sample]: https://github.com/googlesamples/android-Camera2Basic/blob/master/Application/src/main/java/com/example/android/camera2basic/Camera2BasicFragment.java
+[ios_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/StyleAR/tutorial/ios/StyleARiOSAppExample
