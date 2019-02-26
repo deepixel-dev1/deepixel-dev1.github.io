@@ -81,7 +81,7 @@
     ```
 
   - StyleAR API 초기화 및 구동
-    > StyleAR 초기화는 camera 디바이스의 콜백 함수를 아래 예제와 같이 등록해야 합니다. 콜백함수 안에서 모바일 카메라 파라메터 정보(카메라 영상 크기 및 회전)를 StyleAR API에 등록해야 하며, start 함수를 통해 실제 StyleAR이 모바일에서 구동하게 됩니다.
+    > StyleAR 초기화는 카메라 디바이스의 콜백 함수를 아래 예제와 같이 등록해야 합니다. 콜백함수 안에서 모바일 카메라 파라메터 정보(카메라 영상 크기 및 회전)를 StyleAR API에 등록해야 하며, start 함수를 통해 실제 StyleAR이 모바일에서 구동하게 됩니다.
 
     ```java
     /// Camera2BasicFragment.java
