@@ -80,7 +80,7 @@
     }
     ```
 
-  - StyleAR 초기화 및 구동
+  - StyleAR API 초기화 및 구동
     > StyleAR 초기화는 camera 디바이스의 콜백 함수를 아래 예제와 같이 등록해야 합니다. 콜백함수 안에서 모바일 카메라 파라메터 정보(카메라 영상 크기 및 회전)를 StyleAR API에 등록해야 하며, start 함수를 통해 실제 StyleAR이 모바일에서 구동하게 됩니다.
 
     ```java
@@ -124,7 +124,7 @@
 
     ```
 
-    - StyleAR 귀걸이 변경
+    - StyleAR API 귀걸이 변경
     > 귀걸이를 변경할 시에는 File 클래스에 귀걸이 사진이 저장되어 있는 경로를 입력하고, 귀걸이 정보(실제 귀걸이 가로, 세로 크기) 및 귀걸이 사진이 지정된 File 클래스를 StyleAR API의 setEarringParams함수에 입력합니다.
 
     ```java
@@ -282,7 +282,7 @@
     mStyleARAndroid.stop();
     ```
 
-- IOS StyleAR 사용법
+- IOS StyleAR API 사용법
 
 
 ## 연락처
