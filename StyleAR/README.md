@@ -19,8 +19,7 @@
     |목차|스팩|비고|
     |:-:|:-:|:-:|
     |가능인원|1명||
-    |동작범위||범위 내|
-    |속도| FPS (Frame Per Secound) |실험 장비(Galaxy Note 8), 해상도(1920 X 1080)|
+    |속도| 20 ~ 30FPS (Frame Per Secound) |실험 장비(Galaxy Note 8), 해상도(1920 X 1080)|
 
 - 입력물:
 
@@ -37,21 +36,254 @@
     |귀걸이 착용 영상|![deepixel.xyz](./img/faceResult.png){: width="200"}|귀걸이 실측크기에 맞게 배치|
     |메타정보|![deepixel.xyz](./img/meta_info.png){: width="500"}| 색상정보 범위(0 ~ 255) <br /> 얼굴비율 범위 (0 ~ 1) |
 
-
 ***
 
-## 환경설정
+## StyleAR API 사용방법
 
-- [Android 환경설정][android]
+>StyleAR API를 모바일 앱에서 사용하는 방법을 설명합니다.
 
-- [iOS 환경설정][ios]
+- 환경설정
+  - Android
+    - StyleAR API Library 파일 넣기
+    > Library 폴더에 배포된 라이브러리 파일(StyleARAndroid.aar)을 넣는다.
+    - Gradle 설정추가
 
-***
+        ```Gradle
+        android{
+          compileOption{
+          sourceCompatibility 1.8
+          sourceCompatibility 1.8
+          }
+        }
 
-## StyleAR API 사용방법 (c++ with OpenCV)
+        dependencies{
+            implementation 'net.sourceforge.streamsupport:android-retrofuture:1.7.0'
+            implementation 'com.android.support:appcompat-v7:28.0.0'
+            implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+        }
+        ```
 
->C++를 이용한 StyleAR API 사용법을 소개한다. StyleAR API를 사용하기 위해서는 OpenCV 라이브러리가 필요합니다.
-StyleAR API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 링크를 참고합니다.
+  - IOS
+
+- Android StyleAR API 사용법
+  > [Android_Code][android_sample]는 Android 예제인 Camera2BasicFragment를 기반으로 구현하였습니다.
+  - StyleAR API 생성
+    > StyleAR의 API는 DPStyleARFactory를 사용하여 instance를 생성합니다.
+
+    ```java
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        // StyleAR API 생성
+        if (mStyleARAndroid == null) {
+            mStyleARAndroid = DPStyleARFactory.getInstance(this.getActivity());
+        }
+    }
+    ```
+
+  - StyleAR 초기화 및 구동
+    > StyleAR 초기화는 camera 디바이스의 콜백 함수를 아래 예제와 같이 등록해줘야 합니다. 콜백함수에는 모바일의 카메라 파라메터 정보(카메라 영상 크기 및 회전)를 StyleAR API에 등록해야 하며, start 함수를 통해 실제 StyleAR이 모바일에서 구동하게 됩니다.
+
+    ```java
+    /// Camera2BasicFragment.java
+    import xyz.deepixel.stylear.DPCameraParam;
+    import xyz.deepixel.stylear.DPEarringAnchorPosition;
+    import xyz.deepixel.stylear.DPException;
+    import xyz.deepixel.stylear.DPFaceMetaData;
+    import xyz.deepixel.stylear.DPLicenseException;
+    import xyz.deepixel.stylear.DPLicenseExpiredException;
+    import xyz.deepixel.stylear.DPStyleARFactory;
+    import xyz.deepixel.stylear.DPStyleAR;
+
+    public class Camera2BasicFragment extends Fragment
+        implements View.OnClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
+
+        private final CameraDevice.StateCallback mStateCallback = new CameraDevice.StateCallback() {
+          // StyleAR 카메라 파라메터 클래스 설정
+          DPCameraParam cameraParam = new DPCameraParam();
+          cameraParam.setWidth(mPreviewSize.getWidth());
+          cameraParam.setHeight(mPreviewSize.getHeight());
+          cameraParam.setSensorOrientation(mSensorOrientation);
+          try {
+              // StyleAR Android API 초기화
+              mStyleARAndroid.initialize();
+              // StyleAR surface 지정
+              mStyleARAndroid.setTargetSurface(mSurface);
+              // StyleAR 카메라 파라메터 클래스 지정
+              mStyleARAndroid.setCameraParam(cameraParam);
+              // StyleAR API 시작
+              mStyleARAndroid.start();
+          } catch (DPLicenseExpiredException e) {
+              ErrorDialog.newInstance(e.getMessage()).show(getChildFragmentManager(), FRAGMENT_DIALOG);
+          } catch (DPLicenseException e) {
+              ErrorDialog.newInstance(e.getMessage()).show(getChildFragmentManager(), FRAGMENT_DIALOG);
+          } catch (DPException e) {
+              ErrorDialog.newInstance(e.getMessage()).show(getChildFragmentManager(), FRAGMENT_DIALOG);
+          }
+        }
+    }
+
+    ```
+
+    - StyleAR 귀걸이 변경
+    > 귀걸이를 변경할 시에는 File 클래스에 귀걸이 사진이 저장되어 있는 경로를 입력해 주시고, 귀걸이 정보(실제 귀걸이 가로, 세로 크기) 및 귀걸이 사진이 지정된 File 클래스를 StyleAR API의 setEarringParams함수에 입력하면 됩니다.
+
+    ```java
+    // StyleAR 귀걸이 파일 입력
+    File mEarringFile;
+    mEarringFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath(), "wing1.png");
+    // StyleAR 귀걸이 정보 입력
+    // param 1: 귀걸이 사진 위치
+    // param 2: 실제 귀걸이 가로 크기(mm)
+    // param 3: 실제 귀걸이 세로 크기(mm)
+    // param 4: 귀걸이 엥커포지션
+    mStyleARAndroid.setEarringParams(mEarringFile.getAbsolutePath(), 13.0f, 85.0f, DPEarringAnchorPosition.TOP);
+    ```
+
+    - StyleAR API 결과 출력
+    > StyleAR API는 얼굴영상에 귀걸이가 착용된 결과와 메타데이터를 결과로 출력합니다. 귀걸이 착용 얼굴영상 데이터는 ImageReader에 등록하여 카메라 아웃풋을 설정할 때 출력할 수 있으며, 메타데이터는 원하는 시점에 출력할 수 있습니다.
+
+    ```java
+    /// 귀걸이 영상데이터 출력
+    private void setUpCameraOutputs(int width, int height) {
+        Activity activity = getActivity();
+        CameraManager manager = (CameraManager) activity.getSystemService(Context.CAMERA_SERVICE);
+        try {
+            for (String cameraId : manager.getCameraIdList()) {
+                CameraCharacteristics characteristics
+                        = manager.getCameraCharacteristics(cameraId);
+
+                // 정면 카메라로 설정
+                Integer facing = characteristics.get(CameraCharacteristics.LENS_FACING);
+                if (facing != null && facing != CameraCharacteristics.LENS_FACING_FRONT) {
+                    continue;
+                }
+
+                StreamConfigurationMap map = characteristics.get(
+                        CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
+                if (map == null) {
+                    continue;
+                }
+
+                Size largest = Collections.max(
+                        Arrays.asList(map.getOutputSizes(ImageFormat.YUV_420_888)),
+                        new CompareSizesByArea());
+
+                int displayRotation = activity.getWindowManager().getDefaultDisplay().getRotation();
+                mSensorOrientation = characteristics.get(CameraCharacteristics.SENSOR_ORIENTATION);
+                boolean swappedDimensions = false;
+                switch (displayRotation) {
+                    case Surface.ROTATION_0:
+                    case Surface.ROTATION_180:
+                        if (mSensorOrientation == 90 || mSensorOrientation == 270) {
+                            swappedDimensions = true;
+                        }
+                        break;
+                    case Surface.ROTATION_90:
+                    case Surface.ROTATION_270:
+                        if (mSensorOrientation == 0 || mSensorOrientation == 180) {
+                            swappedDimensions = true;
+                        }
+                        break;
+                    default:
+                        Log.e(TAG, "Display rotation is invalid: " + displayRotation);
+                }
+
+                Point displaySize = new Point();
+                activity.getWindowManager().getDefaultDisplay().getSize(displaySize);
+                int rotatedPreviewWidth = width;
+                int rotatedPreviewHeight = height;
+                int maxPreviewWidth = displaySize.x;
+                int maxPreviewHeight = displaySize.y;
+
+                if (swappedDimensions) {
+                    rotatedPreviewWidth = height;
+                    rotatedPreviewHeight = width;
+                    maxPreviewWidth = displaySize.y;
+                    maxPreviewHeight = displaySize.x;
+                }
+
+                if (maxPreviewWidth > MAX_PREVIEW_WIDTH) {
+                    maxPreviewWidth = MAX_PREVIEW_WIDTH;
+                }
+
+                if (maxPreviewHeight > MAX_PREVIEW_HEIGHT) {
+                    maxPreviewHeight = MAX_PREVIEW_HEIGHT;
+                }
+
+                mPreviewSize = chooseOptimalSize(map.getOutputSizes(SurfaceTexture.class),
+                        rotatedPreviewWidth, rotatedPreviewHeight, maxPreviewWidth,
+                        maxPreviewHeight, largest);
+
+                // ImageReader 설정
+                mImageReader = ImageReader.newInstance(mPreviewSize.getWidth(), mPreviewSize.getHeight(),
+                        ImageFormat.YUV_420_888, /*maxImages*/5);
+                // StyleAR API 결과영상 등록
+                mImageReader.setOnImageAvailableListener(
+                        mStyleARAndroid.getOnImageAvailableListener(), mBackgroundHandler);
+
+                int orientation = getResources().getConfiguration().orientation;
+                if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    mTextureView.setAspectRatio(
+                            mPreviewSize.getWidth(), mPreviewSize.getHeight());
+                } else {
+                    mTextureView.setAspectRatio(
+                            mPreviewSize.getHeight(), mPreviewSize.getWidth());
+                }
+
+                Boolean available = characteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE);
+                mFlashSupported = available == null ? false : available;
+
+                mCameraId = cameraId;
+                return;
+            }
+        } catch (CameraAccessException e) {
+            e.printStackTrace();
+        } catch (NullPointerException e) {
+            ErrorDialog.newInstance(getString(R.string.camera_error))
+                    .show(getChildFragmentManager(), FRAGMENT_DIALOG);
+        }
+    }
+    // 메타데이터 출력
+    // 에디트 텍스트
+    private EditText mEditTextMetaData;
+    mEditTextMetaData = view.findViewById(R.id.matadata);
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            // 메타데이터 출력 저장
+            DPFaceMetaData faceMetaData = mStyleARAndroid.getFaceMetaData();
+            StringBuilder msg = new StringBuilder();
+            // 얼굴 비율 평균 출력
+            msg.append("FRM : ").append(faceMetaData.getFaceRatioMean()).append('\n');
+            // 얼굴 비율 편차 출력
+            msg.append("FRS : ").append(faceMetaData.getFaceRatioStd()).append('\n');
+            // 머리카락 색깔 평균 출력
+            msg.append("HCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getHairColorMean())).append('\n');
+            // 머러카락 색깔 편차 출력
+            msg.append("HCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getHairColorStd())).append('\n');
+            // 입술 색깔 평균 출력
+            msg.append("LCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getLipColorMean())).append('\n');
+            // 입술 색깔 편차 출력
+            msg.append("LCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getLipColorStd())).append('\n');
+            // 피부색 색깔 평균 출력
+            msg.append("SCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getSkinColorMean())).append('\n');
+            // 피부색 색깔 편차 출력
+            msg.append("SCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getSkinColorStd())).append('\n');
+            //에디트 텍스트에 출력
+            mEditTextMetaData.setText(msg.toString());
+            mEditTextMetaData.setVisibility(View.VISIBLE);
+        }
+    }
+    ```
+
+    - StyleAR API 기능해제
+    > StyleAR API 기능해제는 stop함수를 원하시는 시점에 호출합니다.
+
+    ```java
+    mStyleARAndroid.stop();
+    ```
+
+- IOS StyleAR 사용법
+
 
 ## 연락처
 
@@ -61,19 +293,7 @@ StyleAR API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample
 
 ## 참조
 
-- [Anroid Sample][andoid_sample]
-- [iOS Sample][ios_sample]
-- [ARing API][ARing_api]
-- [OpenCV][opencv]
-- [TBB][tbb]
+- [Android Sample code][android_sample]
 
-[andoid_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/AR1ing/tutorial/android/
-[ios_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/AR1ing/tutorial/ios
-[opencv]: http://opencv.org/
-[ARing_api]: /AR1ing/apis/
-[result]: /AR1ing/apis/namespacedp_1_1ar1ingnative.html
-[image_type]: /AR1ing/apis/namespacemembers_enum.html
-[tbb]: https://www.threadingbuildingblocks.org/
-[android]: android.md
-[iOS]: ios.md
+[android_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/StyleAR/tutorial/android/StyleARForAndroidSample
 [license]: /License/README.md
