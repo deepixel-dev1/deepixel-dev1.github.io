@@ -26,7 +26,7 @@
     |목차|입력|비고||목차|출력|비고|
     |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
     |얼굴영상|![styleAR result](./img/faceInput.png){: width="700"}|얼굴이 사진의 40%이상 차지 해야 함||결과영상|![styleAR result](./img/faceOutput.png){: width="700"}|귀걸이가 실측크기에 맞게 배치 됨|
-    |귀걸이 사진|![styleAR result](./img/input_1.png){: width="500"}|● 영상편집 시 귀걸이 위와 아래의 공백을 최대한 작게<br />● 영상은 귀걸이를 제외한 배경은 투명처리(png 포멧)||메타데이터|![deepixel.xyz](./img/meta_info.png){: width="700"}|● 얼굴비율[가로: 코에서 턱, 세로: 코에서 귀]: 가로 /(가로 + 세로) {범위:0 ~ 1}<br />● 피부, 입술, 머리카락 색상: BGR순서로 색상정보가 출력 {범위:0 ~ 255}<br />● 귀 위치: 스크린의 원점을 기준으로 x, y 좌표|
+    |귀걸이 사진|![styleAR result](./img/input_1.png){: width="500"}|● 영상편집 시 귀걸이 위와 아래의 공백을 최대한 작게<br />● 영상은 귀걸이를 제외한 배경은 투명처리(png 포멧)||메타데이터|![deepixel.xyz](./img/meta_info.png){: width="700"}|● 얼굴비율[가로: 코에서 턱, 세로: 코에서 귀]: 가로 /(가로 + 세로) {범위:0 ~ 1}<br />● 피부, 입술, 머리카락 색상: RGB순서로 색상정보가 출력 {범위:0 ~ 255}<br />● 귀 위치: 스크린의 원점을 기준으로 x, y 좌표|
     |귀걸이 크기|귀걸이 실측 가로, 세로 크기|단위(mm)|||||
 
 ***
@@ -71,8 +71,8 @@
 
   ![deepixel.xyz](./img/Block.png){: width="800"}
 
-  - StyleAR API 객체생성
-    > StyleAR의 API는 DPStyleARFactory를 사용하여 객체를 생성합니다. 객체를 생성하는 과정에서 라이센스와 관련된 메시지가 출력 될 수 있습니다.
+  - StyleAR API 객체 생성 및 초기화
+    > DPStyleARFactory를 사용하여 StyleAR 객체를 생성합니다. 객체를 초기화하는 과정에서 라이센스와 관련된 예외가 발생할 수 있습니다.
 
     ```java
     //For Android
@@ -95,11 +95,29 @@
     }
     ```
 
-  - StyleAR API 초기화 및 구동
-    > StyleAR 초기화는 카메라 디바이스의 콜백 함수를 아래 예제와 같이 등록해야 합니다. 콜백함수 안에서 모바일 카메라 파라메터 정보(카메라 영상 크기 및 회전)를 StyleAR API에 등록해야 하며, start 함수를 통해 실제 StyleAR이 모바일에서 구동하게 됩니다.
+    ```swift
+    // iOS
+    // StyleAR 객체를 생성하고 초기화한다.
+    id<DPStyleAR> styleAR = [DPStyleARFactory getInstance];
+    @try {
+        [styleAR initialize];
+    }
+    @catch(DPLicenseExpiredException *e) {
+        std::cout << [e reason] << std::endl;
+    }
+    @catch(DPLicenseException *e) {
+        std::cout << [e reason] << std::endl;
+    }
+    @catch(DPException *e) {
+        std::cout << [e reason] << std::endl;
+    }
+    ```
+
+  - StyleAR API 설정
+    > StyleAR를 초기화하고 start 함수를 호출하기 전에 카메라 정보와 StyleAR의 결과가 출력될 UI 컴포넌트를 설정해야 합니다. start 함수를 호출하면 UI 컴포넌트에 StyleAR의 결과가 출력됩니다.
 
     ```java
-    //For Android
+    // For Android
     /// Camera2BasicFragment.java
     import xyz.deepixel.stylear.DPCameraParam;
     import xyz.deepixel.stylear.DPEarringAnchorPosition;
@@ -135,16 +153,46 @@
             mStyleARAndroid.start();
         }
     }
+    ```
 
+    ```swift
+    // For iOS
+    // 카메라 정보를 설정한다.
+    DPCameraParam *cameraParam = [[DPCameraParam alloc] init];
+    [cameraParam setSensorOrientation:90];
+    [cameraParam setFocalLength:30.0f];
+    [_styleAR setCameraParam:cameraParam];
+
+    // StyleAR에 view를 설정한다.
+    // 센서 방향대로 영상을 회전한다.
+    CGAffineTransform rotation = CGAffineTransformMakeRotation(M_PI / 2);
+    // 전면 카메라가 거울처럼 보이도록 좌우를 뒤집는다.
+    CGAffineTransform mirror = CGAffineTransformMakeScale(-1.0, 1.0);
+    targetView.layer.affineTransform = CGAffineTransformConcat(rotation, mirror);
+    targetView.layer.contentsGravity = kCAGravityResizeAspect;
+    targetView.layer.frame = targetView.bounds;
+    [_styleAR setTargetView:targetView];
+
+
+    // 정면 카메라를 반환하는 함수
+    - (AVCaptureDevice *)frontCamera {
+        NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+        for (AVCaptureDevice *device in devices) {
+            if ([device position] == AVCaptureDevicePositionFront) {
+                return device;
+            }
+        }
+        return nil;
+    }
     ```
 
     - StyleAR API 귀걸이 변경
-    > 귀걸이를 변경할 시에는 File 클래스에 귀걸이 사진이 저장되어 있는 경로를 입력하고, 귀걸이 정보(실제 귀걸이 가로, 세로 크기, 귀걸이 핀 위치[TOP or CENTER]) 및 귀걸이 사진이 지정된 File 클래스를 StyleAR API의 setEarringParams함수에 입력합니다.
+    > 귀걸이를 변경하기 위해서는 귀걸이 사진의 절대 경로와 귀걸이의 정보(실제 귀걸이의 가로 크기(mm), 세로 크기(mm) 그리고 핀 위치[TOP or CENTER])가 필요합니다.
 
     ![earring pin position](./img/earring_pin_position.png){: width="250"}
 
     ```java
-    //For Android
+    // For Android
     // StyleAR API 귀걸이 정보 클래스 선언
     DPEarringParam earringParam = new DPEarringParam();
     // 귀걸이 사진 파일 위치
@@ -156,11 +204,23 @@
     // 귀걸이 핀 위치(TOP or CENTER)
     earringParam.setAnchorPosition(DPEarringAnchorPosition.TOP);
     // StyleAR API에 귀걸이 정보 클래스 및 귀걸이 파일 이름 입력
-    mStyleARAndroid.setEarringParam(earringParam);"wing1.png");
+    mStyleARAndroid.setEarringParam(earringParam);
     ```
 
-    - StyleAR API 결과 출력
-    > StyleAR API는 귀걸이가 착용된 영상데이터와 메타데이터를 결과로 출력합니다. 귀걸이 착용 얼굴영상 데이터는 이미지 입출력 클래스에 등록하여 카메라 아웃풋을 설정할 때 출력할 수 있으며, 메타데이터는 원하는 시점에 출력할 수 있습니다.
+    ```swift
+    // For iOS
+    // 귀걸이 정보를 설정한다.
+    NSString *earringPath = GetEarringImgPath();
+    DPEarringParam *earringParam = [[DPEarringParam alloc] init];
+    earringParam.absolutePath = earringPath;
+    earringParam.width = 13.0f;
+    earringParam.height = 85.0f;
+    earringParam.anchorPosition = TOP;
+    [_styleAR setEarringParam:earringParam];
+    ```
+
+    - StyleAR API 카메라 입력 설정
+    > 카메라 영상을 프로세싱하기 위해 이벤트 핸들러를 설정해야 합니다. 이벤트 핸들러는 StyleAR 객체에서 가져올 수 있습니다. 이 후에 카메라와 StyleAR를 구동하면 카메라 영상이 프로세싱됩니다.
 
     ```java
     //For Android
@@ -228,16 +288,52 @@
     }
     ```
 
-    - StyleAR API 기능해제
-    > StyleAR API 기능해제는 stop함수를 원하시는 시점에 호출합니다.
+    - StyleAR API 구동
+    > StyleAR 동작을 시작합니다. StyleAR에 설정된 UI 컴포넌트에 결과 영상을 출력합니다. StyleAR을 구동하기 전에 카메라 관련 정보와 UI 컴포넌트를 설정해야 하고 카메라 영상을 프로세싱하기 위한 이벤트 핸들러를 등록해야 합니다.
+
+    ```java
+    // For Android
+    mStyleARAndroid.start();
+    ```
+
+    ```swift
+    // For iOS
+    [_styleAR start];
+    ```
+
+    - StyleAR API 정지
+    > StyleAR 동작을 정지합니다. StyleAR에 설정되 UI 컴포넌트에 결과 영상을 출력하는 것을 멈춥니다. 카메라 관련 정보, UI 컴포넌트 또는 이벤트 핸들러를 다시 등록하는 것을 StyleAR 동작을 정지한 후에 가능합니다.
 
     ```java
     //For Android
     mStyleARAndroid.stop();
     ```
 
-- IOS StyleAR API 사용법
+    ```swift
+    // For iOS
+    [_styleAR stop];
+    ```
 
+    - StyleAR 메타 정보 획득
+    > StyleAR이 동작하는 동안 카메라 입력 영상에서 다양한 메타 정보를 획득 할 수 있습니다.
+
+    ```java
+    //For Android
+    ```
+
+    ```swift
+    // For iOS
+    DPFaceMetaData *faceMetaData = [styleAR getFaceMetaData];
+    NSMutableString *str = [[NSMutableString alloc] init];
+    [str appendFormat:@"FRM = %f\n", faceMetaData.faceRatioMean];
+    [str appendFormat:@"FRS = %f\n", faceMetaData.faceRatioStd];
+    [str appendFormat:@"HCM = #%06X\n", 0xFFFFFF & faceMetaData.hairColorMean];
+    [str appendFormat:@"HCS = #%06X\n", 0xFFFFFF & faceMetaData.hairColorStd];
+    [str appendFormat:@"LCM = #%06X\n", 0xFFFFFF & faceMetaData.lipColorMean];
+    [str appendFormat:@"LCS = #%06X\n", 0xFFFFFF & faceMetaData.lipColorStd];
+    [str appendFormat:@"SCM = #%06X\n", 0xFFFFFF & faceMetaData.skinColorMean];
+    [str appendFormat:@"SCS = #%06X", 0xFFFFFF & faceMetaData.skinColorStd];
+    ```
 
 ## 연락처
 
