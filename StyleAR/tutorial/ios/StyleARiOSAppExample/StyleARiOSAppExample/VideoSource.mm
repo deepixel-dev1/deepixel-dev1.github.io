@@ -9,7 +9,7 @@
 #import "VideoSource.h"
 #import <AVFoundation/AVFoundation.h>
 #import <Accelerate/Accelerate.h>
-#import <StyleARiOS/DPStyleARFactory.h>
+#import <StyleARiOS/StyleARiOS.h>
 
 using namespace cv;
 using namespace std;
@@ -92,7 +92,18 @@ NSString *GetEarringImgPath() {
         
         // StyleAR 객체를 생성하고 초기화한다.
         _styleAR = [DPStyleARFactory getInstance];
-        [_styleAR initialize];
+        @try {
+            [_styleAR initialize];
+        }
+        @catch(DPLicenseExpiredException *e) {
+            std::cout << [e reason] << std::endl;
+        }
+        @catch(DPLicenseException *e) {
+            std::cout << [e reason] << std::endl;
+        }
+        @catch(DPException *e) {
+            std::cout << [e reason] << std::endl;
+        }
 
         // 카메라 정보를 설정한다.
         DPCameraParam *cameraParam = [[DPCameraParam alloc] init];
