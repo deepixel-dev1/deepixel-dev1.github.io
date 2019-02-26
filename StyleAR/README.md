@@ -76,7 +76,7 @@
 - Android StyleAR API 사용법
   > [Android Code][android_sample]는 Android 예제인 [Camera2BasicFragment][camera2basicfragment_sample]를 기반으로 구현하였습니다.
 
-  ![deepixel.xyz](./img/Block.png){: width="400"}
+  ![deepixel.xyz](./img/Block.png){: width="600"}
 
   - StyleAR API 객체생성
     > StyleAR의 API는 DPStyleARFactory를 사용하여 객체를 생성합니다. 객체를 생성하는 과정에서 라이센스와 관련된 메시지가 출력 될 수 있습니다.
