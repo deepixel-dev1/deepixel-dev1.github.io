@@ -1,11 +1,11 @@
 var annotated_dup =
 [
-    [ "DPCameraParam", "interface_d_p_camera_param.html", "interface_d_p_camera_param" ],
-    [ "DPEarringParam", "interface_d_p_earring_param.html", "interface_d_p_earring_param" ],
-    [ "DPException", "interface_d_p_exception.html", null ],
-    [ "DPFaceMetaData", "interface_d_p_face_meta_data.html", "interface_d_p_face_meta_data" ],
-    [ "DPLicenseException", "interface_d_p_license_exception.html", null ],
-    [ "DPLicenseExpiredException", "interface_d_p_license_expired_exception.html", null ],
-    [ "<DPStyleAR>", "protocol_d_p_style_a_r-p.html", "protocol_d_p_style_a_r-p" ],
-    [ "DPStyleARFactory", "interface_d_p_style_a_r_factory.html", "interface_d_p_style_a_r_factory" ]
+    [ "DPCameraParam", "a00026.html", "a00026" ],
+    [ "DPEarringParam", "a00030.html", "a00030" ],
+    [ "DPException", "a00034.html", null ],
+    [ "DPFaceMetaData", "a00046.html", "a00046" ],
+    [ "DPLicenseException", "a00038.html", null ],
+    [ "DPLicenseExpiredException", "a00042.html", null ],
+    [ "<DPStyleAR>", "a00050.html", "a00050" ],
+    [ "DPStyleARFactory", "a00054.html", "a00054" ]
 ];

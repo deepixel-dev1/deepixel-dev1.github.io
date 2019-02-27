@@ -1,19 +1,19 @@
 var hierarchy =
 [
     [ "NSException", null, [
-      [ "DPException", "interface_d_p_exception.html", [
-        [ "DPLicenseException", "interface_d_p_license_exception.html", [
-          [ "DPLicenseExpiredException", "interface_d_p_license_expired_exception.html", null ]
+      [ "DPException", "a00034.html", [
+        [ "DPLicenseException", "a00038.html", [
+          [ "DPLicenseExpiredException", "a00042.html", null ]
         ] ]
       ] ]
     ] ],
     [ "NSObject", null, [
-      [ "DPCameraParam", "interface_d_p_camera_param.html", null ],
-      [ "DPEarringParam", "interface_d_p_earring_param.html", null ],
-      [ "DPFaceMetaData", "interface_d_p_face_meta_data.html", null ],
-      [ "DPStyleARFactory", "interface_d_p_style_a_r_factory.html", null ]
+      [ "DPCameraParam", "a00026.html", null ],
+      [ "DPEarringParam", "a00030.html", null ],
+      [ "DPFaceMetaData", "a00046.html", null ],
+      [ "DPStyleARFactory", "a00054.html", null ]
     ] ],
     [ "<NSObject>", null, [
-      [ "<DPStyleAR>", "protocol_d_p_style_a_r-p.html", null ]
+      [ "<DPStyleAR>", "a00050.html", null ]
     ] ]
 ];
