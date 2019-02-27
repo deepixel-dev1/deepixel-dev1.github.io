@@ -19,7 +19,7 @@
     |목차|스팩|비고|
     |:-:|:-:|:-:|
     |가능인원|1명||
-    |속도| 20 ~ 30FPS (Frame Per Secound) |실험 장비(Galaxy Note 8), 해상도(1440 X 1080)|
+    |속도| 20 ~ 40FPS (Frame Per Secound) |실험 장비(Galaxy Note 8), 해상도(1440 X 1080)|
 
 - 입력 및 출력:
 
