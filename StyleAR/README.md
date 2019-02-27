@@ -2,7 +2,7 @@
 
 # StyleAR API Tutorial
 
->StyleAR API 은 모바일 장치로 부터 입력된 영상에서 얼굴특정 위치 검출, 3D 피팅, 영상분석등을 통해 귀걸이 착용영상과 메타정보를 실시간으로 출력하는 컴퓨터 비전 기반의 API Library 입니다.  
+>StyleAR API는 모바일의 카메라 영상에서 얼굴의 특정 위치 검출, 3D 피팅, 영상분석 등을 통해 귀걸이 착용 영상과 메타정보를 실시간으로 출력하는 컴퓨터 비전 기반의 API Library입니다.  
 
 ![aring display](./img/face(earring).png){: width="200"}
 
@@ -27,9 +27,19 @@
     |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
     |얼굴영상|![styleAR result](./img/faceInput.png){: width="700"}|얼굴이 사진의 40%이상 차지 해야 함||결과영상|![styleAR result](./img/faceOutput.png){: width="700"}|귀걸이가 실측크기에 맞게 배치 됨|
     |귀걸이 사진|![styleAR result](./img/input_1.png){: width="500"}|● 영상편집 시 귀걸이 위와 아래의 공백을 최대한 작게<br />● 영상은 귀걸이를 제외한 배경은 투명처리(png 포멧)||메타데이터|![deepixel.xyz](./img/meta_info.png){: width="700"}|● 얼굴비율[가로: 코에서 턱, 세로: 코에서 귀]: 가로 /(가로 + 세로) {범위:0 ~ 1}<br />● 피부, 입술, 머리카락 색상: RGB순서로 색상정보가 출력 {범위:0 ~ 255}<br />● 귀 위치: 스크린의 원점을 기준으로 x, y 좌표|
-    |귀걸이 크기|귀걸이 실측 가로, 세로 크기|단위(mm)|||||
+    |귀걸이 크기|귀걸이 실측 가로와 세로 크기|단위(mm)|||||
 
 ***
+
+## StyleAR API
+
+- StyleAR API의 구조
+
+  ![deepixel.xyz](./img/Block.png){: width="800"}
+
+- StyleAR API의 life cycle
+
+  ![lifecycle](./img/life_cycle.png){: width="500"}
 
 ## StyleAR API 사용방법
 
@@ -41,7 +51,7 @@
 |목차|내용|
 |:-:|:-:|
 |발급|<support@deepixel.xyz>로 문의 바랍니다.|
-|주의사항|API 사용 기간, 메타정보 사용 유무를 고려하여 주시기 바랍니다.|
+|주의사항|API 사용 기간과 메타정보 사용 유무를 고려하여 주시기 바랍니다.|
 
 - 환경설정
   - Android
@@ -68,17 +78,13 @@
     - [iOS 환경 설정][ios_tutorial]
 
 - StyleAR API 사용법
-  > [Android][android_sample]는 Android 예제인 [Camera2BasicFragment][camera2basicfragment_sample]를 기반으로 구현하였습니다.
-
-  ![deepixel.xyz](./img/Block.png){: width="800"}
-
-  ![lifecycle](./img/life_cycle.png){: width="500"}
+  > [Android][android_sample] 예제는 [Camera2BasicFragment][camera2basicfragment_sample] 예제 코드를 기반으로 구현하였습니다.
 
   - StyleAR API 객체 생성 및 초기화
     > DPStyleARFactory를 사용하여 StyleAR API객체를 생성합니다. 객체를 초기화하는 과정에서 라이센스와 관련된 예외가 발생할 수 있습니다.
 
     ```java
-    //For Android
+    // For Android
     if (mStyleARAndroid == null) {
         try {
             // StyleAR API 객체생성
@@ -96,7 +102,7 @@
     ```
 
     ```swift
-    // iOS
+    // For iOS
     // StyleAR API객체를 생성하고 초기화한다.
     id<DPStyleAR> styleAR = [DPStyleARFactory getInstance];
     @try {
@@ -150,10 +156,10 @@
     ```
 
     - StyleAR API 카메라 입력 설정
-    > 카메라 영상을 프로세싱하기 위해 이벤트 핸들러를 설정해야 합니다. 이벤트 핸들러는 StyleAR API 객체에서 가져올 수 있습니다. 이 후에 카메라와 StyleAR API를 구동하면 카메라 영상이 프로세싱됩니다. 카메라 영상은 4:3 비율로 설정하는 것을 권장합니다. 일반적으로 모바일의 카메라 영상은 4:3 비율이 16:9 비율보다 FOV(Field Of View)가 넓기 때문에 더 좋은 사용자 경험(User Experience)을 제공할 수 있습니다.
+    > 카메라 영상을 프로세싱하기 위해 이벤트 핸들러를 설정해야 합니다. 이벤트 핸들러는 StyleAR API 객체에서 가져올 수 있습니다. 이 후에 카메라와 StyleAR API를 구동하면 카메라 영상이 프로세싱됩니다. 카메라 영상은 4:3 비율로 설정하는 것을 권장합니다. 일반적으로 모바일의 카메라 영상은 4:3 비율이 16:9 비율보다 FOV(Field Of View)가 넓기 때문에 더 좋은 사용자 경험(User Experience)을 제공합니다.
 
     ```java
-    //For Android
+    // For Android
     // ImageReader 생성
     mImageReader = ImageReader.newInstance(mPreviewSize.getWidth(), mPreviewSize.getHeight(),ImageFormat.YUV_420_888, /*maxImages*/5);
     // StyleAR API 이벤트 핸들러 설정
@@ -161,6 +167,7 @@
     ```
 
     ```swift
+    // For iOS
     // 캡쳐 세션을 생성하고 초기화한다.
     AVCaptureSession *captureSession = [[AVCaptureSession alloc] init];
     captureSession.sessionPreset = AVCaptureSessionPresetPhoto;
@@ -245,7 +252,7 @@
     > StyleAR API 동작을 정지합니다. StyleAR API에 설정되 UI 컴포넌트에 결과 영상을 출력하는 것을 멈춥니다. 카메라 관련 정보, UI 컴포넌트 또는 이벤트 핸들러를 다시 등록하는 것을 StyleAR API동작을 정지한 후에 가능합니다.
 
     ```java
-    //For Android
+    // For Android
     mStyleARAndroid.stop();
     ```
 
@@ -258,7 +265,7 @@
     > StyleAR API이 동작하는 동안 카메라 입력 영상에서 다양한 메타 정보를 획득 할 수 있습니다.
 
     ```java
-    //For Android
+    // For Android
     DPFaceMetaData faceMetaData = mStyleARAndroid.getFaceMetaData();
     StringBuilder msg = new StringBuilder();
     // 얼굴 비율 평균 출력
@@ -295,7 +302,7 @@
 
 ## 연락처
 
-> StyleAR API 적용시 문제점을 발견하거나 궁금한 점이 있다면, 다음의 이메일(support@deepixel.xyz)로 문의해 주세요.  
+> StyleAR API 적용시 문제점을 발견하거나 궁금한 점이 있다면, 이메일(support@deepixel.xyz)로 문의해 주세요.  
 
 ***
 
