@@ -23,7 +23,12 @@ for the JavaScript code in this file
 */
 var NAVTREE =
 [
-  [ "StyleAR", "index.html", [
+  [ "StyleAR For iOS", "index.html", [
+    [ "Project : StyleAR", "index.html", [
+      [ "소개", "index.html#intro", null ],
+      [ "작성정보", "index.html#CreateInfo", null ],
+      [ "기타정보", "index.html#common", null ]
+    ] ],
     [ "클래스", "annotated.html", [
       [ "클래스 목록", "annotated.html", "annotated_dup" ],
       [ "클래스 색인", "classes.html", null ],
