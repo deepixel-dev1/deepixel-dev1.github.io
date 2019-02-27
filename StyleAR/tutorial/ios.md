@@ -42,8 +42,8 @@
 
 10. Build Settings -> Prefix Header 설정값으로 PCH 파일의 위치를 추가한다.
 
-11. Info.plist 파일에 아래 내용을 추가한다.
-    ![cameara permission](./img/xcode_info_plist.png)
+11. Info.plist 파일에 카메라 권한을 얻기 위한 설정을 추가한다.
+    ![cameara permission](./img/xcode_require_camera_permission.png)
 
 ***
 
