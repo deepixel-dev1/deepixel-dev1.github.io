@@ -1,2 +1,1 @@
-include:
-  - "_d_p_*.html"
+include: [StyleAR/apis/ios]
