@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>StyleARForAndroid: DPStyleAR.java 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">StyleARForAndroid
+   &#160;<span id="projectnumber">1.0.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'검색');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','검색');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('a00023_source.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">DPStyleAR.java</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="a00023.html">이 파일의 문서화 페이지로 가기</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">package </span>xyz.deepixel.stylear;</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">import</span> android.app.Activity;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">import</span> android.media.ImageReader;</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">import</span> android.support.annotation.Keep;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">import</span> android.view.Surface;</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">import</span> java9.util.concurrent.CompletableFuture;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;@Keep</div><div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="a00063.html">   35</a></span>&#160;<span class="keyword">public</span> <span class="keyword">interface </span><a class="code" href="a00063.html">DPStyleAR</a> {</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    ImageReader.OnImageAvailableListener <a class="code" href="a00063.html#ad4b78a6fe818f6e22ca4d75ca59da1ec">getOnImageAvailableListener</a>();</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="a00063.html#ab9d2182d4267b3e71152804f2c041740">initialize</a>() <span class="keywordflow">throws</span> <a class="code" href="a00055.html">DPLicenseException</a>;</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    CompletableFuture <a class="code" href="a00063.html#a6a9bc6ccbf793ac8e87b217bdbc81d31">initializeAsync</a>();</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="a00063.html#aba56f24f0e0a400c8f71e55be8b8dc6e">setTargetSurface</a>(Surface surface);</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="a00063.html#ae51c6d52c5b95ee242a52d620b6f4179">setCameraParam</a>(<span class="keyword">final</span> <a class="code" href="a00035.html">DPCameraParam</a> cameraParam);</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="a00063.html#a20f4d79adde6f38877086214d3b58744">start</a>();</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="a00063.html#aea32a8dd269399f43821f8c4aa189fee">stop</a>();</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="a00063.html#a77ada6000699ccfa062b7860aa405305">setEarringParam</a>(<a class="code" href="a00043.html">DPEarringParam</a> earringParam);</div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <a class="code" href="a00051.html">DPFaceMetaData</a> <a class="code" href="a00063.html#ab419a9e3019f95f07f251d35797d5de3">getFaceMetaData</a>();</div><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;}</div><div class="ttc" id="a00063_html_a6a9bc6ccbf793ac8e87b217bdbc81d31"><div class="ttname"><a href="a00063.html#a6a9bc6ccbf793ac8e87b217bdbc81d31">xyz.deepixel.stylear.DPStyleAR.initializeAsync</a></div><div class="ttdeci">CompletableFuture initializeAsync()</div></div>
+<div class="ttc" id="a00035_html"><div class="ttname"><a href="a00035.html">xyz.deepixel.stylear.DPCameraParam</a></div><div class="ttdef"><b>Definition:</b> <a href="a00002_source.html#l00011">DPCameraParam.java:11</a></div></div>
+<div class="ttc" id="a00063_html_a77ada6000699ccfa062b7860aa405305"><div class="ttname"><a href="a00063.html#a77ada6000699ccfa062b7860aa405305">xyz.deepixel.stylear.DPStyleAR.setEarringParam</a></div><div class="ttdeci">void setEarringParam(DPEarringParam earringParam)</div></div>
+<div class="ttc" id="a00055_html"><div class="ttname"><a href="a00055.html">xyz.deepixel.stylear.DPLicenseException</a></div><div class="ttdef"><b>Definition:</b> <a href="a00017_source.html#l00009">DPLicenseException.java:9</a></div></div>
+<div class="ttc" id="a00043_html"><div class="ttname"><a href="a00043.html">xyz.deepixel.stylear.DPEarringParam</a></div><div class="ttdef"><b>Definition:</b> <a href="a00008_source.html#l00006">DPEarringParam.java:6</a></div></div>
+<div class="ttc" id="a00063_html_aea32a8dd269399f43821f8c4aa189fee"><div class="ttname"><a href="a00063.html#aea32a8dd269399f43821f8c4aa189fee">xyz.deepixel.stylear.DPStyleAR.stop</a></div><div class="ttdeci">void stop()</div></div>
+<div class="ttc" id="a00063_html_ab419a9e3019f95f07f251d35797d5de3"><div class="ttname"><a href="a00063.html#ab419a9e3019f95f07f251d35797d5de3">xyz.deepixel.stylear.DPStyleAR.getFaceMetaData</a></div><div class="ttdeci">DPFaceMetaData getFaceMetaData()</div></div>
+<div class="ttc" id="a00063_html"><div class="ttname"><a href="a00063.html">xyz.deepixel.stylear.DPStyleAR</a></div><div class="ttdef"><b>Definition:</b> <a href="a00023_source.html#l00035">DPStyleAR.java:35</a></div></div>
+<div class="ttc" id="a00063_html_ae51c6d52c5b95ee242a52d620b6f4179"><div class="ttname"><a href="a00063.html#ae51c6d52c5b95ee242a52d620b6f4179">xyz.deepixel.stylear.DPStyleAR.setCameraParam</a></div><div class="ttdeci">void setCameraParam(final DPCameraParam cameraParam)</div></div>
+<div class="ttc" id="a00063_html_aba56f24f0e0a400c8f71e55be8b8dc6e"><div class="ttname"><a href="a00063.html#aba56f24f0e0a400c8f71e55be8b8dc6e">xyz.deepixel.stylear.DPStyleAR.setTargetSurface</a></div><div class="ttdeci">void setTargetSurface(Surface surface)</div></div>
+<div class="ttc" id="a00063_html_ab9d2182d4267b3e71152804f2c041740"><div class="ttname"><a href="a00063.html#ab9d2182d4267b3e71152804f2c041740">xyz.deepixel.stylear.DPStyleAR.initialize</a></div><div class="ttdeci">void initialize()</div></div>
+<div class="ttc" id="a00063_html_a20f4d79adde6f38877086214d3b58744"><div class="ttname"><a href="a00063.html#a20f4d79adde6f38877086214d3b58744">xyz.deepixel.stylear.DPStyleAR.start</a></div><div class="ttdeci">void start()</div></div>
+<div class="ttc" id="a00063_html_ad4b78a6fe818f6e22ca4d75ca59da1ec"><div class="ttname"><a href="a00063.html#ad4b78a6fe818f6e22ca4d75ca59da1ec">xyz.deepixel.stylear.DPStyleAR.getOnImageAvailableListener</a></div><div class="ttdeci">ImageReader.OnImageAvailableListener getOnImageAvailableListener()</div></div>
+<div class="ttc" id="a00051_html"><div class="ttname"><a href="a00051.html">xyz.deepixel.stylear.DPFaceMetaData</a></div><div class="ttdef"><b>Definition:</b> <a href="a00014_source.html#l00007">DPFaceMetaData.java:7</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="a00023.html">DPStyleAR.java</a></li>
+    <li class="footer">다음에 의해 생성됨 : 
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
+  </ul>
+</div>
+</body>
+</html>
