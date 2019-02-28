@@ -35,7 +35,7 @@
 
 - StyleAR API의 구조
 
-  ![deepixel.xyz](./img/Block.png){: width="800"}
+  ![deepixel.xyz](./img/structure.png){: width="800"}
 
 - StyleAR API의 life cycle
 
