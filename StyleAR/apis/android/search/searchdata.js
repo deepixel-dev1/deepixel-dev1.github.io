@@ -1,9 +1,9 @@
 var indexSectionsWithContent =
 {
-  0: "cdgipstx",
+  0: "cdgopstx",
   1: "d",
   2: "x",
-  3: "dgis",
+  3: "dgos",
   4: "ct",
   5: "p"
 };
@@ -20,11 +20,11 @@ var indexSectionNames =
 
 var indexSectionLabels =
 {
-  0: "모두",
-  1: "클래스",
-  2: "네임스페이스들",
-  3: "함수",
-  4: "변수",
-  5: "페이지들"
+  0: "All",
+  1: "Classes",
+  2: "Namespaces",
+  3: "Functions",
+  4: "Variables",
+  5: "Pages"
 };
 

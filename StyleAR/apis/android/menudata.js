@@ -22,24 +22,14 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 for the JavaScript code in this file
 */
 var menudata={children:[
-{text:"메인 페이지",url:"index.html"},
-{text:"패키지",url:"namespaces.html",children:[
-{text:"패키지",url:"namespaces.html"}]},
-{text:"클래스",url:"annotated.html",children:[
-{text:"클래스 목록",url:"annotated.html"},
-{text:"클래스 색인",url:"classes.html"},
-{text:"클래스 계통도",url:"inherits.html"},
-{text:"클래스 멤버",url:"functions.html",children:[
-{text:"모두",url:"functions.html",children:[
-{text:"c",url:"functions.html#index_c"},
-{text:"d",url:"functions.html#index_d"},
-{text:"g",url:"functions.html#index_g"},
-{text:"i",url:"functions.html#index_i"},
-{text:"s",url:"functions.html#index_s"},
-{text:"t",url:"functions.html#index_t"}]},
-{text:"함수",url:"functions_func.html",children:[
-{text:"d",url:"functions_func.html#index_d"},
-{text:"g",url:"functions_func.html#index_g"},
-{text:"i",url:"functions_func.html#index_i"},
-{text:"s",url:"functions_func.html#index_s"}]},
-{text:"변수",url:"functions_vars.html"}]}]}]}
+{text:"Main Page",url:"index.html"},
+{text:"Packages",url:"namespaces.html",children:[
+{text:"Packages",url:"namespaces.html"}]},
+{text:"Classes",url:"annotated.html",children:[
+{text:"Class List",url:"annotated.html"},
+{text:"Class Index",url:"classes.html"},
+{text:"Class Hierarchy",url:"hierarchy.html"},
+{text:"Class Members",url:"functions.html",children:[
+{text:"All",url:"functions.html"},
+{text:"Functions",url:"functions_func.html"},
+{text:"Variables",url:"functions_vars.html"}]}]}]}

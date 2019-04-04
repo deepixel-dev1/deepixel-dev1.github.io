@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['deepixel',['deepixel',['../a00031.html',1,'xyz']]],
-  ['stylear',['stylear',['../a00029.html',1,'xyz::deepixel']]],
-  ['xyz',['xyz',['../a00030.html',1,'']]]
+  ['deepixel',['deepixel',['../a00016.html',1,'xyz']]],
+  ['stylear',['stylear',['../a00014.html',1,'xyz::deepixel']]],
+  ['xyz',['xyz',['../a00015.html',1,'']]]
 ];
