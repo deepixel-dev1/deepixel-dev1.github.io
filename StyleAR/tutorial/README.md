@@ -25,7 +25,7 @@
 
     |목차|입력|비고||목차|출력|비고|
     |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-    |얼굴영상|![styleAR result](./img/faceInput.png){: width="700"}|얼굴이 사진의 40%이상 차지 해야 함||결과영상|![styleAR result](./img/faceOutput.png){: width="700"}|귀걸이가 실측크기에 맞게 배치 됨|
+    |얼굴영상|![styleAR result](./img/faceInput.png){: width="700"}|얼굴이 사진의 40%이상 차지 해야 함||결과영상|![styleAR result](./img/faceOutput.png){: width="700"}|귀걸이가 실측크기에 맞게 배치되고, 영상 자체는 필터처리가 되어 입력영상보다 화사하게 보여줌|
     |귀걸이 사진|![styleAR result](./img/input_1.png){: width="500"}|● 영상편집 시 귀걸이 위와 아래의 공백을 최대한 작게<br />● 영상은 귀걸이를 제외한 배경은 투명처리(png 포멧)||메타데이터|![deepixel.xyz](./img/meta_info.png){: width="700"}|● 얼굴비율[가로: 코에서 턱, 세로: 코에서 귀]: 가로 /(가로 + 세로) {범위:0 ~ 1}<br />● 피부, 입술, 머리카락 색상: RGB순서로 색상정보가 출력 {범위:0 ~ 255}<br />● 귀 위치: 스크린의 원점을 기준으로 x, y 좌표|
     |귀걸이 크기|귀걸이 실측 가로와 세로 크기|단위(mm)|||||
 
@@ -55,151 +55,25 @@
 
 - 환경설정
   - Android
-    - StyleAR API Library 파일 넣기
-    > Library 폴더에 라이센스 발급 시 배포된 라이브러리 파일(StyleARAndroid.aar)을 넣는다.
-    - Gradle 설정추가
-
-        ```Gradle
-        android{
-          compileOption{
-          sourceCompatibility 1.8
-          sourceCompatibility 1.8
-          }
-        }
-
-        dependencies{
-            implementation 'net.sourceforge.streamsupport:android-retrofuture:1.7.0'
-            implementation 'com.android.support:appcompat-v7:28.0.0'
-            implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-        }
-        ```
+    - [Android 환경 설정][android_tutorial]
 
   - iOS
     - [iOS 환경 설정][ios_tutorial]
 
 - StyleAR API 사용법
-  > [Android][android_sample] 예제는 [Camera2BasicFragment][camera2basicfragment_sample] 예제 코드를 기반으로 구현하였습니다.
-
-  - StyleAR API 객체 생성 및 초기화
-    > DPStyleARFactory를 사용하여 StyleAR API객체를 생성합니다. 객체를 초기화하는 과정에서 라이센스와 관련된 예외가 발생할 수 있습니다.
+  - StyleAR view 연결
+    > StyleAR API는 자체적으로 카메라를 제어하고 출력하는 view controller를 가지고 있습니다. StyleAR API를 사용을 할 시 해당 controller를 layout의 view에 연결하여 다른 설정 필요없이 쉽게 사용할 수 있습니다.
 
     ```java
     // For Android
-    if (mStyleARAndroid == null) {
-        try {
-            // StyleAR API 객체생성
-            mStyleARAndroid = DPStyleARFactory.getInstance(this.getActivity());
-            mStyleARAndroid.initialize();
-            // 라이센스 오류 메시지 출력
-        } catch (DPLicenseExpiredException e) {
-            ErrorDialog.newInstance(e.getMessage()).show(getChildFragmentManager(), FRAGMENT_DIALOG);
-        } catch (DPLicenseException e) {
-            ErrorDialog.newInstance(e.getMessage()).show(getChildFragmentManager(), FRAGMENT_DIALOG);
-        } catch (DPException e) {
-            ErrorDialog.newInstance(e.getMessage()).show(getChildFragmentManager(), FRAGMENT_DIALOG);
-        }
-    }
+    // StyleAR View Controller 선언
+    private DPStyleARView m_stylearView
+    // StyleAR View Controller를 layout의 view에 연결  
+    m_stylearView = view.findViewById(R.id.stylear_view); //연결
     ```
 
     ```swift
     // For iOS
-    // StyleAR API객체를 생성하고 초기화한다.
-    id<DPStyleAR> styleAR = [DPStyleARFactory getInstance];
-    @try {
-        [styleAR initialize];
-    }
-    @catch(DPLicenseExpiredException *e) {
-        std::cout << [e reason] << std::endl;
-    }
-    @catch(DPLicenseException *e) {
-        std::cout << [e reason] << std::endl;
-    }
-    @catch(DPException *e) {
-        std::cout << [e reason] << std::endl;
-    }
-    ```
-
-  - StyleAR API 설정
-    > StyleAR API를 초기화하고 start 함수를 호출하기 전에 카메라 정보와 StyleAR의 결과가 출력될 UI 컴포넌트를 설정해야 합니다.
-
-    ```java
-    // For Android
-    // DPCameraParam 선언
-    DPCameraParam cameraParam = new DPCameraParam();
-    // SensorOrientation 설정
-    cameraParam.setSensorOrientation(mSensorOrientation);
-    // focallength 설정
-    cameraParam.setFocalLength(m_focalLength);
-    // ui surface 설정
-    mStyleARAndroid.setTargetSurface(mSurface);
-    // StyleAR API에 카메라 파라메터(DPCameraParam) 설정
-    mStyleARAndroid.setCameraParam(cameraParam);
-    ```
-
-    ```swift
-    // For iOS
-    // 카메라 정보를 설정한다.
-    DPCameraParam *cameraParam = [[DPCameraParam alloc] init];
-    [cameraParam setSensorOrientation:90];
-    [cameraParam setFocalLength:30.0f];
-    [_styleAR setCameraParam:cameraParam];
-
-    // StyleAR API에 view를 설정한다.
-    // 센서 방향대로 영상을 회전한다.
-    CGAffineTransform rotation = CGAffineTransformMakeRotation(M_PI / 2);
-    // 전면 카메라가 거울처럼 보이도록 좌우를 뒤집는다.
-    CGAffineTransform mirror = CGAffineTransformMakeScale(-1.0, 1.0);
-    targetView.layer.affineTransform = CGAffineTransformConcat(rotation, mirror);
-    targetView.layer.contentsGravity = kCAGravityResizeAspect;
-    targetView.layer.frame = targetView.bounds;
-    [_styleAR setTargetView:targetView];
-    ```
-
-    - StyleAR API 카메라 입력 설정
-    > 카메라 영상을 프로세싱하기 위해 이벤트 핸들러를 설정해야 합니다. 이벤트 핸들러는 StyleAR API 객체에서 가져올 수 있습니다. 이 후에 카메라와 StyleAR API를 구동하면 카메라 영상이 프로세싱됩니다. 카메라 영상은 4:3 비율로 설정하는 것을 권장합니다. 일반적으로 모바일의 카메라 영상은 4:3 비율이 16:9 비율보다 FOV(Field Of View)가 넓기 때문에 더 좋은 사용자 경험(User Experience)을 제공합니다.
-
-    ```java
-    // For Android
-    // ImageReader 생성
-    mImageReader = ImageReader.newInstance(mPreviewSize.getWidth(), mPreviewSize.getHeight(),ImageFormat.YUV_420_888, /*maxImages*/5);
-    // StyleAR API 이벤트 핸들러 설정
-    mImageReader.setOnImageAvailableListener(mStyleARAndroid.getOnImageAvailableListener(), mBackgroundHandler);
-    ```
-
-    ```swift
-    // For iOS
-    // 캡쳐 세션을 생성하고 초기화한다.
-    AVCaptureSession *captureSession = [[AVCaptureSession alloc] init];
-    captureSession.sessionPreset = AVCaptureSessionPresetPhoto;
-
-    // 캡쳐 세션의 input을 설정한다.
-    AVCaptureDevice *device = [self frontCamera];
-    NSError *error = nil;
-    AVCaptureDeviceInput *input = [[AVCaptureDeviceInput alloc] initWithDevice:device error:&error];
-    [captureSession addInput:input];
-
-    // 갭쳐 세션의 output을 설정한다.
-    AVCaptureVideoDataOutput *output = [[AVCaptureVideoDataOutput alloc] init];
-    output.videoSettings = @{(NSString *)kCVPixelBufferPixelFormatTypeKey : @(kCVPixelFormatType_32BGRA)};
-    output.alwaysDiscardsLateVideoFrames = YES;
-    [captureSession addOutput:output];
-
-    // 카메라 영상을 처리하는 대리자를 지정한다.
-    id<AVCaptureVideoDataOutputSampleBufferDelegate> dele = [_styleAR getDelegate];
-    dispatch_queue_t queue = dispatch_queue_create("VideoQueue", DISPATCH_QUEUE_SERIAL);
-    [output setSampleBufferDelegate:dele queue:queue];
-
-
-    // 정면 카메라를 반환하는 함수
-    - (AVCaptureDevice *)frontCamera {
-        NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
-        for (AVCaptureDevice *device in devices) {
-            if ([device position] == AVCaptureDevicePositionFront) {
-                return device;
-            }
-        }
-        return nil;
-    }
     ```
 
     - StyleAR API 귀걸이 변경
@@ -220,7 +94,7 @@
     // 귀걸이 핀 위치(TOP or CENTER)
     earringParam.setAnchorPosition(DPEarringAnchorPosition.TOP);
     // StyleAR API에 귀걸이 정보 클래스 및 귀걸이 파일 이름 입력
-    mStyleARAndroid.setEarringParam(earringParam);
+    m_stylearView.setEarringParam(earringParam);
     ```
 
     ```swift
@@ -240,7 +114,7 @@
 
     ```java
     // For Android
-    mStyleARAndroid.start();
+    m_stylearView.start();
     ```
 
     ```swift
@@ -253,7 +127,7 @@
 
     ```java
     // For Android
-    mStyleARAndroid.stop();
+    m_stylearView.stop();
     ```
 
     ```swift
@@ -266,7 +140,7 @@
 
     ```java
     // For Android
-    DPFaceMetaData faceMetaData = mStyleARAndroid.getFaceMetaData();
+    DPFaceMetaData faceMetaData = m_stylearView.getFaceMetaData();
     StringBuilder msg = new StringBuilder();
     // 얼굴 비율 평균 출력
     msg.append("FRM : ").append(faceMetaData.getFaceRatioMean()).append('\n');
@@ -310,6 +184,7 @@
 
 - [Android Sample code][android_sample]
 - [camera2basicfragment][camera2basicfragment_sample]
+- [Android 환경 설정][android_tutorial]
 - [iOS Sample code][ios_sample]
 - [iOS 환경 설정][ios_tutorial]
 - [StyleAR API For Android][stylear_api_for_android]
@@ -319,6 +194,7 @@
 [license]: /License/README.md
 [camera2basicfragment_sample]: https://github.com/googlesamples/android-Camera2Basic/blob/master/Application/src/main/java/com/example/android/camera2basic/Camera2BasicFragment.java
 [ios_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/StyleAR/tutorial/ios/StyleARiOSAppExample
+[android_tutorial]: /StyleAR/tutorial/android
 [ios_tutorial]: /StyleAR/tutorial/ios
 [stylear_api_for_android]: /StyleAR/apis/android
 [stylear_api_for_ios]: /StyleAR/apis/ios
