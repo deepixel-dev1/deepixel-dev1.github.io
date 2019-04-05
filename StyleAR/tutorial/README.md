@@ -76,7 +76,7 @@
     // For iOS
     ```
 
-    - StyleAR API 귀걸이 변경
+  - StyleAR API 귀걸이 변경
     > 귀걸이를 변경하기 위해서는 귀걸이 사진의 절대 경로와 귀걸이의 정보(실제 귀걸이의 가로 크기(mm), 세로 크기(mm) 그리고 핀 위치[TOP or CENTER])가 필요합니다.
 
     ![earring pin position](./img/earring_pin_position.png){: width="250"}
@@ -109,7 +109,7 @@
     [_styleAR setEarringParam:earringParam];
     ```
 
-    - StyleAR API 구동
+  - StyleAR API 구동
     > StyleAR API동작을 시작합니다. StyleAR API에 설정된 UI 컴포넌트에 결과 영상을 출력합니다. StyleAR API을 구동하기 전에 카메라 관련 정보와 UI 컴포넌트를 설정해야 하고, 카메라 영상을 프로세싱하기 위한 이벤트 핸들러를 등록해야 합니다.
 
     ```java
@@ -122,7 +122,7 @@
     [_styleAR start];
     ```
 
-    - StyleAR API 정지
+  - StyleAR API 정지
     > StyleAR API 동작을 정지합니다. StyleAR API에 설정되 UI 컴포넌트에 결과 영상을 출력하는 것을 멈춥니다. 카메라 관련 정보, UI 컴포넌트 또는 이벤트 핸들러를 다시 등록하는 것을 StyleAR API동작을 정지한 후에 가능합니다.
 
     ```java
@@ -135,7 +135,7 @@
     [_styleAR stop];
     ```
 
-    - StyleAR API메타 정보 획득
+  - StyleAR API메타 정보 획득
     > StyleAR API이 동작하는 동안 카메라 입력 영상에서 다양한 메타 정보를 획득 할 수 있습니다.
 
     ```java
