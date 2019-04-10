@@ -57,9 +57,6 @@
   - Android
     - [Android 환경 설정][android_tutorial]
 
-  - iOS
-    - [iOS 환경 설정][ios_tutorial]
-
 - StyleAR API 사용법
   - StyleAR view 연결
     > StyleAR API는 자체적으로 카메라를 제어하고 출력하는 view controller를 가지고 있습니다. StyleAR API를 사용을 할 시 해당 controller를 layout의 커스텀 StyleAR view에 연결하여 다른 설정 필요없이 사용할 수 있습니다.
@@ -90,10 +87,6 @@
     m_stylearView = view.findViewById(R.id.stylear_view); //연결
     ```
 
-    ```swift
-    // For iOS
-    ```
-
   - StyleAR API 귀걸이 변경
     > 귀걸이를 변경하기 위해서는 귀걸이 사진의 절대 경로와 귀걸이의 정보(실제 귀걸이의 가로 크기(mm), 세로 크기(mm) 그리고 핀 위치[TOP or CENTER])가 필요합니다.
 
@@ -115,10 +108,6 @@
     m_stylearView.setEarringParam(earringParam);
     ```
 
-    ```swift
-    // For iOS
-    ```
-
   - StyleAR API 구동
     > StyleAR API동작을 시작합니다. StyleAR API에 설정된 UI 컴포넌트에 결과 영상을 출력합니다. StyleAR API을 구동하기 전에 카메라 관련 정보와 UI 컴포넌트를 설정해야 하고, 카메라 영상을 프로세싱하기 위한 이벤트 핸들러를 등록해야 합니다.
 
@@ -127,20 +116,12 @@
     m_stylearView.start();
     ```
 
-    ```swift
-    // For iOS
-    ```
-
   - StyleAR API 정지
     > StyleAR API 동작을 정지합니다. StyleAR API에 설정되 UI 컴포넌트에 결과 영상을 출력하는 것을 멈춥니다. 카메라 관련 정보, UI 컴포넌트 또는 이벤트 핸들러를 다시 등록하는 것을 StyleAR API동작을 정지한 후에 가능합니다.
 
     ```java
     // For Android
     m_stylearView.stop();
-    ```
-
-    ```swift
-    // For iOS
     ```
 
   - StyleAR API메타 정보 획득
@@ -166,10 +147,6 @@
     msg.append("SCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getSkinColorMean())).append('\n');
     // 피부색 색깔 편차 출력
     msg.append("SCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getSkinColorStd())).append('\n');
-    ```
-
-    ```swift
-    // For iOS
     ```
 
 ## 연락처
