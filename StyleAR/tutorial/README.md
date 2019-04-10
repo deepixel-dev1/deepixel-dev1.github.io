@@ -158,18 +158,10 @@
 ## 참조
 
 - [Android Sample code][android_sample]
-- [camera2basicfragment][camera2basicfragment_sample]
 - [Android 환경 설정][android_tutorial]
-- [iOS Sample code][ios_sample]
-- [iOS 환경 설정][ios_tutorial]
 - [StyleAR API For Android][stylear_api_for_android]
-- [StyleAR API For iOS][stylear_api_for_ios]
 
 [android_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/StyleAR/tutorial/android/StyleARForAndroidSample
 [license]: /License/README.md
-[camera2basicfragment_sample]: https://github.com/googlesamples/android-Camera2Basic/blob/master/Application/src/main/java/com/example/android/camera2basic/Camera2BasicFragment.java
-[ios_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/StyleAR/tutorial/ios/StyleARiOSAppExample
 [android_tutorial]: /StyleAR/tutorial/android
-[ios_tutorial]: /StyleAR/tutorial/ios
 [stylear_api_for_android]: /StyleAR/apis/android
-[stylear_api_for_ios]: /StyleAR/apis/ios
