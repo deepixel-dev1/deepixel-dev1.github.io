@@ -62,7 +62,7 @@
 
 - StyleAR API 사용법
   - StyleAR view 연결
-    > StyleAR API는 자체적으로 카메라를 제어하고 출력하는 view controller를 가지고 있습니다. StyleAR API를 사용을 할 시 해당 controller를 layout의 view에 연결하여 다른 설정 필요없이 쉽게 사용할 수 있습니다.
+    > StyleAR API는 자체적으로 카메라를 제어하고 출력하는 view controller를 가지고 있습니다. StyleAR API를 사용을 할 시 해당 controller를 layout의 커스텀 StyleAR view에 연결하여 다른 설정 필요없이 사용할 수 있습니다.
 
     - 커스텀 styleAR view 생성
 
@@ -117,14 +117,6 @@
 
     ```swift
     // For iOS
-    // 귀걸이 정보를 설정한다.
-    NSString *earringPath = GetEarringImgPath();
-    DPEarringParam *earringParam = [[DPEarringParam alloc] init];
-    earringParam.absolutePath = earringPath;
-    earringParam.width = 13.0f;
-    earringParam.height = 85.0f;
-    earringParam.anchorPosition = TOP;
-    [_styleAR setEarringParam:earringParam];
     ```
 
   - StyleAR API 구동
@@ -137,7 +129,6 @@
 
     ```swift
     // For iOS
-    [_styleAR start];
     ```
 
   - StyleAR API 정지
@@ -150,7 +141,6 @@
 
     ```swift
     // For iOS
-    [_styleAR stop];
     ```
 
   - StyleAR API메타 정보 획득
@@ -180,16 +170,6 @@
 
     ```swift
     // For iOS
-    DPFaceMetaData *faceMetaData = [styleAR getFaceMetaData];
-    NSMutableString *str = [[NSMutableString alloc] init];
-    [str appendFormat:@"FRM = %f\n", faceMetaData.faceRatioMean];
-    [str appendFormat:@"FRS = %f\n", faceMetaData.faceRatioStd];
-    [str appendFormat:@"HCM = #%06X\n", 0xFFFFFF & faceMetaData.hairColorMean];
-    [str appendFormat:@"HCS = #%06X\n", 0xFFFFFF & faceMetaData.hairColorStd];
-    [str appendFormat:@"LCM = #%06X\n", 0xFFFFFF & faceMetaData.lipColorMean];
-    [str appendFormat:@"LCS = #%06X\n", 0xFFFFFF & faceMetaData.lipColorStd];
-    [str appendFormat:@"SCM = #%06X\n", 0xFFFFFF & faceMetaData.skinColorMean];
-    [str appendFormat:@"SCS = #%06X", 0xFFFFFF & faceMetaData.skinColorStd];
     ```
 
 ## 연락처
