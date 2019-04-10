@@ -64,6 +64,24 @@
   - StyleAR view 연결
     > StyleAR API는 자체적으로 카메라를 제어하고 출력하는 view controller를 가지고 있습니다. StyleAR API를 사용을 할 시 해당 controller를 layout의 view에 연결하여 다른 설정 필요없이 쉽게 사용할 수 있습니다.
 
+    - 커스텀 styleAR view 생성
+
+    ```xml
+    // For Android
+    <xyz.deepixel.stylear.DPStyleARView
+      android:id="@+id/stylear_view"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentTop="true"
+      android:layout_marginStart="0dp"
+      android:layout_marginTop="0dp"
+      android:background="#FFFFFFFF">
+    </xyz.deepixel.stylear.DPStyleARView>
+    ```
+
+    - 커스텀 StyleAR view 연결
+
     ```java
     // For Android
     // StyleAR View Controller 선언
