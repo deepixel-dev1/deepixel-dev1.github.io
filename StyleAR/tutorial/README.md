@@ -67,7 +67,7 @@
     - 커스텀 styleAR view 생성
 
     ```xml
-    // For Android
+    <!--For Android-->
     <xyz.deepixel.stylear.DPStyleARView
       android:id="@+id/stylear_view"
       android:layout_width="match_parent"
