@@ -58,6 +58,59 @@
     - [Android 환경 설정][android_tutorial]
 
 - StyleAR API 사용법
+  - StyleAR API 권한 설정
+    > StyleAR API를 적용하기 위해서는 파일 입출력 및 카메라 사용에 대한 사용자의 권한이 승인 되어야 한다.
+
+    - Application manifests
+
+    ```xml
+    <!--manifests-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    ```
+
+    - 권한설정 코드(변경가능)
+
+    ```java
+    // camera 권한 설정
+
+    private val REQUEST_CAMERA_PERMISSION = 1
+    private val REQUEST_WRITE_EXTERNAL_STORAGE_PERMISSION = 2
+    private val FRAGMENT_DIALOG = "dialog"
+
+    private boolean requestCameraPermission() {
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA)
+                == PackageManager.PERMISSION_GRANTED)
+            return false;
+        else if (shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)) {
+            ConfirmationDialogFragment.newInstance(R.string.camera_permission_confirmation,
+                    new String[]{Manifest.permission.CAMERA},
+                    REQUEST_CAMERA_PERMISSION,
+                    R.string.camera_permission_not_granted)
+                    .show(getFragmentManager(), FRAGMENT_DIALOG);
+        } else {
+            requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
+        }
+        return true;
+    }
+    // 파일입출력 권한 설정
+    private boolean requestReadExternalStoragePermission() {
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                == PackageManager.PERMISSION_GRANTED)
+            return false;
+        else if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            ConfirmationDialogFragment.newInstance(R.string.write_external_storage_permission_confirmation,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    REQUEST_WRITE_EXTERNAL_STORAGE_PERMISSION,
+                    R.string.write_external_storage_permission_not_granted)
+                    .show(getFragmentManager(), FRAGMENT_DIALOG);
+        } else {
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_EXTERNAL_STORAGE_PERMISSION);
+        }
+        return true;
+    }
+    ```
+
   - StyleAR view 연결
     > StyleAR API는 자체적으로 카메라를 제어하고 출력하는 view controller를 가지고 있습니다. StyleAR API를 사용을 할 시 해당 controller를 layout의 커스텀 StyleAR view에 연결하여 다른 설정 필요없이 사용할 수 있습니다.
 
@@ -88,7 +141,7 @@
     ```
 
   - StyleAR API 귀걸이 변경
-    > 귀걸이를 변경하기 위해서는 귀걸이 사진의 절대 경로와 귀걸이의 정보(실제 귀걸이의 가로 크기(mm), 세로 크기(mm) 그리고 핀 위치[TOP or CENTER])가 필요합니다.
+    > 귀걸이를 변경하기 위해서는 귀걸이 사진의 절대 경로와 귀걸이의 정보(실제 귀걸이의 가로 크기(mm), 세로 크기(mm) 그리고 핀 위치[TOP or CENTER])가 필요합니다. 귀걸이 사진 설정은 절대위치를 설정하거나 Bitmap형식 중 하나의 방식으로 지정하여 사용한다.
 
     ![earring pin position](./img/earring_pin_position.png){: width="250"}
 
@@ -96,8 +149,12 @@
     // For Android
     // StyleAR API 귀걸이 정보 클래스 선언
     DPEarringParam earringParam = new DPEarringParam();
-    // 귀걸이 사진 파일 위치
+    // 1. 귀걸이 사진 파일 위치 (사진 파일(1) 또는 Bitmap(2) 형식으로 선택함.)
     earringParam.setAbsolutePath(mEarringFile.getAbsolutePath());
+    // 2. 귀걸이 Bitmap 설정 (사진 파일(1) 또는 Bitmap(2) 형식으로 선택함.)
+    BitmapFactory.Options options = new BitmapFactory.Options();
+    options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+    earringParam.setBitmap(BitmapFactory.decodeFile(mEarringFile.getAbsolutePath(), options));
     // 실제 귀걸이 가로 크기(mm)
     earringParam.setWidth(13.0f);
     // 실제 귀걸이 세로 크기(mm)
