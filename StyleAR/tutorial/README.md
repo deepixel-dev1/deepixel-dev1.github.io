@@ -89,7 +89,7 @@ StyleAR API는 **사용자의 편의**를 위해 **카메라 및 영상 컨트�
 |목차|내용|
 |:-:|:-:|
 |**발급**|<support@deepixel.xyz>로 문의 바랍니다.|
-|**폼**|회사명<br> 2. 적용 어플리케이션 ID<br> 3. StyleAR API 사용기간<br> 4. 메타데이터 취득 사용유무<br> 5. 담당자 연락처 |
+|**폼**|1.회사명<br> 2. 적용 어플리케이션 ID<br> 3. StyleAR API 사용기간<br> 4. 메타데이터 취득 사용유무<br> 5. 담당자 연락처 |
 
 - **환경설정**
   - [Android 환경 설정][android_tutorial]
@@ -199,7 +199,7 @@ StyleAR API를 **모바일에 적용**하기 위한 방법을 설명 합니다. 
 
     <center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/earring_pin_position.png" width="120"></center>
 
-    <center><b>귀걸이 핀위치</b></center></br>
+    <center><b>귀걸이 핀위치</b></center><br>
 
     ```java
     // For Android
