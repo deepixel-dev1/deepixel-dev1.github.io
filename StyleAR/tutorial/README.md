@@ -1,6 +1,6 @@
 ![deepixel.xyz](./img/Deepixel_logo.PNG){: width="200"}
 
-<img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/Deepixel_logo.PNG" width="200">
+<center> <img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/Deepixel_logo.PNG" width="200"> </center>
 
 ***
 
@@ -34,7 +34,7 @@ StyleAR API는 [귀걸이 착용](#귀걸이-착용), [뽀샵필터](#뽀샵필�
 
 모바일 카메라 영상에서 사용자의 귀를 **실시간으로 검출**하여 양쪽 귀에 귀걸이가 착용된 영상을 제공합니다. 이것을 이용해서 사용자가 **귀걸이를 가상으로 착용**(Virtual Try-on)할 수 있는 서비스를 만들 수 있습니다.
 
-<center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/StyleAREarringResult.PNG" width="600"></center><br/>
+<center> <img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/StyleAREarringResult.PNG" width="600"></center> <br/>
 
 귀걸이 착용 기능은 **반드시 귀걸이 영상과 귀걸이 실측 크기**를 입력해야 합니다. 귀걸이 영상을 만드는 방법은 [링크]()를 참조해 주십시오.
 
