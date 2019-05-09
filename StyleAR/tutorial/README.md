@@ -32,7 +32,7 @@ StyleAR API는 [귀걸이 착용](#귀걸이-착용), [뽀샵필터](#뽀샵필�
 
 모바일 카메라 영상에서 사용자의 귀를 **실시간으로 검출**하여 양쪽 귀에 귀걸이가 착용된 영상을 제공합니다. 이것을 이용해서 사용자가 **귀걸이를 가상으로 착용**(Virtual Try-on)할 수 있는 서비스를 만들 수 있습니다.
 
-<center><img src="img/StyleAREarringResult.PNG" width="800"></center><br/>
+<center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/StyleAREarringResult.PNG" width="600"></center><br/>
 
 귀걸이 착용 기능은 **반드시 귀걸이 영상과 귀걸이 실측 크기**를 입력해야 합니다. 귀걸이 영상을 만드는 방법은 [링크]()를 참조해 주십시오.
 
@@ -44,7 +44,7 @@ StyleAR API는 영상을 유려하게 보이기 위해, 자체적으로 출력�
 
 StyleAR API는 영상의 얼굴을 검출하고 각 특징들을 영상 분석하여 사람들 각각의 **얼굴에 대한 고유정보**(메타데이터)를 출력할 수 있습니다. 이 기능의 사용 유무는 [라이센스 발급](#필수조건)에 따라 결정되며, 사용 시에도 **ON / OFF** 가 가능합니다.
 
-<center><img src="img/meta_info.PNG" width="380"></center><br/>
+<center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/meta_info.PNG" width="330"></center><br/>
 
 메타데이터는 얼굴 각 부분의 **색상**(R<sup>Red</sup>G<sup>Green</sup>B<sup>Blue</sup>), **비율**, **좌표** 등으로 구성되어 있으며 자세한 설명은 아래의 표와 같습니다.
 
@@ -66,12 +66,12 @@ StyleAR API는 **사용자의 편의**를 위해 **카메라 및 영상 컨트�
 - **StyleAR API 블록도**
   >StyleAR API와 Mobile Application 간의 관계를 나타낸 **블록도** 입니다.
 
-<center><img src="img/StyleAR_Block_Diagram.PNG" width="400"></center><br/>
+<center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/StyleAR_Block_Diagram.PNG" width="400"></center><br/>
 
 - **StyleAR API의 state diagram**
   >StyleAR API의 기능들을 사용하기 위해서는 아래의 그림과 같이 간단한 state 메카니즘을 따라야 합니다.
 
-<center><img src="img/StyleAR_State_Diagram.PNG" width="600"></center><br/>
+<center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/StyleAR_State_Diagram.PNG" width="600"></center><br/>
 
 ***
 
@@ -98,7 +98,7 @@ StyleAR API는 **사용자의 편의**를 위해 **카메라 및 영상 컨트�
 
 StyleAR API를 **모바일에 적용**하기 위한 방법을 설명 합니다. state diagram을 보시고 함수 **호출 타이밍과 역할**을 생각 하시며 적용방법을 보시면 서로에 대한 관계를 이해하기 쉽습니다. StyleAR API 적용방법 Flow는 아래의 그림과 같습니다.
 
-<center><img src="img/StyleAR_Sample_Flow.PNG" width="500"></center><br/>
+<center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/StyleAR_Sample_Flow.PNG" width="500"></center><br/>
 
 - **(1) StyleAR API 권한 설정**  
   StyleAR API를 적용하기 위해서는 **파일 입출력** 및 **카메라 사용**에 대한 모바일 어플리케이션 **사용자의 권한**이 승인 되어야 합니다.
@@ -197,7 +197,7 @@ StyleAR API를 **모바일에 적용**하기 위한 방법을 설명 합니다. 
 - **(4) StyleAR API 귀걸이 변경**  
     귀걸이 변경은 StyleAR API **구동 중간에도 변경**할 수 있으며 동시에 귀걸이가 변하는 것을 볼 수 있습니다. 귀걸이를 변경하기 위해서는 **귀걸이 영상**(bitmap)과 **귀걸이의 정보**(실제 귀걸이의 가로 크기(mm), 세로 크기(mm) 그리고 **핀 위치**[TOP or CENTER])가 필요합니다.
 
-    <center><img src="img/earring_pin_position.PNG" width="150"></center>
+    <center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/earring_pin_position.PNG" width="120"></center>
 
     <center><b>귀걸이 핀위치</b></center></br>
 
