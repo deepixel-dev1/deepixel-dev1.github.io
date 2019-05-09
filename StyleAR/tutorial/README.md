@@ -1,5 +1,7 @@
 ![deepixel.xyz](./img/Deepixel_logo.PNG){: width="200"}
 
+<img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/Deepixel_logo.PNG" width="200">
+
 ***
 
 # StyleAR API Tutorial
