@@ -7,11 +7,11 @@
 StyleAR API는 모바일의 카메라 영상에서 특정 위치 검출, 3D 피팅, 영상분석 등을 통해 **사용자의 가상착용을 실시간으로 출력**하는 컴퓨터 비전 기반의 API Library입니다.<br/>  
 StyleAR API에 대한 각각의 설명은 아래 목차의 **링크**를 따라가 주시기 바랍니다.
 
- [1. StyleAR API 기능](#StyleAR-API-기능)
+ [1. StyleAR API 기능](#Stylear-api-기능)
 
- [2. StyleAR API 시스템 사양](#StyleAR-API-시스템-사양)
+ [2. StyleAR API 시스템 사양](#Stylear-api-시스템-사양)
 
- [3. StyleAR API 사용방법](#StyleAR-API-사용방법)
+ [3. StyleAR API 사용방법](#Stylear-api-사용방법)
 
  ***
 
@@ -19,40 +19,14 @@ StyleAR API에 대한 각각의 설명은 아래 목차의 **링크**를 따라�
 
 StyleAR API는 [귀걸이 착용](#귀걸이-착용), [화면보정필터](#화면보정필터), [얼굴 메타데이터](#얼굴-메타데이터) 기능을 제공하며 구동스팩은 아래와 같습니다.
 
-<table align="center">
-  <thead>
-    <tr>
-      <th style="text-align: center">목차</th>
-      <th style="text-align: center">스팩</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: center"><strong>Platforms</strong></td>
-      <td style="text-align: center">Android</td>
-    </tr>
-    <tr>
-      <td style="text-align: center"><strong>Version</strong></td>
-      <td style="text-align: center">1.1.4</td>
-    </tr>
-    <tr>
-      <td style="text-align: center"><strong>SDK Size</strong></td>
-      <td style="text-align: center">~ 30M</td>
-    </tr>
-    <tr>
-      <td style="text-align: center"><strong>허용 얼굴 각도</strong></td>
-      <td style="text-align: center">yaw ≤ ±80º, pitch ≤ ±45º</td>
-    </tr>
-    <tr>
-      <td style="text-align: center"><strong>가능인원</strong></td>
-      <td style="text-align: center">1명</td>
-    </tr>
-    <tr>
-      <td style="text-align: center"><strong>속도</strong></td>
-      <td style="text-align: center">20 ~ 40FPS @ 1080p (Garaxy Note 8)</td>
-    </tr>
-  </tbody>
-</table>
+|목차              |스팩                                |
+|:-:               |:-:                                |
+|**Platforms**     |Android                            |
+|**Version**       |1.1.4                              |
+|**SDK Size**      | ~ 30M                             |
+|**허용 얼굴 각도** |yaw ≤ ±80º, pitch ≤ ±45º           |
+|**가능인원**      |1명                                 |
+|**속도**          | 20 ~ 40FPS @ 1080p (Garaxy Note 8)|
 
 ### 귀걸이 착용
 
