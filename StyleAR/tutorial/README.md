@@ -7,11 +7,11 @@
 StyleAR API는 모바일의 카메라 영상에서 특정 위치 검출, 3D 피팅, 영상분석 등을 통해 **사용자의 가상착용을 실시간으로 출력**하는 컴퓨터 비전 기반의 API Library입니다.<br/>  
 StyleAR API에 대한 각각의 설명은 아래 목차의 **링크**를 따라가 주시기 바랍니다.
 
- [1. StyleAR API 기능](#Stylear-api-기능)
+ [1. StyleAR API 기능](#stylear-api-기능)
 
- [2. StyleAR API 시스템 사양](#Stylear-api-시스템-사양)
+ [2. StyleAR API 시스템 사양](#stylear-api-시스템-사양)
 
- [3. StyleAR API 사용방법](#Stylear-api-사용방법)
+ [3. StyleAR API 사용방법](#stylear-api-사용방법)
 
  ***
 
