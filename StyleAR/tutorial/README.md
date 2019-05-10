@@ -19,18 +19,41 @@ StyleAR API에 대한 각각의 설명은 아래 목차의 **링크**를 따라�
 
 StyleAR API는 [귀걸이 착용](#귀걸이-착용), [화면보정필터](#화면보정필터), [얼굴 메타데이터](#얼굴-메타데이터) 기능을 제공하며 구동스팩은 아래와 같습니다.
 
-<center>
+<table align="center">
+  <thead>
+    <tr>
+      <th style="text-align: center">목차</th>
+      <th style="text-align: center">스팩</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><strong>Platforms</strong></td>
+      <td style="text-align: center">Android</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Version</strong></td>
+      <td style="text-align: center">1.1.4</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>SDK Size</strong></td>
+      <td style="text-align: center">~ 30M</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>허용 얼굴 각도</strong></td>
+      <td style="text-align: center">yaw ≤ ±80º, pitch ≤ ±45º</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>가능인원</strong></td>
+      <td style="text-align: center">1명</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>속도</strong></td>
+      <td style="text-align: center">20 ~ 40FPS @ 1080p (Garaxy Note 8)</td>
+    </tr>
+  </tbody>
+</table>
 
-|목차|스팩|
-|:-:|:-:|
-|**Platforms**|Android|
-|**Version**|1.1.4|
-|**SDK Size**| ~ 30M|
-|**허용 얼굴 각도**|yaw ≤ ±80º, pitch ≤ ±45º|
-|**가능인원**|1명|
-|**속도**| 20 ~ 40FPS @ 1080p (Garaxy Note 8)|
-
-</center>
 ### 귀걸이 착용
 
 모바일 카메라 영상에서 사용자의 귀를 **실시간으로 검출**하고 양쪽 귀에 귀걸이가 착용된 영상을 제공합니다. 이것을 이용해서 사용자가 **귀걸이를 가상으로 착용**(Virtual Try-on)할 수 있는 서비스를 만들 수 있습니다.
