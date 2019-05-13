@@ -1,4 +1,4 @@
-![deepixel.xyz](./img/Deepixel_logo.PNG){: width="200"}
+[![deepixel.xyz](./img/Deepixel_logo.PNG){: width="200"}](https://deepixel.azurewebsites.net/)
 
 ***
 

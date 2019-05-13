@@ -1,4 +1,4 @@
-![deepixel.xyz](./img/Deepixel_logo.PNG){: width="200"}
+[![deepixel.xyz](./img/Deepixel_logo.PNG){: width="200"}](https://deepixel.azurewebsites.net/)
 
 ***
 
@@ -27,7 +27,7 @@ StyleAR API는 영상처리 알고리즘을 통해 얼굴을 찾고, 귀걸이�
 
 ## 귀걸이 사진 입력
 
-StyleAR API의 입력으로 귀걸이 사진을 입력 시에는 반드시 **투명 바탕화면**으로 된 **png 확장자 타입**으로 만들어야 합니다. 또한 **최대한 귀걸이가 전체 사진화면에 꽉차게** 만들어야 합니다.
+귀걸이 사진은 반드시 **투명 바탕화면**으로 된 **png 확장자 타입**으로 만들어야 합니다. 또한 **최대한 귀걸이가 전체 사진화면에 꽉차게** 만들어야 합니다.
 
 <center> <img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/Input(Earring).png" width="450"></center> <br/>
 
@@ -37,7 +37,7 @@ StyleAR API의 입력으로 귀걸이 사진을 입력 시에는 반드시 **투
 
 StyleAR API는 **귀걸이의 실측 크기(단위: mm)를 이용하여 얼굴크기에 맞게 가상착용** 합니다. 따라서 실측크기를 정확하게 입력해야 자연스러운 출력영상을 얻을 수 있습니다.
 
-<center> <img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/Input(EarringSize).png" width="350"></center> <br/> 
+<center> <img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/Input(EarringSize).png" width="350"></center> <br/>
 
 ***
 
