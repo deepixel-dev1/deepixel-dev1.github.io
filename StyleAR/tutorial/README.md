@@ -21,7 +21,7 @@ StyleAR API는 [귀걸이 착용](#귀걸이-착용), [화면보정필터](#화�
 
 |목차              |스팩                                |
 |:-:               |:-:                                |
-|**Platforms**     |Android                            |
+|`**Platforms**     |Android                            |
 |**Version**       |1.1.4                              |
 |**SDK Size**      | ~ 30M                             |
 |**허용 얼굴 각도** |yaw ≤ ±80º, pitch ≤ ±45º           |
@@ -99,9 +99,11 @@ StyleAR API는 **사용자의 편의**를 위해 **카메라 및 영상 컨트�
 
 ### StyleAR API 적용방법
 
-StyleAR API를 **모바일에 적용**하기 위한 방법을 설명 합니다. 위의 **state diagram**을 보시고 함수 **호출 타이밍과 역할**을 생각하며 적용방법을 보면 서로에 대한 관계를 이해하기 쉽습니다. StyleAR API 적용방법 Flow는 아래의 그림과 같습니다.
+**모바일**에서 StyleAR API를 적용하기 위한 방법을 설명 합니다. 위의 **state diagram**을 보시고 **함수호출에 따른 상태 변화, 역할, 타이밍등**을 생각하며 적용방법을 보면 이해하기 쉽습니다. StyleAR API 적용방법을 설명할 순서는 아래의 Flow 다이어그램과 같습니다.
 
 <center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/StyleAR_Sample_Flow.png" width="500"></center><br/>
+
+※ 우선 StyleAR API 실행하기 위한 준비단계로는 `(1)권한 설정` 및 `(2)StyleAR view UI 컴포넌트 연결`을 해야하고, 이 과정이 끝나면 실제 구동을 위한 `(3)시작함수 호출`을 해야 합니다. StyleAR API가 실행되는 중간에는 `(3-1)귀걸이 변경` 및 `(3-2)메타데이터 취득`을 할 수 있습니다. StyleAR API은 `(4)종료함수 호출`을 통해 구동을 멈출 수있습니다. 자세한 설명은 아래와 같습니다.
 
 - **(1) StyleAR API 권한 설정**  
   StyleAR API를 개발 프로젝트 어플리케이션에 적용하기 위해서는 **파일 입출력** 및 **카메라 사용**에 대한 **어플리케이션 사용자의 권한**이 승인 되어야 합니다.
@@ -116,9 +118,9 @@ StyleAR API를 **모바일에 적용**하기 위한 방법을 설명 합니다. 
     <uses-permission android:name="android.permission.CAMERA" />
     ```
 
-  - **권한수락 코드(개발자에 따른 변경가능)**  
+  - **권한수락 코드(변경가능)**  
     설정된 권한이 모바일사용자에게 나타날 수 있도록 다이얼로그를 만들며, 선택에 따라 실제 권한이 적용 될 수 있도록 합니다. 해당 코드는 예제이며, **개발자가 다른 방법을 사용하여 기능을 수행**해도 무방합니다.
- 
+
     ```java
     /*For Android*/
     private val REQUEST_CAMERA_PERMISSION = 1
@@ -159,10 +161,10 @@ StyleAR API를 **모바일에 적용**하기 위한 방법을 설명 합니다. 
     ```
 
 - **(2) StyleAR view UI생성 및 연결**  
-  StyleAR API는 실시간으로 카메라로 부터 입력된 영상을 처리를 해야하는 라이브러리입니다. 하지만 **개발자의 카메라 설정에 따라 잘못된 결과를 출력** 할 수 있기 때문에, StyleAR API는 **내부에 카메라 및 viewer를 컨트롤** 하는 기능을 포함하고 있습니다. 따라서 StyleAR API를 사용을 할 시 StyleAR view UI를 만들고 StyleAR view controller를 연결하는 코드만 추가하면 **다른 설정 필요없이 사용**할 수 있습니다.
+  StyleAR API는 카메라로 부터 입력된 영상을 처리 해야하는 라이브러리입니다. 하지만 **개발자의 카메라 설정에 따라 잘못된 결과를 출력** 할 수 있기 때문에, StyleAR API는 **카메라 및 view를 컨트롤** 하는 기능을 포함하고 있습니다. 따라서 StyleAR API를 사용을 할 시 Layout에 StyleAR view UI 컴포넌트를 만들고 실제 StyleAR view 클래스를 연결하는 코드만 추가하면 **다른 설정 필요없이 사용**할 수 있습니다.
 
-  - StyleAR view UI생성  
-    Main view UI에 StyleAR view UI를 생성합니다.
+  - StyleAR view UI 컴포넌트 생성  
+    Main Layout에 StyleAR view UI 컴포넌트를 생성합니다.
 
     ```xml
     <!--For Android-->
@@ -179,79 +181,92 @@ StyleAR API를 **모바일에 적용**하기 위한 방법을 설명 합니다. 
     ```
 
   - StyleAR view 연결  
-    StyleAR view controller를 생성 한 StyleAR view UI에 연결합니다.
+    먼저 사용할 클래스를 import 합니다.
+
+    ```java
+    // StyleAR API Camera 및 view 컨트롤 클래스
+    import xyz.deepixel.stylear.DPStyleARView;
+    // StyleAR API 귀걸이 핀 위치 설정 클래스
+    import xyz.deepixel.stylear.DPEarringAnchorPosition;
+    // StyleAR API 귀걸이 정보 파라메터 설정 클래스
+    import xyz.deepixel.stylear.DPEarringParam;
+    // StyleAR API 메터다이터 정보저장 클래스
+    import xyz.deepixel.stylear.DPFaceMetaData;
+    ```
+
+    StyleAR view 클래스를 Layout의 StyleAR view UI 컴포넌트에 연결합니다.
 
     ```java
     // For Android
     // StyleAR View Controller 선언
     private DPStyleARView m_stylearView
-    // StyleAR View Controller를 layout의 view에 연결  
+    // StyleAR View 클래스를 layout의 view에 연결  
     m_stylearView = view.findViewById(R.id.stylear_view); //연결
     ```
 
 - **(3) StyleAR API 구동**  
-    StyleAR API동작을 시작합니다. StyleAR View Control에 연결된 **UI 컴포넌트**에 결과 영상을 출력합니다.
+    StyleAR API동작을 시작합니다. **StyleAR view UI 컴포넌트**에 결과 영상을 출력합니다.
 
     ```java
     // For Android
     m_stylearView.start();
     ```
 
-- **(4) StyleAR API 귀걸이 변경**  
-    귀걸이 변경은 StyleAR API **구동 중간에도 변경**할 수 있으며 동시에 귀걸이가 변하는 것을 볼 수 있습니다. 귀걸이를 변경하기 위해서는 **귀걸이 영상**(bitmap)과 **귀걸이의 정보**(실제 귀걸이의 가로 크기(mm), 세로 크기(mm) 그리고 **핀 위치**[TOP or CENTER])가 필요합니다. 입력데이터를 만드는 방법은 [링크][make_input_data]를 참조하세요.
+  - **(3-1) StyleAR API 귀걸이 변경**  
+      귀걸이 변경은 StyleAR API **구동 중간에도 변경**할 수 있으며 동시에 귀걸이가 변하는 것을 볼 수 있습니다. 귀걸이를 변경하기 위해서는 **귀걸이 영상**(bitmap)과 **귀걸이의 정보**(실제 귀걸이의 가로 크기(mm), 세로 크기(mm) 그리고 **핀 위치**[TOP or CENTER])가 필요합니다. 입력데이터를 만드는 방법은 [링크][make_input_data]를 참조하세요.
 
-    <center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/earring_pin_position.png" width="120"></center>
+      <center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/earring_pin_position.png" width="120"></center>
 
-    <center><b>귀걸이 핀위치</b></center><br>
+      <center><b>귀걸이 핀위치</b></center><br>
 
-    ```java
-    // For Android
-    // StyleAR API 귀걸이 정보 클래스 선언
-    DPEarringParam earringParam = new DPEarringParam();
-    // 1. 귀걸이 사진 파일 위치 (사진 파일(1) 또는 Bitmap(2) 형식으로 선택함.)
-    earringParam.setAbsolutePath(mEarringFile.getAbsolutePath());
-    // 2. 귀걸이 Bitmap 설정 (사진 파일(1) 또는 Bitmap(2) 형식으로 선택함.)
-    BitmapFactory.Options options = new BitmapFactory.Options();
-    // Bitmap 타입설정 (반듯이 RGB_8888)
-    options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-    // 귀걸이 Bitmap영상 설정
-    earringParam.setBitmap(BitmapFactory.decodeFile(mEarringFile.getAbsolutePath(), options));
-    // 실제 귀걸이 가로 크기(mm)
-    earringParam.setWidth(13.0f);
-    // 실제 귀걸이 세로 크기(mm)
-    earringParam.setHeight(85.0f);
-    // 귀걸이 핀 위치(TOP or CENTER)
-    earringParam.setAnchorPosition(DPEarringAnchorPosition.TOP);
-    // StyleAR API에 귀걸이 정보 클래스 및 귀걸이 파일 이름 입력
-    m_stylearView.setEarringParam(earringParam);
-    ```
+      ```java
+      // For Android
+      // StyleAR API 귀걸이 정보 클래스 선언
+      DPEarringParam earringParam = new DPEarringParam();
+      // 1. 귀걸이 사진 파일 위치 (사진 파일(1) 또는 Bitmap(2) 형식으로 선택함.)
+      earringParam.setAbsolutePath(mEarringFile.getAbsolutePath());
+      // 2. 귀걸이 Bitmap 설정 (사진 파일(1) 또는 Bitmap(2) 형식으로 선택함.)
+      BitmapFactory.Options options = new BitmapFactory.Options();
+      // Bitmap 타입설정 (반듯이 RGB_8888)
+      options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+      // 귀걸이 Bitmap영상 설정
+      earringParam.setBitmap(BitmapFactory.decodeFile(mEarringFile.getAbsolutePath(), options));
+      // 실제 귀걸이 가로 크기(mm)
+      earringParam.setWidth(13.0f);
+      // 실제 귀걸이 세로 크기(mm)
+      earringParam.setHeight(85.0f);
+      // 귀걸이 핀 위치(TOP or CENTER)
+      earringParam.setAnchorPosition(DPEarringAnchorPosition.TOP);
+      // StyleAR API에 귀걸이 정보 클래스 및 귀걸이 파일 이름 입력
+      m_stylearView.setEarringParam(earringParam);
+      ```
 
-- **(5) StyleAR API메타 정보 획득**  
-    StyleAR API이 동작하는 동안 카메라 입력 영상에서의 **얼굴**에 대한 다양한 **메타 정보를 획득** 할 수 있습니다.
+  - **(3-2) StyleAR API메타 정보 획득**  
+      StyleAR API이 동작하는 동안 카메라 입력 영상에서의 **얼굴**에 대한 다양한 **메타 정보를 획득** 할 수 있습니다.
 
-    ```java
-    // For Android
-    DPFaceMetaData faceMetaData = m_stylearView.getFaceMetaData();
-    StringBuilder msg = new StringBuilder();
-    // 얼굴 비율 평균 출력
-    msg.append("FRM : ").append(faceMetaData.getFaceRatioMean()).append('\n');
-    // 얼굴 비율 편차 출력
-    msg.append("FRS : ").append(faceMetaData.getFaceRatioStd()).append('\n');
-    // 머리카락 색깔 평균 출력
-    msg.append("HCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getHairColorMean())).append('\n');
-    // 머러카락 색깔 편차 출력
-    msg.append("HCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getHairColorStd())).append('\n');
-    // 입술 색깔 평균 출력
-    msg.append("LCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getLipColorMean())).append('\n');
-    // 입술 색깔 편차 출력
-    msg.append("LCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getLipColorStd())).append('\n');
-    // 피부색 색깔 평균 출력
-    msg.append("SCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getSkinColorMean())).append('\n');
-    // 피부색 색깔 편차 출력
-    msg.append("SCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getSkinColorStd())).append('\n');
-    ```
+      ```java
+      // For Android
+      DPFaceMetaData faceMetaData = m_stylearView.getFaceMetaData();
+      StringBuilder msg = new StringBuilder();
+      // 얼굴 비율 평균 출력
+      msg.append("FRM : ").append(faceMetaData.getFaceRatioMean()).append('\n');
+      // 얼굴 비율 편차 출력
+      msg.append("FRS : ").append(faceMetaData.getFaceRatioStd()).append('\n');
+      // 머리카락 색깔 평균 출력
+      msg.append("HCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getHairColorMean())).append('\n');
+      // 머러카락 색깔 편차 출력
+      msg.append("HCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getHairColorStd())).append('\n');
+      // 입술 색깔 평균 출력
+      msg.append("LCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getLipColorMean())).append('\n');
+      // 입술 색깔 편차 출력
+      msg.append("LCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getLipColorStd())).append('\n');
+      // 피부색 색깔 평균 출력
+      msg.append("SCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getSkinColorMean())).append('\n');
+      // 피부색 색깔 편차 출력
+      msg.append("SCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getSkinColorStd())).append('\n');
+      ```
 
-- **(6) StyleAR API 정지**  
+- **(4) StyleAR API 정지**  
     StyleAR API 동작을 정지합니다. StyleAR API에 설정되 UI 컴포넌트에 **결과 영상을 출력하는 것을 멈춥니다**. 
 
     ```java
