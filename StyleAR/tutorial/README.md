@@ -36,7 +36,7 @@ StyleAR API는 [귀걸이 착용](#귀걸이-착용), [화면보정필터](#화�
 
 <center> <img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/StyleAREarringResult.png" width="600"></center> <br/>
 
-귀걸이 착용 기능은 **반드시 귀걸이 영상과 귀걸이 실측 크기**를 입력해야 합니다. 귀걸이 영상을 만드는 방법은 [링크]()를 참조해 주십시오.
+※ 귀걸이 착용 기능은 **반드시 귀걸이 영상과 귀걸이 실측 크기**를 입력해야 합니다. 귀걸이 영상을 만드는 방법은 [링크][make_input_data]를 참조해 주십시오.
 
 ### 화면보정필터
 
@@ -48,7 +48,7 @@ StyleAR API는 영상에서 검출된 얼굴의 특징을 영상 분석하여 �
 
 <center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/meta_info.png" width="330"></center><br/>
 
-메타데이터는 얼굴 각 부분들의 **색상**(R<sup>Red</sup>G<sup>Green</sup>B<sup>Blue</sup>), **비율**, **좌표** 등의 특징을 분석하며 자세한 설명은 아래의 표와 같습니다.
+※ 메타데이터는 얼굴 각 부분들의 **색상**(R<sup>Red</sup>G<sup>Green</sup>B<sup>Blue</sup>), **비율**, **좌표** 등의 특징을 분석하며 자세한 설명은 아래의 표와 같습니다.
 
 |메타데이터|내용|단위|
 |:-:|:-:|:-:|
@@ -198,7 +198,7 @@ StyleAR API를 **모바일에 적용**하기 위한 방법을 설명 합니다. 
     ```
 
 - **(4) StyleAR API 귀걸이 변경**  
-    귀걸이 변경은 StyleAR API **구동 중간에도 변경**할 수 있으며 동시에 귀걸이가 변하는 것을 볼 수 있습니다. 귀걸이를 변경하기 위해서는 **귀걸이 영상**(bitmap)과 **귀걸이의 정보**(실제 귀걸이의 가로 크기(mm), 세로 크기(mm) 그리고 **핀 위치**[TOP or CENTER])가 필요합니다.
+    귀걸이 변경은 StyleAR API **구동 중간에도 변경**할 수 있으며 동시에 귀걸이가 변하는 것을 볼 수 있습니다. 귀걸이를 변경하기 위해서는 **귀걸이 영상**(bitmap)과 **귀걸이의 정보**(실제 귀걸이의 가로 크기(mm), 세로 크기(mm) 그리고 **핀 위치**[TOP or CENTER])가 필요합니다. 입력데이터를 만드는 방법은 [링크][make_input_data]를 참조하세요.
 
     <center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/earring_pin_position.png" width="120"></center>
 
@@ -272,8 +272,10 @@ StyleAR API 적용시 문제점을 발견하거나 궁금한 점이 있다면, �
 - [Android Sample code][android_sample]
 - [Android 환경 설정][android_tutorial]
 - [StyleAR API For Android][stylear_api_for_android]
+- [StyleAR API Input 만들기][make_input_data]
 
 [android_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/StyleAR/tutorial/android/StyleARForAndroidSample
 [license]: /License/README.md
 [android_tutorial]: /StyleAR/tutorial/android
 [stylear_api_for_android]: /StyleAR/apis/android
+[make_input_data]: /StyleAR/tutorial/input
