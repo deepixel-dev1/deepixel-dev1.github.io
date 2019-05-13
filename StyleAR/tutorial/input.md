@@ -21,9 +21,9 @@ StyleAR API를 사용하여 결과를 출력하기 위해서는 **카메라 영�
 StyleAR API는 영상처리 알고리즘을 통해 얼굴을 찾고, 귀걸이의 위치를 추정합니다. 따라서 입력 영상에는 **얼굴이 포함** 되어야 하며 **얼굴의 크기는 영상의 크기에 40% 이상**이 되어야 합니다.
 
 <center> <img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/Input(Face).png" width="300">
-</center>
+</center> <br/>
 
-영상입력 조건: Input<sup>Area</sup> × 0.4 < Face<sup>Area</b></sup> 
+**※ 영상입력 조건: Input<sup>Area</sup> × 0.4 < Face<sup>Area</b></sup>**
 
 ## 귀걸이 사진 입력
 
