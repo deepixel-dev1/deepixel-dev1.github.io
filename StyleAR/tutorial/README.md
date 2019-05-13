@@ -161,7 +161,7 @@ StyleAR API는 **사용자의 편의**를 위해 **카메라 및 영상 컨트�
     ```
 
 - **(2) StyleAR view UI생성 및 연결**  
-  StyleAR API는 카메라로 부터 입력된 영상을 처리 해야하는 라이브러리입니다. 하지만 **개발자의 카메라 설정에 따라 잘못된 결과를 출력** 할 수 있기 때문에, StyleAR API는 **카메라 및 view를 컨트롤** 하는 기능을 포함하고 있습니다. 따라서 StyleAR API를 사용을 할 시 Layout에 StyleAR view UI 컴포넌트를 만들고 실제 StyleAR view 클래스를 연결하는 코드만 추가하면 **다른 설정 필요없이 사용**할 수 있습니다.
+  StyleAR API는 카메라로 부터 입력된 영상을 처리 해야하는 라이브러리입니다. 하지만 **개발자의 카메라 설정에 따라 잘못된 결과를 출력** 할 수 있기 때문에, StyleAR API는 **카메라 및 view를 컨트롤** 하는 기능을 포함하고 있습니다. 따라서 StyleAR API를 사용 할 시 Layout에 StyleAR view UI 컴포넌트를 만들고 실제 StyleAR view 클래스를 연결하는 코드만 추가하면 **다른 설정 필요없이 사용**할 수 있습니다.
 
   - StyleAR view UI 컴포넌트 생성  
     Main Layout에 StyleAR view UI 컴포넌트를 생성합니다.
