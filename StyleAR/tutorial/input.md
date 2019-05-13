@@ -23,7 +23,7 @@ StyleAR API는 영상처리 알고리즘을 통해 얼굴을 찾고, 귀걸이�
 <center> <img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/Input(Face).png" width="300">
 </center> <br/>
 
-**※ 영상입력 조건: Input<sup>Area</sup> × 0.4 < Face<sup>Area</b></sup>**
+**※ 영상입력 조건: Input<sup>Area</sup> × 0.4 < Face<sup>Area</sup>**
 
 ## 귀걸이 사진 입력
 
