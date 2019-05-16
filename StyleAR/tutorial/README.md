@@ -21,13 +21,13 @@
 
 |목차              |스팩                                |
 |:-:               |:-:                                |
-|`**Platforms**     |Android                            |
+|**Platforms**     |Android                            |
 |**Version**       |1.1.4                              |
 |**SDK Size**      | ~ 30M                             |
 |**허용 얼굴 각도** |yaw ≤ ±80º, pitch ≤ ±45º           |
 |**가능인원**      |1명                                 |
 |**속도**          | 20 ~ 40FPS @ 1080p (Garaxy Note 8)|
-|**입력**          | 귀걸이 영상 및 정보, 입력영상|
+|**입력**          | 귀걸이 영상 및 정보, 입력영상        |
 |**출력**          | 귀걸이 가상착용 영상, 메타데이터     |
 
 ### 귀걸이 가상착용
@@ -52,36 +52,36 @@
 
 |메타데이터|내용|단위|
 |:-:|:-:|:-:|
-|**피부 색상**|얼굴의 피부색을 나타낸다.|RGB순서로 색상정보가 출력<br>범위:0 ~ 255|
-|**머리카락 색상**|머리카락 색을 나타낸다.|RGB순서로 색상정보가 출력<br>범위:0 ~ 255|
-|**입술 색상**|입술 색을 나타낸다.|RGB순서로 색상정보가 출력 <br>범위:0 ~ 255|
-|**왼쪽 귀 좌표**|오른쪽 귀의 좌표를 나타낸다.|스크린의 원점을 기준으로 x, y 좌표<br>범위: 스크린 크기 내|
-|**오른쪽 귀 좌표**|왼쪽 귀의 좌표를 나타낸다.|스크린의 원점을 기준으로 x, y 좌표<br>범위: 스크린 크기 내|
-|**얼굴 비율**| 얼굴의 가로 세로 비율을 나타낸다.|비율: 가로 / (가로 + 세로)<br>범위:0. ~ 1.<br> 가로: 코<->귀<br>세로: 코<->턱|
+|**피부 색상**      |얼굴의 피부색을 나타낸다.|RGB순서로 색상정보가 출력<br>범위:0 ~ 255                                            |
+|**머리카락 색상**  |머리카락 색을 나타낸다.|RGB순서로 색상정보가 출력<br>범위:0 ~ 255                                               |
+|**입술 색상**      |입술 색을 나타낸다.|RGB순서로 색상정보가 출력 <br>범위:0 ~ 255                                                 |
+|**왼쪽 귀 좌표**   |오른쪽 귀의 좌표를 나타낸다.|스크린의 원점을 기준으로 x, y 좌표<br>범위: 스크린 크기 내                            |
+|**오른쪽 귀 좌표** |왼쪽 귀의 좌표를 나타낸다.|스크린의 원점을 기준으로 x, y 좌표<br>범위: 스크린 크기 내                              |
+|**얼굴 비율**      | 얼굴의 가로 세로 비율을 나타낸다.|비율: 가로 / (가로 + 세로)<br>범위:0. ~ 1.<br> 가로: 코<->귀<br>세로: 코<->턱   |
 
 ***
 
 ## StyleAR API 시스템 사양
 
-**StyleAR API**는 입력 데이터에 따라 카메라에 의해 입력된 영상데이터 **`LIVE`** 를 처리하는 방법과 사용자에 의해 입력된 한장의 영상데이터 **`STILL`** 를 처리하는 방법으로 나눠집니다.
+**StyleAR API**는 입력 데이터에 따라 카메라에 의해 입력된 영상데이터 **`LIVE`** 를 처리하는 방법과 사용자에 의해 입력된 영상데이터 **`STILL`** 를 처리하는 방법으로 나눠집니다.
 
 - **StyleAR API 블록도**
   >StyleAR API와 Mobile Application 간의 관계를 나타낸 **블록도** 입니다.
 
 <center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/StyleAR_Block_Diagram.png" width="800"></center><br/>
 
-※ `LIVE` 방법의 구조는 **컨트롤**과 **프로세싱** 파트로 구성되어 있습니다. **컨트롤 파트**는 **카메라 및 view 제어, 귀걸이 정보 제어** 등을하고 있으며 **프로세싱 파트**는 **알고리즘 구동, 메타정보 및 귀걸이 출력** 등을 맡고 있습니다.
+※ **`LIVE`** 방법의 구조는 **컨트롤**과 **프로세싱** 파트로 구성되어 있습니다. **컨트롤 파트**는 **카메라 및 view 제어, 귀걸이 정보 제어** 등을하고 있으며 **프로세싱 파트**는 **알고리즘 구동, 메타정보 및 귀걸이 출력** 등을 맡고 있습니다.
 
-※ `STILL` 방법의 구조 역시 **컨트롤**과 **프로세싱** 파트로 구성되어 있지만, 기능이 축소되어 구현되었습니다. 컨트롤 파트는 오직 귀걸이 정보를 제어하는 부분만 동작하며, 프로세싱파트에서는 알고리즘 구동과 귀걸이 출력부분만 동작합니다.
+※ **`STILL`** 방법의 구조 역시 **컨트롤**과 **프로세싱** 파트로 구성되어 있지만, 기능이 축소되어 구현되었습니다. 컨트롤 파트는 오직 귀걸이 정보를 제어하는 부분만 동작하며, 프로세싱 파트에서는 알고리즘 구동과 귀걸이 출력부분만 동작합니다.
 
 - **StyleAR API의 state 다이어그램**
   >StyleAR API의 기능들을 사용하기 위해서는 아래의 그림과 같이 간단한 state 메카니즘을 따라야 합니다.
 
 <center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/StyleAR_State_Diagram.png" width="1000"></center><br/>
 
-※ `LIVE` 방법은 초기화 및 준비 상태를 거처 API가 구동이 되면, 프로세싱 상태에서 루프를 돌며 결과를 지속적으로 출력합니다. 귀걸이 변경 및 메타정보 출력도 프로세싱 상태에서 수행 할 수 있습니다. 어플리케이션이 정지하거나, API를 구동해제 할 시에는 프로세싱 상태를 해제해야 합니다.  
+※ **`LIVE`** 방법은 초기화 및 준비 상태를 거처 API가 구동이 되면, 프로세싱 상태에서 루프를 돌며 결과를 지속적으로 출력합니다. 귀걸이 변경 및 메타정보 출력도 프로세싱 상태에서 수행 할 수 있습니다. 어플리케이션이 정지하거나, API를 구동해제 할 시에는 프로세싱 상태를 해제해야 합니다.  
 
-※ `STILL` 방법은 초기화 상태에서 귀걸이 설정을 통해 준비상태로 변환하며, API 구동이 되면 한번만 프로세싱 및 출력상태가 되고 준비상태로 돌아갑니다.
+※ **`STILL`** 방법은 초기화 상태에서 귀걸이 설정을 통해 준비상태로 변환하며, API 구동이 되면 한번만 프로세싱 및 출력상태가 되고 준비상태로 돌아갑니다.
 
 ***
 
@@ -169,7 +169,7 @@
     ```
 
   - **(2-1) StyleAR API 귀걸이 변경**  
-      귀걸이 변경은 **StyleAR API `LIVE`** **동작 중**에도 할 수 있으며, 적용과 동시에 귀걸이가 변하는 것을 볼 수 있습니다. 귀걸이를 변경하기 위해서는 **귀걸이 영상**(bitmap)과 **귀걸이의 정보**(실제 귀걸이의 가로 크기(mm), 세로 크기(mm) 그리고 **핀 위치**[TOP or CENTER])가 필요합니다. 입력데이터를 만드는 방법은 [링크][make_input_data]를 참조하세요.
+      귀걸이 변경은 **StyleAR API `LIVE`** **동작 중**에도 할 수 있으며, 적용과 동시에 귀걸이가 변하는 것을 볼 수 있습니다. 귀걸이를 변경하기 위해서는 우측과 좌측의 **귀걸이 영상**(bitmap)과 **귀걸이의 크기** 그리고 **핀 위치**)가 필요합니다. 입력데이터를 만드는 방법은 [링크][make_input_data]를 참조하세요.
 
       ```java
       // For Android
@@ -179,18 +179,18 @@
       earringParam.setAbsolutePath(mEarringFile.getAbsolutePath());
       // 2. 귀걸이 Bitmap 설정 (사진 파일(1) 또는 Bitmap(2) 형식으로 선택함.)
       BitmapFactory.Options options = new BitmapFactory.Options();
-      // Bitmap 타입설정 (반듯이 RGB_8888)
+      // Bitmap 타입설정 (반드시 RGB_8888)
       options.inPreferredConfig = Bitmap.Config.ARGB_8888;
       // 귀걸이 Bitmap영상 설정
       earringParam.setBitmap(BitmapFactory.decodeFile(mEarringFile.getAbsolutePath(), options));
-      // 실제 귀걸이 가로 크기(mm)
-      earringParam.setWidth(13.0f);
-      // 실제 귀걸이 세로 크기(mm)
-      earringParam.setHeight(85.0f);
-      // 귀걸이 핀 위치(TOP or CENTER)
-      earringParam.setAnchorPosition(DPEarringAnchorPosition.TOP);
-      // StyleAR API에 귀걸이 정보 클래스 및 귀걸이 파일 이름 입력
-      m_stylearView.setEarringParam(earringParam);
+      // 실제 귀걸이 크기(width, height)
+      earringParam.setSize(SizeF size);
+      // 귀걸이 핀 위치(귀걸이 위에서 핀까지의 거리)
+      earringParam.setAnchorPoint(PointF size);
+      // StyleAR API에 좌측 귀걸이 정보 입력
+      styleAR.setLeftEarringParam(earringParam);
+      // StyleAR API에 우측 귀걸이 정보 입력
+      styleAR.setLeftEarringParam(earringParam);
       ```
 
   - **(2-2) StyleAR API메타 정보 획득**  
@@ -238,24 +238,27 @@
     **StyleAR API`STILL`** 를 구동시키기위한 **API 인스턴스**를 **생성** 합니다.
   
   - 클래스 import  
-    **StyleAR API`SITLL`** 을 구동하기 위한 클래스 입니다.  
+    **StyleAR API`SITLL`** 을 구동하기 위한 클래스를 import 합니다.  
 
     ```java
+    // StyleAR API 컨트롤 클래스
+    import xyz.deepixel.stylear.DPStyleAR;
     // StyleAR API 팩토리 클래스
     import xyz.deepixel.stylear.DPStyleARFactory;
     // StyleAR API 귀걸이 핀 위치 설정 클래스
     import xyz.deepixel.stylear.DPEarringParam;
-  
+    ```
+
   - 함수호출  
     **StyleAR API `STILL`** **인스턴스**를 **생성** 합니다. 만약 생성된 인스턴스가 있다면 해당 인스턴스를 리턴합니다.
 
     ```java
-    //Context activity: 실행되고 있는 activity를 입력
+    //Context activity: StyleAR API가 포함된 activity를 입력
     DPStyleAR styleAR = DPStyleARFactory.getInstance(Context activity);
     ```
 
 - **귀걸이 설정**  
-    귀걸이 설정은 **StyleAR API `STILL`** 인스턴스가 생성되었을 때 사용할 수 있습니다. 귀걸이 설정에 필요한 입력데이터는 **귀걸이 사진, 귀걸이 실측크기, 귀걸이 핀 위치**이고 자세한 설명은 [링크][make_input_data]를 참조해 주세요.
+    귀걸이 설정은 **우측**과 **좌측**의 귀걸이 정보를 입력해야 합니다. 귀걸이 설정에 필요한 입력데이터는 **귀걸이 사진, 귀걸이 실측크기, 귀걸이 핀 위치**이고 자세한 설명은 [링크][make_input_data]를 참조해 주세요.
 
     ```java
     // For Android
@@ -269,25 +272,25 @@
     options.inPreferredConfig = Bitmap.Config.ARGB_8888;
     // 귀걸이 Bitmap영상 설정
     earringParam.setBitmap(BitmapFactory.decodeFile(mEarringFile.getAbsolutePath(), options));
-    // 실제 귀걸이 가로 크기(mm)
-    earringParam.setWidth(13.0f);
-    // 실제 귀걸이 세로 크기(mm)
-    earringParam.setHeight(85.0f);
-    // 귀걸이 핀 위치(TOP or CENTER)
-    earringParam.setAnchorPosition(DPEarringAnchorPosition.TOP);
-    // StyleAR API에 귀걸이 정보 클래스 및 귀걸이 파일 이름 입력
-    styleAR.setEarringParam(earringParam);
+    // 실제 귀걸이 크기(width, height)
+    earringParam.setSize(SizeF size);
+    // 귀걸이 핀 위치(귀걸이 핀의 x축 위치[x], 귀걸이 위에서 핀까지의 거리[y])
+    earringParam.setAnchorPoint(PointF size);
+    // StyleAR API에 좌측 귀걸이 정보 입력
+    styleAR.setLeftEarringParam(earringParam);
+    // StyleAR API에 우측 귀걸이 정보 입력
+    styleAR.setLeftEarringParam(earringParam);
     ```
 
 - **구동 및 출력**  
-    **StyleAR API`STILL`** 를 사용자가 지정한 영상(**Bitmap 타입**)에 입력하여 구동하면 귀걸이가 가상착용된 영상(**Bitmap 타입**)이 출력됩니다.
+    **StyleAR API`STILL`** 에 사용자가 지정한 영상(**Bitmap 타입**)과 좌측, 우측 얼굴의 위치(대략적인)를 입력하여 구동하면 귀걸이가 가상착용된 영상(**Bitmap 타입**)이 출력됩니다.
 
     ```java
     // Bitmap bitmap: Bitmap 타입의 입력영상
-    // Point left:
-    // Point right:
+    // Point left: 얼굴의 좌측 픽셀 위치(사용자 입력)
+    // Point right: 얼굴의 우측 픽셀 위치(사용자 입력)
     // Bitmap processedBitmap: 귀걸이가 가상착용된 출력영상
-    Bitmap processedBitmap = styleAR.getStyleARImage(Bitmap bitmap, Point left, Point right);
+    Bitmap processedBitmap = styleAR.getStyleAREarringImage(Bitmap bitmap, Point left, Point right);
     ```
 
 ***
@@ -304,9 +307,11 @@ StyleAR API 적용시 문제점을 발견하거나 궁금한 점이 있다면, �
 - [Android 환경 설정][android_tutorial]
 - [StyleAR API For Android][stylear_api_for_android]
 - [StyleAR API Input 만들기][make_input_data]
+- [딥픽셀 홈페이지][deepixel_hompage]
 
 [android_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/StyleAR/tutorial/android/StyleARForAndroidSample
 [license]: /License/README.md
 [android_tutorial]: /StyleAR/tutorial/android
 [stylear_api_for_android]: /StyleAR/apis/android
 [make_input_data]: /StyleAR/tutorial/input
+[deepixel_hompage]: https://deepixel.azurewebsites.net/
