@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">StyleAR_For_Android_SampleCode_LIVE</string>
+    <string name="camera_permission_confirmation">This sample needs camera permission.</string>
+    <string name="camera_permission_not_granted">This sample cannot do anything without camera permission.</string>
+    <string name="write_external_storage_permission_confirmation">This sample needs write external storage permission.</string>
+    <string name="write_external_storage_permission_not_granted">This sample cannot do anything without write external storage permission.</string>
+    <string name="camera_error">This device doesn\'t support Camera2 API.</string>
+    <string name="intro_message">
+        <![CDATA[
+
+
+            This sample demonstrates the basic use of Camera2 API. Check the source code to see how
+            you can display camera preview and take pictures.
+
+
+        ]]>
+    </string>
+</resources>
