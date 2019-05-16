@@ -89,8 +89,8 @@
 
 **StyleAR API 사용방법**에서는 입력영상에서 얼굴이 있을 시 귀의 위치에 귀걸이가 가상착용되는 **모바일 어플리케이션**을 만드는 과정을 **`LIVE`** 와 **`STILL`** 방법으로 나눠 설명합니다. 아래의 예제코드와 함께 비교하며 구현하는 것을 추천합니다.
 
-- [LIVE 예제코드][android_sample]
-- [STILL 예제코드][android_sample]
+- [LIVE 예제코드][android_sample_live]
+- [STILL 예제코드][android_sample_still]
 
 ### 필수조건(공통)
 
@@ -124,7 +124,7 @@
 
     ```xml
     <!--For Android-->
-    <xyz.deepixel.stylear.DPStyleARView
+    <xyz.deepixel.stylear.DPStyleAREarringView
       android:id="@+id/stylear_view"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
@@ -133,7 +133,7 @@
       android:layout_marginStart="0dp"
       android:layout_marginTop="0dp"
       android:background="#FFFFFFFF">
-    </xyz.deepixel.stylear.DPStyleARView>
+    </xyz.deepixel.stylear.DPStyleAREarringView>
     ```
 
   - StyleAR view 연결  
@@ -141,9 +141,7 @@
 
     ```java
     // StyleAR API Camera 및 view 컨트롤 클래스
-    import xyz.deepixel.stylear.DPStyleARView;
-    // StyleAR API 귀걸이 핀 위치 설정 클래스
-    import xyz.deepixel.stylear.DPEarringAnchorPosition;
+    import xyz.deepixel.stylear.DPStyleAREarringView;
     // StyleAR API 귀걸이 정보 파라메터 설정 클래스
     import xyz.deepixel.stylear.DPEarringParam;
     // StyleAR API 메터다이터 정보저장 클래스
@@ -155,7 +153,7 @@
     ```java
     // For Android
     // StyleAR View Controller 선언
-    private DPStyleARView m_stylearView
+    private DPStyleAREarringView m_stylearView
     // StyleAR View 클래스를 layout의 view에 연결  
     m_stylearView = view.findViewById(R.id.stylear_view); //연결
     ```
@@ -188,9 +186,9 @@
       // 귀걸이 핀 위치(귀걸이 위에서 핀까지의 거리)
       earringParam.setAnchorPoint(PointF size);
       // StyleAR API에 좌측 귀걸이 정보 입력
-      styleAR.setLeftEarringParam(earringParam);
+      m_stylearView.setLeftEarringParam(earringParam);
       // StyleAR API에 우측 귀걸이 정보 입력
-      styleAR.setLeftEarringParam(earringParam);
+      m_stylearView.setLeftEarringParam(earringParam);
       ```
 
   - **(2-2) StyleAR API메타 정보 획득**  
@@ -242,7 +240,7 @@
 
     ```java
     // StyleAR API 컨트롤 클래스
-    import xyz.deepixel.stylear.DPStyleAR;
+    import xyz.deepixel.stylear.DPStyleAREarring;
     // StyleAR API 팩토리 클래스
     import xyz.deepixel.stylear.DPStyleARFactory;
     // StyleAR API 귀걸이 핀 위치 설정 클래스
@@ -254,7 +252,7 @@
 
     ```java
     //Context activity: StyleAR API가 포함된 activity를 입력
-    DPStyleAR styleAR = DPStyleARFactory.getInstance(Context activity);
+    DPStyleAREarring styleAR = DPStyleARFactory.getInstance(Context activity);
     ```
 
 - **귀걸이 설정**  
@@ -303,13 +301,15 @@ StyleAR API 적용시 문제점을 발견하거나 궁금한 점이 있다면, �
 
 ## 참조
 
-- [Android Sample code][android_sample]
+- [Android Sample code(LIVE)][android_sample_live]
+- [Android Sample code(STILL)][android_sample_still]
 - [Android 환경 설정][android_tutorial]
 - [StyleAR API For Android][stylear_api_for_android]
-- [StyleAR API Input 만들기][make_input_data]
+- [StyleAR API 입력데이터 만들기][make_input_data]
 - [딥픽셀 홈페이지][deepixel_hompage]
 
-[android_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/StyleAR/tutorial/android/StyleARForAndroidSample
+[android_sample_live]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/StyleAR/tutorial/android/StyleARForAndroidSample(LIVE)
+[android_sample_still]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/StyleAR/tutorial/android/StyleARForAndroidSample(STILL)
 [license]: /License/README.md
 [android_tutorial]: /StyleAR/tutorial/android
 [stylear_api_for_android]: /StyleAR/apis/android
