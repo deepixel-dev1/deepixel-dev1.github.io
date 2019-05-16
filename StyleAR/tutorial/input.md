@@ -46,11 +46,9 @@
 
 ## 귀걸이 핀 위치 입력
 
-귀걸이 핀 위치 설정은 2가지 타입(**TOP or CENTER**) 중 **하나**를 선택해야 합니다. 귀걸이 핀 위치에 따라 아래의 그림과 같은 결과를 출력 할 수 있으니 **정확**하게 입력해야 합니다.
+귀걸이 핀 위치 설정은 귀걸이의 위에서 핀의 위치까지의 거리(mm)를 입력합니다. 귀걸이 핀 위치에 따라 아래의 그림과 같은 결과를 출력 할 수 있으니 **정확**하게 입력해야 합니다.
 
-<center> <img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/Input(pin_position).png" width="500"></center> <br/>
-
-※ 귀걸이 핀 위치는 정확한 위치를 입력하는 방식이 아닙니다. 따라서 핀 위치를 설정 할 시 제품의 핀이 대략 어느정도 위치에 있는지를 판단하고, 위치가 모호 하거나 궁금한 점은 **support@deepixel.xyz**로 연락 주시기 바랍니다.
+<center> <img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/Input(pin_position).png" width="600"></center> <br/>
 
 ***
 

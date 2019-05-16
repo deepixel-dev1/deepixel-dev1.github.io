@@ -27,7 +27,7 @@
 |**허용 얼굴 각도** |yaw ≤ ±80º, pitch ≤ ±45º           |
 |**가능인원**      |1명                                 |
 |**속도**          | 20 ~ 40FPS @ 1080p (Garaxy Note 8)|
-|**입력**          | 귀걸이 영상 및 정보, 화면영상|
+|**입력**          | 귀걸이 영상 및 정보, 입력영상|
 |**출력**          | 귀걸이 가상착용 영상, 메타데이터     |
 
 ### 귀걸이 가상착용
@@ -63,25 +63,36 @@
 
 ## StyleAR API 시스템 사양
 
-**StyleAR API**는 **컨트롤**과 **프로세싱** 파트로 구성되어 있습니다. **컨트롤 파트**는 **카메라 및 view 제어, 귀걸이 정보 제어** 등을하고 있으며 **프로세싱 파트**는 **알고리즘 구동, 메타정보 및 귀걸이 출력** 등을 맡고 있습니다. 개발자의 편의를 위해 StyleAR API에 대한 세부설정은 **API 내부**에서 하고 있고, **단순히 UI**를 구성하여 필요 기능을 호출하는 방법으로 어플리케이션을 만들 수 있습니다.
+**StyleAR API**는 입력 데이터에 따라 카메라에 의해 입력된 영상데이터 **`LIVE`** 를 처리하는 방법과 사용자에 의해 입력된 한장의 영상데이터 **`STILL`** 를 처리하는 방법으로 나눠집니다.
 
 - **StyleAR API 블록도**
   >StyleAR API와 Mobile Application 간의 관계를 나타낸 **블록도** 입니다.
 
-<center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/StyleAR_Block_Diagram.png" width="400"></center><br/>
+<center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/StyleAR_Block_Diagram.png" width="800"></center><br/>
 
-- **StyleAR API의 state diagram**
+※ `LIVE` 방법의 구조는 **컨트롤**과 **프로세싱** 파트로 구성되어 있습니다. **컨트롤 파트**는 **카메라 및 view 제어, 귀걸이 정보 제어** 등을하고 있으며 **프로세싱 파트**는 **알고리즘 구동, 메타정보 및 귀걸이 출력** 등을 맡고 있습니다.
+
+※ `STILL` 방법의 구조 역시 **컨트롤**과 **프로세싱** 파트로 구성되어 있지만, 기능이 축소되어 구현되었습니다. 컨트롤 파트는 오직 귀걸이 정보를 제어하는 부분만 동작하며, 프로세싱파트에서는 알고리즘 구동과 귀걸이 출력부분만 동작합니다.
+
+- **StyleAR API의 state 다이어그램**
   >StyleAR API의 기능들을 사용하기 위해서는 아래의 그림과 같이 간단한 state 메카니즘을 따라야 합니다.
 
-<center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/StyleAR_State_Diagram.png" width="600"></center><br/>
+<center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/StyleAR_State_Diagram.png" width="1000"></center><br/>
+
+※ `LIVE` 방법은 초기화 및 준비 상태를 거처 API가 구동이 되면, 프로세싱 상태에서 루프를 돌며 결과를 지속적으로 출력합니다. 귀걸이 변경 및 메타정보 출력도 프로세싱 상태에서 수행 할 수 있습니다. 어플리케이션이 정지하거나, API를 구동해제 할 시에는 프로세싱 상태를 해제해야 합니다.  
+
+※ `STILL` 방법은 초기화 상태에서 귀걸이 설정을 통해 준비상태로 변환하며, API 구동이 되면 한번만 프로세싱 및 출력상태가 되고 준비상태로 돌아갑니다.
 
 ***
 
 ## StyleAR API 사용방법
 
-**StyleAR API 사용방법**에서는 입력영상에서 얼굴이 있을 시 귀의 위치에 귀걸이가 가상착용되는 **모바일 어플리케이션**을 만드는 과정을 간략히 설명합니다.  [예제코드](https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/StyleAR/tutorial/android/StyleARForAndroidSample)와 함께 비교하며 구현하는 것을 추천합니다.
+**StyleAR API 사용방법**에서는 입력영상에서 얼굴이 있을 시 귀의 위치에 귀걸이가 가상착용되는 **모바일 어플리케이션**을 만드는 과정을 **`LIVE`** 와 **`STILL`** 방법으로 나눠 설명합니다. 아래의 예제코드와 함께 비교하며 구현하는 것을 추천합니다.
 
-### 필수조건
+- [LIVE 예제코드][android_sample]
+- [STILL 예제코드][android_sample]
+
+### 필수조건(공통)
 
 어플리케이션을 개발하기 앞서, **StyleAR API**를 사용하기 위해서는 **라이센스**를 통해 **발급**받은 **라이브러리 파일**이 있어야 하며, 라이브러리 파일을 개발 프로젝트에 사용하기 위한 **설정**이 필요합니다.
 
@@ -94,74 +105,19 @@
 |**폼**|1.회사명<br> 2. 적용 어플리케이션 ID<br> 3. StyleAR API 사용기간<br> 4. 메타데이터기능 사용유무<br> 5. 담당자 연락처 |
 
 - **환경설정**  
-  환경설정에서는 **StyleAR API 라이브러리**를 모바일 프로젝트에 등록하는 방법을 설명합니다. 적용할 프로젝트의 **어플리케이션 ID**는 **반드시 라이센스 발급 시 기입했던** '**적용 어플리케이션 ID**'를 사용해야 합니다.
+  환경설정에서는 **StyleAR API 라이브러리**를 모바일 프로젝트에 등록하는 방법 및 프로젝트 권한 설정 방법을 설명합니다.
   - [Android 환경 설정][android_tutorial]
 
-### StyleAR API 적용방법
+### StyleAR API 적용방법 (`LIVE`)
 
-**모바일환경**에서 **StyleAR API**를 적용하는 방법을 아래의 **Flow 다이어그램**의 순서대로 설명합니다.
+**StyleAR API `LIVE`** 를 적용하는 방법을 아래의 **Flow 다이어그램**의 순서대로 설명합니다.
 
-<center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/StyleAR_Sample_Flow.png" width="500"></center><br/>
+<center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/StyleAR_Sample_Flow(LIVE).png" width="500"></center><br/>
 
-※ 우선 **StyleAR API** 실행하기 위한 준비단계로는 `(1)권한 설정` 및 `(2)StyleAR view UI 컴포넌트 연결`을 하고, 이 과정이 끝나면 실제 구동을 위한 `(3)시작함수 호출`을 해야 합니다. **StyleAR API** **동작 중**에는 `(3-1)귀걸이 변경` 및 `(3-2)메타데이터 취득`을 할 수 있습니다. **StyleAR API**은 `(4)종료함수 호출`을 통해 구동을 멈출 수있습니다. 자세한 설명은 아래와 같습니다.
+※ 우선 **StyleAR API `LIVE`** 동작하기 위한 준비단계로는 `(1)StyleAR view UI 컴포넌트 연결`하고 실제 구동 위해 `(2)시작함수 호출`을 해야 합니다. **StyleAR API** **동작 중**에는 `(2-1)귀걸이 변경` 및 `(2-2)메타데이터 취득`을 할 수 있습니다. **StyleAR API `LIVE`** 은 `(3)종료함수 호출`을 통해 구동을 멈출 수있습니다. 자세한 설명은 아래와 같습니다.
 
-- **(1) StyleAR API 권한 설정**  
-  **StyleAR API**를 개발 프로젝트의 어플리케이션에 적용하기 위해서는 **파일 입출력** 및 **카메라 사용**에 대한 **어플리케이션 사용자의 권한**이 **승인** 되어야 합니다.
-
-  - **사용권한 설정**  
-    사용권한을 요청할 수 있게 프로젝트에 설정합니다.
-
-    ```xml
-    <!--For Android-->
-    <!--manifests file-->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    ```
-
-  - **권한수락 코드(변경가능)**  
-    설정된 권한이 모바일사용자에게 나타날 수 있도록 다이얼로그를 만들며, 선택에 따라 실제 권한이 적용 될 수 있도록 합니다. 해당 코드는 예제이며, **개발자가 다른 방법을 사용하여 기능을 구현**해도 무방합니다.
-
-    ```java
-    /*For Android*/
-    private val REQUEST_CAMERA_PERMISSION = 1
-    private val REQUEST_WRITE_EXTERNAL_STORAGE_PERMISSION = 2
-    private val FRAGMENT_DIALOG = "dialog"
-    // camera 권한 설정
-    private boolean requestCameraPermission() {
-        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA)
-                == PackageManager.PERMISSION_GRANTED)
-            return false;
-        else if (shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)) {
-            ConfirmationDialogFragment.newInstance(R.string.camera_permission_confirmation,
-                    new String[]{Manifest.permission.CAMERA},
-                    REQUEST_CAMERA_PERMISSION,
-                    R.string.camera_permission_not_granted)
-                    .show(getFragmentManager(), FRAGMENT_DIALOG);
-        } else {
-            requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
-        }
-        return true;
-    }
-    // 파일입출력 권한 설정
-    private boolean requestReadExternalStoragePermission() {
-        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                == PackageManager.PERMISSION_GRANTED)
-            return false;
-        else if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            ConfirmationDialogFragment.newInstance(R.string.write_external_storage_permission_confirmation,
-                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                    REQUEST_WRITE_EXTERNAL_STORAGE_PERMISSION,
-                    R.string.write_external_storage_permission_not_granted)
-                    .show(getFragmentManager(), FRAGMENT_DIALOG);
-        } else {
-            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_EXTERNAL_STORAGE_PERMISSION);
-        }
-        return true;
-    }
-    ```
-
-- **(2) StyleAR view UI생성 및 연결**  
-  **StyleAR API**는 입력영상을 카메라에서 얻을 수도 있습니다. 하지만 **카메라 설정에 따라 잘못된 결과를 출력** 할 수 있기 때문에, **StyleAR API**는 **카메라 및 view를 컨트롤** 하는 기능을 **내부**에 **포함**하고 있습니다. 따라서 **StyleAR API**를 사용 할 시 Layout에 StyleAR view UI 컴포넌트를 만들고 실제 StyleAR view 클래스를 연결하는 코드만 추가하면 **다른 설정 필요없이 사용**할 수 있습니다.
+- **(1) StyleAR view UI생성 및 연결**  
+  **StyleAR API `LIVE`** 는 입력영상을 카메라에서 얻을 수도 있습니다. 하지만 **카메라 설정에 따라 잘못된 결과를 출력** 할 수 있기 때문에, **StyleAR API `LIVE`** 는 **카메라 및 view를 컨트롤** 하는 기능을 **내부**에 **포함**하고 있습니다. 따라서 **StyleAR API `LIVE`** 를 사용 할 시 Layout에 StyleAR view UI 컴포넌트를 만들고 실제 StyleAR view 클래스를 연결하는 코드만 추가하면 **다른 설정 필요없이 사용**할 수 있습니다.
 
   - StyleAR view UI 컴포넌트 생성  
     Main Layout에 StyleAR view UI 컴포넌트를 생성합니다.
@@ -204,16 +160,16 @@
     m_stylearView = view.findViewById(R.id.stylear_view); //연결
     ```
 
-- **(3) StyleAR API 구동**  
-    StyleAR API동작을 시작합니다. **StyleAR view UI 컴포넌트**에 결과 영상을 출력합니다.
+- **(2) StyleAR API 구동**  
+    **StyleAR API `LIVE`** 동작을 시작합니다. **StyleAR view UI 컴포넌트**에 결과 영상을 출력합니다.
 
     ```java
     // For Android
     m_stylearView.start();
     ```
 
-  - **(3-1) StyleAR API 귀걸이 변경**  
-      귀걸이 변경은 **StyleAR API** **동작 중**에도 할 수 있으며, 적용과 동시에 귀걸이가 변하는 것을 볼 수 있습니다. 귀걸이를 변경하기 위해서는 **귀걸이 영상**(bitmap)과 **귀걸이의 정보**(실제 귀걸이의 가로 크기(mm), 세로 크기(mm) 그리고 **핀 위치**[TOP or CENTER])가 필요합니다. 입력데이터를 만드는 방법은 [링크][make_input_data]를 참조하세요.
+  - **(2-1) StyleAR API 귀걸이 변경**  
+      귀걸이 변경은 **StyleAR API `LIVE`** **동작 중**에도 할 수 있으며, 적용과 동시에 귀걸이가 변하는 것을 볼 수 있습니다. 귀걸이를 변경하기 위해서는 **귀걸이 영상**(bitmap)과 **귀걸이의 정보**(실제 귀걸이의 가로 크기(mm), 세로 크기(mm) 그리고 **핀 위치**[TOP or CENTER])가 필요합니다. 입력데이터를 만드는 방법은 [링크][make_input_data]를 참조하세요.
 
       ```java
       // For Android
@@ -237,8 +193,8 @@
       m_stylearView.setEarringParam(earringParam);
       ```
 
-  - **(3-2) StyleAR API메타 정보 획득**  
-      StyleAR API이 동작하는 동안 카메라 입력 영상에서의 **얼굴**에 대한 다양한 **메타 정보를 획득** 할 수 있습니다.
+  - **(2-2) StyleAR API메타 정보 획득**  
+      **StyleAR API `LIVE`** 이 동작하는 동안 카메라 입력 영상에서의 **얼굴**에 대한 다양한 **메타 정보를 획득** 할 수 있습니다.
 
       ```java
       // For Android
@@ -262,12 +218,76 @@
       msg.append("SCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getSkinColorStd())).append('\n');
       ```
 
-- **(4) StyleAR API 정지**  
-    StyleAR API 동작을 정지합니다. StyleAR API에 설정되 UI 컴포넌트에 **결과 영상을 출력하는 것을 멈춥니다**. 
+- **(3) StyleAR API `LIVE`정지**  
+    **StyleAR API `LIVE`** 동작을 정지합니다. StyleAR API에 설정되 UI 컴포넌트에 **결과 영상을 출력하는 것을 멈춥니다**. 
 
     ```java
     // For Android
     m_stylearView.stop();
+    ```
+
+### StyleAR API 적용방법(`STILL`)
+
+**StyleAR API `STILL`** 을 적용하는 방법을 아래의 **Flow 다이어그램**의 순서대로 설명합니다.
+
+<center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/StyleAR_Sample_Flow(STILL).png" width="150"></center><br/>
+
+※ **StyleAR API `STILL`** 구동하기 위해서 우선 `(1)인스턴스 생성`을 하고 `(2)귀걸이를 설정`을 합니다.`(3) 구동 및 출력`을 통해 API가 동작하며 결과를 얻을 수 있습니다. 자세한 설명은 아래와 같습니다.
+
+- **StyleAR API 인스턴스 생성**  
+    **StyleAR API`STILL`** 를 구동시키기위한 **API 인스턴스**를 **생성** 합니다.
+  
+  - 클래스 import  
+    **StyleAR API`SITLL`** 을 구동하기 위한 클래스 입니다.  
+
+    ```java
+    // StyleAR API 팩토리 클래스
+    import xyz.deepixel.stylear.DPStyleARFactory;
+    // StyleAR API 귀걸이 핀 위치 설정 클래스
+    import xyz.deepixel.stylear.DPEarringParam;
+  
+  - 함수호출  
+    **StyleAR API `STILL`** **인스턴스**를 **생성** 합니다. 만약 생성된 인스턴스가 있다면 해당 인스턴스를 리턴합니다.
+
+    ```java
+    //Context activity: 실행되고 있는 activity를 입력
+    DPStyleAR styleAR = DPStyleARFactory.getInstance(Context activity);
+    ```
+
+- **귀걸이 설정**  
+    귀걸이 설정은 **StyleAR API `STILL`** 인스턴스가 생성되었을 때 사용할 수 있습니다. 귀걸이 설정에 필요한 입력데이터는 **귀걸이 사진, 귀걸이 실측크기, 귀걸이 핀 위치**이고 자세한 설명은 [링크][make_input_data]를 참조해 주세요.
+
+    ```java
+    // For Android
+    // StyleAR API 귀걸이 정보 클래스 선언
+    DPEarringParam earringParam = new DPEarringParam();
+    // 1. 귀걸이 사진 파일 위치 (사진 파일(1) 또는 Bitmap(2) 형식으로 선택함.)
+    earringParam.setAbsolutePath(mEarringFile.getAbsolutePath());
+    // 2. 귀걸이 Bitmap 설정 (사진 파일(1) 또는 Bitmap(2) 형식으로 선택함.)
+    BitmapFactory.Options options = new BitmapFactory.Options();
+    // Bitmap 타입설정 (반듯이 RGB_8888)
+    options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+    // 귀걸이 Bitmap영상 설정
+    earringParam.setBitmap(BitmapFactory.decodeFile(mEarringFile.getAbsolutePath(), options));
+    // 실제 귀걸이 가로 크기(mm)
+    earringParam.setWidth(13.0f);
+    // 실제 귀걸이 세로 크기(mm)
+    earringParam.setHeight(85.0f);
+    // 귀걸이 핀 위치(TOP or CENTER)
+    earringParam.setAnchorPosition(DPEarringAnchorPosition.TOP);
+    // StyleAR API에 귀걸이 정보 클래스 및 귀걸이 파일 이름 입력
+    styleAR.setEarringParam(earringParam);
+    ```
+
+- **구동 및 출력**  
+    **StyleAR API`STILL`** 를 사용자가 지정한 영상(**Bitmap 타입**)에 입력하여 구동하면 귀걸이가 가상착용된 영상(**Bitmap 타입**)이 출력됩니다.
+
+    ```java
+    // Bitmap bitmap: Bitmap 타입의 입력영상
+    // Point left:
+    // Point right:
+    // Bitmap processedBitmap: 귀걸이가 가상착용된 출력영상
+    Bitmap processedBitmap = styleAR.getStyleARImage(Bitmap bitmap, Point left, Point right);
     ```
 
 ***
