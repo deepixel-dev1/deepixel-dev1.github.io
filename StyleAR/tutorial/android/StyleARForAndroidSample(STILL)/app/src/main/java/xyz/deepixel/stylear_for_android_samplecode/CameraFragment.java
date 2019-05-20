@@ -77,22 +77,26 @@ public class CameraFragment extends Fragment
         m_processImageButton = view.findViewById(R.id.process_image_button);
 
         m_processImageButton.setOnClickListener(v -> {
+            // 인스턴스 생성
             DPStyleAREarring styleAR = DPStyleARFactory.getStyleAREarring(getActivity());
 
-            // Load test image.
+            // 영상 입력 및 Bitmap 타입으로 변경
             File inputFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath(), "test-image.png");
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inPreferredConfig = Bitmap.Config.ARGB_8888;
             Bitmap bitmap = BitmapFactory.decodeFile(inputFile.getAbsolutePath(), options);
 
+            // 귀걸이 설정
             DPEarringParam earringParam = getEarringParam(1);
-
             styleAR.setLeftEarringParam(earringParam);
-            styleAR.setRightEarringParam(getFlipEarringParam(earringParam));;
+            styleAR.setRightEarringParam(getFlipEarringParam(earringParam));
 
-            // Get stylear image.
+            // 화면보정 필터 설정
+            styleAR.setFilterEnabled(true);
+
             Bitmap processedBitmap;
             try {
+                // StyleAR API STILL 구동 및 출력
                 processedBitmap = styleAR.getStyleAREarringImage(bitmap);
             } catch (DPException e) {
                 Handler mainHandler = new Handler(Looper.getMainLooper());
@@ -100,7 +104,7 @@ public class CameraFragment extends Fragment
                 return;
             }
 
-            // Save result image.
+            // 출력(결과) 영상 저장
             File outputFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath(), "processed-image.jpg");
             OutputStream out = null;
             try {
@@ -119,6 +123,7 @@ public class CameraFragment extends Fragment
 
             // Get stylear image with earrings position.
             try {
+                // StyleAR API STILL 구동 및 출력 (얼굴 left, right 구분)
                 processedBitmap = styleAR.getStyleAREarringImage(bitmap, new Point(100, 100), new Point(200, 200));
             } catch (DPException e) {
                 Handler mainHandler = new Handler(Looper.getMainLooper());
@@ -126,7 +131,7 @@ public class CameraFragment extends Fragment
                 return;
             }
 
-            // Save result image.
+            // 출력(결과) 영상 저장
             outputFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath(), "processed-image2.jpg");
             try {
                 out = new FileOutputStream(outputFile);
