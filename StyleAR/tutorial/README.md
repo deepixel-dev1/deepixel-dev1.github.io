@@ -50,7 +50,6 @@
 
 <center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/meta_info.png" width="330"></center><br/>
 
-※ **메타데이터**는 **StyleAR API** **처리방법**에 따라 **동작이 제한**되어 있습니다.  
 ※ **메타데이터**는 얼굴 각 부분들의 **색상**(R<sup>Red</sup>G<sup>Green</sup>B<sup>Blue</sup>), **비율**, **좌표** 값을 분석합니다. 자세한 설명은 아래의 표와 같습니다.
 
 |메타데이터|내용|단위|
@@ -195,7 +194,7 @@
       ```
 
   - **(2-2) 메타데이터 정보 획득**  
-      **StyleAR API `LIVE`** 이 동작하는 동안 카메라 입력 영상에서의 **얼굴**에 대한 다양한 **메타 정보를 획득** 할 수 있으며, 사용자의 얼굴이 카메라에 정면을 바라보고 있을 때 동작 합니다.
+      **StyleAR API `LIVE`** 이 동작하는 동안 카메라 입력 영상에서의 **얼굴**에 대한 다양한 **메타 정보를 획득** 할 수 있으며, 사용자의 **얼굴**이 **카메라에 정면**을 바라보고 있을 때 **동작** 합니다.
 
       ```java
       // For Android
@@ -304,13 +303,13 @@
     ```
 
 - **(5) 메타데이터정보 획득**  
-    **StyleAR API`STILL`** 이 구동된 이후에, 메타데이터를 획득할 수 있다. 메타데이터 출력 방법은 StyleAR API `LIVE` 와 동일하다.
+    **StyleAR API`STILL`** 이 구동된 이후에, 메타데이터를 획득할 수 있습니다. 메타데이터 출력 방법은 StyleAR API `LIVE` 와 동일합니다.
 
     ```java
     // For Android
     // 메타데이터 정보획득
     DPFaceMetaData faceMetaData = styleAR.getFaceMetaData();
-    // StyleAR API LIVE와 출력 동일
+    // 출력방법은 StyleAR API LIVE와 동일
     //  ...
     //  ...
     //  ...
