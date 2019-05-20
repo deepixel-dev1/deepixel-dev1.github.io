@@ -245,7 +245,9 @@ public class CameraFragment extends Fragment
         // 귀걸이 설정
         DPEarringParam leftEarringParam = getEarringParam(index);
         DPEarringParam rightEarringParam = getFlipEarringParam(leftEarringParam);
+        // 귀걸이 정보 StyleAR API LIVE에 입력(왼쪽)
         m_stylearView.setLeftEarringParam(leftEarringParam);
+        // 귀걸이 정보 StyleAR API LIVE에 입력(오른쪽)
         m_stylearView.setRightEarringParam(rightEarringParam);
     }
 
