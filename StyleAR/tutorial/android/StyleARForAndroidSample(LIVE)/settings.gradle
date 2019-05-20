@@ -1,1 +1,1 @@
-include ':app', ':stylearandroid-facear-demosimple'
+include ':app'
