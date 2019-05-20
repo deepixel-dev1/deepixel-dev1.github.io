@@ -116,7 +116,7 @@
 
 <center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/StyleAR_Sample_Flow(LIVE).png" width="500"></center><br/>
 
-※ 우선 **StyleAR API `LIVE`** 동작하기 위한 준비단계로는 `(1)StyleAR view UI 컴포넌트 연결`하고 실제 구동 위해 `(2)시작함수 호출`을 해야 합니다. **StyleAR API** **동작 중**에는 `(2-1)귀걸이 변경`, `(2-2)메타데이터 취득`, `(2-3)필터 설정`을 할 수 있습니다. **StyleAR API `LIVE`** 은 `(3)종료함수 호출`을 통해 구동을 멈출 수있습니다. 자세한 설명은 아래와 같습니다.
+※ 우선 **StyleAR API `LIVE`** 동작하기 위한 준비단계로는 `(1)StyleAR view UI 컴포넌트 연결`하고 실제 구동을 위해 `(2)시작함수 호출`을 해야 합니다. **StyleAR API** **동작 중**에는 `(2-1)귀걸이 변경`, `(2-2)메타데이터 취득`, `(2-3)필터 설정`을 할 수 있습니다. **StyleAR API `LIVE`** 은 `(3)종료함수 호출`을 통해 구동을 멈출 수있습니다. 자세한 설명은 아래와 같습니다.
 
 - **(1) StyleAR view UI생성 및 연결**  
   **StyleAR API `LIVE`** 는 입력영상을 카메라에서 얻을 수도 있습니다. 하지만 **카메라 설정에 따라 잘못된 결과를 출력** 할 수 있기 때문에, **StyleAR API `LIVE`** 는 **카메라 및 view를 컨트롤** 하는 기능을 **내부**에 **포함**하고 있습니다. 따라서 **StyleAR API `LIVE`** 를 사용 할 시 Layout에 StyleAR view UI 컴포넌트를 만들고 실제 StyleAR view 클래스를 연결하는 코드만 추가하면 **다른 설정 필요없이 사용**할 수 있습니다.
@@ -242,7 +242,7 @@
 
 <center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/StyleAR_Sample_Flow(STILL).png" width="150"></center><br/>
 
-※ **StyleAR API `STILL`** 구동하기 위해서 우선 `(1)인스턴스 생성`을 하고 `(2)귀걸이를 설정`을 합니다.`(3) 구동 및 출력`을 통해 API가 동작하며 결과를 얻을 수 있습니다. 자세한 설명은 아래와 같습니다.
+※ **StyleAR API `STILL`** 구동하기 위해서 우선 `(1)인스턴스 생성`을 하고 `(2)귀걸이를 설정`을 합니다.`(3) 이미지 필터 사용 유무`를 판단하고, `(4) 구동 및 출력`을 통해 API가 동작하며 `(5)결과`를 얻을 수 있습니다. 자세한 설명은 아래와 같습니다.
 
 - **(1) 인스턴스 생성**  
     **StyleAR API`STILL`** 를 구동시키기위한 **API 인스턴스**를 **생성** 합니다.
@@ -268,7 +268,7 @@
     ```
 
 - **(2) 귀걸이 설정**  
-    **StyleAR API `STILL`** 이 구동하기 이전에 호출해야 합니다. 귀걸이 설정방법은 **StyleAR API `LIVE`** 와 **동일**합니다.
+    **StyleAR API `STILL`** 이 **구동하기 이전**에 **귀걸이 설정**을 해야 합니다. **귀걸이 설정방법**은 **StyleAR API `LIVE`** 와 **동일**합니다.
 
     ```java
     // For Android
@@ -292,7 +292,7 @@
     ```
 
 - **(4) 구동 및 출력**  
-    **StyleAR API`STILL`** 에 사용자가 입력한 영상(**Bitmap 타입**), 좌측 및 우측 귀의 위치(대략적인)를 입력하여 구동하면 가상착용된 영상(**Bitmap 타입**)이 **입력한 귀의 위치**를 **기준**으로 출력됩니다.
+    **StyleAR API`STILL`** 에 사용자가 **입력한 영상**(**Bitmap 타입**), 좌측 및 우측 **귀의 위치**(대략적인)를 입력하여 구동하면 **가상착용된 영상**(**Bitmap 타입**)이 **입력한 귀의 위치**를 **기준**으로 **출력**됩니다.
 
     ```java
     // Bitmap bitmap: Bitmap 타입의 입력영상
@@ -303,7 +303,7 @@
     ```
 
 - **(5) 메타데이터정보 획득**  
-    **StyleAR API`STILL`** 이 구동된 이후에 메타데이터를 획득할 수 있습니다. **메타데이터 출력 방법**은 **StyleAR API `LIVE`** 와 **동일**합니다.
+    **StyleAR API`STILL`** 이 **구동된 이후**에 **메타데이터**를 **획득**할 수 있습니다. **메타데이터 출력 방법**은 **StyleAR API `LIVE`** 와 **동일**합니다.
 
     ```java
     // For Android
