@@ -229,7 +229,7 @@
       ```
 
 - **(3) 정지**  
-    **StyleAR API `LIVE`** 동작을 정지합니다. StyleAR API에 설정되 UI 컴포넌트에 **결과 영상을 출력하는 것을 멈춥니다**. 
+    **StyleAR API `LIVE`** 동작을 정지합니다. **StyleAR API `LIVE`** 가 설정되어 있는 **UI 컴포넌트**에 **결과 영상**을 **출력**하는 것을 **멈춥니다**.
 
     ```java
     // For Android
@@ -283,7 +283,7 @@
     ```
 
 - **(3) 필터설정**  
-    **StyleAR API `STILL`** 의 출력영상에 화면보정 필터의 ON/OFF 기능을 설정합니다. **기본 설정값**은 **OFF**(false)입니다.
+    **StyleAR API `STILL`** 의 **출력영상**에 **화면보정 필터**의 **ON/OFF** 기능을 설정합니다. **기본 설정값**은 **OFF**(false)입니다.
 
     ```java
     // For Android
