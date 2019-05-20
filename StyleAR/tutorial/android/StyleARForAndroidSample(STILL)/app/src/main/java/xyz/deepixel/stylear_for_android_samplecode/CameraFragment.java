@@ -92,7 +92,7 @@ public class CameraFragment extends Fragment
             styleAR.setRightEarringParam(getFlipEarringParam(earringParam));
 
             // 화면보정 필터 설정
-            styleAR.setFilterEnabled(true);
+            styleAR.setFilterEnabled(false);
 
             Bitmap processedBitmap;
             try {
