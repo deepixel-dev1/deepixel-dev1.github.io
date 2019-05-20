@@ -24,14 +24,17 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 import java.io.File;
 
+import xyz.deepixel.stylear.DPStyleAREarring;
 import xyz.deepixel.stylear.DPStyleAREarringView;
 import xyz.deepixel.stylear.DPEarringAnchorPosition;
 import xyz.deepixel.stylear.DPEarringParam;
 import xyz.deepixel.stylear.DPFaceMetaData;
+import xyz.deepixel.stylear.DPStyleARFactory;
 
 
 public class CameraFragment extends Fragment
@@ -50,6 +53,10 @@ public class CameraFragment extends Fragment
 
     private EditText mEditTextMetaData;
 
+    private Button m_enableFilterButton;
+
+    private boolean m_filterEnabled = true;
+
     public static CameraFragment newInstance() {
         return new CameraFragment();
     }
@@ -66,6 +73,7 @@ public class CameraFragment extends Fragment
         mEditTextMetaData = view.findViewById(R.id.matadata);
 
         m_stylearView = view.findViewById(R.id.stylear_view);
+        m_enableFilterButton = view.findViewById(R.id.enable_filter_button);
 
         m_stylearView.setOnTouchListener(new View.OnTouchListener() {
             final float MIN_DISTANCE = 10.0f;
@@ -125,6 +133,11 @@ public class CameraFragment extends Fragment
                 mEditTextMetaData.setVisibility(View.INVISIBLE);
             }
             return false;
+        });
+
+        m_enableFilterButton.setOnClickListener(v -> {
+            m_stylearView.setFilterEnabled(m_filterEnabled);
+            m_filterEnabled = (m_filterEnabled == true) ? false : true;
         });
     }
 
