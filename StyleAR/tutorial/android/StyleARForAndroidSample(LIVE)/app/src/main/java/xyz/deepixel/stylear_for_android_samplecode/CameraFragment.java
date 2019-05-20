@@ -106,6 +106,7 @@ public class CameraFragment extends Fragment
                                 m_stylearView.setEarringParam(getEarringParam(imageIndex));
                             }
                         } else {
+                            //메타데이터 출력
                             DPFaceMetaData faceMetaData = m_stylearView.getFaceMetaData();
                             StringBuilder msg = new StringBuilder();
                             msg.append("FRM : ").append(faceMetaData.getFaceRatioMean()).append('\n');
@@ -136,6 +137,7 @@ public class CameraFragment extends Fragment
         });
 
         m_enableFilterButton.setOnClickListener(v -> {
+            // 이미지 필터 ON/OFF
             m_stylearView.setFilterEnabled(m_filterEnabled);
             m_filterEnabled = (m_filterEnabled == true) ? false : true;
         });
@@ -149,6 +151,7 @@ public class CameraFragment extends Fragment
             setEarringParam(1);
 
             // Start camera view.
+            // StyleAR API LIVE 시작
             m_stylearView.start();
         } else {
             requestPermission();
@@ -157,6 +160,7 @@ public class CameraFragment extends Fragment
 
     @Override
     public void onPause() {
+        // StyleAR API LIVE 종료
         m_stylearView.stop();
         super.onPause();
     }
@@ -238,6 +242,7 @@ public class CameraFragment extends Fragment
     }
 
     public void setEarringParam(int index) {
+        // 귀걸이 설정
         DPEarringParam leftEarringParam = getEarringParam(index);
         DPEarringParam rightEarringParam = getFlipEarringParam(leftEarringParam);
         m_stylearView.setLeftEarringParam(leftEarringParam);
@@ -260,14 +265,22 @@ public class CameraFragment extends Fragment
 
         DPEarringParam earringParam = new DPEarringParam();
         if (index == 1) {
+            // 귀걸이 파일 로드
             File mEarringFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath(), "155569.png");
+            // 귀걸이 파일 bitmap 타입으로 변경
             earringParam.setBitmap(BitmapFactory.decodeFile(mEarringFile.getAbsolutePath(), options));
+            // 귀걸이 실측 크기 설정
             earringParam.setSize(new SizeF(7.5f, 34.0f));
+            // 귀걸이 핀 위치 설정
             earringParam.setAnchorPoint(new PointF(3.75f, 1.0f));
         } else if (index == 2) {
+            // 귀걸이 파일 로드
             File mEarringFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath(), "155604.png");
+            // 귀걸이 파일 bitmap 타입으로 변경
             earringParam.setBitmap(BitmapFactory.decodeFile(mEarringFile.getAbsolutePath(), options));
+            // 귀걸이 실측 크기 설정
             earringParam.setSize(new SizeF(4.0f, 58.0f));
+            // 귀걸이 핀 위치 설정
             earringParam.setAnchorPoint(new PointF(2.0f, 1.0f));
         } else {
             throw new RuntimeException("Earring index is invalid.(" + index + ")");
