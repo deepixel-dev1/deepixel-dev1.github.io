@@ -97,11 +97,15 @@ $(document).ready(function(){initNavTree('a00035.html','');});
 xyz.deepixel.stylear.DPStyleAREarringView에 대한 상속 다이어그램 : </div>
 <div class="dyncontent">
 <div class="center"><img src="a00034.png" border="0" usemap="#xyz_8deepixel_8stylear_8_d_p_style_a_r_earring_view_inherit__map" alt="Inheritance graph"/></div>
+<map name="xyz_8deepixel_8stylear_8_d_p_style_a_r_earring_view_inherit__map" id="xyz_8deepixel_8stylear_8_d_p_style_a_r_earring_view_inherit__map">
+</map>
 </div>
 <div class="dynheader">
 xyz.deepixel.stylear.DPStyleAREarringView에 대한 협력 다이어그램:</div>
 <div class="dyncontent">
 <div class="center"><img src="a00033.png" border="0" usemap="#xyz_8deepixel_8stylear_8_d_p_style_a_r_earring_view_coll__map" alt="Collaboration graph"/></div>
+<map name="xyz_8deepixel_8stylear_8_d_p_style_a_r_earring_view_coll__map" id="xyz_8deepixel_8stylear_8_d_p_style_a_r_earring_view_coll__map">
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -118,6 +122,8 @@ Public 멤버 함수</h2></td></tr>
 <tr class="separator:aa5aa1d8d40ae86448d4f119c8ecebf37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44c366035385ab5aeeb787807e33276a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00027.html">DPFaceMetaData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00035.html#a44c366035385ab5aeeb787807e33276a">getFaceMetaData</a> ()</td></tr>
 <tr class="separator:a44c366035385ab5aeeb787807e33276a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91b8e4fdf8c8e28080d76ba80104a308"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00035.html#a91b8e4fdf8c8e28080d76ba80104a308">setFilterEnabled</a> (boolean filterEnabled)</td></tr>
+<tr class="separator:a91b8e4fdf8c8e28080d76ba80104a308"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">상세한 설명</h2>
 <div class="textblock"><p>StyleAR API 기능을 제공하는 Android View 클래스이며, 카메라 영상[LIVE]을 입력받아 구동한다. 이 뷰의 <a class="el" href="a00035.html#a55fa8430cae48c7e9822986cb30a9017">DPStyleAREarringView#start()</a> 메소드를 호출하면 내부에서 카메라 영상을 취득하기 시작하고 그 영상으로 StyleAR 프로세스를 수행한다. 그리고 그 수행 결과 이미지를 이뷰에 출력한다. 이 뷰의 <a class="el" href="a00035.html#a27f428bcbd737f2754383c6517d91e57">DPStyleAREarringView#stop()</a> 메소드를 호출하면 카메라와 StyleAR 프로세스를 중단한다. 가상 착용할 귀걸이는 <a class="el" href="a00035.html#a98d1e5f0c1c282669c65b8f9769f4f17">DPStyleAREarringView#setEarringParam(DPEarringParam)</a>, <a class="el" href="a00035.html#ac808eecf42bf2699ed0efc9ef152e71f">DPStyleAREarringView#setLeftEarringParam(DPEarringParam)</a> 와 <a class="el" href="a00035.html#aa5aa1d8d40ae86448d4f119c8ecebf37">DPStyleAREarringView#setRightEarringParam(DPEarringParam)</a> 메소드를 이용하여 설정할 수 있다. StyleAR 프로세스 과정 중에 취득하는 얼굴에 대한 메타 정보는 <a class="el" href="a00035.html#a44c366035385ab5aeeb787807e33276a">DPStyleAREarringView#getFaceMetaData()</a> 메소드를 이용하여 얻을 수 있다. </p>
@@ -161,6 +167,31 @@ Public 멤버 함수</h2></td></tr>
 <dl class="params"><dt>매개변수</dt><dd>
   <table class="params">
     <tr><td class="paramname">earringParam</td><td>귀걸이 정보 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a91b8e4fdf8c8e28080d76ba80104a308"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91b8e4fdf8c8e28080d76ba80104a308">&#9670;&nbsp;</a></span>setFilterEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void xyz.deepixel.stylear.DPStyleAREarringView.setFilterEnabled </td>
+          <td>(</td>
+          <td class="paramtype">boolean&#160;</td>
+          <td class="paramname"><em>filterEnabled</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>후처리에 사용할 필터를 적용할지를 설정한다.</p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filterEnabled</td><td>true 면 필터를 적용하고, false 면 필터를 적용하지 않는다. </td></tr>
   </table>
   </dd>
 </dl>
