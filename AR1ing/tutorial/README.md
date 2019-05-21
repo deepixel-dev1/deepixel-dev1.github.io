@@ -382,7 +382,7 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
       cv::Rect cropedRect = safeRect & wristRect;
 
       if (cropedRect.area() != wristRect.area()) {
-        return;
+          return;
       }
 
       // Process the bare minimum area of band
@@ -399,10 +399,12 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
       matWrist.convertTo(matWrist, CV_32F);
       matImage.convertTo(matImage, CV_32F);
 
+
       cv::Mat matAffine = cv::estimateRigidTransform(matImage, matWrist, true);
       if (matAffine.empty()) {
         return;
       }
+
 
       cv::warpAffine(matBand, matBand_canvas, matAffine, wristRect.size());
 
@@ -413,10 +415,30 @@ ARing API의 전체 예제 코드는 [Android][andoid_sample]/[iOS][ios_sample] 
       cv::split(matBand_canvas,matBand_canvas_all);
       matBand_canvas_all[3].copyTo(bandMask);
 
-      cv::cvtColor(matBand_canvas, matBand_canvas, CV_BGRA2RGBA);
-      matBand_canvas.copyTo(matDisplay(wristRect),bandMask);
+      //chnage all to float
+      cv::Mat maskWeight_inv;
+      cv::Mat maskWeight;
+      cv::Mat mat_dst;
+
+      cv::cvtColor( matDisplay(wristRect), mat_dst, CV_RGBA2BGR);
+      cv::cvtColor( matBand_canvas, matBand_canvas, CV_BGRA2BGR);
+
+      matBand_canvas.convertTo(matBand_canvas,CV_32F);
+      mat_dst.convertTo(mat_dst,CV_32F);
+
+      cv::cvtColor(bandMask,maskWeight,CV_GRAY2BGR);
+      maskWeight.convertTo(maskWeight,CV_32F);
+      cv::divide(maskWeight,cv::Scalar(255,255,255),maskWeight);
+
+      cv::subtract(cv::Scalar(1,1,1),maskWeight,maskWeight_inv);
+      cv::multiply(mat_dst,maskWeight_inv,mat_dst);
+      cv::multiply(matBand_canvas,maskWeight,matBand_canvas);
+      cv::add(matBand_canvas,mat_dst,mat_dst);
+
+      mat_dst.convertTo(mat_dst,CV_8UC3);
+      cv::cvtColor( mat_dst, mat_dst, CV_BGR2RGBA);
+      mat_dst.copyTo(matDisplay(wristRect));
     }
-  
     ```
 
 ***
