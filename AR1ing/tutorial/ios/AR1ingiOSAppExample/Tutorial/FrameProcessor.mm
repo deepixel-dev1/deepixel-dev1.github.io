@@ -99,68 +99,96 @@ cv::Point2d getOrthogornal(cv::Point2d pt1, cv::Point2d pt2) {
 void draw_band_or_ring(cv::InputOutputArray _matDisplay, std::vector<cv::Point2f> pts,
                        float thickness, cv::Mat matBand) {
     cv::Mat matDisplay = _matDisplay.getMat();
-    
+
     std::vector<cv::Point2f> vWristPt = pts;
     std::vector<cv::Point2f> imagePt;
-    
+
     vWristPt.resize(3);
     imagePt.resize(3);
-    
+
     int nRingThickness = thickness * matBand.cols;
     imagePt[0] = cv::Point2f(nRingThickness, matBand.rows / 2);
     imagePt[1] = cv::Point2f(matBand.cols - nRingThickness, matBand.rows / 2);
     imagePt[2] = cv::Point2f(matBand.cols / 2, 0);
-    
+
+
     cv::Point2f wristCt = cv::Point2f(vWristPt[0] + vWristPt[1]) / 2.0;
     cv::Point2f diffPt = vWristPt[1] - vWristPt[0];
     float wristWidth = std::sqrt(diffPt.x * diffPt.x + diffPt.y * diffPt.y);
-    
+
     cv::Point2d ortho_vec = getOrthogornal(cv::Point2d(vWristPt[0]), cv::Point2d(vWristPt[1]));
-    
+
     float wristHeight = wristWidth * (matBand.rows - nRingThickness * 2) / matBand.cols;
     vWristPt[2] = wristCt + cv::Point2f(ortho_vec) * wristHeight;
-    
+
     // Find the original bounding rect
     cv::Rect wristRect = cv::boundingRect(vWristPt);
-    
+
     cv::Point cnt = (wristRect.tl() + wristRect.br()) / 2;
-    cv::Point rad = cv::Point(wristRect.width, wristRect.height);
+    cv::Point rad = cv::Point(wristRect.width * 2, wristRect.height * 2);
     wristRect = cv::Rect(cnt - rad, cnt + rad);
-    
+
     // Skip when band is out of range
     cv::Rect safeRect(0, 0, matDisplay.cols, matDisplay.rows);
     cv::Rect cropedRect = safeRect & wristRect;
+
     if (cropedRect.area() != wristRect.area()) {
         return;
     }
-    
+
     // Process the bare minimum area of band
     vWristPt[0] -= cv::Point2f(wristRect.tl());
     vWristPt[1] -= cv::Point2f(wristRect.tl());
     vWristPt[2] -= cv::Point2f(wristRect.tl());
-    
+
     cv::Mat matBand_canvas;
     cv::Mat matWrist(vWristPt);
     cv::Mat matImage(imagePt);
     matWrist = matWrist.reshape(1, 3);
     matImage = matImage.reshape(1, 3);
-    
+
     matWrist.convertTo(matWrist, CV_32F);
     matImage.convertTo(matImage, CV_32F);
-    
-    cv::Mat matAffine = cv::estimateRigidTransform(matImage, matWrist, false);
+
+
+    cv::Mat matAffine = cv::estimateRigidTransform(matImage, matWrist, true);
     if (matAffine.empty()) {
-        return;
+      return;
     }
+
+
     cv::warpAffine(matBand, matBand_canvas, matAffine, wristRect.size());
-    
+
     // Extract useful area from the band image
     cv::Mat bandMask;
-    cv::cvtColor(matBand_canvas, bandMask, cv::COLOR_BGR2GRAY);
-    bandMask = bandMask > 30;
-    
-    cv::cvtColor(matBand_canvas, matBand_canvas, CV_BGR2RGBA);
-    matBand_canvas.copyTo(matDisplay(wristRect), bandMask);
+
+    cv::Mat matBand_canvas_all[4];
+    cv::split(matBand_canvas,matBand_canvas_all);
+    matBand_canvas_all[3].copyTo(bandMask);
+
+    //chnage all to float
+    cv::Mat maskWeight_inv;
+    cv::Mat maskWeight;
+    cv::Mat mat_dst;
+
+    cv::cvtColor( matDisplay(wristRect), mat_dst, CV_RGBA2BGR);
+    cv::cvtColor( matBand_canvas, matBand_canvas, CV_BGRA2BGR);
+
+    matBand_canvas.convertTo(matBand_canvas,CV_32F);
+    mat_dst.convertTo(mat_dst,CV_32F);
+
+    cv::cvtColor(bandMask,maskWeight,CV_GRAY2BGR);
+    maskWeight.convertTo(maskWeight,CV_32F);
+    cv::divide(maskWeight,cv::Scalar(255,255,255),maskWeight);
+
+    cv::subtract(cv::Scalar(1,1,1),maskWeight,maskWeight_inv);
+    cv::multiply(mat_dst,maskWeight_inv,mat_dst);
+    cv::multiply(matBand_canvas,maskWeight,matBand_canvas);
+    cv::add(matBand_canvas,mat_dst,mat_dst);
+
+    mat_dst.convertTo(mat_dst,CV_8UC3);
+    cv::cvtColor( mat_dst, mat_dst, CV_BGR2RGBA);
+    mat_dst.copyTo(matDisplay(wristRect));
 }
 
 void draw_ring(cv::InputOutputArray _matDisplay,
