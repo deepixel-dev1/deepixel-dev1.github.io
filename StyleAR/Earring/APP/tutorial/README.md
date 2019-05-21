@@ -7,17 +7,17 @@
 **StyleAREarring API**는 입력영상에서 얼굴 특정점 검출, 3D 피팅, 영상분석 등의 **컴퓨터비전 기술**을 이용하여 사용자에게 **실시간 귀걸이 가상착용**(Virtual Try-on)경험을 주는 모바일 기반 **API Library**입니다.<br>  
 **StyleAREarring API**에 대한 각각의 설명은 아래 목차의 **링크**를 참조하세요.
 
- [1. StyleAREarring API 기능](#StyleAREarring-api-기능)
+ [1. StyleAREarring API 기능](#stylearearring-api-기능)
 
- [2. StyleAREarring API 시스템 사양](#StyleAREarring-api-시스템-사양)
+ [2. StyleAREarring API 시스템 사양](#stylearearring-api-시스템-사양)
 
- [3. StyleAREarring API 사용방법](#StyleAREarring-api-사용방법)
+ [3. StyleAREarring API 사용방법](#stylearearring-api-사용방법)
 
  ***
 
 ## StyleAREarring API 기능
 
-**StyleAREarring API**는 [귀걸이 가상착용](#귀걸이-가상착용), [화면보정](#화면보정), [메타데이터 취득](#메타데이터) 등의 기능을 제공하며 구동스팩은 아래와 같습니다.
+**StyleAREarring API**는 [귀걸이 가상착용](#귀걸이-가상착용), [화면 및 귀걸이 보정](#화면-및-귀걸이-보정), [메타데이터 취득](#메타데이터) 등의 기능을 제공하며 구동스팩은 아래와 같습니다.
 
 |목차              |스팩                                                              |
 |:-:               |:-:                                                              |
@@ -48,7 +48,7 @@
 
 ### 메타데이터
 
-**StyleAREarring API**는 입력영상에서 검출된 **얼굴의 특징을 분석**하여 사용자 각각의 **고유정보**(메타데이터)를 출력할 수 있습니다. 이 기능의 사용을 원하시면 [라이스 발급](#필수조건)시 사용 유무를 판단하센여 문의해 주시기 바랍니다.
+**StyleAREarring API**는 입력영상에서 검출된 **얼굴의 특징을 분석**하여 사용자 각각의 **고유정보**(메타데이터)를 출력할 수 있습니다. 이 기능의 사용을 원하시면 [라이센스 발급](#필수조건(공통))시 사용 유무를 판단하센여 문의해 주시기 바랍니다.
 
 <center><img src="https://deepixel-dev1.github.io/StyleAR/Earring/APP/tutorial/img/meta_info.png" width="330"></center><br/>
 
