@@ -55,7 +55,7 @@
 ## 참조
 
 - [배경지우는 방법(PPT)][remove_background_ppt]
-- [StyleAR API 튜토리얼][android_tutorial]
+- [StyleAREarring API 튜토리얼][android_tutorial]
 
 [remove_background_ppt]: https://support.office.com/en-us/article/remove-the-background-of-a-picture-c0819a62-6844-4190-8d67-6fb1713a12bf
-[android_tutorial]: https://deepixel-dev1.github.io/StyleAR/tutorial/
+[android_tutorial]: https://deepixel-dev1.github.io/StyleAR/Earring/APP/tutorial/

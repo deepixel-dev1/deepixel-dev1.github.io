@@ -42,7 +42,7 @@
 
 ### 화면 및 귀걸이 보정
 
-**StyleAREarring API**는 가상착용결과를 유려하게 보이기 위해 **출력영상**에 **두가지** **필터 알고리즘**을 적용하고 있습니다. 첫번째는 **화면전체**에 필터를 적용하여 **뽀샵효과**를 줄 수 있고, 두번째는 **귀걸이**를 **얼굴의 톤**을 고려하여 **색깔이 변경** 할 수 있습니다. 이 기능들은 **ON / OFF** 할 수 있습니다.
+**StyleAREarring API**는 가상착용결과를 유려하게 보이기 위해 **출력영상**에 **두가지** **필터 알고리즘**을 적용하고 있습니다. 첫번째는 **화면전체**에 필터를 적용하여 **뽀샵효과**를 줄 수 있고, 두번째는 **귀걸이 색깔**이 **얼굴의 톤**에 맞게 변경 할 수 있습니다. 이 기능들은 **ON / OFF** 할 수 있습니다.
 
 <center><img src="https://deepixel-dev1.github.io/StyleAR/Earring/APP/tutorial/img/Output(Filter).png" width="950"></center><br/>
 
@@ -106,7 +106,7 @@
 |목차|내용|
 |:-:|:-:|
 |**발급**|<support@deepixel.xyz>로 문의 바랍니다.|
-|**폼**|1.회사명<br> 2. 적용 어플리케이션 ID<br> 3. StyleAR API 사용기간<br> 4. 메타데이터기능 사용유무<br> 5. 담당자 연락처 |
+|**폼**|1.회사명<br> 2. 적용 어플리케이션 ID<br> 3. StyleAREarring API 사용기간<br> 4. 메타데이터기능 사용유무<br> 5. 담당자 연락처 |
 
 - **환경설정**  
   환경설정에서는 **StyleAREarring API 라이브러리**를 **모바일 프로젝트**에 **등록하는 방법** 및 **프로젝트 권한 설정** 방법을 설명합니다.
@@ -121,7 +121,7 @@
 ※ 우선 **StyleAREarring API `LIVE`** 동작하기 위한 준비단계로는 `(1)StyleAREarring view UI 컴포넌트 연결`하고 실제 구동을 위해 `(2)시작함수 호출`을 해야 합니다. **StyleAREarring API** **동작 중**에는 `(2-1)귀걸이 변경`, `(2-2)메타데이터 취득`, `(2-3)필터 설정`을 할 수 있습니다. **StyleAREarring API `LIVE`** 은 `(3)종료함수 호출`을 통해 구동을 멈출 수있습니다. 자세한 설명은 아래와 같습니다.
 
 - **(1) StyleAREarring view UI생성 및 연결**  
-  **StyleAREarring API `LIVE`** 는 입력영상을 카메라에서 얻을 수도 있습니다. 하지만 **카메라 설정에 따라 잘못된 결과를 출력** 할 수 있기 때문에, **StyleAREarring API `LIVE`** 는 **카메라 및 view를 컨트롤** 하는 기능을 **내부**에 **포함**하고 있습니다. 따라서 **StyleAREarring API `LIVE`** 를 사용 할 시 Layout에 StyleAREarring view UI 컴포넌트를 만들고 실제 StyleAR view 클래스를 연결하는 코드만 추가하면 **다른 설정 필요없이 사용**할 수 있습니다.
+  **StyleAREarring API `LIVE`** 는 입력영상을 카메라에서 얻을 수도 있습니다. 하지만 **카메라 설정에 따라 잘못된 결과를 출력** 할 수 있기 때문에, **StyleAREarring API `LIVE`** 는 **카메라 및 view를 컨트롤** 하는 기능을 **내부**에 **포함**하고 있습니다. 따라서 **StyleAREarring API `LIVE`** 를 사용 할 시 Layout에 StyleAREarring view UI 컴포넌트를 만들고 실제 StyleAREarring view 클래스를 연결하는 코드만 추가하면 **다른 설정 필요없이 사용**할 수 있습니다.
 
   - StyleAREarring view UI 컴포넌트 생성  
     Main Layout에 StyleAREarring view UI 컴포넌트를 생성합니다.
@@ -325,7 +325,7 @@
 
 ## 연락처
 
-StyleAR API 적용시 문제점을 발견하거나 궁금한 점이 있다면, 이메일(support@deepixel.xyz)로 문의해 주세요.  
+StyleAREarring API 적용시 문제점을 발견하거나 궁금한 점이 있다면, 이메일(support@deepixel.xyz)로 문의해 주세요.  
 
 ***
 
