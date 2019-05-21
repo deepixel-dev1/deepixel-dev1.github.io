@@ -34,7 +34,7 @@
 
 **StyleAREarring API**는 영상에서 **귀걸이 위치**를 **추정**하고, 입력된 **귀걸이와 합성**을 통해 **가상착용영상**을 **출력**합니다.
 
-<center> <img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/StyleAREarringResult.png" width="600"></center> <br/>
+<center> <img src="https://deepixel-dev1.github.io/StyleAR/Earring/APP/tutorial/img/StyleAREarringResult.png" width="600"></center> <br/>
 
 ※ 귀걸이 가상착용 기능은 **반드시 귀걸이 사진, 귀걸이 실측 크기, 귀걸이 핀위치**를 입력해야 합니다. 입력 데이터를 구성하는 방법은 [링크][make_input_data]를 참조해 주세요.
 
@@ -44,11 +44,13 @@
 
 **StyleAREarring API**는 가상착용결과를 유려하게 보이기 위해 **출력영상**에 **두가지** **필터 알고리즘**을 적용하고 있습니다. 첫번째는 **화면전체**에 필터를 적용하여 **뽀샵효과**를 줄 수 있고, 두번째는 **귀걸이**를 **얼굴의 톤**을 고려하여 **색깔이 변경** 할 수 있습니다. 이 기능들은 **ON / OFF** 할 수 있습니다.
 
+<center><img src="https://deepixel-dev1.github.io/StyleAR/Earring/APP/tutorial/img/Output(Filter).png" width="500"></center><br/>
+
 ### 메타데이터
 
 **StyleAREarring API**는 입력영상에서 검출된 **얼굴의 특징을 분석**하여 사용자 각각의 **고유정보**(메타데이터)를 출력할 수 있습니다. 이 기능의 사용을 원하시면 [라이스 발급](#필수조건)시 사용 유무를 판단하센여 문의해 주시기 바랍니다.
 
-<center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/meta_info.png" width="330"></center><br/>
+<center><img src="https://deepixel-dev1.github.io/StyleAR/Earring/APP/tutorial/img/meta_info.png" width="330"></center><br/>
 
 ※ **메타데이터**는 얼굴 각 부분들의 **색상**(R<sup>Red</sup>G<sup>Green</sup>B<sup>Blue</sup>), **비율**, **좌표** 값을 분석합니다. 자세한 설명은 아래의 표와 같습니다.
 
@@ -70,7 +72,7 @@
 - **StyleAREarring API 블록도**
   >StyleAREarring API와 Mobile Application 간의 관계를 나타낸 **블록도** 입니다.
 
-<center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/StyleAR_Block_Diagram.png" width="800"></center><br/>
+<center><img src="https://deepixel-dev1.github.io/StyleAR/Earring/APP/tutorial/img/StyleAR_Block_Diagram.png" width="800"></center><br/>
 
 ※ **`LIVE`** 방법의 구조는 **컨트롤**과 **프로세싱** 파트로 구성되어 있습니다. **컨트롤 파트**는 **카메라 및 view 제어, 귀걸이 정보 제어, 영상 필터링 제어** 등을하고 있으며 **프로세싱 파트**는 **알고리즘 구동, 메타정보 및 귀걸이 출력** 등을 맡고 있습니다.
 
@@ -79,7 +81,7 @@
 - **StyleAREarring API의 state 다이어그램**
   >StyleAREarring API의 기능들을 사용하기 위해서는 아래의 그림과 같이 간단한 state 메카니즘을 따라야 합니다.
 
-<center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/StyleAR_State_Diagram.png" width="1000"></center><br/>
+<center><img src="https://deepixel-dev1.github.io/StyleAR/Earring/APP/tutorial/img/StyleAR_State_Diagram.png" width="1000"></center><br/>
 
 ※ **`LIVE`** 방법은 **초기화 및 준비 상태**를 거처 API가 구동이 되면, 프로세싱 상태에서 루프를 돌며 **결과를 지속적으로 출력**합니다. **귀걸이 변경 및 메타정보 출력**도 **프로세싱 상태**에서 수행 할 수 있습니다. 어플리케이션이 정지하거나, API를 구동해제 할 시에는 **프로세싱 상태를 해제**해야 합니다.  
 
@@ -114,7 +116,7 @@
 
 **StyleAREarring API `LIVE`** 를 적용하는 방법을 아래의 **Flow 다이어그램**의 순서대로 설명합니다.
 
-<center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/StyleAR_Sample_Flow(LIVE).png" width="500"></center><br/>
+<center><img src="https://deepixel-dev1.github.io/StyleAR/Earring/APP/tutorial/img/StyleAR_Sample_Flow(LIVE).png" width="500"></center><br/>
 
 ※ 우선 **StyleAREarring API `LIVE`** 동작하기 위한 준비단계로는 `(1)StyleAREarring view UI 컴포넌트 연결`하고 실제 구동을 위해 `(2)시작함수 호출`을 해야 합니다. **StyleAREarring API** **동작 중**에는 `(2-1)귀걸이 변경`, `(2-2)메타데이터 취득`, `(2-3)필터 설정`을 할 수 있습니다. **StyleAREarring API `LIVE`** 은 `(3)종료함수 호출`을 통해 구동을 멈출 수있습니다. 자세한 설명은 아래와 같습니다.
 
@@ -242,7 +244,7 @@
 
 **StyleAREarring API `STILL`** 을 적용하는 방법을 아래의 **Flow 다이어그램**의 순서대로 설명합니다.
 
-<center><img src="https://deepixel-dev1.github.io/StyleAR/tutorial/img/StyleAR_Sample_Flow(STILL).png" width="150"></center><br/>
+<center><img src="https://deepixel-dev1.github.io/StyleAR/Earring/APP/tutorial/img/StyleAR_Sample_Flow(STILL).png" width="150"></center><br/>
 
 ※ **StyleAREarring API `STILL`** 구동하기 위해서 우선 `(1)인스턴스 생성`을 하고 `(2)귀걸이를 설정`을 합니다.`(3) 이미지 필터 사용 유무`를 판단하고, `(4) 구동 및 출력`을 통해 API가 동작하며 `(5)결과`를 얻을 수 있습니다. 자세한 설명은 아래와 같습니다.
 
