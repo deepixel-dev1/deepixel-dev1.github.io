@@ -44,7 +44,7 @@
 
 **StyleAREarring API**는 가상착용결과를 유려하게 보이기 위해 **출력영상**에 **두가지** **필터 알고리즘**을 적용하고 있습니다. 첫번째는 **화면전체**에 필터를 적용하여 **뽀샵효과**를 줄 수 있고, 두번째는 **귀걸이**를 **얼굴의 톤**을 고려하여 **색깔이 변경** 할 수 있습니다. 이 기능들은 **ON / OFF** 할 수 있습니다.
 
-<center><img src="https://deepixel-dev1.github.io/StyleAR/Earring/APP/tutorial/img/Output(Filter).png" width="500"></center><br/>
+<center><img src="https://deepixel-dev1.github.io/StyleAR/Earring/APP/tutorial/img/Output(Filter).png" width="950"></center><br/>
 
 ### 메타데이터
 
