@@ -48,7 +48,7 @@
 
 ### 메타데이터
 
-**StyleAREarring API**는 입력영상에서 검출된 **얼굴의 특징을 분석**하여 사용자 각각의 **고유정보**(메타데이터)를 출력할 수 있습니다. 이 기능의 사용을 원하시면 [라이센스 발급](#필수조건(공통))시 사용 유무를 판단하센여 문의해 주시기 바랍니다.
+**StyleAREarring API**는 입력영상에서 검출된 **얼굴의 특징을 분석**하여 사용자 각각의 **고유정보**(메타데이터)를 출력할 수 있습니다. 이 기능의 사용을 원하시면 [라이센스 발급](#필수조건(공통))시 사용 유무를 판단하여 문의해 주시기 바랍니다.
 
 <center><img src="https://deepixel-dev1.github.io/StyleAR/Earring/APP/tutorial/img/meta_info.png" width="330"></center><br/>
 
@@ -118,10 +118,10 @@
 
 <center><img src="https://deepixel-dev1.github.io/StyleAR/Earring/APP/tutorial/img/StyleAR_Sample_Flow(LIVE).png" width="500"></center><br/>
 
-※ 우선 **StyleAREarring API `LIVE`** 동작하기 위한 준비단계로는 `(1)StyleAREarring view UI 컴포넌트 연결`하고 실제 구동을 위해 `(2)시작함수 호출`을 해야 합니다. **StyleAREarring API** **동작 중**에는 `(2-1)귀걸이 변경`, `(2-2)메타데이터 취득`, `(2-3)필터 설정`을 할 수 있습니다. **StyleAREarring API `LIVE`** 은 `(3)종료함수 호출`을 통해 구동을 멈출 수있습니다. 자세한 설명은 아래와 같습니다.
+※ 우선 **StyleAREarring API `LIVE`** 동작하기 위한 준비단계로는 `(1)StyleAREarring view UI 컴포넌트 연결`하고 실제 구동을 위해 `(2)시작함수 호출`을 해야 합니다. **StyleAREarring API** **동작 중**에는 `(2-1)귀걸이 설정`, `(2-2)메타데이터 취득`, `(2-3)필터 설정`을 할 수 있습니다. **StyleAREarring API `LIVE`** 은 `(3)종료함수 호출`을 통해 구동을 멈출 수있습니다. 자세한 설명은 아래와 같습니다.
 
 - **(1) StyleAREarring view UI생성 및 연결**  
-  **StyleAREarring API `LIVE`** 는 입력영상을 카메라에서 얻을 수도 있습니다. 하지만 **카메라 설정에 따라 잘못된 결과를 출력** 할 수 있기 때문에, **StyleAREarring API `LIVE`** 는 **카메라 및 view를 컨트롤** 하는 기능을 **내부**에 **포함**하고 있습니다. 따라서 **StyleAREarring API `LIVE`** 를 사용 할 시 Layout에 StyleAREarring view UI 컴포넌트를 만들고 실제 StyleAREarring view 클래스를 연결하는 코드만 추가하면 **다른 설정 필요없이 사용**할 수 있습니다.
+  **StyleAREarring API `LIVE`** 는 **카메라 및 view를 컨트롤** 하는 기능을 **내부**에 **포함**하고 있습니다. 따라서 어플리케이션 **Layout**에 **StyleAREarring view UI 컴포넌트**를 만들고, **StyleAREarring view 클래스**를 연결하는 코드만 추가하면 **다른 설정 필요없이 사용**할 수 있습니다.
 
   - StyleAREarring view UI 컴포넌트 생성  
     Main Layout에 StyleAREarring view UI 컴포넌트를 생성합니다.
@@ -171,7 +171,7 @@
     ```
 
   - **(2-1) 귀걸이 설정**  
-      귀걸이 설정은 **StyleAREarring API `LIVE`** **동작 중**에도 할 수 있으며, 적용과 동시에 귀걸이가 변하는 것을 볼 수 있습니다. 귀걸이를 설정하기 위해서는 우측 및 좌측의 **귀걸이 영상**(bitmap), **귀걸이의 크기**, **핀 위치**)가 필요합니다. 입력데이터를 만드는 방법은 [링크][make_input_data]를 참조하세요.
+      귀걸이 설정은 **StyleAREarring API `LIVE`** **동작 중**에도 할 수 있으며, 적용과 동시에 귀걸이가 변하는 것을 볼 수 있습니다. 귀걸이를 설정하기 위해서는 **귀걸이 영상**(bitmap), **귀걸이의 크기**, **핀 위치** 입력데이터가 필요하며 만드는 방법은 [링크][make_input_data]를 참조하세요.
 
       ```java
       // For Android
@@ -196,7 +196,7 @@
       ```
 
   - **(2-2) 메타데이터 정보 획득**  
-      **StyleAREarring API `LIVE`** 이 동작하는 동안 카메라 입력 영상에서의 **얼굴**에 대한 다양한 **메타 정보를 획득** 할 수 있습니다. 사용자의 **얼굴**이 **카메라에 정면**을 바라보고 있을 때만 **동작** 합니다.
+      **StyleAREarring API `LIVE`** 가 동작하는 동안 **얼굴**에 대한 다양한 **메타 정보를 획득** 할 수 있습니다. 사용자의 **얼굴**이 **카메라에 정면**을 바라보고 있을 때만 **동작** 합니다.
 
       ```java
       // For Android
@@ -222,7 +222,7 @@
       ```
 
   - **(2-3) 필터설정**  
-      **StyleAREarring API `LIVE`** 의 출력결과에 화면보정 및 귀걸이 필터를 **ON/OFF** 합니다. **기본 설정값**은 **OFF**(false) 입니다.
+      **StyleAREarring API `LIVE`** 의 출력결과에 화면 및 귀걸이 보정필터를 **ON/OFF** 합니다. **기본 설정값**은 **OFF**(false) 입니다.
 
       ```java
       // For Android
@@ -287,7 +287,7 @@
     ```
 
 - **(3) 필터설정**  
-    **StyleAREarring API `STILL`** 의 **출력영상**에 **화면보정 및 귀걸이 필터**를 **ON/OFF** 합니다. **기본 설정값**은 **OFF**(false)입니다.
+    **StyleAREarring API `STILL`** 의 **출력영상**에 **화면 및 귀걸이 보정필터**를 **ON/OFF** 합니다. **기본 설정값**은 **OFF**(false)입니다.
 
     ```java
     // For Android
@@ -298,7 +298,7 @@
     ```
 
 - **(4) 구동 및 출력**  
-    **StyleAREarring API`STILL`** 에 사용자가 **입력한 영상**(**Bitmap 타입**), 좌측 및 우측 **귀의 위치**(대략적인)를 입력하여 구동하면 **가상착용된 영상**(**Bitmap 타입**)이 **입력한 귀의 위치**를 **기준**으로 **출력**됩니다.
+    **StyleAREarring API`STILL`** 에 **영상** 및 **귀의 위치**(**오른쪽, 왼쪽 좌표**)를 입력하여 구동하면 **가상착용된 결과 영상**이 **입력한 귀의 위치**를 **기준**으로 **출력**됩니다. 만약 **귀의 위치** **파라메터**를 **입력하지 않으면** **자동**으로 **귀 위치**를 판단하여 출력하게 됩니다.
 
     ```java
     // Bitmap bitmap: Bitmap 타입의 입력영상
