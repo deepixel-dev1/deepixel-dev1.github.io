@@ -97,6 +97,8 @@ $(document).ready(function(){initNavTree('a00031.html','');});
 xyz.deepixel.stylear.DPStyleAREarring에 대한 협력 다이어그램:</div>
 <div class="dyncontent">
 <div class="center"><img src="a00029.png" border="0" usemap="#xyz_8deepixel_8stylear_8_d_p_style_a_r_earring_coll__map" alt="Collaboration graph"/></div>
+<map name="xyz_8deepixel_8stylear_8_d_p_style_a_r_earring_coll__map" id="xyz_8deepixel_8stylear_8_d_p_style_a_r_earring_coll__map">
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -107,18 +109,39 @@ Public 멤버 함수</h2></td></tr>
 <tr class="separator:a490acaeeb195a482be157b65ac2890e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57b4edda80776070a2ee8578f5eb1def"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00031.html#a57b4edda80776070a2ee8578f5eb1def">setRightEarringParam</a> (<a class="el" href="a00023.html">DPEarringParam</a> earringParam)  throws DPException</td></tr>
 <tr class="separator:a57b4edda80776070a2ee8578f5eb1def"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad567c039aa8eab4c915e900aebd958cf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00027.html">DPFaceMetaData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00031.html#ad567c039aa8eab4c915e900aebd958cf">getFaceMetaData</a> ()  throws DPException</td></tr>
+<tr class="separator:ad567c039aa8eab4c915e900aebd958cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab043c1adde9fb658315273c5159e96ea"><td class="memItemLeft" align="right" valign="top">Bitmap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00031.html#ab043c1adde9fb658315273c5159e96ea">getStyleAREarringImage</a> (Bitmap bitmap)  throws DPException</td></tr>
 <tr class="separator:ab043c1adde9fb658315273c5159e96ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3a54961f7ee7a90e135d8e962c1e192"><td class="memItemLeft" align="right" valign="top">Bitmap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00031.html#ab3a54961f7ee7a90e135d8e962c1e192">getStyleAREarringImage</a> (Bitmap bitmap, Point left, Point right)  throws DPException</td></tr>
 <tr class="separator:ab3a54961f7ee7a90e135d8e962c1e192"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add8289d4af09ee01218c52d9975474ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00031.html#add8289d4af09ee01218c52d9975474ea">setFilterEnabled</a> (boolean filterEnabled)</td></tr>
-<tr class="separator:add8289d4af09ee01218c52d9975474ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38f93c221231e220e6b0258142a5cd94"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00031.html#a38f93c221231e220e6b0258142a5cd94">setFilterEnabled</a> (boolean enabled)</td></tr>
+<tr class="separator:a38f93c221231e220e6b0258142a5cd94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adda3726ecbcf532b823f32715c5225d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00031.html#adda3726ecbcf532b823f32715c5225d1">setEarringFilterEnabled</a> (boolean enabled)</td></tr>
 <tr class="separator:adda3726ecbcf532b823f32715c5225d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">상세한 설명</h2>
-<div class="textblock"><p>StyleAREarring API 클래스의 interface. 사용자 정의에 의해 입력받은 영상[STILL]을 해당 인터페이스를 통해 StyleAREarring API를 구동한다. StyleAREarring API를 구동하기 앞서 <a class="el" href="a00031.html#a33c226a478fe45393d275b610000fb8a">DPStyleAREarring#setEarringParam(DPEarringParam)</a> 또는 <a class="el" href="a00031.html#a490acaeeb195a482be157b65ac2890e2">DPStyleAREarring#setLeftEarringParam(DPEarringParam)</a> &amp; <a class="el" href="a00031.html#a57b4edda80776070a2ee8578f5eb1def">DPStyleAREarring#setRightEarringParam(DPEarringParam)</a>함수를 통해 귀걸이를 설정한다. <a class="el" href="a00031.html#ab043c1adde9fb658315273c5159e96ea">getStyleAREarringImage()</a>를 통해 StyleAREarring API를 구동하면 결과영상이 출력된다. 이때 <a class="el" href="a00031.html#ab3a54961f7ee7a90e135d8e962c1e192">DPStyleAREarring#getStyleAREarringImage(Bitmap, Point, Point)</a>인자로 왼쪽 과 오른쪽에 대한 포인트 정보를 입력하면, 해당위치를 기준으로 귀걸이가 구분되어 출력된다. </p>
+<div class="textblock"><p>StyleAREarring 의 Still 기능을 제공하는 interface 이다. </p>
 </div><h2 class="groupheader">멤버 함수 문서화</h2>
+<a id="ad567c039aa8eab4c915e900aebd958cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad567c039aa8eab4c915e900aebd958cf">&#9670;&nbsp;</a></span>getFaceMetaData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00027.html">DPFaceMetaData</a> xyz.deepixel.stylear.DPStyleAREarring.getFaceMetaData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> throws DPException</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>메타 데이터를 가지고 있는 <a class="el" href="a00027.html">DPFaceMetaData</a> 객체를 반환한다.</p>
+<dl class="section return"><dt>반환값</dt><dd>메타 데이터 </dd></dl>
+
+</div>
+</div>
 <a id="ab043c1adde9fb658315273c5159e96ea"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab043c1adde9fb658315273c5159e96ea">&#9670;&nbsp;</a></span>getStyleAREarringImage() <span class="overload">[1/2]</span></h2>
 
@@ -137,11 +160,11 @@ Public 멤버 함수</h2></td></tr>
 <p>입력받은 이미지에 미리 설정된 귀걸이를 착용한 결과 이미지를 <a class="el" href="">android.graphics.Bitmap</a> 객체로 반환한다.</p>
 <dl class="params"><dt>매개변수</dt><dd>
   <table class="params">
-    <tr><td class="paramname">bitmap</td><td>StyleAREarring API를 적용할 이미지 </td></tr>
+    <tr><td class="paramname">bitmap</td><td>StyleAREarring을 적용할 이미지 </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>반환값</dt><dd>StyleAREarring API image </dd></dl>
+<dl class="section return"><dt>반환값</dt><dd>StyleAREarring image </dd></dl>
 
 </div>
 </div>
@@ -179,13 +202,13 @@ Public 멤버 함수</h2></td></tr>
 <p>입력받은 이미지에 미리 설정된 귀걸이를 착용한 결과 이미지를 <a class="el" href="">android.graphics.Bitmap</a> 객체로 반환한다. 이 때 입력받은 위치를 귀걸이의 위치로 사용한다. 위치의 기준점(0,0)은 이미지의 좌상단 모서리이다. 위치의 단위는 mm 이다. (0,0) 위치를 입력하면 귀걸이를 그리지 않는다. 왼쪽과 오른쪽 모두 (0,0) 위치를 입력하면 <a class="el" href="a00031.html#ab043c1adde9fb658315273c5159e96ea">DPStyleAREarring#getStyleAREarringImage(Bitmap)</a> 와 동일하게 동작한다.</p>
 <dl class="params"><dt>매개변수</dt><dd>
   <table class="params">
-    <tr><td class="paramname">bitmap</td><td>StyleAREarring API를 적용할 이미지 </td></tr>
+    <tr><td class="paramname">bitmap</td><td>StyleAREarring을 적용할 이미지 </td></tr>
     <tr><td class="paramname">left</td><td>왼쪽 귀걸이 위치 </td></tr>
     <tr><td class="paramname">right</td><td>오른쪽 귀걸이 위치 </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>반환값</dt><dd>StyleAREarring API image </dd></dl>
+<dl class="section return"><dt>반환값</dt><dd>StyleAREarring image </dd></dl>
 
 </div>
 </div>
@@ -229,18 +252,18 @@ Public 멤버 함수</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>귀걸이 정보를 설정한다. 왼쪽과 오른쪽에 같은 정보를 설정한다.</p>
+<p>StyleAREarring API를 시작한다. StyleAREarring API를 멈춘다. 귀걸이 정보를 가지고 있는 <a class="el" href="a00023.html">DPEarringParam</a> 객체를 설정한다. 귀걸이 양쪽이 같은 경우 이 method를 호출하고, 다른 경우 <a class="el" href="a00035.html#ac808eecf42bf2699ed0efc9ef152e71f">DPStyleAREarringView#setLeftEarringParam(DPEarringParam)</a> 와 <a class="el" href="a00035.html#aa5aa1d8d40ae86448d4f119c8ecebf37">DPStyleAREarringView#setRightEarringParam(DPEarringParam)</a>를 호출하면 된다. 파라미터로 받은 귀걸이 이미지는 왼쪽 귀걸이로 사용되고 그 이미지의 대칭 이미지를 오른쪽 귀걸이로 사용한다.</p>
 <dl class="params"><dt>매개변수</dt><dd>
   <table class="params">
-    <tr><td class="paramname">earringParam</td><td>귀걸이 관련 정보 </td></tr>
+    <tr><td class="paramname">earringParam</td><td>귀걸이 정보 </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="add8289d4af09ee01218c52d9975474ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#add8289d4af09ee01218c52d9975474ea">&#9670;&nbsp;</a></span>setFilterEnabled()</h2>
+<a id="a38f93c221231e220e6b0258142a5cd94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38f93c221231e220e6b0258142a5cd94">&#9670;&nbsp;</a></span>setFilterEnabled()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -249,15 +272,15 @@ Public 멤버 함수</h2></td></tr>
           <td class="memname">void xyz.deepixel.stylear.DPStyleAREarring.setFilterEnabled </td>
           <td>(</td>
           <td class="paramtype">boolean&#160;</td>
-          <td class="paramname"><em>filterEnabled</em></td><td>)</td>
+          <td class="paramname"><em>enabled</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>후처리에 사용할 필터를 적용할지를 설정한다.</p>
+<p>결과 이미지에 필터를 적용할지를 설정한다.</p>
 <dl class="params"><dt>매개변수</dt><dd>
   <table class="params">
-    <tr><td class="paramname">filterEnabled</td><td>true 면 필터를 적용하고, false 면 필터를 적용하지 않는다. </td></tr>
+    <tr><td class="paramname">enabled</td><td>true 면 필터를 적용하고, false 면 필터를 적용하지 않는다. </td></tr>
   </table>
   </dd>
 </dl>
@@ -279,10 +302,10 @@ Public 멤버 함수</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>왼쪽 귀걸이 정보를 설정한다.</p>
+<p>오른쪽 귀걸이 정보를 가지고 있는 <a class="el" href="a00023.html">DPEarringParam</a> 객체를 설정한다.</p>
 <dl class="params"><dt>매개변수</dt><dd>
   <table class="params">
-    <tr><td class="paramname">earringParam</td><td>귀걸이 관련 정보 </td></tr>
+    <tr><td class="paramname">earringParam</td><td>왼쪽 귀걸이 관련 정보 </td></tr>
   </table>
   </dd>
 </dl>
@@ -304,10 +327,10 @@ Public 멤버 함수</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>오늘쪽 귀걸이 정보를 설정한다.</p>
+<p>오른쪽 귀걸이 정보를 가지고 있는 <a class="el" href="a00023.html">DPEarringParam</a> 객체를 설정한다.</p>
 <dl class="params"><dt>매개변수</dt><dd>
   <table class="params">
-    <tr><td class="paramname">earringParam</td><td>귀걸이 관련 정보 </td></tr>
+    <tr><td class="paramname">earringParam</td><td>오른쪽 귀걸이 관련 정보 </td></tr>
   </table>
   </dd>
 </dl>

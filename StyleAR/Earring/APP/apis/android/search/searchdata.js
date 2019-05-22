@@ -1,10 +1,10 @@
 var indexSectionsWithContent =
 {
-  0: "dgpsx",
+  0: "cdgopsx",
   1: "d",
   2: "x",
   3: "d",
-  4: "gs",
+  4: "cdgos",
   5: "p"
 };
 

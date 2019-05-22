@@ -30,7 +30,17 @@ var menudata={children:[
 {text:"클래스 색인",url:"classes.html"},
 {text:"클래스 계통도",url:"inherits.html"},
 {text:"클래스 멤버",url:"functions.html",children:[
-{text:"모두",url:"functions.html"},
-{text:"함수",url:"functions_func.html"}]}]},
+{text:"모두",url:"functions.html",children:[
+{text:"c",url:"functions.html#index_c"},
+{text:"d",url:"functions.html#index_d"},
+{text:"g",url:"functions.html#index_g"},
+{text:"o",url:"functions.html#index_o"},
+{text:"s",url:"functions.html#index_s"}]},
+{text:"함수",url:"functions_func.html",children:[
+{text:"c",url:"functions_func.html#index_c"},
+{text:"d",url:"functions_func.html#index_d"},
+{text:"g",url:"functions_func.html#index_g"},
+{text:"o",url:"functions_func.html#index_o"},
+{text:"s",url:"functions_func.html#index_s"}]}]}]},
 {text:"파일들",url:"files.html",children:[
 {text:"파일 목록",url:"files.html"}]}]}

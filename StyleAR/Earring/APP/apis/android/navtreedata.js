@@ -24,7 +24,7 @@ for the JavaScript code in this file
 var NAVTREE =
 [
   [ "StyleAREarring For Android", "index.html", [
-    [ "Project : StyleAREarring API", "index.html", [
+    [ "Project : StyleAREarring", "index.html", [
       [ "소개", "index.html#intro", null ],
       [ "작성정보", "index.html#CreateInfo", null ],
       [ "기타정보", "index.html#common", null ]

@@ -1,5 +1,6 @@
 var a00023 =
 [
+    [ "clone", "a00023.html#ae20dc92348d74511c1d1384ac0a7ef64", null ],
     [ "getAnchorPoint", "a00023.html#adde078315de18aa60011a3a9c8bf02e3", null ],
     [ "getBitmap", "a00023.html#a1d93b432b2daaac35ff421bbb7c66799", null ],
     [ "getSize", "a00023.html#ad6ad04e78eecfa6c3e1d83b85d3c067f", null ],

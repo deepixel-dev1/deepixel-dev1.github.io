@@ -97,11 +97,15 @@ $(document).ready(function(){initNavTree('a00023.html','');});
 xyz.deepixel.stylear.DPEarringParam에 대한 상속 다이어그램 : </div>
 <div class="dyncontent">
 <div class="center"><img src="a00022.png" border="0" usemap="#xyz_8deepixel_8stylear_8_d_p_earring_param_inherit__map" alt="Inheritance graph"/></div>
+<map name="xyz_8deepixel_8stylear_8_d_p_earring_param_inherit__map" id="xyz_8deepixel_8stylear_8_d_p_earring_param_inherit__map">
+</map>
 </div>
 <div class="dynheader">
 xyz.deepixel.stylear.DPEarringParam에 대한 협력 다이어그램:</div>
 <div class="dyncontent">
 <div class="center"><img src="a00021.png" border="0" usemap="#xyz_8deepixel_8stylear_8_d_p_earring_param_coll__map" alt="Collaboration graph"/></div>
+<map name="xyz_8deepixel_8stylear_8_d_p_earring_param_coll__map" id="xyz_8deepixel_8stylear_8_d_p_earring_param_coll__map">
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -118,10 +122,51 @@ Public 멤버 함수</h2></td></tr>
 <tr class="separator:adde078315de18aa60011a3a9c8bf02e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2a5dacc4e1b4dcc2ddbfc3f377bdaec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00023.html#ae2a5dacc4e1b4dcc2ddbfc3f377bdaec">setAnchorPoint</a> (PointF anchorPoint)</td></tr>
 <tr class="separator:ae2a5dacc4e1b4dcc2ddbfc3f377bdaec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae20dc92348d74511c1d1384ac0a7ef64"><td class="memItemLeft" align="right" valign="top">Object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00023.html#ae20dc92348d74511c1d1384ac0a7ef64">clone</a> ()</td></tr>
+<tr class="separator:ae20dc92348d74511c1d1384ac0a7ef64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">상세한 설명</h2>
 <div class="textblock"><p>귀걸이에 대한 정보를 저장한다. </p>
 </div><h2 class="groupheader">멤버 함수 문서화</h2>
+<a id="ae20dc92348d74511c1d1384ac0a7ef64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae20dc92348d74511c1d1384ac0a7ef64">&#9670;&nbsp;</a></span>clone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Object xyz.deepixel.stylear.DPEarringParam.clone </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>귀걸이의 실제 너비를 반환한다. 단위는 mm 이다.</p>
+<dl class="section return"><dt>반환값</dt><dd>귀걸이의 실제 너비 귀걸이의 실제 너비를 설정한다. 단위는 mm 이다.</dd></dl>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">width</td><td>귀걸이의 실제 높이 귀걸이의 실제 높이를 반환한다. 단위는 mm 이다.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd>귀걸이의 실제 높이 귀걸이의 실제 높이를 설정한다. 단위는 mm 이다.</dd></dl>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">height</td><td>귀걸이의 실제 높이 귀걸이 핀의 위치를 반환한다. <a class="el" href="">DPEarringAnchorPosition</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd>귀걸이 핀의 위치 귀걸이 핀의 위치를 설정한다. <a class="el" href="">DPEarringAnchorPosition</a></dd></dl>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">anchorPosition</td><td>귀걸이 핀의 위치 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="adde078315de18aa60011a3a9c8bf02e3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adde078315de18aa60011a3a9c8bf02e3">&#9670;&nbsp;</a></span>getAnchorPoint()</h2>
 
@@ -155,7 +200,7 @@ Public 멤버 함수</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>귀걸이 이미지를 반환한다.</p>
+<p>귀걸이 이미지를 <a class="el" href="">android.graphics.Bitmap</a> 객체로 반환한다.</p>
 <dl class="section return"><dt>반환값</dt><dd>귀걸이 이미지 </dd></dl>
 
 </div>
@@ -219,7 +264,7 @@ Public 멤버 함수</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>귀걸이 이미지를 설정한다.</p>
+<p>귀걸이 이미지를 <a class="el" href="">android.graphics.Bitmap</a> 객체로 설정한다.</p>
 <dl class="params"><dt>매개변수</dt><dd>
   <table class="params">
     <tr><td class="paramname">bitmap</td><td>귀걸이 이미지 </td></tr>
