@@ -13,7 +13,7 @@ android {
     }
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.amondz"
+        applicationId "xyz.deepixel.stylearearring"
         minSdkVersion 22
         targetSdkVersion 27
         versionCode 1
