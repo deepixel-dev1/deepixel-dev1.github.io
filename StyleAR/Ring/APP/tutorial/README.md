@@ -81,8 +81,7 @@
 
 **StyleARRing API 사용방법**에서는 API 구동 필수조건 및 사용방법등에 대해 설명하고 있으며, 아래의 예제코드와 함께 비교하며 이해하는 것을 추천합니다.
 
-- [LIVE 예제코드][android_sample_live]
-- [STILL 예제코드][android_sample_still]
+- [예제코드][android_sample_live]
 
 ### 필수조건(공통)
 
@@ -259,7 +258,7 @@ StyleARRing API 적용시 문제점을 발견하거나 궁금한 점이 있다�
 
 [android_sample_live]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/StyleAR/Ring/APP/tutorial/android/StyleARRingForAndroidSample(LIVE)
 [license]: /License/README.md
-[android_tutorial]: /StyleAR/Earring/APP/tutorial/android
+[android_tutorial]: /StyleAR/Ring/APP/tutorial/android
 [stylear_api_for_android]: /StyleAR/Ring/APP/apis/android
 [make_input_data]: /StyleAR/Ring/APP/tutorial/input
 [deepixel_hompage]: https://deepixel.azurewebsites.net/
