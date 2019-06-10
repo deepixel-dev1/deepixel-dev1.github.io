@@ -259,6 +259,6 @@ StyleARRing API 적용시 문제점을 발견하거나 궁금한 점이 있다�
 [android_sample_live]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/StyleAR/Ring/APP/tutorial/android/StyleARRingForAndroidSample(LIVE)
 [license]: /License/README.md
 [android_tutorial]: /StyleAR/Ring/APP/tutorial/android
-[stylear_api_for_android]: /StyleAR/Ring/APP/apis/android
+[stylear_api_for_android]: /StyleAR/Ring/APP/apis
 [make_input_data]: /StyleAR/Ring/APP/tutorial/input
 [deepixel_hompage]: https://deepixel.azurewebsites.net/
