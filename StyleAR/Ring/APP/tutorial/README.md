@@ -33,7 +33,7 @@
 
 **StyleARRing API**는 영상에서 **손 위치**를 **추정**하고, 입력된 **반지와 합성**을 통해 **가상착용영상**을 **출력**합니다.
 
-<center> <img src="C:\SVN\GITHUB\StyleAR\Ring\APP\tutorial\img\Output(HandImg).png" width="600"></center> <br/>
+<center> <img src="https://deepixel-dev1.github.io/StyleAR/Ring/APP/tutorial/img\Output(HandImg).png" width="600"></center> <br/>
 
 ※ 반지 가상착용은 입력으로 반드시 **손이 포함된 입력영상**, **반지영상**, **반지위치**, **가이드영상**을 입력해야 합니다. 입력데이터는 링크를 클릭해주세요.
 
@@ -41,7 +41,7 @@
 
 **StyleARRing API**는 입력영상에서 **검출된 손의 특징을 분석**하여 사용자 각각의 **고유정보**(메타데이터)를 출력할 수 있습니다. 이 기능의 사용을 원하시면 [라이센스 발급](#필수조건(공통))시 사용 유무를 판단하여 문의해 주시기 바랍니다.
 
-<center><img src="C:\SVN\GITHUB\StyleAR\Ring\APP\tutorial\img\Output(MetaINFO).png" width="330"></center><br/>
+<center><img src="https://deepixel-dev1.github.io/StyleAR/Ring/APP/tutorial/img\Output(MetaINFO).png" width="330"></center><br/>
 
 ※ **메타데이터**는 손의 크기 및 비율, 색상 값을 분석합니다. 자세한 설명은 아래의 표와 같습니다.
 
@@ -62,7 +62,7 @@
 - **StyleARRing API 블록도**
   >StyleARRing API와 Mobile Application 간의 관계를 나타낸 **블록도** 입니다.
 
-<center><img src="C:\SVN\GITHUB\StyleAR\Ring\APP\tutorial\img\Block(API).png" width="500"></center><br/>
+<center><img src="https://deepixel-dev1.github.io/StyleAR/Ring/APP/tutorial/img\Block(API).png" width="500"></center><br/>
 
 ※ **StyleARRing API**는 **컨트롤**과 **프로세싱** 파트로 구성되어 있습니다. **컨트롤 파트**에서 **카메라 및 view 제어, 반지 정보 제어, 영상 필터링 제어** 등을 하고 있으며 **프로세싱 파트**는 **알고리즘 구동, 메타정보 및 반지 가상착용 영상 출력** 등을 맡고 있습니다.
 
@@ -71,7 +71,7 @@
 - **StyleARRing API의 state 다이어그램**
   >StyleARRing API의 기능들을 사용하기 위해서는 아래의 그림과 같이 간단한 state 메카니즘을 따라야 합니다.
 
-<center><img src="C:\SVN\GITHUB\StyleAR\Ring\APP\tutorial\img\Block(state).png" width="600"></center><br/>
+<center><img src="https://deepixel-dev1.github.io/StyleAR/Ring/APP/tutorial/img\Block(state).png" width="600"></center><br/>
 
 ※ **StyleARRing API**는 **초기화 및 준비 상태**를 거처 API가 구동이 되면, 프로세싱 상태에서 루프를 돌며 **결과를 지속적으로 출력**합니다. **반지 변경 및 메타정보 출력**도 **프로세싱 상태**에서 수행 할 수 있습니다. 어플리케이션이 정지하거나, API를 구동해제 할 시에는 **프로세싱 상태를 해제**해야 합니다.  
 
@@ -104,7 +104,7 @@
 
 **StyleARRing API `LIVE`** 를 적용하는 방법을 아래의 **Flow 다이어그램**의 순서대로 설명합니다.
 
-<center><img src="C:\SVN\GITHUB\StyleAR\Ring\APP\tutorial\img\Flow(LIVE).png" width="500"></center><br/>
+<center><img src="https://deepixel-dev1.github.io/StyleAR/Ring/APP/tutorial/img\Flow(LIVE).png" width="500"></center><br/>
 
 ※ **StyleARRing API**는 우선 `(1)StyleARRing view UI 컴포넌트 연결`을 하고 `(2)시작함수 호출`을 통해 동작시킵니다. **동작 중**에는 `(2-1, 2-2)반지 설정`, `(2-3)가이드 설정`, `(2-4)메타데이터 취득`을 할 수 있고, `(3)종료함수 호출`을 통해 구동을 멈출 수있습니다. 자세한 설명은 아래와 같습니다.
 
