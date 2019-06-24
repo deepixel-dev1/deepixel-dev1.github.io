@@ -1,0 +1,6 @@
+digraph "xyz.deepixel.stylear.ring.DPFinger"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{xyz.deepixel.stylear.ring.\lDPFinger\n|+ DP_FINGER_THUMB\l+ DP_FINGER_INDEX\l+ DP_FINGER_MIDDLE\l+ DP_FINGER_RING\l+ DP_FINGER_PINKY\l|+ DPFinger()\l+ getIndex()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+}

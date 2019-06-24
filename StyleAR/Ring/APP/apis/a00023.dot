@@ -1,0 +1,6 @@
+digraph "xyz.deepixel.stylear.ring.DPHandMetaData"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{xyz.deepixel.stylear.ring.\lDPHandMetaData\n||+ getNailColorMean()\l+ getNailColorStd()\l+ getSkinColorMean()\l+ getSkinColorStd()\l+ getfinger2palmRatio()\l+ setfinger2palmRatio()\l+ getFingerLength()\l+ setFingerLength()\l+ getFingerWidth()\l+ setFingerWidth()\l~ setNailColorMean()\l~ setNailColorStd()\l~ setSkinColorMean()\l~ setSkinColorStd()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+}
