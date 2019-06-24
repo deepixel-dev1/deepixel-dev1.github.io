@@ -157,40 +157,32 @@
     m_stylearView.start();
     ```
 
-  - **(2-1) 반지 영상 설정**  
-      **Bitmap** 형식의 **반지영상데이터**를 설정하고 싶은 손가락에 입력해야 합니다. 반지영상을 만드는 방법은 [반지 입력데이터 만들기][make_input_data]의 **반지영상** 파트를 참조해 주시기 바랍니다.
+  - **(2-1) 반지 위치 및 영상설정**  
+      반지 가상착용을 **원하는 손가락**에 반지위치 및 반지영상을 설정합니다. 반지위치는 **손방향 및 반지의 위치**를 설정하고, 반지영상은 **Bitmap 형식의 반지영상 데이터**를 입력합니다. 반지위치 및 영상을 만드는 방법은 [반지 입력데이터 만들기][make_input_data]의 **반지영상, 반지위치입력** 파트를 참조해 주시기 바랍니다.
 
       ```java
       // For Android
-      // StyleARRing API 반지 정보 클래스 선언
+      // 손방향 설정 
+      // bool isLeft: true-> 왼손, false-> 오른손
+      m_stylearView.setHandType(isLeft);
+      // 반지 위치 및 반지영상 설정 클래스 선언
       DPRingParam ringParam = new DPRingParam();
+      // 반지 위치(오프셋) 설정
+      // float offset: 0. ~ 1.(디펄트 값: 0.5)
+      ringParam.setOffset(offset);
+      // 반지 영상(Bitmap) 설정
       BitmapFactory.Options options = new BitmapFactory.Options();
       // Bitmap 타입설정 (반드시 RGB_8888)
       options.inPreferredConfig = Bitmap.Config.ARGB_8888;
       // 반지 Bitmap영상 설정
       ringParam.setBitmap(BitmapFactory.decodeFile(mRingFile.getAbsolutePath(), options));
-      // nFingerID는 반지를 설정하고 싶은 손가락 번호(0 => 엄지, 1 => 검지, 2 => 중지, 3=> 약지, 4=> 새끼)
-      int nFingerID = 3;
-      // StyleARRing API 반지 영상 설정
-      m_stylearView.setRingParam(ringParam, nFingerID);
+      // DPFinger: 반지를 설정하고 싶은 손가락(DP_FINGER_INDEX => 검지,DP_FINGER_MIDDLE => 중지, DP_FINGER_RING=> 약지, DP_FINGER_PINKY=> 새끼)
+      DPFinger finger;
+      // StyleARRing API 반지설정 적용
+      m_stylearView.setRingParam(ringParam, DPFinger.DP_FINGER_INDEX);
       ```
 
-  - **(2-2) 반지 위치 설정**  
-      반지 위치 설정은 **손 방향 선택, 손가락 위치 선택, 반지 위치 선택**을 입력해야 합니다. 각 입력에 대한 내용은 [반지 입력데이터 만들기][make_input_data]의 **반지위치입력** 파트를 참조해 주십시오.
-
-      ```java
-      // For Android
-      // 착용할 반지 손가락 위치 (다중선택 가능)
-      boolean[] bFingers = {false, true, true, false, false};
-      // 착용할 반지 손 방향 선택(true => 왼쪽, false => 오른쪽)
-      boolean IsLeft = true;
-      // 착용할 반지 위치 선택(범위: 0. ~ 1.)
-      float ringOffset = 0.5;
-      // StyleARRing API 반지 위치 설정
-      m_stylearView.setProcessRingParam(bFingers, IsRight, ringOffset);
-      ```
-
-  - **(2-3) 가이드 설정**  
+  - **(2-2) 가이드 설정**  
       가이드 설정은 어플리케이션에 **가이드 사용유무**를 확인하고 사용 시 가이드 영상을 입력(Bitmap)합니다. 만약 사용하지 않을 시에도 가이드 영상을 따로 만들어 사용하는 것을 추천합니다. 가이드 설정에 대한 입력은 [반지 입력데이터 만들기][make_input_data]의 **가이드 영상 파트**를 참조해 주세요.
 
       ```java
@@ -206,7 +198,7 @@
       m_stylearView.setHandTemplate(BitmapFactory.decodeFile(mGuideFile.getAbsolutePath(), options));
       ```
 
-  - **(2-4) 메타데이터 정보 획득**  
+  - **(2-3) 메타데이터 정보 획득**  
       **StyleARRing API** 가 동작하는 동안 **손**에 대한 다양한 **메타 정보를 획득** 할 수 있습니다.
 
       ```java
