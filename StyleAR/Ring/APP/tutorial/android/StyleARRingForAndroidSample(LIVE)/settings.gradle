@@ -1,1 +1,1 @@
-include ':app', ':StyleAREarringAndroid_1.2.0', ':stylearandroid-1.2.1', ':stylearring-1.2.1'
+include ':app', ':StyleAREarringAndroid_1.2.0', ':stylearandroid-1.2.1', ':stylearring-1.2.1', ':stylearandroid-ringar-demosimple', ':stylearring-ringar-demosimple'

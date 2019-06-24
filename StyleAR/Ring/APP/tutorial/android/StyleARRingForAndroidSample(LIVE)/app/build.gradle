@@ -8,6 +8,9 @@ android {
             keyAlias = 'key0'
             keyPassword '123456'
         }
+        abv {
+            storeFile file('C:\\SVN\\GITHUB\\StyleAR\\Ring\\APP\\tutorial\\android\\StyleARRingForAndroidSample(LIVE)\\key\\test.jks')
+        }
     }
     compileSdkVersion 27
     defaultConfig {

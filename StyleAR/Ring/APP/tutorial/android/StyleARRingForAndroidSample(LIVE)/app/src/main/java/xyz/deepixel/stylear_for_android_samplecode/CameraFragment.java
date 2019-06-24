@@ -29,6 +29,7 @@ import android.widget.EditText;
 
 import java.io.File;
 
+import xyz.deepixel.stylear.ring.DPFinger;
 import xyz.deepixel.stylear.ring.DPStyleARRingView;
 import xyz.deepixel.stylear.ring.DPRingParam;
 import xyz.deepixel.stylear.ring.DPHandMetaData;
@@ -111,12 +112,6 @@ public class CameraFragment extends Fragment
                                 break;
                             }
 
-                            setRingParam(imageIndex, 0);
-                            setRingParam(imageIndex, 1);
-                            setRingParam(imageIndex, 2);
-                            setRingParam(imageIndex, 3);
-                            setRingParam(imageIndex, 4);
-
                         } else {
                             //메타데이터 출력
                             DPHandMetaData handMetaData = m_stylearView.getHandMetaData();
@@ -154,12 +149,7 @@ public class CameraFragment extends Fragment
         super.onResume();
         if (checkPermission()) {
             // Set earring parameters.
-            setRingParam(1, 0);
-            setRingParam(1, 1);
-            setRingParam(1, 2);
-            setRingParam(1, 3);
-            setRingParam(1, 4);
-            setProcessRingParam(m_bFingers, m_isRight, m_ringOffset);
+            setRingParam(1, DPFinger.DP_FINGER_INDEX);
             m_stylearView.setHandTemplateEnabled(true);
             setHandTemplate();
 
@@ -255,12 +245,11 @@ public class CameraFragment extends Fragment
     }
 
     public void setProcessRingParam(boolean[] fingers, boolean isRight, float offset){
-        m_stylearView.setProcessRingParam(fingers, isRight, offset);
+        //m_stylearView.setProcessRingParam(fingers, isRight, offset);
     }
 
-    public void setRingParam(int ring_id, int nFingerID) {
+    public void setRingParam(int ring_id, DPFinger nFingerID) {
         DPRingParam ringParam = getRingParam(ring_id);
-        //DPRingParam rightEarringParam = getFlipEarringParam(leftEarringParam);
         m_stylearView.setRingParam(ringParam, nFingerID);
 
     }
@@ -309,6 +298,8 @@ public class CameraFragment extends Fragment
         } else {
             throw new RuntimeException("Ring index is invalid.(" + index + ")");
         }
+
+        ringParam.setOffset(0.5f);
         return ringParam;
     }
 
