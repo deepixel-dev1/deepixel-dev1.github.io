@@ -241,6 +241,7 @@
       ```
 
       ```objectivec
+      // For iOS
       // StyleARRing API에 가이드 사용 유무 설정.
       [_styleARRingView setHandTemplateEnabled:YES];
       [_styleARRingView setHandTemplate:GetImgRef(@"Hand_guide", @"png")];
@@ -251,7 +252,7 @@
 
       ```java
       // For Android
-      //메타데이터 정보획득
+      // 메타데이터 정보획득
       DPHandMetaData handMetaData = m_stylearView.getHandMetaData();
       StringBuilder msg = new StringBuilder();
       // 손과 손바닥 비율
@@ -273,14 +274,23 @@
       ```
 
       ```objectivec
+      // For iOS
+      // 메타데이터 정보획득
       DPHandMetaData *handMetaData = [_styleARRingView getHandMetaData];
       NSMutableString *str = [[NSMutableString alloc] init];
+      // 손과 손바닥 비율
       [str appendFormat:@"FPR = %f\n", handMetaData.finger2palmRatio];
+      // 손가락 길이
       [str appendFormat:@"FL = %f\n", [[handMetaData.fingerLengths objectAtIndex:DP_FINGER_RING] floatValue]];
+      // 손가락 너비
       [str appendFormat:@"FW = %f\n", [[handMetaData.fingerWidths objectAtIndex:DP_FINGER_RING] floatValue]];
+      // 손톱 칼라 평균
       [str appendFormat:@"NCM = #%06X\n", 0xFFFFFF & handMetaData.nailColorMean];
+      // 손톱 칼라 표준오차
       [str appendFormat:@"NCS = #%06X\n", 0xFFFFFF & handMetaData.nailColorStd];
+      // 손 스킨 칼라 평균
       [str appendFormat:@"SCM = #%06X\n", 0xFFFFFF & handMetaData.skinColorMean];
+      // 손 스킨 칼라 표준오차
       [str appendFormat:@"SCS = #%06X", 0xFFFFFF & handMetaData.skinColorStd];
       ```
 
@@ -293,7 +303,7 @@
     ```
 
     ```objectivec
-    // For Android
+    // For iOS
     [_styleARRingView stop];
     ```
 
