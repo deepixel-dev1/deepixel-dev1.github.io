@@ -42,15 +42,8 @@ CGImageRef GetImgRef(NSString *filename, NSString *extension) {
         ringParam.cgImage = GetImgRef(@"ring_3", @"png");
         ringParam.offset = 0.5f;
         [_styleARRingView setRingParam:ringParam finger:DP_FINGER_RING];
-        
-        // Process parameters.
-//        NSArray *fingers = [[NSArray alloc] initWithObjects:[NSNumber numberWithBool:NO],
-//                            [NSNumber numberWithBool:NO],
-//                            [NSNumber numberWithBool:NO],
-//                            [NSNumber numberWithBool:YES],
-//                            [NSNumber numberWithBool:NO],
-//                            nil];
-//        [_styleARRingView setProcessRingParam:fingers isLeft:true offset:0.0f];
+
+        // Hand type
         [_styleARRingView setHandType:true];
         
         // Hand template.
