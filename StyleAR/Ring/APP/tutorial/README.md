@@ -107,49 +107,62 @@
 
 ※ **StyleARRing API**는 우선 `(1)StyleARRing view UI 컴포넌트 연결`을 하고 `(2)시작함수 호출`을 통해 동작시킵니다. **동작 중**에는 `(2-1, 2-2)반지 설정`, `(2-3)가이드 설정`, `(2-4)메타데이터 취득`을 할 수 있고, `(3)종료함수 호출`을 통해 구동을 멈출 수있습니다. 자세한 설명은 아래와 같습니다.
 
-- **(1) StyleARRing view UI생성 및 연결**  
-  **StyleARRing API** 는 **카메라 및 viewer 제어** 하는 기능을 **내부**에 **포함**하고 있습니다. 따라서 어플리케이션 **Layout**에 **StyleARRing view UI 컴포넌트**를 만들고, **StyleARRing view 클래스**를 연결하는 코드만 추가하면 **다른 설정 필요없이 사용**할 수 있습니다.
+1. **StyleARRing view UI생성 및 연결**  
+  **StyleARRing API** 는 **카메라 및 viewer 제어** 하는 기능을 **내부**에 **포함**하고 있습니다. 따라서 **StyleARRing view**를 사용하면 **다른 설정 필요없이 사용**할 수 있습니다.
+  
+   - **Android**  
+     어플리케이션 **Layout**에 **StyleARRing view UI 컴포넌트**를 만들고, **StyleARRing view 클래스**를 연결하는 코드가 필요합니다.
+  
+     - **StyleARRing view UI 컴포넌트 생성**  
+      **Main Layout**에 **StyleARRing view UI 컴포넌트**를 생성합니다.
 
-  - **StyleARRing view UI 컴포넌트 생성**  
-    **Main Layout**에 **StyleARRing view UI 컴포넌트**를 생성합니다.
+        ```xml
+        <xyz.deepixel.stylear.DPStyleARRingView
+          android:id="@+id/stylear_ring_view"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_alignParentStart="true"
+          android:layout_alignParentTop="true"
+          android:layout_marginStart="0dp"
+          android:layout_marginTop="0dp"
+          android:background="#FFFFFFFF">
+        </xyz.deepixel.stylear.DPStyleARringView>
+        ```
 
-    ```xml
-    <!--For Android-->
-    <xyz.deepixel.stylear.DPStyleARRingView
-      android:id="@+id/stylear_ring_view"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_alignParentStart="true"
-      android:layout_alignParentTop="true"
-      android:layout_marginStart="0dp"
-      android:layout_marginTop="0dp"
-      android:background="#FFFFFFFF">
-    </xyz.deepixel.stylear.DPStyleARringView>
-    ```
+     - **StyleARRing view 연결**  
+      먼저 사용할 **클래스**를 **import** 합니다.
 
-  - **StyleARRing view 연결**  
-    먼저 사용할 **클래스**를 **import** 합니다.
+        ```java
+        // StyleARRing API Camera 및 view 컨트롤 클래스
+        import xyz.deepixel.stylear.ring.DPStyleARRingView;
+        // StyleARRing API 반지 정보 파라메터 설정 클래스
+        import xyz.deepixel.stylear.ring.DPRingParam;
+        // StyleARRing API 메터다이터 정보저장 클래스
+        import xyz.deepixel.stylear.ring.DPHandMetaData;
+        ```
 
-    ```java
-    // StyleARRing API Camera 및 view 컨트롤 클래스
-    import xyz.deepixel.stylear.ring.DPStyleARRingView;
-    // StyleARRing API 반지 정보 파라메터 설정 클래스
-    import xyz.deepixel.stylear.ring.DPRingParam;
-    // StyleARRing API 메터다이터 정보저장 클래스
-    import xyz.deepixel.stylear.ring.DPHandMetaData;
-    ```
+     - **StyleARRing view 클래스를 StyleARRing view UI 컴포넌트에 연결**
 
-  - **StyleARRing view 클래스를 StyleARRing view UI 컴포넌트에 연결**
+         ```java
+         // StyleARRing View Controller 선언
+         private DPStyleARRingView m_stylearView
+         // StyleARRing View 클래스를 layout의 view에 연결  
+         m_stylearView = view.findViewById(R.id.stylear_ring_view); //연결
+         ```
 
-    ```java
-    // For Android
-    // StyleARRing View Controller 선언
-    private DPStyleARRingView m_stylearView
-    // StyleARRing View 클래스를 layout의 view에 연결  
-    m_stylearView = view.findViewById(R.id.stylear_ring_view); //연결
-    ```
+   - **iOS**
 
-- **(2) 구동**  
+      StyleARRing API는 Objective-c 언어로 구현되어 있기 때문에 [Objective-c bridging header][iOS_tutorial]가 필요합니다.
+
+      - **StyleARRingView 클래스 생성**  
+        부모 View의 frame 프로퍼티를 파라미터로 사용한다.
+  
+        ```objectivec
+        // StyleARRingView 생성
+        _styleARRingView = [[DPStyleARRingView alloc] initWithFrame:frame];
+        ```
+
+2. **구동**  
     **StyleARRing API**가 구동하며, **StyleARRing view UI 컴포넌트**에 결과 영상을 출력합니다.
 
     ```java
@@ -157,12 +170,17 @@
     m_stylearView.start();
     ```
 
-  - **(2-1) 반지 위치 및 영상설정**  
+    ```objectivec
+    // For iOS
+    [_styleARRingView start];
+    ```
+
+   1. 반지 위치 및 영상설정**  
       반지 가상착용을 **원하는 손가락**에 반지위치 및 반지영상을 설정합니다. 반지위치는 **손방향 및 반지의 위치**를 설정하고, 반지영상은 **Bitmap 형식의 반지영상 데이터**를 입력합니다. 반지위치 및 영상을 만드는 방법은 [반지 입력데이터 만들기][make_input_data]의 **반지영상, 반지위치입력** 파트를 참조해 주시기 바랍니다.
 
       ```java
       // For Android
-      // 손방향 설정 
+      // 손방향 설정
       // bool isLeft: true-> 왼손, false-> 오른손
       m_stylearView.setHandType(isLeft);
       // 반지 위치 및 반지영상 설정 클래스 선언
@@ -177,12 +195,36 @@
       // 반지 Bitmap영상 설정
       ringParam.setBitmap(BitmapFactory.decodeFile(mRingFile.getAbsolutePath(), options));
       // DPFinger: 반지를 설정하고 싶은 손가락(DP_FINGER_INDEX => 검지,DP_FINGER_MIDDLE => 중지, DP_FINGER_RING=> 약지, DP_FINGER_PINKY=> 새끼)
-      DPFinger finger;
       // StyleARRing API 반지설정 적용
       m_stylearView.setRingParam(ringParam, DPFinger.DP_FINGER_INDEX);
       ```
 
-  - **(2-2) 가이드 설정**  
+      ```objectivec
+      // For iOS
+      // 메인 번들의 리소스 경로를 반환한다.
+      NSString *GetPathFromResource(NSString *filename, NSString *extension) {
+          NSBundle *bundle = [NSBundle mainBundle];
+          NSString *resourcePath = [bundle pathForResource:filename ofType:extension];
+          return resourcePath;
+      }
+      // 이미지 파일을 CGImageRef로 변환한다.
+      CGImageRef GetImgRef(NSString *filename, NSString *extension) {
+          NSString *resourcePath = GetPathFromResource(filename, extension);
+          CGDataProviderRef dataProvider = CGDataProviderCreateWithFilename([resourcePath UTF8String]);
+          CGImageRef imgRef = CGImageCreateWithPNGDataProvider(dataProvider, NULL, true, kCGRenderingIntentDefault);
+          return imgRef;
+      }
+      // 반지 정보 및 손가락 설정
+      DPRingParam *ringParam = [[DPRingParam alloc] init];
+      ringParam.cgImage = GetImgRef(@"ring_3", @"png");
+      ringParam.offset = 0.5f;
+      [_styleARRingView setRingParam:ringParam finger:DP_FINGER_RING];
+      // 손방향 설정
+      // bool isLeft: true-> 왼손, false-> 오른손
+      [_styleARRingView setHandType:true];
+      ```
+
+   2. **가이드 설정**  
       가이드 설정은 어플리케이션에 **가이드 사용유무**를 확인하고 사용 시 가이드 영상을 입력(Bitmap)합니다. 만약 사용하지 않을 시에도 가이드 영상을 따로 만들어 사용하는 것을 추천합니다. 가이드 설정에 대한 입력은 [반지 입력데이터 만들기][make_input_data]의 **가이드 영상 파트**를 참조해 주세요.
 
       ```java
@@ -198,7 +240,13 @@
       m_stylearView.setHandTemplate(BitmapFactory.decodeFile(mGuideFile.getAbsolutePath(), options));
       ```
 
-  - **(2-3) 메타데이터 정보 획득**  
+      ```objectivec
+      // StyleARRing API에 가이드 사용 유무 설정.
+      [_styleARRingView setHandTemplateEnabled:YES];
+      [_styleARRingView setHandTemplate:GetImgRef(@"Hand_guide", @"png")];
+      ```
+
+   3. **메타데이터 정보 획득**  
       **StyleARRing API** 가 동작하는 동안 **손**에 대한 다양한 **메타 정보를 획득** 할 수 있습니다.
 
       ```java
@@ -224,12 +272,29 @@
       msg.append("SCS : ").append(String.format("#%06X", 0xFFFFFF & handMetaData.getSkinColorStd())).append('\n');
       ```
 
-- **(3) 정지**  
+      ```objectivec
+      DPHandMetaData *handMetaData = [_styleARRingView getHandMetaData];
+      NSMutableString *str = [[NSMutableString alloc] init];
+      [str appendFormat:@"FPR = %f\n", handMetaData.finger2palmRatio];
+      [str appendFormat:@"FL = %f\n", [[handMetaData.fingerLengths objectAtIndex:DP_FINGER_RING] floatValue]];
+      [str appendFormat:@"FW = %f\n", [[handMetaData.fingerWidths objectAtIndex:DP_FINGER_RING] floatValue]];
+      [str appendFormat:@"NCM = #%06X\n", 0xFFFFFF & handMetaData.nailColorMean];
+      [str appendFormat:@"NCS = #%06X\n", 0xFFFFFF & handMetaData.nailColorStd];
+      [str appendFormat:@"SCM = #%06X\n", 0xFFFFFF & handMetaData.skinColorMean];
+      [str appendFormat:@"SCS = #%06X", 0xFFFFFF & handMetaData.skinColorStd];
+      ```
+
+3. **정지**  
     **StyleARRing API** 동작을 정지합니다. **StyleARRing API** 가 설정되어 있는 **UI 컴포넌트**에 **결과 영상**을 **출력**하는 것을 **멈춥니다**.
 
     ```java
     // For Android
     m_stylearView.stop();
+    ```
+
+    ```objectivec
+    // For Android
+    [_styleARRingView stop];
     ```
 
 ***
@@ -244,13 +309,17 @@ StyleARRing API 적용시 문제점을 발견하거나 궁금한 점이 있다�
 
 - [Android Sample code][android_sample_live]
 - [Android 환경 설정][android_tutorial]
+- [iOS Sample code][iOS_sample_live]
+- [iOS 환경 설정][iOS_tutorial]
 - [StyleARRing API For Android][stylear_api_for_android]
 - [StyleARRing API 입력데이터 만들기][make_input_data]
 - [딥픽셀 홈페이지][deepixel_hompage]
 
 [android_sample_live]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/StyleAR/Ring/APP/tutorial/android/StyleARRingForAndroidSample(LIVE)
+[iOS_sample_live]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/StyleAR/Ring/APP/tutorial/ios/StyleARRingForiOSSample(LIVE)
 [license]: /License/README.md
 [android_tutorial]: /StyleAR/Ring/APP/tutorial/android
+[iOS_tutorial]: /StyleAR/Ring/APP/tutorial/ios
 [stylear_api_for_android]: /StyleAR/Ring/APP/apis
 [make_input_data]: /StyleAR/Ring/APP/tutorial/input
 [deepixel_hompage]: https://deepixel.azurewebsites.net/

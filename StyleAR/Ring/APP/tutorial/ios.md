@@ -70,4 +70,4 @@
 - Tutorial 소스 코드 [다운로드][tutorial_source_code]
 
 [OpenCV]: https://opencv.org/releases.html
-[tutorial_source_code]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/StyleAR/tutorial/ios
+[tutorial_source_code]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/StyleAR/Ring/APP/tutorial/ios
