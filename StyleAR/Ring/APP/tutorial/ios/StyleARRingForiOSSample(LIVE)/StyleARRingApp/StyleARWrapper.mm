@@ -11,8 +11,7 @@
 #endif
 
 #import "StyleARWrapper.h"
-#import <StyleARRing/DPException.h>
-#import <StyleARRing/DPStyleARRingView.h>
+#import <StyleARRing/StyleARRing.h>
 
 NSString *GetPathFromResource(NSString *filename, NSString *extension) {
     NSBundle *bundle = [NSBundle mainBundle];
@@ -41,21 +40,21 @@ CGImageRef GetImgRef(NSString *filename, NSString *extension) {
         // Ring parameters.
         DPRingParam *ringParam = [[DPRingParam alloc] init];
         ringParam.cgImage = GetImgRef(@"ring_3", @"png");
-        ringParam.size = {13.0f, 85.0f};
-        ringParam.fingerID = 3;
-        [_styleARRingView setRingParam:ringParam];
+        ringParam.offset = 0.5f;
+        [_styleARRingView setRingParam:ringParam finger:DP_FINGER_RING];
         
         // Process parameters.
-        NSArray *fingers = [[NSArray alloc] initWithObjects:[NSNumber numberWithBool:NO],
-                            [NSNumber numberWithBool:NO],
-                            [NSNumber numberWithBool:NO],
-                            [NSNumber numberWithBool:YES],
-                            [NSNumber numberWithBool:NO],
-                            nil];
-        [_styleARRingView setProcessRingParam:fingers isLeft:true offset:0.0f];
+//        NSArray *fingers = [[NSArray alloc] initWithObjects:[NSNumber numberWithBool:NO],
+//                            [NSNumber numberWithBool:NO],
+//                            [NSNumber numberWithBool:NO],
+//                            [NSNumber numberWithBool:YES],
+//                            [NSNumber numberWithBool:NO],
+//                            nil];
+//        [_styleARRingView setProcessRingParam:fingers isLeft:true offset:0.0f];
+        [_styleARRingView setHandType:true];
         
         // Hand template.
-        [_styleARRingView setHandTemplateEnabled:NO];
+        [_styleARRingView setHandTemplateEnabled:YES];
         [_styleARRingView setHandTemplate:GetImgRef(@"Hand_guide", @"png")];
     }
     return self;
@@ -77,6 +76,8 @@ CGImageRef GetImgRef(NSString *filename, NSString *extension) {
     DPHandMetaData *handMetaData = [_styleARRingView getHandMetaData];
     NSMutableString *str = [[NSMutableString alloc] init];
     [str appendFormat:@"FPR = %f\n", handMetaData.finger2palmRatio];
+    [str appendFormat:@"FL = %f\n", [[handMetaData.fingerLengths objectAtIndex:DP_FINGER_RING] floatValue]];
+    [str appendFormat:@"FW = %f\n", [[handMetaData.fingerWidths objectAtIndex:DP_FINGER_RING] floatValue]];
     [str appendFormat:@"NCM = #%06X\n", 0xFFFFFF & handMetaData.nailColorMean];
     [str appendFormat:@"NCS = #%06X\n", 0xFFFFFF & handMetaData.nailColorStd];
     [str appendFormat:@"SCM = #%06X\n", 0xFFFFFF & handMetaData.skinColorMean];

@@ -16,10 +16,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        metaDataView.isHidden = true
         wrapper = StyleARWrapper(frame: self.view.frame);
         let styleARRingView = wrapper!.getStyleARRingView()!;
         self.view.addSubview(styleARRingView);
+        self.view.sendSubviewToBack(styleARRingView);
+        
+        metaDataView.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,7 +41,7 @@ class ViewController: UIViewController {
     @objc func handleTap() {
         let str = wrapper!.getHandMetaData()
         metaDataView.text = str;
-        metaDataView.isHidden = false;
+        metaDataView.isHidden = !metaDataView.isHidden;
     }
 
 }
