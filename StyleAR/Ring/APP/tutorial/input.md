@@ -20,11 +20,13 @@
 
 ## 가이드 설정 입력
 
-**가이드 영상**은 **StyleARRing API**가 원할히 동작하기 위해 **사용자 손 입력**을 **제한**하기 위해 설정해야 하며, 개발자가 원하는 영상을 입력할 수 있습니다. 가이드 영상은 **배경**은 모두 **투명처리** 하며, **가이드 손**에 대한 것은 **알파 값**(투명도)를 조정한 영상을 입력해야 합니다. **가이드 템플릿 크기**는 **카메라**에서 **인식**하려는 **손의 크기**에 맞게 조절 할 수 있습니다. 템플릿 크기 파라메터(**디펄트 5**)의 값은 **10 ~ 0** 이며 **10**은 인식하려는 손이 크기가 **최대치** 일때, **0**은 인식하려는 손의 크기가 **최소치** 일때 입니다.
+**가이드 영상**은 **StyleARRing API**가 원할히 동작하기 위해 **사용자 손 입력**을 **제한**하기 위해 설정해야 하며, 개발자가 원하는 영상을 입력할 수 있습니다. 가이드 영상은 **배경**은 모두 **투명처리** 하며, **가이드 손**에 대한 것은 **알파 값**(투명도)를 조정한 영상을 입력해야 합니다. **가이드 템플릿 크기**는 **카메라 영상**에서 **인식**하려는 **손의 크기**에 맞게 조절 할 수 있습니다. 템플릿 크기 파라메터(**디펄트 0.5**)의 값은 **0. ~ 1.** 이며 **0.** 은 인식하려는 손이 크기가 **최소치** 일때, **1.** 은 인식하려는 손의 크기가 **최대치** 일때 입니다.
 
 <center> <img src="https://deepixel-dev1.github.io/StyleAR/Ring/APP/tutorial/img\Input(guide).png" width="400"></center> <br/>
 
 <center> <img src="https://deepixel-dev1.github.io/StyleAR/Ring/APP/tutorial/img\Input(guide2).png" width="700"></center> <br/>
+
+<center> <img src="https://deepixel-dev1.github.io/StyleAR/Ring/APP/tutorial/img\Input(TemplateSize).png" width="700"></center> <br/>
 
 ※ **가이드 영상**은 **손이 꽉차게** 만들어야 합니다.
 
@@ -42,7 +44,7 @@
 
 <center> <img src="https://deepixel-dev1.github.io/StyleAR/Ring/APP/tutorial/img\Input(position).png" width="800"></center> <br/>
 
-※ **손가락 위치 선택**은 **복수 선택**이 가능하며, 선택된 손가락 각각에 반지 영상을 입력해야 합니다.
+※ 손 선택을 제외한 **반지 위치 입력**은 손가락 각각에 **복수 설정**이 가능하며, 각 손가락 마다 **반지 영상**을 따로 입력해야 합니다.
 
 ## 영상 입력
 
