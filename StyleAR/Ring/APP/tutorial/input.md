@@ -26,7 +26,7 @@
 
 <center> <img src="https://deepixel-dev1.github.io/StyleAR/Ring/APP/tutorial/img\Input(guide2).png" width="700"></center> <br/>
 
-<center> <img src="https://deepixel-dev1.github.io/StyleAR/Ring/APP/tutorial/img\Input(TemplateSize).png" width="700"></center> <br/>
+<center> <img src="https://deepixel-dev1.github.io/StyleAR/Ring/APP/tutorial/img\Input(templateSize).png" width="700"></center> <br/>
 
 ※ **가이드 영상**은 **손이 꽉차게** 만들어야 합니다.
 
