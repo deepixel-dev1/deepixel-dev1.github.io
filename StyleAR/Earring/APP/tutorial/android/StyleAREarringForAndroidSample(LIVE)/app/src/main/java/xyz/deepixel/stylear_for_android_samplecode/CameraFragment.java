@@ -29,9 +29,9 @@ import android.widget.EditText;
 
 import java.io.File;
 
-import xyz.deepixel.stylear.DPStyleAREarringView;
-import xyz.deepixel.stylear.DPEarringParam;
-import xyz.deepixel.stylear.DPFaceMetaData;
+import xyz.deepixel.stylear.earring.DPStyleAREarringView;
+import xyz.deepixel.stylear.earring.DPEarringParam;
+import xyz.deepixel.stylear.earring.DPFaceMetaData;
 
 
 public class CameraFragment extends Fragment
@@ -275,23 +275,19 @@ public class CameraFragment extends Fragment
 
         DPEarringParam earringParam = new DPEarringParam();
         if (index == 1) {
-            // 귀걸이 파일 로드
-            File mEarringFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath(), "155569.png");
-            // 귀걸이 파일 bitmap 타입으로 변경
-            earringParam.setBitmap(BitmapFactory.decodeFile(mEarringFile.getAbsolutePath(), options));
+            // 귀걸이 파일 리소스를 bitmap 타입으로 변경
+            earringParam.setBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.earring0));
             // 귀걸이 실측 크기 설정
-            earringParam.setSize(new SizeF(7.5f, 34.0f));
+            earringParam.setSize(new SizeF(15.0f, 50.0f));
             // 귀걸이 핀 위치 설정
-            earringParam.setAnchorPoint(new PointF(3.75f, 1.0f));
+            earringParam.setAnchorPoint(new PointF(7.5f, 3.0f));
         } else if (index == 2) {
-            // 귀걸이 파일 로드
-            File mEarringFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath(), "155604.png");
-            // 귀걸이 파일 bitmap 타입으로 변경
-            earringParam.setBitmap(BitmapFactory.decodeFile(mEarringFile.getAbsolutePath(), options));
+            // 귀걸이 파일 리소스를 bitmap 타입으로 변경
+            earringParam.setBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.earring1));
             // 귀걸이 실측 크기 설정
-            earringParam.setSize(new SizeF(4.0f, 58.0f));
+            earringParam.setSize(new SizeF(40.0f, 50.0f));
             // 귀걸이 핀 위치 설정
-            earringParam.setAnchorPoint(new PointF(2.0f, 1.0f));
+            earringParam.setAnchorPoint(new PointF(20.0f, 3.0f));
         } else {
             throw new RuntimeException("Earring index is invalid.(" + index + ")");
         }
