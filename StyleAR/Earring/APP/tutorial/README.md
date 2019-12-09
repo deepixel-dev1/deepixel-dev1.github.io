@@ -340,6 +340,6 @@ StyleAREarring API 적용시 문제점을 발견하거나 궁금한 점이 있�
 [android_sample_still]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/StyleAR/Earring/APP/tutorial/android/StyleAREarringForAndroidSample(STILL)
 [license]: /License/README.md
 [android_tutorial]: /StyleAR/Earring/APP/tutorial/android
-[stylear_api_for_android]: /StyleAR/Earring/APP/apis/android
+[stylear_api_for_android]: /StyleAR/Earring/APP/apis/android/index.html
 [make_input_data]: /StyleAR/Earring/APP/tutorial/input
 [deepixel_hompage]: https://deepixel.azurewebsites.net/
