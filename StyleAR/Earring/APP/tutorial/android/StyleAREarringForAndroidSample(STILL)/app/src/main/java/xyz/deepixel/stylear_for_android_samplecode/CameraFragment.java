@@ -5,12 +5,10 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.graphics.Point;
 import android.graphics.PointF;
 import android.os.Bundle;
 import android.os.Environment;
@@ -25,7 +23,6 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.util.SizeF;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -36,12 +33,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.regex.Pattern;
 
 import xyz.deepixel.stylear.DPException;
-import xyz.deepixel.stylear.DPStyleAREarring;
-import xyz.deepixel.stylear.DPStyleARFactory;
-import xyz.deepixel.stylear.DPEarringParam;
+import xyz.deepixel.stylear.earring.DPStyleAREarring;
+import xyz.deepixel.stylear.earring.DPEarringParam;
 
 public class CameraFragment extends Fragment
         implements View.OnClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
@@ -49,16 +44,12 @@ public class CameraFragment extends Fragment
     private static final int REQUEST_WRITE_EXTERNAL_STORAGE_PERMISSION = 2;
     private static final String FRAGMENT_DIALOG = "dialog";
 
-    public static final int RESULT_OK           = -1;
-
     /**
      * Tag for the {@link Log}.
      */
     private static final String TAG = "Camera2BasicFragment";
 
     private Button m_processImageButton;
-
-    private EditText mEditTextMetaData;
 
     public static CameraFragment newInstance() {
         return new CameraFragment();
@@ -78,13 +69,7 @@ public class CameraFragment extends Fragment
 
         m_processImageButton.setOnClickListener(v -> {
             // 인스턴스 생성
-            DPStyleAREarring styleAR = DPStyleARFactory.getStyleAREarring(getActivity());
-
-            // 영상 입력 및 Bitmap 타입으로 변경
-            File inputFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath(), "test-image.png");
-            BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-            Bitmap bitmap = BitmapFactory.decodeFile(inputFile.getAbsolutePath(), options);
+            DPStyleAREarring styleAR = DPStyleAREarring.getInstance(getActivity());
 
             // 귀걸이 설정
             DPEarringParam earringParam = getEarringParam(1);
@@ -102,6 +87,7 @@ public class CameraFragment extends Fragment
             Bitmap processedBitmap;
             try {
                 // StyleAR API STILL 구동 및 출력
+                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.face);
                 processedBitmap = styleAR.getStyleAREarringImage(bitmap);
             } catch (DPException e) {
                 Handler mainHandler = new Handler(Looper.getMainLooper());
@@ -112,32 +98,6 @@ public class CameraFragment extends Fragment
             // 출력(결과) 영상 저장
             File outputFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath(), "processed-image.jpg");
             OutputStream out = null;
-            try {
-                out = new FileOutputStream(outputFile);
-                processedBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    if (out != null)
-                        out.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            // Get stylear image with earrings position.
-            try {
-                // StyleAR API STILL 구동 및 출력 (얼굴 left, right 구분)
-                processedBitmap = styleAR.getStyleAREarringImage(bitmap, new Point(100, 100), new Point(200, 200));
-            } catch (DPException e) {
-                Handler mainHandler = new Handler(Looper.getMainLooper());
-                mainHandler.post(() -> Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show());
-                return;
-            }
-
-            // 출력(결과) 영상 저장
-            outputFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath(), "processed-image2.jpg");
             try {
                 out = new FileOutputStream(outputFile);
                 processedBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
@@ -243,13 +203,11 @@ public class CameraFragment extends Fragment
 
         DPEarringParam earringParam = new DPEarringParam();
         if (index == 1) {
-            File mEarringFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath(), "155569.png");
-            earringParam.setBitmap(BitmapFactory.decodeFile(mEarringFile.getAbsolutePath(), options));
+            earringParam.setBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.earring0));
             earringParam.setSize(new SizeF(7.5f, 34.0f));
             earringParam.setAnchorPoint(new PointF(3.75f, 1.0f));
         } else if (index == 2) {
-            File mEarringFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath(), "155604.png");
-            earringParam.setBitmap(BitmapFactory.decodeFile(mEarringFile.getAbsolutePath(), options));
+            earringParam.setBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.earring1));
             earringParam.setSize(new SizeF(4.0f, 58.0f));
             earringParam.setAnchorPoint(new PointF(2.0f, 1.0f));
         } else {
