@@ -1,6 +1,6 @@
 [![deepixel.xyz](./img/Deepixel_logo.PNG){: width="200"}](https://deepixel.azurewebsites.net/)
 
-***
+---
 
 # StyleAREarring API 입력 데이터 만들기
 
@@ -9,15 +9,15 @@
 입력 데이터를 구성하는 자세한 방법 설명은 아래 **링크**
 를 참조하세요.
 
- [1. 영상 입력](#영상-입력)
+[1. 영상 입력](#영상-입력)
 
- [2. 귀걸이 사진 입력](#귀걸이-사진-입력)
+[2. 귀걸이 사진 입력](#귀걸이-사진-입력)
 
- [3. 귀걸이 실측 크기 입력](#귀걸이-실측-크기-입력)
+[3. 귀걸이 실측 크기 입력](#귀걸이-실측-크기-입력)
 
- [4. 귀걸이 핀 위치 입력](#귀걸이-핀-위치-입력)
+[4. 귀걸이 핀 위치 입력](#귀걸이-핀-위치-입력)
 
- ***
+---
 
 ## 영상 입력
 
@@ -50,7 +50,7 @@
 
 <center> <img src="https://deepixel-dev1.github.io/StyleAR/Earring/APP/tutorial/img/Input(pin_position).png" width="600"></center> <br/>
 
-***
+---
 
 ## 참조
 
