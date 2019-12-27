@@ -1,4 +1,4 @@
-![deepixel.xyz](../../../APP/tutorial/img/Deepixel_logo.PNG){: width="200"}]
+![deepixel.xyz](../../../APP/tutorial/img/Deepixel_logo.PNG){: width="200"}
 
 ---
 
