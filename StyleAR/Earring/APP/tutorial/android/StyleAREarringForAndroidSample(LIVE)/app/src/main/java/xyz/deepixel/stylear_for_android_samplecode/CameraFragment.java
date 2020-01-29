@@ -266,6 +266,7 @@ public class CameraFragment extends Fragment
         matrix.preScale(-1.0f, 1.0f, source.getWidth() / 2.0f, source.getHeight() / 2.0f);
         Bitmap flipBitmap = Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
         newEarringParam.setBitmap(flipBitmap);
+        newEarringParam.setAnchorPoint(new PointF(earringParam.getSize().getWidth() - earringParam.getAnchorPoint().x, earringParam.getAnchorPoint().y));
         return newEarringParam;
     }
 
