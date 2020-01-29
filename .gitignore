@@ -3,6 +3,7 @@
 *.aar
 *.ap_
 *.aab
+*.framework
 
 # Files for the ART/Dalvik VM
 *.dex
@@ -85,6 +86,7 @@ lint/outputs/
 lint/tmp/
 # lint/reports/
 
+**/xcuserdata/
 **/StyleARAndroid-*/
 **/StyleAREarring-*/
 StyleAR/Earring/APP/tutorial/ios/StyleAREarringForiOSSample/StyleAREarring.framework
