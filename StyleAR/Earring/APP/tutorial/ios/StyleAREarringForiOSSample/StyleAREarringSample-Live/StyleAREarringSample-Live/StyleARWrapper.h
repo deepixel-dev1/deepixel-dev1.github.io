@@ -15,7 +15,7 @@
 
 @interface StyleARWrapper : NSObject
 
-- (instancetype)initWithFrame:(CGRect)frame;
+- (instancetype)initWithFrame:(UIView *)frame;
 - (UIView *)getStyleAREarringView;
 - (void)start;
 - (void)stop;

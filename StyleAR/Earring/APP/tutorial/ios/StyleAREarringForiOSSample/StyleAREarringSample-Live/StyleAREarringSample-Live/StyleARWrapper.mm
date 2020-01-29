@@ -39,13 +39,16 @@ CGImageRef GetImgRef(NSString *filename, NSString *extension) {
 
 @implementation StyleARWrapper
 
-- (instancetype)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(UIView *)frame {
     self = [super init];
     if (self) {
         _styleAREarring = [DPStyleAREarring sharedInstance];
 
-        _styleAREarringView = [[DPStyleAREarringView alloc] initWithFrame:frame];
-        
+        _styleAREarringView = [[DPStyleAREarringView alloc] initWithFrame:frame.bounds];
+
+        [frame addSubview:_styleAREarringView];
+        [frame sendSubviewToBack:_styleAREarringView];
+
         // Ring parameters.
         DPEarringParam *earringParam = [[DPEarringParam alloc] init];
         earringParam.cgImage = GetImgRef(@"earring", @".png");
