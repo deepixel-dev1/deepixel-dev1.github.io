@@ -17,10 +17,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        wrapper = StyleARWrapper(frame: cameraView.bounds);
-        let styleAREarringView = wrapper!.getStyleAREarringView()!;
-        self.cameraView.addSubview(styleAREarringView);
-        self.cameraView.sendSubviewToBack(styleAREarringView);
+        wrapper = StyleARWrapper(frame: cameraView);
 
     }
 
