@@ -4,7 +4,7 @@
 
 # StyleAREarring API Tutorial
 
-**StyleAREarring API**는 입력영상에서 얼굴 특정점 검출, 3D 피팅, 영상분석 등의 **컴퓨터비전 기술**을 이용하여 사용자에게 **실시간 귀걸이 가상착용**(Virtual Try-on)경험을 주는 모바일 기반 **API Library**입니다.
+**StyleAREarring API**는 입력영상에서 얼굴 특정점 검출, 3D 피팅과 영상분석 등의 **컴퓨터비전 기술**을 이용하여 사용자에게 **실시간 귀걸이 가상착용**(Virtual Try-on) 경험을 주는 모바일 기반 **API Library**입니다.
 **StyleAREarring API**에 대한 각각의 설명은 아래 목차의 **링크**를 참조하세요.
 
 [1. StyleAREarring API 기능](#stylearearring-api-기능)
@@ -54,14 +54,12 @@
 
 ※ **메타데이터**는 얼굴 각 부분들의 **색상**(R<sup>Red</sup>G<sup>Green</sup>B<sup>Blue</sup>), **비율**, **좌표** 값을 분석합니다. 자세한 설명은 아래의 표와 같습니다.
 
-|     메타데이터     |               내용                |                                     단위                                      |
-| :----------------: | :-------------------------------: | :---------------------------------------------------------------------------: |
-|   **피부 색상**    |     얼굴의 피부색을 나타낸다.     |                   RGB순서로 색상정보가 출력<br>범위:0 ~ 255                   |
-| **머리카락 색상**  |      머리카락 색을 나타낸다.      |                   RGB순서로 색상정보가 출력<br>범위:0 ~ 255                   |
-|   **입술 색상**    |        입술 색을 나타낸다.        |                  RGB순서로 색상정보가 출력 <br>범위:0 ~ 255                   |
-|  **왼쪽 귀 좌표**  |    왼쪽 귀의 좌표를 나타낸다.     |          스크린의 원점을 기준으로 x, y 좌표<br>범위: 스크린 크기 내           |
-| **오른쪽 귀 좌표** |   오른쪽 귀의 좌표를 나타낸다.    |          스크린의 원점을 기준으로 x, y 좌표<br>범위: 스크린 크기 내           |
-|   **얼굴 비율**    | 얼굴의 가로 세로 비율을 나타낸다. | 비율: 가로 / (가로 + 세로)<br>범위:0. ~ 1.<br> 가로: 코<->귀<br>세로: 코<->턱 |
+|    메타데이터     |               내용                |                                     단위                                      |
+| :---------------: | :-------------------------------: | :---------------------------------------------------------------------------: |
+|   **피부 색상**   |     얼굴의 피부색을 나타낸다.     |                   RGB순서로 색상정보가 출력<br>범위:0 ~ 255                   |
+| **머리카락 색상** |      머리카락 색을 나타낸다.      |                   RGB순서로 색상정보가 출력<br>범위:0 ~ 255                   |
+|   **입술 색상**   |        입술 색을 나타낸다.        |                  RGB순서로 색상정보가 출력 <br>범위:0 ~ 255                   |
+|   **얼굴 비율**   | 얼굴의 가로 세로 비율을 나타낸다. | 비율: 가로 / (가로 + 세로)<br>범위:0. ~ 1.<br> 가로: 코<->귀<br>세로: 코<->턱 |
 
 ---
 
@@ -74,7 +72,7 @@
 
 <center><img src="https://deepixel-dev1.github.io/StyleAR/Earring/APP/tutorial/img/StyleAR_Block_Diagram.png" width="800"></center><br/>
 
-※ **`LIVE`** 방법의 구조는 **컨트롤**과 **프로세싱** 파트로 구성되어 있습니다. **컨트롤 파트**는 **카메라 및 view 제어, 귀걸이 정보 제어, 영상 필터링 제어** 등을하고 있으며 **프로세싱 파트**는 **알고리즘 구동, 메타정보 및 귀걸이 출력** 등을 맡고 있습니다.
+※ **`LIVE`** 방법의 구조는 **컨트롤**과 **프로세싱** 파트로 구성되어 있습니다. **컨트롤 파트**는 **카메라 및 view 제어, 귀걸이 정보 제어, 영상 필터링 제어** 등을 하고 있으며 **프로세싱 파트**는 **알고리즘 구동, 메타정보 및 귀걸이 출력** 등을 맡고 있습니다.
 
 ※ **`STILL`** 방법의 구조 역시 **컨트롤**과 **프로세싱** 파트로 구성되어 있습니다. **컨트롤 파트**는 **귀걸이 정보 제어, 영상 필터링 제어**를 하고 있으며, **프로세싱 파트**에서는 **알고리즘 구동**과 **귀걸이 및 메타정보 출력** 등을 맡고 있습니다.
 
@@ -93,12 +91,16 @@
 
 **StyleAREarring API 사용방법**에서는 입력영상에서 **얼굴**이 있을 시 **귀의 위치**에 **귀걸이가 가상착용**되는 **모바일 어플리케이션**을 만드는 과정을 **`LIVE`** 와 **`STILL`** 방법으로 나눠 설명합니다. 아래의 예제코드와 함께 비교하며 구현하는 것을 추천합니다.
 
-- [LIVE 예제코드][android_sample_live]
-- [STILL 예제코드][android_sample_still]
+- Android
+  - [LIVE 예제코드][android_sample_live]
+  - [STILL 예제코드][android_sample_still]
+- iOS
+  - [LIVE 예제코드][ios_sample_live]
+  - [STILL 예제코드][ios_sample_still]
 
 ### 필수조건(공통)
 
-어플리케이션을 개발하기 앞서, **StyleAREarring API**를 사용하기 위해서는 **라이센스**를 통해 **발급**받은 **라이브러리 파일**이 있어야 하며, 라이브러리 파일을 개발 프로젝트에 사용하기 위한 **설정**이 필요합니다.
+어플리케이션을 개발하기 앞서, **StyleAREarring API**를 사용하기 위해서는 **라이센스**를 **발급**받아야 합니다.
 
 - **라이센스 라이브러리 발급**  
   **StyleAREarring API**를 사용하기 위한 **라이센스 라이브러리 발급**은 아래의 표의 이메일로 **문의**하고, 내용은 **폼**에 맞게 **작성**해야 합니다.
@@ -121,16 +123,16 @@
 
 <center><img src="https://deepixel-dev1.github.io/StyleAR/Earring/APP/tutorial/img/StyleAR_Sample_Flow(LIVE).png" width="500"></center><br/>
 
-※ 우선 **StyleAREarring API `LIVE`** 동작하기 위한 준비단계로는 `(1)StyleAREarring view UI 컴포넌트 연결`하고 실제 구동을 위해 `(2)시작함수 호출`을 해야 합니다. **StyleAREarring API** **동작 중**에는 `(2-1)귀걸이 설정`, `(2-2)메타데이터 취득`, `(2-3)필터 설정`을 할 수 있습니다. **StyleAREarring API `LIVE`** 은 `(3)종료함수 호출`을 통해 구동을 멈출 수있습니다. 자세한 설명은 아래와 같습니다.
+※ 우선 **StyleAREarring API `LIVE`** 를 동작시키기 위해서는 `(1) StyleAREarring view UI 컴포넌트를 생성`하고 `(2) 시작함수를 호출`해야 합니다. **StyleAREarring API** **동작 중**에는 `(2-1) 귀걸이 설정`, `(2-2) 메타데이터 취득`과 `(2-3) 필터 설정`을 할 수 있습니다. **StyleAREarring API `LIVE`** 는 `(3) 종료함수 호출`을 통해 구동을 멈출 수 있습니다. 자세한 설명은 아래와 같습니다.
 
-- **(1) StyleAREarring view UI생성 및 연결**
+- **(1) StyleAREarring view UI 컴포넌트 생성**
 
-  **StyleAREarring API `LIVE`** 는 **카메라 및 view를 컨트롤** 하는 기능을 **내부**에 **포함**하고 있습니다. 따라서 어플리케이션 **Layout**에 **StyleAREarring view UI 컴포넌트**를 만들고, **StyleAREarring view 클래스**를 연결하는 코드만 추가하면 **다른 설정 필요없이 사용**할 수 있습니다.
+  **StyleAREarring API `LIVE`** 는 **카메라와 View를 컨트롤** 하는 기능을 **내부**에 **포함**하고 있습니다. 따라서 **StyleAREarring view UI 컴포넌트**를 화면에 추가하고 일부 설정만 하면 쉽게 사용할 수 있습니다.
 
   - Android
 
-    - StyleAREarring view UI 컴포넌트 생성  
-      Main Layout에 StyleAREarring view UI 컴포넌트를 추가합니다.
+    - StyleAREarring view UI 컴포넌트 생성
+      애플리케이션 **Layout**에 **StyleAREarring view UI 컴포넌트**를 추가합니다.
 
       ```xml
       <!--For Android-->
@@ -201,7 +203,7 @@
   ```
 
   - **(2-1) 귀걸이 설정**
-    귀걸이 설정은 **StyleAREarring API `LIVE`** **동작 중**에도 할 수 있으며, 적용과 동시에 귀걸이가 변하는 것을 볼 수 있습니다. 귀걸이를 설정하기 위해서는 **귀걸이 영상**(bitmap), **귀걸이의 크기**, **핀 위치** 입력데이터가 필요하며 만드는 방법은 [링크][make_input_data]를 참조하세요.
+    귀걸이 설정은 **StyleAREarring API `LIVE`** **동작 중**에도 할 수 있습니다. 귀걸이를 설정하기 위해서는 **귀걸이 영상**, **귀걸이의 크기**와 **핀 위치** 정보가 필요합니다. 귀걸이 영상을 만드는 방법은 [링크][make_input_data]를 참조하세요.
 
     - Android
 
@@ -212,7 +214,7 @@
       // Bitmap 타입설정 (반드시 RGB_8888)
       BitmapFactory.Options options = new BitmapFactory.Options();
       options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-      // 귀걸이 Bitmap영상 설정
+      // 귀걸이 Bitmap 영상 설정
       earringParam.setBitmap(BitmapFactory.decodeFile(mEarringFile.getAbsolutePath(), options));
       // 실제 귀걸이 크기(width, height)
       earringParam.setSize(SizeF size);
@@ -230,7 +232,7 @@
       // For iOS
       // StyleAREarring API 귀걸이 객체 생성
       DPEarringParam *earringParam = [[DPEarringParam alloc] init];
-      // 귀걸이 Bitmap영상 설정
+      // 귀걸이 CGImageRef 영상 설정
       earringParam.cgImage = GetImgRef(@"earring", @".png");
       // 실제 귀걸이 크기(width, height)
       earringParam.size = CGSizeMake(20.0f, 30.0f);
@@ -243,7 +245,7 @@
       ```
 
   - **(2-2) 메타데이터 정보 획득**
-    **StyleAREarring API `LIVE`** 가 동작하는 동안 **얼굴**에 대한 다양한 **메타 정보를 획득** 할 수 있습니다. 사용자의 **얼굴**이 **카메라에 정면**을 바라보고 있을 때만 **동작** 합니다.
+    **StyleAREarring API `LIVE`** 가 동작하는 동안 **얼굴**에 대한 다양한 **메타 정보를 획득** 할 수 있습니다. 사용자가 **정면**을 바라보고 있을 때만 메타데이터가 업데이트 됩니다.
 
     - Android
 
@@ -296,7 +298,7 @@
       ```
 
   - **(2-3) 필터설정**
-    **StyleAREarring API `LIVE`** 의 출력결과에 화면 및 귀걸이 보정필터를 **ON/OFF** 합니다. **기본 설정값**은 **OFF**(false) 입니다.
+    **StyleAREarring API `LIVE`** 의 출력결과에 화면 및 귀걸이 보정필터 유무(**ON/OFF**) 설정 합니다. **기본 설정값**은 **OFF**(false) 입니다.
 
     - Android
 
@@ -339,7 +341,7 @@
 
 <center><img src="https://deepixel-dev1.github.io/StyleAR/Earring/APP/tutorial/img/StyleAR_Sample_Flow(STILL).png" width="150"></center><br/>
 
-※ **StyleAREarring API `STILL`** 구동하기 위해서 우선 `(1)인스턴스 생성`을 하고 `(2)귀걸이를 설정`을 합니다.`(3) 이미지 필터 사용 유무`를 판단하고, `(4) 구동 및 출력`을 통해 API가 동작하며 `(5)결과`를 얻을 수 있습니다. 자세한 설명은 아래와 같습니다.
+※ **StyleAREarring API `STILL`** 를 구동하기 위해서 우선 `(1) 인스턴스를 생성하고` `(2) 귀걸이를 설정합니다.` 그리고 `(3) 필터 사용 유무`를 설정하고, `(4) 결과`를 얻을 수 있습니다. 추가적으로 `(5) 메타데이터`도 얻을 수 있습니다. 자세한 설명은 아래와 같습니다.
 
 - **(1) 인스턴스 생성**  
    **StyleAREarring API`STILL`** 를 구동시키기위한 **API 인스턴스**를 **생성** 합니다.
@@ -363,7 +365,7 @@
       ```
 
   - 함수호출  
-    **StyleAREarring API `STILL`** **인스턴스**를 **생성** 합니다. 만약 생성된 인스턴스가 있다면 **해당 인스턴스**를 **리턴**합니다.
+    **StyleAREarring API `STILL`** **인스턴스**를 **생성** 합니다.
 
     - Android
 
@@ -379,7 +381,7 @@
       ```
 
 - **(2) 귀걸이 설정**  
-   **StyleAREarring API `STILL`** 이 **구동하기 이전**에 **귀걸이 설정**을 해야 합니다. **귀걸이 설정방법**은 **StyleAREarring API `LIVE`** 와 **동일**합니다.
+   **StyleAREarring API `STILL`** 이 **구동하기 이전**에 **귀걸이** 을 설정해야 합니다. **귀걸이 설정방법**은 **StyleAREarring API `LIVE`** 와 **동일**합니다.
 
   - Android
 
@@ -410,7 +412,7 @@
     ```
 
 - **(3) 필터설정**  
-   **StyleAREarring API `STILL`** 의 **출력영상**에 **화면 및 귀걸이 보정필터**를 **ON/OFF** 합니다. **기본 설정값**은 **OFF**(false)입니다.
+   **StyleAREarring API `STILL`** 의 **출력영상**에 **화면 및 귀걸이 보정필터** 적용 유무(**ON/OFF**)를 설정합니다. **기본 설정값**은 **OFF**(false)입니다.
 
   - Android
 
@@ -433,7 +435,7 @@
     ```
 
 - **(4) 구동 및 출력**  
-   **StyleAREarring API`STILL`** 에 **영상** 및 **귀의 위치**(**오른쪽, 왼쪽 좌표**)를 입력하여 구동하면 **가상착용된 결과 영상**이 **입력한 귀의 위치**를 **기준**으로 **출력**됩니다. 만약 **귀의 위치** **파라메터**를 **입력하지 않으면** **자동**으로 **귀 위치**를 판단하여 출력하게 됩니다.
+  **StyleAREarring API `STILL`** 에 **영상**을 입력하면 **가상착용된 결과 영상**을 **출력**합니다.
 
   - Android
 
@@ -453,8 +455,8 @@
     CGImageRef styleARImage = [styleAREarring getStyleARImage:cgImage];
     ```
 
-- **(5) 메타데이터정보 획득**  
-   **StyleAREarring API`STILL`** 이 **구동된 이후**에 **메타데이터**를 **획득**할 수 있습니다. **메타데이터 출력 방법**은 **StyleAREarring API `LIVE`** 와 **동일**합니다.
+- **(5) 메타데이터 획득**  
+   **StyleAREarring API `STILL`** 이 **구동된 이후**에 **메타데이터**를 **획득**할 수 있습니다. **메타데이터 출력 방법**은 **StyleAREarring API `LIVE`** 와 **동일**합니다.
 
   - Android
 
@@ -496,7 +498,8 @@ StyleAREarring API 적용시 문제점을 발견하거나 궁금한 점이 있�
   - [Android 환경 설정][android_tutorial]
   - [StyleAREarring API For Android][stylear_api_for_android]
 - iOS
-  - [iOS Sample code][ios_sample]
+  - [iOS Sample code(LIVE)][ios_sample_live]
+  - [iOS Sample code(STILL)][ios_sample_still]
   - [iOS 환경 설정][ios_tutorial]
   - [StyleAREarring API For iOS][stylear_api_for_ios]
 - [StyleAREarring API 입력데이터 만들기][make_input_data]
@@ -507,7 +510,8 @@ StyleAREarring API 적용시 문제점을 발견하거나 궁금한 점이 있�
 [license]: /License/README.md
 [android_tutorial]: /StyleAR/Earring/APP/tutorial/android
 [stylear_api_for_android]: /StyleAR/Earring/APP/apis/android/index.html
-[ios_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/StyleAR/Earring/APP/tutorial/ios/StyleAREarringForiOSSample
+[ios_sample_live]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/StyleAR/Earring/APP/tutorial/ios/StyleAREarringForiOSSample/StyleAREarringSample-Live
+[ios_sample_still]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/StyleAR/Earring/APP/tutorial/ios/StyleAREarringForiOSSample/StyleAREarringSample-Still
 [ios_tutorial]: /StyleAR/Earring/APP/tutorial/ios
 [stylear_api_for_ios]: /StyleAR/Earring/APP/apis/ios/index.html
 [make_input_data]: /StyleAR/Earring/APP/tutorial/input
