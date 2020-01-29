@@ -21,9 +21,9 @@
 
 |        목차        |                                 스팩                                 |
 | :----------------: | :------------------------------------------------------------------: |
-|   **Platforms**    |                               Android                                |
-|    **Version**     |                                1.4.0                                 |
-|    **SDK Size**    |                                ~ 20M                                 |
+|   **Platforms**    |                            Android / iOS                             |
+|    **Version**     |                                2.1.0                                 |
+|    **SDK Size**    |                                ~ 50M                                 |
 | **허용 얼굴 각도** |                       yaw ≤ ±80º, pitch ≤ ±45º                       |
 |    **가능인원**    |                                 1명                                  |
 |      **속도**      |                  20 ~ 40FPS @ 1080p (Garaxy Note 8)                  |
@@ -103,14 +103,17 @@
 - **라이센스 라이브러리 발급**  
   **StyleAREarring API**를 사용하기 위한 **라이센스 라이브러리 발급**은 아래의 표의 이메일로 **문의**하고, 내용은 **폼**에 맞게 **작성**해야 합니다.
 
-|   목차   |                                                            내용                                                             |
-| :------: | :-------------------------------------------------------------------------------------------------------------------------: |
-| **발급** |                                           <support@deepixel.xyz>로 문의 바랍니다.                                           |
-|  **폼**  | 1.회사명<br> 2. 적용 어플리케이션 ID<br> 3. StyleAREarring API 사용기간<br> 4. 메타데이터기능 사용유무<br> 5. 담당자 연락처 |
+|   목차   |                                             내용                                             |
+| :------: | :------------------------------------------------------------------------------------------: |
+| **발급** |                           <support@deepixel.xyz>로 문의 바랍니다.                            |
+|  **폼**  | 1.회사명<br> 2. 적용 어플리케이션 ID<br> 3. StyleAREarring API 사용기간<br> 4. 담당자 연락처 |
 
 - **환경설정**  
   환경설정에서는 **StyleAREarring API 라이브러리**를 **모바일 프로젝트**에 **등록하는 방법** 및 **프로젝트 권한 설정** 방법을 설명합니다.
   - [Android 환경 설정][android_tutorial]
+  - [iOS 환경 설정][ios_tutorial]
+
+---
 
 ### StyleAREarring API 적용방법 (`LIVE`)
 
@@ -120,117 +123,200 @@
 
 ※ 우선 **StyleAREarring API `LIVE`** 동작하기 위한 준비단계로는 `(1)StyleAREarring view UI 컴포넌트 연결`하고 실제 구동을 위해 `(2)시작함수 호출`을 해야 합니다. **StyleAREarring API** **동작 중**에는 `(2-1)귀걸이 설정`, `(2-2)메타데이터 취득`, `(2-3)필터 설정`을 할 수 있습니다. **StyleAREarring API `LIVE`** 은 `(3)종료함수 호출`을 통해 구동을 멈출 수있습니다. 자세한 설명은 아래와 같습니다.
 
-- **(1) StyleAREarring view UI생성 및 연결**  
+- **(1) StyleAREarring view UI생성 및 연결**
+
   **StyleAREarring API `LIVE`** 는 **카메라 및 view를 컨트롤** 하는 기능을 **내부**에 **포함**하고 있습니다. 따라서 어플리케이션 **Layout**에 **StyleAREarring view UI 컴포넌트**를 만들고, **StyleAREarring view 클래스**를 연결하는 코드만 추가하면 **다른 설정 필요없이 사용**할 수 있습니다.
 
-  - StyleAREarring view UI 컴포넌트 생성  
-    Main Layout에 StyleAREarring view UI 컴포넌트를 생성합니다.
+  - Android
 
-    ```xml
-    <!--For Android-->
-    <xyz.deepixel.stylear.earring.DPStyleAREarringView
-      android:id="@+id/stylear_earring_view"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_alignParentStart="true"
-      android:layout_alignParentTop="true"
-      android:layout_marginStart="0dp"
-      android:layout_marginTop="0dp"
-      android:background="#FFFFFFFF">
-    </xyz.deepixel.stylear.earring.DPStyleAREarringView>
-    ```
+    - StyleAREarring view UI 컴포넌트 생성  
+      Main Layout에 StyleAREarring view UI 컴포넌트를 추가합니다.
 
-  - StyleAREarring view 객체 가져오기  
-    먼저 사용할 클래스를 import 합니다.
+      ```xml
+      <!--For Android-->
+      <xyz.deepixel.stylear.earring.DPStyleAREarringView
+        android:id="@+id/stylear_earring_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:background="#FFFFFFFF">
+      </xyz.deepixel.stylear.earring.DPStyleAREarringView>
+      ```
 
-    ```java
-    // StyleAREarring API LIVE Camera 및 view 컨트롤 클래스
-    import xyz.deepixel.stylear.earring.DPStyleAREarringView;
-    // StyleAREarring API 귀걸이 정보 파라메터 설정 클래스
-    import xyz.deepixel.stylear.earring.DPEarringParam;
-    // StyleAREarring API 메터다이터 정보저장 클래스
-    import xyz.deepixel.stylear.earring.DPFaceMetaData;
-    ```
+    - StyleAREarring view 객체 가져오기  
+      먼저 사용할 클래스를 import 합니다.
 
-    StyleAREarring view 의 id를 이용하여 객체를 가져옵니다.
+      ```java
+      // For android
+      // StyleAREarring API LIVE Camera 및 view 컨트롤 클래스
+      import xyz.deepixel.stylear.earring.DPStyleAREarringView;
+      // StyleAREarring API 귀걸이 정보 파라메터 설정 클래스
+      import xyz.deepixel.stylear.earring.DPEarringParam;
+      // StyleAREarring API 메터다이터 정보저장 클래스
+      import xyz.deepixel.stylear.earring.DPFaceMetaData;
+      ```
 
-    ```java
-    // For Android
-    // StyleAREarring View Controller 선언
-    private DPStyleAREarringView m_stylearView
-    // StyleAREarring View 클래스를 layout의 view에 연결
-    m_stylearView = view.findViewById(R.id.stylear_earring_view); //연결
-    ```
+      StyleAREarring view 의 id를 이용하여 객체를 가져옵니다.
+
+      ```java
+      // For Android
+      // StyleAREarring View 객체 선언
+      private DPStyleAREarringView m_stylearView
+      // StyleAREarring View 클래스를 layout의 view에 연결
+      m_stylearView = view.findViewById(R.id.stylear_earring_view); //연결
+      ```
+
+  - iOS
+
+    - StyleAREarring view UI 컴포넌트 생성  
+      StyleAREarring view 객체를 생성하고 추가한다.
+
+      ```objective-c
+      // For iOS
+      #import <StyleAREarring/StyleAREarring.h>
+      ```
+
+      ```objective-c
+      // For iOS
+      // StyleAREarring View 객체 생성
+      DPStyleAREarringView *styleAREarringView = [DPStyleAREarringView alloc] initWithFrame:frame.bounds];
+      // StyleAREarring View 객체를 부모 View에 추가
+      [frame addSubView:styleAREarringView];
+      ```
 
 - **(2) 구동**  
-   **StyleAREarring API `LIVE`** 동작을 시작합니다. **StyleAREarring view UI 컴포넌트**에 결과 영상을 출력합니다.
+  **StyleAREarring API `LIVE`** 동작을 시작합니다. **StyleAREarring view UI 컴포넌트**에 결과 영상을 출력합니다.
 
   ```java
   // For Android
   m_stylearView.start();
   ```
 
-  - **(2-1) 귀걸이 설정**  
-     귀걸이 설정은 **StyleAREarring API `LIVE`** **동작 중**에도 할 수 있으며, 적용과 동시에 귀걸이가 변하는 것을 볼 수 있습니다. 귀걸이를 설정하기 위해서는 **귀걸이 영상**(bitmap), **귀걸이의 크기**, **핀 위치** 입력데이터가 필요하며 만드는 방법은 [링크][make_input_data]를 참조하세요.
+  ```objective-c
+  // For iOS
+  [styleAREarringView start];
+  ```
 
-    ```java
-    // For Android
-    // StyleAREarring API 귀걸이 정보 클래스 선언
-    DPEarringParam earringParam = new DPEarringParam();
-    // 1. 귀걸이 사진 파일 위치 (사진 파일(1) 또는 Bitmap(2) 형식으로 선택함.)
-    earringParam.setAbsolutePath(mEarringFile.getAbsolutePath());
-    // 2. 귀걸이 Bitmap 설정 (사진 파일(1) 또는 Bitmap(2) 형식으로 선택함.)
-    BitmapFactory.Options options = new BitmapFactory.Options();
-    // Bitmap 타입설정 (반드시 RGB_8888)
-    options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-    // 귀걸이 Bitmap영상 설정
-    earringParam.setBitmap(BitmapFactory.decodeFile(mEarringFile.getAbsolutePath(), options));
-    // 실제 귀걸이 크기(width, height)
-    earringParam.setSize(SizeF size);
-    // 귀걸이 핀 위치(귀걸이 위에서 핀까지의 거리)
-    earringParam.setAnchorPoint(PointF size);
-    // StyleAREarring API LIVE에 좌측 귀걸이 정보 입력
-    m_stylearView.setLeftEarringParam(earringParam);
-    // StyleAREarring API LIVE에 우측 귀걸이 정보 입력
-    m_stylearView.setLeftEarringParam(earringParam);
-    ```
+  - **(2-1) 귀걸이 설정**
+    귀걸이 설정은 **StyleAREarring API `LIVE`** **동작 중**에도 할 수 있으며, 적용과 동시에 귀걸이가 변하는 것을 볼 수 있습니다. 귀걸이를 설정하기 위해서는 **귀걸이 영상**(bitmap), **귀걸이의 크기**, **핀 위치** 입력데이터가 필요하며 만드는 방법은 [링크][make_input_data]를 참조하세요.
 
-  - **(2-2) 메타데이터 정보 획득**  
-     **StyleAREarring API `LIVE`** 가 동작하는 동안 **얼굴**에 대한 다양한 **메타 정보를 획득** 할 수 있습니다. 사용자의 **얼굴**이 **카메라에 정면**을 바라보고 있을 때만 **동작** 합니다.
+    - Android
 
-    ```java
-    // For Android
-    //메타데이터 정보획득
-    DPFaceMetaData faceMetaData = m_stylearView.getFaceMetaData();
-    StringBuilder msg = new StringBuilder();
-    // 얼굴 비율 평균 출력
-    msg.append("FRM : ").append(faceMetaData.getFaceRatioMean()).append('\n');
-    // 얼굴 비율 편차 출력
-    msg.append("FRS : ").append(faceMetaData.getFaceRatioStd()).append('\n');
-    // 머리카락 색깔 평균 출력
-    msg.append("HCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getHairColorMean())).append('\n');
-    // 머러카락 색깔 편차 출력
-    msg.append("HCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getHairColorStd())).append('\n');
-    // 입술 색깔 평균 출력
-    msg.append("LCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getLipColorMean())).append('\n');
-    // 입술 색깔 편차 출력
-    msg.append("LCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getLipColorStd())).append('\n');
-    // 피부색 색깔 평균 출력
-    msg.append("SCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getSkinColorMean())).append('\n');
-    // 피부색 색깔 편차 출력
-    msg.append("SCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getSkinColorStd())).append('\n');
-    ```
+      ```java
+      // For Android
+      // StyleAREarring API 귀걸이 객체 생성
+      DPEarringParam earringParam = new DPEarringParam();
+      // Bitmap 타입설정 (반드시 RGB_8888)
+      BitmapFactory.Options options = new BitmapFactory.Options();
+      options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+      // 귀걸이 Bitmap영상 설정
+      earringParam.setBitmap(BitmapFactory.decodeFile(mEarringFile.getAbsolutePath(), options));
+      // 실제 귀걸이 크기(width, height)
+      earringParam.setSize(SizeF size);
+      // 귀걸이 핀 위치(귀걸이 위에서 핀까지의 거리)
+      earringParam.setAnchorPoint(PointF size);
+      // StyleAREarring API LIVE에 좌측 귀걸이 정보 입력
+      m_stylearView.setLeftEarringParam(earringParam);
+      // StyleAREarring API LIVE에 우측 귀걸이 정보 입력
+      m_stylearView.setLeftEarringParam(earringParam);
+      ```
 
-  - **(2-3) 필터설정**  
-     **StyleAREarring API `LIVE`** 의 출력결과에 화면 및 귀걸이 보정필터를 **ON/OFF** 합니다. **기본 설정값**은 **OFF**(false) 입니다.
+    - iOS
 
-    ```java
-    // For Android
-    // 화면 보정필터 ON / OFF (bool bFilter: ON[true] / OFF[false])
-    m_stylearView.setFilterEnabled(bool bFilter);
-    // 귀걸이 보정필터 ON / OFF (bool bFilter: ON[true] / OFF[false])
-    m_stylearView.setEarringFilterEnabled(bool bFilter);
-    ```
+      ```objective-c
+      // For iOS
+      // StyleAREarring API 귀걸이 객체 생성
+      DPEarringParam *earringParam = [[DPEarringParam alloc] init];
+      // 귀걸이 Bitmap영상 설정
+      earringParam.cgImage = GetImgRef(@"earring", @".png");
+      // 실제 귀걸이 크기(width, height)
+      earringParam.size = CGSizeMake(20.0f, 30.0f);
+      // 귀걸이 핀 위치(귀걸이 위에서 핀까지의 거리)
+      earringParam.anchorPoint = CGPointMake(10.0f, 1.0f);
+      // StyleAREarring API LIVE에 좌측 귀걸이 정보 입력
+      [_styleAREarringView setLeftEarringParam:earringParam];
+      // StyleAREarring API LIVE에 우측 귀걸이 정보 입력
+      [_styleAREarringView setRightEarringParam:earringParam];
+      ```
+
+  - **(2-2) 메타데이터 정보 획득**
+    **StyleAREarring API `LIVE`** 가 동작하는 동안 **얼굴**에 대한 다양한 **메타 정보를 획득** 할 수 있습니다. 사용자의 **얼굴**이 **카메라에 정면**을 바라보고 있을 때만 **동작** 합니다.
+
+    - Android
+
+      ```java
+      // For Android
+      // 메타데이터 획득
+      DPFaceMetaData faceMetaData = m_stylearView.getFaceMetaData();
+      StringBuilder msg = new StringBuilder();
+      // 얼굴 비율 평균 출력
+      msg.append("FRM : ").append(faceMetaData.getFaceRatioMean()).append('\n');
+      // 얼굴 비율 편차 출력
+      msg.append("FRS : ").append(faceMetaData.getFaceRatioStd()).append('\n');
+      // 머리카락 색깔 평균 출력
+      msg.append("HCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getHairColorMean())).append('\n');
+      // 머러카락 색깔 편차 출력
+      msg.append("HCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getHairColorStd())).append('\n');
+      // 입술 색깔 평균 출력
+      msg.append("LCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getLipColorMean())).append('\n');
+      // 입술 색깔 편차 출력
+      msg.append("LCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getLipColorStd())).append('\n');
+      // 피부색 색깔 평균 출력
+      msg.append("SCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getSkinColorMean())).append('\n');
+      // 피부색 색깔 편차 출력
+      msg.append("SCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getSkinColorStd())).append('\n');
+      ```
+
+    - iOS
+
+      ```objective-c
+      // For iOS
+      // 메타데이터 획득
+      DPFaceMetaData *faceMetaData = [_styleAREarringView getFaceMetaData];
+      NSMutableString *str = [[NSMutableString alloc] init];
+      // 얼굴 비율 평균 출력
+      [str appendFormat:@"FRM = %f\n", faceMetaData.faceRatioMean];
+      // 얼굴 비율 편차 출력
+      [str appendFormat:@"FRS = %f\n", faceMetaData.faceRatioStd];
+      // 머리카락 색깔 평균 출력
+      [str appendFormat:@"HCM = #%06X\n", 0xFFFFFF & faceMetaData.hairColorMean];
+      // 머러카락 색깔 편차 출력
+      [str appendFormat:@"HCS = #%06X\n", 0xFFFFFF & faceMetaData.hairColorStd];
+      // 입술 색깔 평균 출력
+      [str appendFormat:@"LCM = #%06X\n", 0xFFFFFF & faceMetaData.lipColorMean];
+      // 입술 색깔 편차 출력
+      [str appendFormat:@"LCS = #%06X\n", 0xFFFFFF & faceMetaData.lipColorStd];
+      // 피부색 색깔 평균 출력
+      [str appendFormat:@"SCM = #%06X\n", 0xFFFFFF & faceMetaData.skinColorMean];
+      // 피부색 색깔 편차 출력
+      [str appendFormat:@"SCS = #%06X", 0xFFFFFF & faceMetaData.skinColorStd];
+      ```
+
+  - **(2-3) 필터설정**
+    **StyleAREarring API `LIVE`** 의 출력결과에 화면 및 귀걸이 보정필터를 **ON/OFF** 합니다. **기본 설정값**은 **OFF**(false) 입니다.
+
+    - Android
+
+      ```java
+      // For Android
+      // 화면 보정필터 ON / OFF
+      m_stylearView.setFilterEnabled(filterEnabled);
+      // 귀걸이 보정필터 ON / OFF
+      m_stylearView.setEarringFilterEnabled(earringFilterEnabled);
+      ```
+
+    - iOS
+
+      ```objective-c
+      // For iOS
+      // 화면 보정필터 ON / OFF
+      [_styleAREarringView setFilterEnabled:enabled];
+      // 귀걸이 보정필터 ON / OFF
+      [_styleAREarringView setEarringFilterEnabled:enabled];
+      ```
 
 - **(3) 정지**  
    **StyleAREarring API `LIVE`** 동작을 정지합니다. **StyleAREarring API `LIVE`** 가 설정되어 있는 **UI 컴포넌트**에 **결과 영상**을 **출력**하는 것을 **멈춥니다**.
@@ -239,6 +325,13 @@
   // For Android
   m_stylearView.stop();
   ```
+
+  ```objective-c
+  // For iOS
+  [styleAREarringView stop];
+  ```
+
+---
 
 ### StyleAREarring API 적용방법(`STILL`)
 
@@ -254,70 +347,138 @@
   - 클래스 import  
     **StyleAREarring API`SITLL`** 을 구동하기 위한 클래스를 import 합니다.
 
-    ```java
-    // StyleAREarring API STILL 컨트롤 클래스
-    import xyz.deepixel.stylear.earring.DPStyleAREarring;
-    // StyleAREarring API 귀걸이 설정 클래스
-    import xyz.deepixel.stylear.earring.DPEarringParam;
-    ```
+    - Android
+
+      ```java
+      // StyleAREarring API STILL 컨트롤 클래스
+      import xyz.deepixel.stylear.earring.DPStyleAREarring;
+      // StyleAREarring API 귀걸이 설정 클래스
+      import xyz.deepixel.stylear.earring.DPEarringParam;
+      ```
+
+    - iOS
+
+      ```objective-c
+      #import <StyleAREarring/StyleAREarring.h>
+      ```
 
   - 함수호출  
     **StyleAREarring API `STILL`** **인스턴스**를 **생성** 합니다. 만약 생성된 인스턴스가 있다면 **해당 인스턴스**를 **리턴**합니다.
 
-    ```java
-    //Context activity: StyleAREarring API STILL이 포함된 activity를 입력
-    DPStyleAREarring styleAR = DPStyleAREarring.getInstance(Context activity);
-    ```
+    - Android
+
+      ```java
+      // Context activity: StyleAREarring API STILL이 포함된 activity를 입력
+      DPStyleAREarring styleAR = DPStyleAREarring.getInstance(Context activity);
+      ```
+
+    - iOS
+
+      ```objective-c
+      DPStyleAREarring *styleAREarring = [DPStyleAREarring sharedInstance];
+      ```
 
 - **(2) 귀걸이 설정**  
    **StyleAREarring API `STILL`** 이 **구동하기 이전**에 **귀걸이 설정**을 해야 합니다. **귀걸이 설정방법**은 **StyleAREarring API `LIVE`** 와 **동일**합니다.
 
-  ```java
-  // For Android
-  // StyleAREarring API LIVE와 설정방법이 동일
-  //    ...
-  //    ...
-  //    ...
-  // StyleAREarring API STILL 에 좌측 귀걸이 정보 입력
-  styleAR.setLeftEarringParam(leftEarringParam);
-  // StyleAREarring API STILL 에 우측 귀걸이 정보 입력
-  styleAR.setRightEarringParam(rightEarringParam);
-  ```
+  - Android
+
+    ```java
+    // For Android
+    // StyleAREarring API LIVE와 설정방법이 동일
+    //    ...
+    //    ...
+    //    ...
+    // StyleAREarring API STILL 에 좌측 귀걸이 정보 입력
+    styleAR.setLeftEarringParam(leftEarringParam);
+    // StyleAREarring API STILL 에 우측 귀걸이 정보 입력
+    styleAR.setRightEarringParam(rightEarringParam);
+    ```
+
+  - iOS
+
+    ```objective-c
+    // For iOS
+    // StyleAREarring API LIVE와 설정방법이 동일
+    //    ...
+    //    ...
+    //    ...
+    // StyleAREarring API STILL 에 좌측 귀걸이 정보 입력
+    [styleAREarring setLeftEarringParam:leftEarringParam];
+    // StyleAREarring API STILL 에 우측 귀걸이 정보 입력
+    [styleAREarring setRightEarringParam:rightEarringParam];
+    ```
 
 - **(3) 필터설정**  
    **StyleAREarring API `STILL`** 의 **출력영상**에 **화면 및 귀걸이 보정필터**를 **ON/OFF** 합니다. **기본 설정값**은 **OFF**(false)입니다.
 
-  ```java
-  // For Android
-  // 화면 보정필터 ON / OFF (bool bFilter: ON[true] / OFF[false])
-  styleAR.setFilterEnabled(bool bFilter);
-  // 귀걸이 보정필터 ON / OFF (bool bFilter: ON[true] / OFF[false])
-  styleAR.setEarringFilterEnabled(bool bFilter);
-  ```
+  - Android
+
+    ```java
+    // For Android
+    // 화면 보정필터 ON / OFF
+    styleAR.setFilterEnabled(filterEnabled);
+    // 귀걸이 보정필터 ON / OFF
+    styleAR.setEarringFilterEnabled(earringFilterEnabled);
+    ```
+
+  - iOS
+
+    ```objective-c
+    // For iOS
+    // 화면 보정필터 ON / OFF
+    [styleAREarring setFilterEnabled:filterEnabled];
+    // 귀걸이 보정필터 ON / OFF
+    [styleAREarring setEarringFilterEnabled:earringFilterEnabled];
+    ```
 
 - **(4) 구동 및 출력**  
    **StyleAREarring API`STILL`** 에 **영상** 및 **귀의 위치**(**오른쪽, 왼쪽 좌표**)를 입력하여 구동하면 **가상착용된 결과 영상**이 **입력한 귀의 위치**를 **기준**으로 **출력**됩니다. 만약 **귀의 위치** **파라메터**를 **입력하지 않으면** **자동**으로 **귀 위치**를 판단하여 출력하게 됩니다.
 
-  ```java
-  // Bitmap bitmap: Bitmap 타입의 입력영상
-  // Point left: 얼굴의 좌측 픽셀 위치(사용자 입력)
-  // Point right: 얼굴의 우측 픽셀 위치(사용자 입력)
-  // Bitmap processedBitmap: 귀걸이가 가상착용된 출력영상
-  Bitmap processedBitmap = styleAR.getStyleAREarringImage(Bitmap bitmap, Point left, Point right);
-  ```
+  - Android
+
+    ```java
+    // For android
+    // Bitmap bitmap: Bitmap 타입의 입력영상
+    // Bitmap styleARImage: 귀걸이가 가상착용된 출력영상
+    Bitmap styleARImage = styleAR.getStyleARImage(Bitmap bitmap);
+    ```
+
+  - iOS
+
+    ```objective-c
+    // For iOS
+    // CGImageRef cgImage: CGImageRef 타입의 입력영상
+    // CGImageRef styleARImage: 귀걸이가 가상착용된 출력영상
+    CGImageRef styleARImage = [styleAREarring getStyleARImage:cgImage];
+    ```
 
 - **(5) 메타데이터정보 획득**  
    **StyleAREarring API`STILL`** 이 **구동된 이후**에 **메타데이터**를 **획득**할 수 있습니다. **메타데이터 출력 방법**은 **StyleAREarring API `LIVE`** 와 **동일**합니다.
 
-  ```java
-  // For Android
-  // 메타데이터 정보획득
-  DPFaceMetaData faceMetaData = styleAR.getFaceMetaData();
-  // 출력방법은 StyleAREarring API LIVE와 동일
-  //  ...
-  //  ...
-  //  ...
-  ```
+  - Android
+
+    ```java
+    // For Android
+    // 메타데이터 정보획득
+    DPFaceMetaData faceMetaData = styleAR.getFaceMetaData();
+    // 출력방법은 StyleAREarring API LIVE와 동일
+    //  ...
+    //  ...
+    //  ...
+    ```
+
+  - iOS
+
+    ```objective-c
+    // For iOS
+    // 메타데이터 정보획득
+    DPFaceMetaData *faceMetaData = [styleAREarring getFaceMetaData];
+    // 출력방법은 StyleAREarring API LIVE와 동일
+    //  ...
+    //  ...
+    //  ...
+    ```
 
 ---
 
@@ -329,10 +490,15 @@ StyleAREarring API 적용시 문제점을 발견하거나 궁금한 점이 있�
 
 ## 참조
 
-- [Android Sample code(LIVE)][android_sample_live]
-- [Android Sample code(STILL)][android_sample_still]
-- [Android 환경 설정][android_tutorial]
-- [StyleAREarring API For Android][stylear_api_for_android]
+- Android
+  - [Android Sample code(LIVE)][android_sample_live]
+  - [Android Sample code(STILL)][android_sample_still]
+  - [Android 환경 설정][android_tutorial]
+  - [StyleAREarring API For Android][stylear_api_for_android]
+- iOS
+  - [iOS Sample code][ios_sample]
+  - [iOS 환경 설정][ios_tutorial]
+  - [StyleAREarring API For iOS][stylear_api_for_ios]
 - [StyleAREarring API 입력데이터 만들기][make_input_data]
 - [딥픽셀 홈페이지][deepixel_hompage]
 
@@ -341,5 +507,8 @@ StyleAREarring API 적용시 문제점을 발견하거나 궁금한 점이 있�
 [license]: /License/README.md
 [android_tutorial]: /StyleAR/Earring/APP/tutorial/android
 [stylear_api_for_android]: /StyleAR/Earring/APP/apis/android/index.html
+[ios_sample]: https://github.com/deepixel-dev1/deepixel-dev1.github.io/tree/master/StyleAR/Earring/APP/tutorial/ios/StyleAREarringForiOSSample
+[ios_tutorial]: /StyleAR/Earring/APP/tutorial/ios
+[stylear_api_for_ios]: /StyleAR/Earring/APP/apis/ios/index.html
 [make_input_data]: /StyleAR/Earring/APP/tutorial/input
-[deepixel_hompage]: https://deepixel.azurewebsites.net/
+[deepixel_hompage]: https://www.deepixel.xyz/
