@@ -112,13 +112,15 @@ public class CameraFragment extends Fragment
                             DPFaceMetaData faceMetaData = m_stylearView.getFaceMetaData();
                             StringBuilder msg = new StringBuilder();
                             msg.append("FRM : ").append(faceMetaData.getFaceRatioMean()).append('\n');
-                            msg.append("FRS : ").append(faceMetaData.getFaceRatioStd()).append('\n');
+                            msg.append("CRM : ").append(faceMetaData.getChinLineRatioMean()).append('\n');
                             msg.append("HCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getHairColorMean())).append('\n');
                             msg.append("HCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getHairColorStd())).append('\n');
                             msg.append("LCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getLipColorMean())).append('\n');
                             msg.append("LCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getLipColorStd())).append('\n');
                             msg.append("SCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getSkinColorMean())).append('\n');
                             msg.append("SCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getSkinColorStd())).append('\n');
+                            msg.append("DCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getDressColorMean())).append('\n');
+                            msg.append("DCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getDressColorStd()));
 
                             mEditTextMetaData.setText(msg.toString());
                             mEditTextMetaData.setVisibility(View.VISIBLE);
