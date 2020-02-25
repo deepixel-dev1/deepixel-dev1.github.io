@@ -65,13 +65,15 @@ CGImageRef GetImgRef(NSString *filename, NSString *extension) {
     DPFaceMetaData *faceMetaData = [_styleAREarring getFaceMetaData];
     NSMutableString *str = [[NSMutableString alloc] init];
     [str appendFormat:@"FRM = %f\n", faceMetaData.faceRatioMean];
-    [str appendFormat:@"FRS = %f\n", faceMetaData.faceRatioStd];
+    [str appendFormat:@"CRM = %f\n", faceMetaData.chinLineRatioMean];
     [str appendFormat:@"HCM = #%06X\n", 0xFFFFFF & faceMetaData.hairColorMean];
     [str appendFormat:@"HCS = #%06X\n", 0xFFFFFF & faceMetaData.hairColorStd];
     [str appendFormat:@"LCM = #%06X\n", 0xFFFFFF & faceMetaData.lipColorMean];
     [str appendFormat:@"LCS = #%06X\n", 0xFFFFFF & faceMetaData.lipColorStd];
     [str appendFormat:@"SCM = #%06X\n", 0xFFFFFF & faceMetaData.skinColorMean];
-    [str appendFormat:@"SCS = #%06X", 0xFFFFFF & faceMetaData.skinColorStd];
+    [str appendFormat:@"SCS = #%06X\n", 0xFFFFFF & faceMetaData.skinColorStd];
+    [str appendFormat:@"DCM = #%06X\n", 0xFFFFFF & faceMetaData.dressColorMean];
+    [str appendFormat:@"DCS = #%06X", 0xFFFFFF & faceMetaData.dressColorStd];
     return str;
 }
 
