@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['haircolormean',['hairColorMean',['../a00036.html#a13f7a83fc7c9be03ac8585d7835bbfca',1,'DPFaceMetaData']]],
-  ['haircolorstd',['hairColorStd',['../a00036.html#a6e72b60e2ec04a051c4dffbbf34311a8',1,'DPFaceMetaData']]]
+  ['faceratiomean',['faceRatioMean',['../a00036.html#a468422c046611ae2d432c7242c0cd500',1,'DPFaceMetaData']]]
 ];

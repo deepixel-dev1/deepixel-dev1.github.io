@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['lipcolormean',['lipColorMean',['../a00036.html#a9c12ec8de0c52d752068f4ed6f092d91',1,'DPFaceMetaData']]],
-  ['lipcolorstd',['lipColorStd',['../a00036.html#ad5adc7e953af58ff0783cea71df9af0f',1,'DPFaceMetaData']]]
+  ['haircolormean',['hairColorMean',['../a00036.html#a13f7a83fc7c9be03ac8585d7835bbfca',1,'DPFaceMetaData']]],
+  ['haircolorstd',['hairColorStd',['../a00036.html#a6e72b60e2ec04a051c4dffbbf34311a8',1,'DPFaceMetaData']]]
 ];

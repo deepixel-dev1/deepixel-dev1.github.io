@@ -1,7 +1,9 @@
 var a00036 =
 [
+    [ "chinLineRatioMean", "a00036.html#a17fc5437a00af75363f212a76e59aa59", null ],
+    [ "dressColorMean", "a00036.html#abf57675483c0d04fda65cb878fcd0119", null ],
+    [ "dressColorStd", "a00036.html#aa4bd379e27e0f970460c0f191a6d9ec0", null ],
     [ "faceRatioMean", "a00036.html#a468422c046611ae2d432c7242c0cd500", null ],
-    [ "faceRatioStd", "a00036.html#a436e65c5fb044b59b0585df9f1887eb1", null ],
     [ "hairColorMean", "a00036.html#a13f7a83fc7c9be03ac8585d7835bbfca", null ],
     [ "hairColorStd", "a00036.html#a6e72b60e2ec04a051c4dffbbf34311a8", null ],
     [ "lipColorMean", "a00036.html#a9c12ec8de0c52d752068f4ed6f092d91", null ],
