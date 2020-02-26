@@ -256,10 +256,10 @@
       // 메타데이터 획득
       DPFaceMetaData faceMetaData = m_stylearView.getFaceMetaData();
       StringBuilder msg = new StringBuilder();
-      // 얼굴 비율 평균 출력
+      // 얼굴 비율 출력
       msg.append("FRM : ").append(faceMetaData.getFaceRatioMean()).append('\n');
-      // 얼굴 비율 편차 출력
-      msg.append("FRS : ").append(faceMetaData.getFaceRatioStd()).append('\n');
+      // 얼굴 라인 비율 출력
+      msg.append("CRM : ").append(faceMetaData.getChinLineRatioMean()).append('\n');
       // 머리카락 색깔 평균 출력
       msg.append("HCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getHairColorMean())).append('\n');
       // 머러카락 색깔 편차 출력
@@ -272,6 +272,10 @@
       msg.append("SCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getSkinColorMean())).append('\n');
       // 피부색 색깔 편차 출력
       msg.append("SCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getSkinColorStd())).append('\n');
+      // 옷 색깔 평균 출력
+      msg.append("DCM : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getDressColorMean())).append('\n');
+      // 옷 색깔 편차 출력
+      msg.append("DCS : ").append(String.format("#%06X", 0xFFFFFF & faceMetaData.getDressColorStd()));
       ```
 
     - iOS
@@ -284,7 +288,7 @@
       // 얼굴 비율 평균 출력
       [str appendFormat:@"FRM = %f\n", faceMetaData.faceRatioMean];
       // 얼굴 비율 편차 출력
-      [str appendFormat:@"FRS = %f\n", faceMetaData.faceRatioStd];
+      [str appendFormat:@"CRM = %f\n", faceMetaData.chinLineRatioMean];
       // 머리카락 색깔 평균 출력
       [str appendFormat:@"HCM = #%06X\n", 0xFFFFFF & faceMetaData.hairColorMean];
       // 머러카락 색깔 편차 출력
@@ -296,7 +300,11 @@
       // 피부색 색깔 평균 출력
       [str appendFormat:@"SCM = #%06X\n", 0xFFFFFF & faceMetaData.skinColorMean];
       // 피부색 색깔 편차 출력
-      [str appendFormat:@"SCS = #%06X", 0xFFFFFF & faceMetaData.skinColorStd];
+      [str appendFormat:@"SCS = #%06X\n", 0xFFFFFF & faceMetaData.skinColorStd];
+      // 옷 색깔 평균 출력
+      [str appendFormat:@"DCM = #%06X\n", 0xFFFFFF & faceMetaData.dressColorMean];
+      // 옷 색깔 편차 출력
+      [str appendFormat:@"DCS = #%06X", 0xFFFFFF & faceMetaData.dressColorStd];
       ```
 
   - **(2-3) 필터설정**
