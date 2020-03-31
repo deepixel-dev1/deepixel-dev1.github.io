@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <xyz.deepixel.stylear.DPStyleAREarringView
+    <xyz.deepixel.stylear.earring.DPStyleAREarringView
         android:id="@+id/stylear_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,7 +13,7 @@
         android:layout_marginTop="0dp"
         android:background="#FFFFFFFF">
 
-    </xyz.deepixel.stylear.DPStyleAREarringView>
+    </xyz.deepixel.stylear.earring.DPStyleAREarringView>
 
     <LinearLayout
         android:layout_width="match_parent"
