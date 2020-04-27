@@ -2,59 +2,58 @@
 
 ---
 
-# StyleAREarring 관리자 페이지
+# StyleAR 쿠폰 발급 및 등록
 
-웹 플랫폼에서 StyleAR 플로팅 버튼을 쇼핑몰에서 사용하기 위한 고객사 전용 어플리케이션 툴입니다. 가상착용이 가능한 Earring을 등록, 수정 및 삭제가 가능하며 지난 API 사용량을 볼수 있는 통계 페이지를 제공합니다.
+StyleAR 플로팅을 통해 가상착용을 체험하는 고객에게 쿠폰을 제공할 수 있습니다. 쇼핑몰(호스팅 업체)을 통해 발급한 쿠폰을 StyleAR 매니저에 등록하여 StyleAR 플로팅에 노출시켜, 다운로드 형식으로 고객에게 쿠폰을 전달합니다. 본 기능을 사용하기 위해서는 StyleAR 매니저의 프로모션>쿠폰관리에서 쿠폰추가를 통해 쿠폰번호를 등록하여야 합니다.
 
-# 로그인 및 회원가입
+## 쇼핑몰 쿠폰발급
 
-현재 관리자 페이지는 이메일을 통한 회원가입만을 허용하고 있습니다. <br>
-관리자: [support@deepixel.xyz](support@deepixel.xyz)
+StyleAR 플로팅 쿠폰은 아래의 쇼핑몰을 지원하고 있으며, 빠른 시일내로 다양한 쇼핑몰의 지원할 예정입니다. <br>
 
-<img src="../img/login.PNG" alt="login" title="login prompt image" width="320" height="240" />
+1. 카페24
+2. 메이크샵 
 
-# 귀걸이 페이지
+### 1. 카페24 쿠폰발급
 
-<img src="../img/earring_page.PNG" alt="earring_page" title="earring page image" width="600" height="600" />
+카페24 쿠폰발급은 프로모션>쿠폰관리>쿠폰만들기 페이지에서 발급정보를 입력하여 StyleAR 전용 쿠폰을 발급합니다.  
 
-### 1. 로그아웃
+<img src="../img/cafe24_coupon_01.PNG" width="960" height="720" /> <br>
 
-세션 시간: 현재 7시간
+카페24 StyleAR 전용쿠폰 발급 시 필수 설정 사항  
+1. 발급구분: 고객 다운로드발급 및 회원대상
+2. 동일인 재발급 여부: 불가능
+3. 발급시점: 즉시발급
+4. 노출설정: 노출안함
 
-### 2. 귀걸이 추가 버튼
+<img src="../img/cafe24_coupon_02.PNG" width="960" height="720" /> <br>
 
-귀걸이 추가 버튼을 누르시면 귀걸이 이미지와 귀걸이에 대한 정보를 입력 하실수 있습니다.
-양쪽 귀걸이의 모양과 정보가 상이할 경우 오른쪽 귀걸이에 대한 정보를 추가적으로 입력하시면 됩니다. (상품 번호 와 이름 제외)
 
-<img src="../img/earring_add.PNG" alt="earring_page" title="earring page image" width="320" height="480" />
+프로모션>쿠폰관리>쿠폰발급/조회 페이지에서 발급쿠폰 목록에서 StyleAR 매니저에 등록할 쿠폰번호를 확인합니다.  
 
-1. 상품번호 (고객사 제품 ID)
-2. 설명 (제품이름)
-3. 귀걸이 너비 (mm)
-4. 귀걸이 높이 (mm)
-5. 핀위치 (mm)
-6. 원본 이미지 및 귀걸이 이미지 필터 적용 여부
-7. 귀걸이 이미지 추가
-8. 오른쪽 귀걸이 정보 입력 (선택사항)
-9. 취소 버튼 (창닫기)
-10. 추가 버튼 (적용)
+<img src="../img/cafe24_coupon_03.PNG" width="960" height="400" />
 
-#### 귀걸이 치수
+### 2. 메이크샵 쿠폰발급
 
-<img src="../img/earring_spec.PNG" alt="earring_page" title="earring page image" width="300" height="320" />
+메이크샵 쿠폰발급은 회원관리>왕대박 쿠폰 발행 서비스>새로운 쿠폰만들기 페이지에서 발급정보를 입력하여 StyleAR 전용 쿠폰을 발급합니다.  
 
-### 3. 귀걸이 편집 버튼
+<img src="../img/makeshop_coupon_01.PNG" width="913" height="720" />
 
-해당 귀걸이의 정보를 수정하려면 편집 버튼을 눌러 수정하실수 있습니다.
+메이크샵 StyleAR 전용쿠론 발급 시 필수 설정 사항  
+1. 쿠폰 발급 조건: 쿠폰 클릭시 발급
+2. 쿠폰 자동 노출: 하지 않습니다.
+3. 동일인 재발금: 불가능
 
-### 4. 귀걸이 삭제 버튼
+<img src="../img/makeshop_coupon_02.PNG" width="919" height="720" /> <br>
 
-해당 귀걸이를 삭제하고 싶으시다면 삭제 버튼을 눌러 사제하실수 있습니다.
+회원관리>왕대박 쿠폰 발행 서비스>발급한 쿠폰 내역관리 페이지에서 발급한 쿠폰 내역에서 StyleAR 매니저에 등록할 쿠폰번호를 확인합니다. 
 
-# 통계 페이지
+<img src="../img/makeshop_coupon_03.PNG" width="900" height="720" />
 
-<img src="../img/statistic.PNG" alt="earring_page" title="earring page image" width="600" height="600" />
+## 매니저 쿠폰등록
 
-1. 지난 달 일별 API 호출 수
-2. 호출 빈도 상위 5개 & 하위 5개 제품
-3. 지난 API 호출 통계 기록
+쇼핑몰에서 발급한 쿠폰의 번호를 매니저>프로모션>쿠폰관리 페이지에서 쿠폰추가를 통해 StyleAR 플로팅 상단에 쿠폰을 노출시킬 수 있습니다. <br> 
+<img src="../img/manager_coupon_01.PNG" width="1280" height="659" /> <br>
+
+쇼핑몰 쿠폰발급 시, 쿠폰 미노출 및 다운로드 또는 클릭시 발생 세팅으로 인해 StyleAR 가상착용 사용시, StyleAR 플로팅 상단에 쿠폰이 아래 사진과 같이 노출됩니다. 쿠폰을 클릭하면 자동으로 쿠폰이 저장됩니다.  
+<img src="../img/manager_coupon_02.PNG" width="874" height="717" /> <br>
+
